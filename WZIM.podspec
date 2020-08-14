@@ -1,0 +1,55 @@
+#
+# Be sure to run `pod lib lint WZIM.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
+#
+
+Pod::Spec.new do |s|
+  s.name             = 'WZIM'
+  s.version          = '0.1.0'
+  s.summary          = 'A short description of WZIM.'
+
+
+  s.description      = <<-DESC
+  我主IM依赖库
+                       DESC
+
+  s.homepage         = 'https://github.com/WZLYiOS/WZIM'
+  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'qiuqixiang' => '739140860@qq.com' }
+  s.source           = { :git => 'https://github.com/WZLYiOS/WZIM.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+
+  s.requires_arc = true
+  s.static_framework = true
+  s.swift_version         = '5.0'
+  s.ios.deployment_target = '10.0'
+  
+  s.default_subspec = "Core"
+
+  # 协议框架
+  s.dependency 'WZIMProtocol', '~> 0.0.4'
+  
+  # 腾讯&环信
+  s.subspec "Core" do |ss|
+    ss.source_files  = "WZIM/Classes/TIM/*", "WZIM/Classes/EM/*"
+    ss.dependency 'TXIMSDK_iOS', '~> 4.9.1'
+    ss.dependency 'HyphenateLite', '~> 3.7.0'
+  end
+  
+  # 腾讯SDk
+  s.subspec "TIM" do |ss|
+    ss.source_files = "WZIM/Classes/TIM/*"
+    ss.dependency 'TXIMSDK_iOS', '~> 4.9.1'
+  end
+  
+  # 环信SDK
+  s.subspec "EM" do |ss|
+    ss.source_files = "WZIM/Classes/EM/*"
+    ss.dependency 'HyphenateLite', '~> 3.7.0'
+  end
+  
+end

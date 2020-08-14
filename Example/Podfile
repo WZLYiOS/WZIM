@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'WZIM_Example' do
+  pod 'WZIM', :path => '../'
+
+  target 'WZIM_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

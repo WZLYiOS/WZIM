@@ -1,0 +1,6 @@
+framework module WZIMProtocol {
+  umbrella header "WZIMProtocol-umbrella.h"
+
+  export *
+  module * { export * }
+}

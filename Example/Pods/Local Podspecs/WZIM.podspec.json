@@ -1,0 +1,66 @@
+{
+  "name": "WZIM",
+  "version": "0.1.0",
+  "summary": "A short description of WZIM.",
+  "description": "我主IM依赖库",
+  "homepage": "https://github.com/WZLYiOS/WZIM",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "qiuqixiang": "739140860@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/WZLYiOS/WZIM.git",
+    "tag": "0.1.0"
+  },
+  "requires_arc": true,
+  "static_framework": true,
+  "swift_versions": "5.0",
+  "platforms": {
+    "ios": "10.0"
+  },
+  "default_subspecs": "Core",
+  "dependencies": {
+    "WZIMProtocol": [
+      "~> 0.0.4"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": [
+        "WZIM/Classes/TIM/*",
+        "WZIM/Classes/EM/*"
+      ],
+      "dependencies": {
+        "TXIMSDK_iOS": [
+          "~> 4.9.1"
+        ],
+        "HyphenateLite": [
+          "~> 3.7.0"
+        ]
+      }
+    },
+    {
+      "name": "TIM",
+      "source_files": "WZIM/Classes/TIM/*",
+      "dependencies": {
+        "TXIMSDK_iOS": [
+          "~> 4.9.1"
+        ]
+      }
+    },
+    {
+      "name": "EM",
+      "source_files": "WZIM/Classes/EM/*",
+      "dependencies": {
+        "HyphenateLite": [
+          "~> 3.7.0"
+        ]
+      }
+    }
+  ],
+  "swift_version": "5.0"
+}
