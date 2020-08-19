@@ -17,11 +17,9 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = 'https://github.com/WZLYiOS/WZIM'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'qiuqixiang' => '739140860@qq.com' }
   s.source           = { :git => 'https://github.com/WZLYiOS/WZIM.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.requires_arc = true
   s.static_framework = true

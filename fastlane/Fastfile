@@ -19,18 +19,19 @@ platform :ios do
 
   desc "release new version"
   lane :release do |options|
-    target_version = options[:version]
-    raise "The version is missed." if target_version.nil?
 
     # carthage 打包
     #carthage(
-      #command: "build",
+     # command: "build",
       #platform: "iOS", 
       #use_binaries: true,
       #no_skip_current: true)
 
     # 获取源码 podspec 文件路径
     podspec_path = find_podspec_path()
+
+    # 获取版本号
+    target_version = version_get_podspec(path: podspec_path)
 
     repo_source = "https://github.com/WZLYiOS/WZPodSpecs.git"
 
@@ -67,8 +68,7 @@ platform :ios do
     # 推送到远程
     push_to_git_remote
 
-    # 获取版本号
-    target_version = version_get_podspec(path: podspec_path)
+    
 
     # 添加标签
     if !git_tag_exists(tag: target_version)
