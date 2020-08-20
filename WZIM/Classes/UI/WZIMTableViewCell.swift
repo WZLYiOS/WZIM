@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 // MARK - 气泡cell
+@objcMembers
 open class WZIMTableViewCell: UITableViewCell {
 
     /// 代理
@@ -67,14 +68,14 @@ open class WZIMTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func configView() {
+    @objc open func configView() {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(bubbleImageView)
         contentView.addSubview(stateStackView)
         contentView.addSubview(bottomStackView)
     }
 
-    open func configViewLocation() {
+    @objc open func configViewLocation() {
         bottomStackView.snp.makeConstraints { (make) in
             make.leading.equalTo(0)
             make.right.equalToSuperview()
@@ -84,7 +85,7 @@ open class WZIMTableViewCell: UITableViewCell {
     }
     
     /// 更新数据
-    open func reload(model: WZIMMessageProtocol, publicDelegate: WZIMTableViewCellPublicDelegate, cDelegate: WZIMTableViewCellDelegate) {
+    @objc open func reload(model: WZIMMessageProtocol, publicDelegate: WZIMTableViewCellPublicDelegate, cDelegate: WZIMTableViewCellDelegate) {
         
         pDelegate = publicDelegate
         message = model
