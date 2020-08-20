@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; };
+		D0D4F99724EE159E00DD06A9 /* Pods_WZIM_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF94A57D4AC30348F4524EE5 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CBF019B207C5CE3D52491C /* Pods_WZIM_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,20 @@
 			remoteInfo = WZIM;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0D4F99824EE159E00DD06A9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0D4F99724EE159E00DD06A9 /* Pods_WZIM_Example.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		01CBF019B207C5CE3D52491C /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +62,7 @@
 		6C81EF02CB2779590E70B3B7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8FFD3564E3B9A98C93B535D2 /* WZIM.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WZIM.podspec; path = ../WZIM.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CFA673DE44390B4B992D5AD0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9BB371317B5635A1F130ABE /* Pods_WZIM_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */,
 				FF94A57D4AC30348F4524EE5 /* Pods_WZIM_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +171,7 @@
 		EE293176D3E8D4523226BD7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */,
 				01CBF019B207C5CE3D52491C /* Pods_WZIM_Example.framework */,
 				F9BB371317B5635A1F130ABE /* Pods_WZIM_Tests.framework */,
 			);
@@ -171,6 +190,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				8B54AC0CA106C12D117A45E3 /* [CP] Embed Pods Frameworks */,
+				D0D4F99824EE159E00DD06A9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

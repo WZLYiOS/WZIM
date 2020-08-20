@@ -25,9 +25,12 @@ Pod::Spec.new do |s|
   s.static_framework = true
   s.swift_version         = '5.0'
   s.ios.deployment_target = '10.0'
+  s.pod_target_xcconfig = {
+      'VALID_ARCHS' => 'armv7 armv7s arm64 x86_64'
+  }
   
   s.default_subspec = "Core"
-
+  
 
   # 全部
   s.subspec "Core" do |ss|

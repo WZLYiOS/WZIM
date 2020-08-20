@@ -1,6 +1,6 @@
 {
   "name": "WZIM",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "summary": "WZIM.",
   "description": "我主IM依赖库",
   "homepage": "https://github.com/WZLYiOS/WZIM",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WZLYiOS/WZIM.git",
-    "tag": "0.0.2"
+    "tag": "0.0.3"
   },
   "requires_arc": true,
   "static_framework": true,
@@ -32,7 +32,7 @@
         "WZIM/Classes/Procotol/*"
       ],
       "dependencies": {
-        "TXIMSDK_iOS/ImSDK": [
+        "TXIMSDK_iOS": [
           "~> 4.9.1"
         ],
         "HyphenateLite": [
