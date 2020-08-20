@@ -9,7 +9,7 @@ import Foundation
 import HyphenateLite
 
 // MARK - 环信消息代理
-protocol WZEMManagerDelegate: class {
+public protocol WZEMManagerDelegate: class {
     
     /// 会话列表发生变化
     /// - Parameters:

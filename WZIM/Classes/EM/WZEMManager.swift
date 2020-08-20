@@ -9,7 +9,7 @@ import Foundation
 import HyphenateLite
 
 // MARK - 环信管理器
-class WZEMManager: NSObject {
+open class WZEMManager: NSObject {
     
     /// 代理
     private weak var delegate: WZEMManagerDelegate?
@@ -51,43 +51,43 @@ class WZEMManager: NSObject {
 // MARK - EMChatManagerDelegate
 extension WZEMManager: EMChatManagerDelegate {
     
-    func conversationListDidUpdate(_ aConversationList: [Any]!) {
+    public func conversationListDidUpdate(_ aConversationList: [Any]!) {
         delegate?.conversationListDidUpdate(manager: self, aConversationList: aConversationList as? [EMConversation] ?? [])
     }
     
-    func messagesDidReceive(_ aMessages: [Any]!) {
+    public func messagesDidReceive(_ aMessages: [Any]!) {
         delegate?.messagesDidReceive(manager: self, aMessages: aMessages as! [EMMessage])
     }
     
-    func cmdMessagesDidReceive(_ aCmdMessages: [Any]!) {
+    public func cmdMessagesDidReceive(_ aCmdMessages: [Any]!) {
         delegate?.cmdMessagesDidReceive(manager: self, aCmdMessages: aCmdMessages as! [EMMessage])
     }
     
-    func messagesDidRead(_ aMessages: [Any]!) {
+    public func messagesDidRead(_ aMessages: [Any]!) {
         delegate?.messagesDidRead(manager: self, aMessages: aMessages as! [EMMessage])
     }
     
-    func groupMessageDidRead(_ aMessage: EMMessage!, groupAcks aGroupAcks: [Any]!) {
+    public func groupMessageDidRead(_ aMessage: EMMessage!, groupAcks aGroupAcks: [Any]!) {
         delegate?.groupMessageDidRead(manager: self, aMessage: aMessage, groupAcks: aGroupAcks as! [EMGroupMessageAck])
     }
     
-    func groupMessageAckHasChanged() {
+    public func groupMessageAckHasChanged() {
         delegate?.groupMessageAckHasChanged()
     }
     
-    func messagesDidDeliver(_ aMessages: [Any]!) {
+    public func messagesDidDeliver(_ aMessages: [Any]!) {
         delegate?.messagesDidDeliver(manager: self, aMessages: aMessages as! [EMMessage])
     }
     
-    func messagesDidRecall(_ aMessages: [Any]!) {
+    public func messagesDidRecall(_ aMessages: [Any]!) {
         delegate?.messagesDidRecall(manager: self, aMessages: aMessages as! [EMMessage])
     }
     
-    func messageStatusDidChange(_ aMessage: EMMessage!, error aError: EMError!) {
+    public func messageStatusDidChange(_ aMessage: EMMessage!, error aError: EMError!) {
         delegate?.messageStatusDidChange(manager: self, aMessage: aMessage, error: aError)
     }
     
-    func messageAttachmentStatusDidChange(_ aMessage: EMMessage!, error aError: EMError!) {
+    public func messageAttachmentStatusDidChange(_ aMessage: EMMessage!, error aError: EMError!) {
         delegate?.messageAttachmentStatusDidChange(manager: self, aMessage: aMessage, error: aError)
     }
 }

@@ -9,7 +9,7 @@ import ImSDK
 import Foundation
 
 // MARK - 腾讯SDK代理回调
-protocol WZTIMManagerDelegate: class {
+public protocol WZTIMManagerDelegate: class {
     
     /// 网络连接成功
     /// - Parameter manager: 管理器

@@ -9,7 +9,7 @@ import ImSDK
 import Foundation
 
 // MARK - 腾讯管理器
-class WZTIMManager: NSObject {
+open class WZTIMManager: NSObject {
     
     /// 代理
     weak var delegate: WZTIMManagerDelegate?
@@ -88,19 +88,19 @@ class WZTIMManager: NSObject {
 // MARK - TIMConnListener
 extension WZTIMManager: TIMConnListener {
     
-    func onConnSucc() {
+    public func onConnSucc() {
         delegate?.onConnSucc(manager: self)
     }
     
-    func onConnFailed(_ code: Int32, err: String!) {
+    public func onConnFailed(_ code: Int32, err: String!) {
         delegate?.onConnFailed(manager: self, code: code, err: err)
     }
     
-    func onDisconnect(_ code: Int32, err: String!) {
+    public func onDisconnect(_ code: Int32, err: String!) {
         delegate?.onDisconnect(manager: self, code: code, err: err)
     }
     
-    func onConnecting() {
+    public func onConnecting() {
         delegate?.onConnecting(manager: self)
     }
 }
@@ -108,15 +108,15 @@ extension WZTIMManager: TIMConnListener {
 // MARK - TIMUserStatusListener
 extension WZTIMManager: TIMUserStatusListener {
     
-    func onForceOffline() {
+    public func onForceOffline() {
         delegate?.onForceOffline(manager: self)
     }
     
-    func onReConnFailed(_ code: Int32, err: String!) {
+    public func onReConnFailed(_ code: Int32, err: String!) {
         delegate?.onReConnFailed(manager: self, code: code, err: err)
     }
     
-    func onUserSigExpired() {
+    public func onUserSigExpired() {
         delegate?.onUserSigExpired(manager: self)
     }
 }
@@ -124,11 +124,11 @@ extension WZTIMManager: TIMUserStatusListener {
 // MARK - TIMRefreshListener
 extension WZTIMManager: TIMRefreshListener {
     
-    func onRefresh() {
+    public func onRefresh() {
         delegate?.onRefresh(manager: self)
     }
     
-    func onRefreshConversations(_ conversations: [TIMConversation]!) {
+    public func onRefreshConversations(_ conversations: [TIMConversation]!) {
         delegate?.onRefreshConversations(manager: self, conversations: conversations)
     }
 }
@@ -136,7 +136,7 @@ extension WZTIMManager: TIMRefreshListener {
 // MARK - TIMMessageReceiptListener
 extension WZTIMManager: TIMMessageReceiptListener {
     
-    func onRecvMessageReceipts(_ receipts: [Any]!) {
+    public func onRecvMessageReceipts(_ receipts: [Any]!) {
         delegate?.onRecvMessageReceipts(manager: self, receipts: receipts as? [TIMMessageReceipt] ?? [] )
     }
 }
@@ -144,7 +144,7 @@ extension WZTIMManager: TIMMessageReceiptListener {
 // MARK - TIMGroupEventListener
 extension WZTIMManager: TIMGroupEventListener {
     
-    func onGroupTipsEvent(_ elem: TIMGroupTipsElem!) {
+    public func onGroupTipsEvent(_ elem: TIMGroupTipsElem!) {
         delegate?.onGroupTipsEvent(manager: self, elem: elem)
     }
 }
@@ -152,7 +152,7 @@ extension WZTIMManager: TIMGroupEventListener {
 // MARK - TIMMessageListener
 extension WZTIMManager: TIMMessageListener {
     
-    func onNewMessage(_ msgs: [Any]!) {
+    public func onNewMessage(_ msgs: [Any]!) {
         delegate?.onNewMessage(manager: self, msgs: msgs as? [TIMMessage] ?? [])
     }
 }
