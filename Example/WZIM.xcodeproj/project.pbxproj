@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; };
 		D0D4F99724EE159E00DD06A9 /* Pods_WZIM_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D0D4F99A24EE1E4F00DD06A9 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */; };
 		FF94A57D4AC30348F4524EE5 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01CBF019B207C5CE3D52491C /* Pods_WZIM_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		8FFD3564E3B9A98C93B535D2 /* WZIM.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WZIM.podspec; path = ../WZIM.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CFA673DE44390B4B992D5AD0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		F9BB371317B5635A1F130ABE /* Pods_WZIM_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -357,6 +360,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				D0D4F99A24EE1E4F00DD06A9 /* TestTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

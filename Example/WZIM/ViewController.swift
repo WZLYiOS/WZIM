@@ -7,12 +7,33 @@
 //
 
 import UIKit
+import WZIM
 
 class ViewController: UIViewController {
 
+    
+    private lazy var tableView: UITableView = {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.estimatedRowHeight = 80
+        $0.rowHeight = UITableViewAutomaticDimension
+        $0.tableFooterView = UIView()
+        $0.tableHeaderView = UIView()
+        $0.register(TestTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
+        return $0
+    }(UITableView())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        WZIMConfig.lelftBubbleImage = UIImage(named: "ic_loveme_dialog_white")
+        WZIMConfig.rightBubbleImage = UIImage(named: "ic_loveme_dialog_purple")
+        WZIMConfig.menuItems =  ["复制"]
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,4 +42,127 @@ class ViewController: UIViewController {
     }
 
 }
+
+// MARK - HBConversationViewController
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: TestTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! TestTableViewCell
+        cell.reload(model: self, publicDelegate: self, cDelegate: self)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+}
+
+extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
+    func WZIMTableViewCell(cell: WZIMTableViewCell, tap avatarImageView: UIImageView) {
+        
+    }
+    
+    func WZIMTableViewCell(cell: WZIMTableViewCell, menuTitle: String) {
+        debugPrint(menuTitle)
+    }
+    
+    func WZIMTableViewCell(cell: WZIMTableViewCell, set avatar: UIImageView) {
+        
+    }
+}
+
+extension ViewController: WZIMMessageProtocol {
+    func wzSetCustomInt(param: Int) {
+        
+    }
+    
+    func wzCustomInt() -> Int {
+        return 1
+    }
+    
+    func wzStatus() -> WZIMMessageStatus {
+        return .deleted
+    }
+    
+    func wzIsReaded() -> Bool {
+        return false
+    }
+    
+    func wzRemove() -> Bool {
+        return false
+    }
+    
+    func wzSender() -> String {
+        return ""
+    }
+    
+    func wzMessageId() -> String {
+        return "xxx"
+    }
+    
+    func wzTimestamp() -> Date {
+        return Date()
+    }
+    
+    func wzGetConversation() -> WZIMConversationProcotol {
+        return self
+    }
+    
+    func wzConvertToImportedMsg() {
+        
+    }
+    
+    func wzSetSender(sender: String) {
+        
+    }
+    
+    func wzLoaction() -> WZMessageLocation {
+        return .right
+    }
+    
+    func wzListContent() -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: "1243")
+    }
+}
+ 
+
+extension ViewController: WZIMConversationProcotol {
+    func wzLastMessage() -> WZIMMessageProtocol? {
+        return nil
+    }
+    
+    func wzConversationType() -> WZIMConversationType {
+        return .c2c
+    }
+    
+    func wzReceiverId() -> String {
+        return ""
+    }
+    
+    func wzReadMessage(message: WZIMMessageProtocol?) {
+        
+    }
+    
+    func wzGetUnReadMessageNum() -> Int {
+        return 1
+    }
+    
+    func wzSendMessage(message: WZIMMessageProtocol, sucess: sucess, fail: fail) {
+        
+    }
+    
+    func wzGetMessage(cont: Int, last: WZIMMessageProtocol?, sucess: getMsgSucess, fail: fail) {
+        
+    }
+    
+    func wzGetUserInfo(forceUpdate: Bool, comple: @escaping (WZIMUserInfoProtocol) -> Void) {
+        
+    }
+    
+}
+
 
