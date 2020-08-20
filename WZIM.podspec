@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '0.0.4'
+  s.version          = '1.0.0'
   s.summary          = ' WZIM.'
 
 
