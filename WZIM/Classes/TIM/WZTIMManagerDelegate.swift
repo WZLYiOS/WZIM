@@ -7,7 +7,6 @@
 
 import ImSDK
 import Foundation
-import WZIMProtocol
 
 // MARK - 腾讯SDK代理回调
 protocol WZTIMManagerDelegate: class {
@@ -56,7 +55,7 @@ protocol WZTIMManagerDelegate: class {
     /// - Parameters:
     ///   - manager: 管理器
     ///   - conversations: 会话数组
-    func onRefreshConversations(manager: WZTIMManager, conversations: [WZIMConversationProcotol])
+    func onRefreshConversations(manager: WZTIMManager, conversations: [TIMConversation])
     
     /// 收到了已读回执
     /// - Parameters:
@@ -74,5 +73,5 @@ protocol WZTIMManagerDelegate: class {
     /// - Parameters:
     ///   - manager: 管理器
     ///   - msgs: 消息
-    func onNewMessage(manager: WZTIMManager, msgs: [WZIMMessageProtocol])
+    func onNewMessage(manager: WZTIMManager, msgs: [TIMMessage])
 }

@@ -5,57 +5,19 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.006602">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.011883">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: version_get_podspec" time="0.001625">
+      <testcase classname="fastlane.lanes" name="1: version_get_podspec" time="0.001917">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: pod_lib_lint" time="73.566603">
+      <testcase classname="fastlane.lanes" name="2: pod_lib_lint" time="92.966394">
         
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="03: version_bump_podspec" time="0.003404">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="04: git_add" time="0.014581">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="05: git_commit" time="0.030109">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="06: push_to_git_remote" time="81.339327">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="07: git_tag_exists" time="0.011934">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="08: add_git_tag" time="0.016023">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="09: push_git_tags" time="84.896028">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="10: pod_push" time="524.432669">
+          <failure message="/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:253:in `block in execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:227:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:227:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:41:in `block (2 levels) in parsing_binding'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/lane_manager.rb:56:in `cruise_lane'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/commands_generator.rb:349:in `run'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/fastlane/lib/fastlane/cli_tools_distributor.rb:119:in `take_off'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.143.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `load'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `&lt;main&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `&lt;main&gt;'&#10;&#10;Exit status of command 'bundle exec pod lib lint WZIMProtocol.podspec --allow-warnings --skip-import-validation' was 1 instead of 0.&#10;&#10; -&gt; WZIMProtocol -&gt; WZIMProtocol (0.0.7)&#10;    - WARN  | url: There was a problem validating the URL https://github.com/WZLYiOS/WZIMProtocol.&#10;    - NOTE  | [WZIMProtocol/Core, WZIMProtocol/Procotol, WZIMProtocol/UI, and more...] xcodebuild:  note: Using new build system&#10;    - NOTE  | [WZIMProtocol/Core, WZIMProtocol/Procotol, WZIMProtocol/UI, and more...] xcodebuild:  note: Building targets in parallel&#10;    - NOTE  | [WZIMProtocol/Core, WZIMProtocol/Procotol, WZIMProtocol/UI, and more...] xcodebuild:  note: Planning build&#10;    - NOTE  | [WZIMProtocol/Core, WZIMProtocol/Procotol, WZIMProtocol/UI, and more...] xcodebuild:  note: Constructing build description&#10;    - NOTE  | [WZIMProtocol/Core,WZIMProtocol/UI] xcodebuild:  note: Execution policy exception registration failed and was skipped: Error Domain=NSPOSIXErrorDomain Code=1 &quot;Operation not permitted&quot; (in target 'SnapKit' from project 'Pods')&#10;    - NOTE  | [WZIMProtocol/Core,WZIMProtocol/Procotol] xcodebuild:  note: Execution policy exception registration failed and was skipped: Error Domain=NSPOSIXErrorDomain Code=1 &quot;Operation not permitted&quot; (in target 'WZIMProtocol' from project 'Pods')&#10;    - ERROR | [iOS] [WZIMProtocol/UI] xcodebuild: Returned an unsuccessful exit code. You can use `--verbose` for more information.&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:19:25: error: use of undeclared type 'WZIMMessageProtocol'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:23:33: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:87:29: error: use of undeclared type 'WZIMMessageProtocol'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:96:38: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:97:36: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:98:37: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:99:52: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:103:69: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:104:52: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:106:37: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:110:55: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:111:36: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:112:37: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:113:52: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:116:70: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:117:52: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:119:37: error: use of unresolved identifier 'WZIMConfig'&#10;    - ERROR | [WZIMProtocol/UI] xcodebuild:  /Users/npp/Desktop/WZKit/WZIMProtocol/WZIMProtocol/Classes/UI/WZIMTableViewCell.swift:129:52: error: use of unresolved identifier 'WZIMConfig'&#10;&#10;[!] WZIMProtocol did not pass validation, due to 19 errors.&#10;You can use the `--no-clean` option to inspect any issue.&#10;" />
         
       </testcase>
     

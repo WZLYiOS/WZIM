@@ -8,7 +8,6 @@
 
 import ImSDK
 import Foundation
-import WZIMProtocol
 
 // MARK - 消息协议实现
 extension TIMMessage: WZIMMessageProtocol {

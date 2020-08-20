@@ -1,7 +1,7 @@
 {
   "name": "WZIM",
-  "version": "0.1.0",
-  "summary": "A short description of WZIM.",
+  "version": "0.0.2",
+  "summary": "WZIM.",
   "description": "我主IM依赖库",
   "homepage": "https://github.com/WZLYiOS/WZIM",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WZLYiOS/WZIM.git",
-    "tag": "0.1.0"
+    "tag": "0.0.2"
   },
   "requires_arc": true,
   "static_framework": true,
@@ -22,30 +22,49 @@
     "ios": "10.0"
   },
   "default_subspecs": "Core",
-  "dependencies": {
-    "WZIMProtocol": [
-      "~> 0.0.4"
-    ]
-  },
   "subspecs": [
     {
       "name": "Core",
       "source_files": [
         "WZIM/Classes/TIM/*",
-        "WZIM/Classes/EM/*"
+        "WZIM/Classes/EM/*",
+        "WZIM/Classes/UI/*",
+        "WZIM/Classes/Procotol/*"
       ],
       "dependencies": {
-        "TXIMSDK_iOS": [
+        "TXIMSDK_iOS/ImSDK": [
           "~> 4.9.1"
         ],
         "HyphenateLite": [
           "~> 3.7.0"
+        ],
+        "SnapKit": [
+          "~> 5.0.1"
+        ]
+      }
+    },
+    {
+      "name": "Procotol",
+      "source_files": "WZIM/Classes/Procotol/*"
+    },
+    {
+      "name": "UI",
+      "source_files": [
+        "WZIM/Classes/UI/*",
+        "WZIM/Classes/Procotol/*"
+      ],
+      "dependencies": {
+        "SnapKit": [
+          "~> 5.0.1"
         ]
       }
     },
     {
       "name": "TIM",
-      "source_files": "WZIM/Classes/TIM/*",
+      "source_files": [
+        "WZIM/Classes/TIM/*",
+        "WZIM/Classes/Procotol/*"
+      ],
       "dependencies": {
         "TXIMSDK_iOS": [
           "~> 4.9.1"
@@ -54,7 +73,10 @@
     },
     {
       "name": "EM",
-      "source_files": "WZIM/Classes/EM/*",
+      "source_files": [
+        "WZIM/Classes/EM/*",
+        "WZIM/Classes/Procotol/*"
+      ],
       "dependencies": {
         "HyphenateLite": [
           "~> 3.7.0"

@@ -2,15 +2,12 @@ PODS:
   - HyphenateLite (3.7.0)
   - SnapKit (5.0.1)
   - TXIMSDK_iOS (4.9.1)
-  - WZIM (0.1.0):
-    - WZIM/Core (= 0.1.0)
-    - WZIMProtocol (~> 0.0.4)
-  - WZIM/Core (0.1.0):
+  - WZIM (0.0.2):
+    - WZIM/Core (= 0.0.2)
+  - WZIM/Core (0.0.2):
     - HyphenateLite (~> 3.7.0)
-    - TXIMSDK_iOS (~> 4.9.1)
-    - WZIMProtocol (~> 0.0.4)
-  - WZIMProtocol (0.0.4):
     - SnapKit (~> 5.0.1)
+    - TXIMSDK_iOS (~> 4.9.1)
 
 DEPENDENCIES:
   - WZIM (from `../`)
@@ -20,7 +17,6 @@ SPEC REPOS:
     - HyphenateLite
     - SnapKit
     - TXIMSDK_iOS
-    - WZIMProtocol
 
 EXTERNAL SOURCES:
   WZIM:
@@ -30,9 +26,8 @@ SPEC CHECKSUMS:
   HyphenateLite: 87ed77d360dd383e3046230c44360e233fa732e5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
-  WZIM: 910d5c66322b6a2cc17ec4d2826359d4309b9852
-  WZIMProtocol: 2b8c5b42b20bd8f7db1e6fde75251b1d2939a874
+  WZIM: a330e6de377d5e6eb57b84e8667defedee2d55a3
 
 PODFILE CHECKSUM: 80618a171723497759384948ba0065261d429655
 
-COCOAPODS: 1.10.0.beta.1
+COCOAPODS: 1.9.3

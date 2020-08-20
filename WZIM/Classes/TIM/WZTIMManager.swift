@@ -7,7 +7,6 @@
 
 import ImSDK
 import Foundation
-import WZIMProtocol
 
 // MARK - 腾讯管理器
 class WZTIMManager: NSObject {
@@ -40,7 +39,7 @@ class WZTIMManager: NSObject {
     }
     
     /// 获取会话列表
-    func getConversationList() -> [WZIMConversationProcotol] {
+    func getConversationList() -> [TIMConversation] {
         return TIMManager.sharedInstance()!.getConversationList()
     }
     

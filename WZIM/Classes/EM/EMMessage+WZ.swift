@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import WZIMProtocol
 import HyphenateLite
 
 // MARK - 环信消息遵循协议

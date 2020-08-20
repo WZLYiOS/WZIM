@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
   s.version          = '0.0.2'
-  s.summary          = 'A short description of WZIM.'
+  s.summary          = ' WZIM.'
 
 
   s.description      = <<-DESC
@@ -28,26 +28,37 @@ Pod::Spec.new do |s|
   
   s.default_subspec = "Core"
 
-  # 协议框架
-  s.dependency 'WZIMProtocol', '~> 0.0.4'
-  
-  # 腾讯&环信
+
+  # 全部
   s.subspec "Core" do |ss|
-    ss.source_files  = "WZIM/Classes/TIM/*", "WZIM/Classes/EM/*"
+    ss.source_files  = "WZIM/Classes/TIM/*", "WZIM/Classes/EM/*", "WZIM/Classes/UI/*", "WZIM/Classes/Procotol/*"
     ss.dependency 'TXIMSDK_iOS', '~> 4.9.1'
     ss.dependency 'HyphenateLite', '~> 3.7.0'
+    ss.dependency 'SnapKit', '~> 5.0.1'
+  end
+  
+  # 协议框架
+  s.subspec "Procotol" do |ss|
+    ss.source_files = "WZIM/Classes/Procotol/*"
+  end
+  
+  # 基础cell和代理事件
+  s.subspec "UI" do |ss|
+    ss.source_files = "WZIM/Classes/UI/*", "WZIM/Classes/Procotol/*"
+    ss.dependency 'SnapKit', '~> 5.0.1'
   end
   
   # 腾讯SDk
   s.subspec "TIM" do |ss|
-    ss.source_files = "WZIM/Classes/TIM/*"
+    ss.source_files = "WZIM/Classes/TIM/*", "WZIM/Classes/Procotol/*"
     ss.dependency 'TXIMSDK_iOS', '~> 4.9.1'
   end
   
   # 环信SDK
   s.subspec "EM" do |ss|
-    ss.source_files = "WZIM/Classes/EM/*"
+    ss.source_files = "WZIM/Classes/EM/*", "WZIM/Classes/Procotol/*"
     ss.dependency 'HyphenateLite', '~> 3.7.0'
   end
   
+
 end
