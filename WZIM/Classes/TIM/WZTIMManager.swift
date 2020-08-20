@@ -12,10 +12,10 @@ import Foundation
 open class WZTIMManager: NSObject {
     
     /// 代理
-    weak var delegate: WZTIMManagerDelegate?
+    private weak var delegate: WZTIMManagerDelegate?
     
     /// 初始化SDK
-    init(appId: Int32) {
+    public init(appId: Int32) {
         super.init()
         let config = TIMSdkConfig()
         config.sdkAppId = appId
@@ -25,7 +25,7 @@ open class WZTIMManager: NSObject {
     }
  
     /// 设置监听等
-    func setUserConfig(cDelegate: WZTIMManagerDelegate) {
+    public func setUserConfig(cDelegate: WZTIMManagerDelegate) {
         delegate = cDelegate
         let userConfig = TIMUserConfig()
         userConfig.disableAutoReport = true
@@ -39,12 +39,12 @@ open class WZTIMManager: NSObject {
     }
     
     /// 获取会话列表
-    func getConversationList() -> [TIMConversation] {
+    public func getConversationList() -> [TIMConversation] {
         return TIMManager.sharedInstance()!.getConversationList()
     }
     
     /// 登录
-    func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         let param = TIMLoginParam()
         param.identifier = identifier
         param.userSig = userSig
@@ -58,7 +58,7 @@ open class WZTIMManager: NSObject {
     }
     
     /// 退出
-    func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMManager.sharedInstance()?.logout({
             sucess?()
         }, fail: { (code, msg) in
@@ -67,7 +67,7 @@ open class WZTIMManager: NSObject {
     }
     
     /// 加入群
-    func joinGroup(groupId: String, msg: String,sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func joinGroup(groupId: String, msg: String,sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMGroupManager.sharedInstance()?.joinGroup(groupId, msg: msg, succ: {
             sucess?()
         }, fail: { (code, msg) in
@@ -76,8 +76,9 @@ open class WZTIMManager: NSObject {
     }
     
     /// 退出群
-    func quitGroup(groupId: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func quitGroup(groupId: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMGroupManager.sharedInstance()?.quitGroup(groupId, succ: {
+            TIMManager.sharedInstance()?.remove(self)
             sucess?()
         }, fail: { (code, msg) in
             failBlock?(Int(code), msg ?? "")

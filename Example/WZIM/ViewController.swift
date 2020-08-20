@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+       
         WZIMConfig.lelftBubbleImage = UIImage(named: "ic_loveme_dialog_white")
         WZIMConfig.rightBubbleImage = UIImage(named: "ic_loveme_dialog_purple")
         WZIMConfig.menuItems =  ["复制"]

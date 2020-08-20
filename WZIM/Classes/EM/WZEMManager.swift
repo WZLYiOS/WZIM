@@ -15,17 +15,17 @@ open class WZEMManager: NSObject {
     private weak var delegate: WZEMManagerDelegate?
     
     /// 初始化SDK
-    init(appkey: String) {
+    public init(appkey: String) {
         EMClient.shared()?.initializeSDK(with: EMOptions.init(appkey: appkey))
     }
     
-    func setUserConfig(cDelegate: WZEMManagerDelegate) {
+    public func setUserConfig(cDelegate: WZEMManagerDelegate) {
         delegate = cDelegate
         EMClient.shared()?.chatManager.add(self, delegateQueue: nil)
     }
     
     /// 登录
-    func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         
         EMClient.shared()?.login(withUsername: identifier, password: userSig, completion: { (msg, err) in
             if err == nil {
@@ -37,9 +37,10 @@ open class WZEMManager: NSObject {
     }
     
     /// 退出
-    func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         EMClient.shared()?.logout(true, completion: { (err) in
             if err == nil {
+                EMClient.shared()?.chatManager.remove(self)
                 sucess?()
             }else{
                 failBlock?(Int(err!.code.rawValue), err!.description)
