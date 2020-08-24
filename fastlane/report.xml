@@ -5,59 +5,57 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000382">
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.00043">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: version_get_podspec" time="0.000714">
+      <testcase classname="fastlane.lanes" name="01: version_get_podspec" time="0.000757">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: pod_lib_lint" time="108.075941">
+      <testcase classname="fastlane.lanes" name="02: pod_lib_lint" time="143.27953">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: version_bump_podspec" time="0.001425">
+      <testcase classname="fastlane.lanes" name="03: version_bump_podspec" time="0.001305">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: git_add" time="0.017835">
+      <testcase classname="fastlane.lanes" name="04: git_add" time="0.019168">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: git_commit" time="0.039242">
+      <testcase classname="fastlane.lanes" name="05: git_commit" time="0.039205">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: push_to_git_remote" time="6.573079">
+      <testcase classname="fastlane.lanes" name="06: push_to_git_remote" time="6.422243">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: git_tag_exists" time="0.011498">
+      <testcase classname="fastlane.lanes" name="07: git_tag_exists" time="0.011741">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: add_git_tag" time="0.017495">
+      <testcase classname="fastlane.lanes" name="08: add_git_tag" time="0.018729">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: push_git_tags" time="10.669367">
+      <testcase classname="fastlane.lanes" name="09: push_git_tags" time="5.478896">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: pod_push" time="526.982963">
-        
-          <failure message="/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:83:in `block (2 levels) in parsing_binding'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:352:in `run'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/cli_tools_distributor.rb:119:in `take_off'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `load'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `&lt;main&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `&lt;main&gt;'&#10;&#10;Exit status of command 'pod trunk push 'WZIM.podspec' --allow-warnings --skip-import-validation' was 1 instead of 0.&#10;Updating spec repo `trunk`&#10;&#10;CocoaPods 1.10.0.beta.2 is available.&#10;To update use: `sudo gem install cocoapods --pre`&#10;[!] This is a test version we'd love you to try.&#10;&#10;For more information, see https://blog.cocoapods.org and the CHANGELOG for this version at https://github.com/CocoaPods/CocoaPods/releases/tag/1.10.0.beta.2&#10;&#10;Validating podspec&#10; -&gt; WZIM -&gt; WZIM (1.0.6)&#10;    - WARN  | url: There was a problem validating the URL https://github.com/WZLYiOS/WZIM.&#10;    - ERROR | [iOS] unknown: Encountered an unknown error ([!] /usr/bin/git clone https://github.com/WZLYiOS/WZIM.git /var/folders/kb/16dgg6d97ylbbh31kyfmtbkh0000gn/T/d20200820-40373-bdlvd4 --template= --single-branch --depth 1 --branch 1.0.6&#10;&#10;Cloning into '/var/folders/kb/16dgg6d97ylbbh31kyfmtbkh0000gn/T/d20200820-40373-bdlvd4'...&#10;error: RPC failed; curl 18 transfer closed with outstanding read data remaining&#10;fatal: the remote end hung up unexpectedly&#10;fatal: early EOF&#10;fatal: index-pack failed&#10;) during validation.&#10;&#10;[!] The spec did not pass validation, due to 1 error.&#10;" />
+      <testcase classname="fastlane.lanes" name="10: pod_push" time="476.687328">
         
       </testcase>
     
