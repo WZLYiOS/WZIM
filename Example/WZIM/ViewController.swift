@@ -19,7 +19,9 @@ class ViewController: UIViewController {
         $0.rowHeight = UITableViewAutomaticDimension
         $0.tableFooterView = UIView()
         $0.tableHeaderView = UIView()
+        
         $0.register(TestTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
+        $0.register(WZIMBaseTableViewCell.self, forCellReuseIdentifier: "WZIMTableViewCell")
         return $0
     }(UITableView())
     
@@ -53,7 +55,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: TestTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! TestTableViewCell
+        let cell: WZIMBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZIMBaseTableViewCell
         cell.reload(model: self, publicDelegate: self, cDelegate: self)
         return cell
     }
@@ -63,15 +65,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
-    func WZIMTableViewCell(cell: WZIMTableViewCell, tap avatarImageView: UIImageView) {
+    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
     
-    func WZIMTableViewCell(cell: WZIMTableViewCell, menuTitle: String) {
+    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
         debugPrint(menuTitle)
     }
     
-    func WZIMTableViewCell(cell: WZIMTableViewCell, set avatar: UIImageView) {
+    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
         
     }
 }

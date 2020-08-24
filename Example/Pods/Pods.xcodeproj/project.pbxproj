@@ -28,128 +28,129 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		007D2B6DAD999C4D9E8E7C98BC930AFC /* WZTIMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300DF5A7B0E5A1CAD3905D6B63ECA356 /* WZTIMManager.swift */; };
+		00491C392E8BBC1938B3CB6E5ABA5806 /* EMMessage+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C704538498D777C7369070BAD969F89 /* EMMessage+WZ.swift */; };
+		005EF30AC92E82AB5B48AC2D2BC61328 /* WZIM-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 122810D088354D7E9462D8849CAE4BAE /* WZIM-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01C550A53C9E2047C83F8E85BBB558E6 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAECC0A88F914443D387E300C9294D22 /* ConstraintLayoutSupportDSL.swift */; };
 		039EAFE7935113805F3FC21BF1B7C9D5 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3C55153803AFB288D7B4B6CD8E869B /* LayoutConstraint.swift */; };
 		04543980C4A7CE442330B0F1BC4A9A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		05DFBF19C94E64DE143AB98A9A699256 /* WZTIMManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DB52E2E9E5B82D7FAF7B0B5CD2BB /* WZTIMManagerDelegate.swift */; };
 		1956E392D500F3CD899D39A5F805736D /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FB507823D02032A9F6A114F8EFBE3B /* Typealiases.swift */; };
 		1AFB1E9136716C0B61D6C700FF1E60FD /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81397C7CF2716CEC67D7DFF2DBC19D76 /* ConstraintLayoutGuide+Extensions.swift */; };
 		21AB1101BBE4D28D74ED4EDF0D59025A /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0D015B3525BEFB4A4F07D4F58F1943 /* ConstraintInsets.swift */; };
 		232B2F922E972D9F43D2EE15ACECE734 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D8BD444C83423805FC3227361F684 /* ConstraintPriority.swift */; };
-		28504D94C0502041DA514BE5A7A97B1F /* TIMMessage+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CF3F2269021DE8C8E5322D8F5EAB0 /* TIMMessage+WZ.swift */; };
+		261EEA104B62220368DE5196C4A66D8A /* WZIMConversationProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A0DB7BF1EA7E35BAE4EFF7FEC0FFA /* WZIMConversationProcotol.swift */; };
+		28A76CEC446BA26D0E237D57CA881DAE /* WZIMMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90FB7CFCA25FEEA75340D29DD85D6F5 /* WZIMMessageType.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B7EEEA7B62C2941A2AA2D914198F9 /* ConstraintAttributes.swift */; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EC100C6BDD6220B07E9B6A1717B4EB /* ConstraintInsetTarget.swift */; };
-		31D7961699CF96141666BFA28F2B053E /* WZIMTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F7A3ED5AD2791463746CF1090640D /* WZIMTableViewCellDelegate.swift */; };
-		38B940DB8431FB7D303D4F0A2C1E4C5F /* WZIM-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 122810D088354D7E9462D8849CAE4BAE /* WZIM-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BFC243AB9BD579969F0D5756560BCAA /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE8C0F640B1890ABB89F0CC6D895D0 /* Constraint.swift */; };
 		3E5285F4F36EAD77ECABBFB7F36BB1BB /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D321CF226B8DF17F5885A07B2E432 /* ConstraintView+Extensions.swift */; };
-		40FD65F625B71B9FDDA0B4FB62EED3D0 /* WZIMMessageReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7DFFDA8A70DFEF504AD760A28B8A71 /* WZIMMessageReceipt.swift */; };
+		40D0A02D111B0BE9246BBEBB9FA33287 /* IMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A9C7BCB88492F00B088B797D58B753 /* IMTableViewCell.swift */; };
+		41AE1694D38B20E5C28A466A85A6E196 /* WZEMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEDC94908668C78BBFDB0C62C2A97BA /* WZEMManager.swift */; };
 		4C7A676DAE95EEAC3787A75349F0862D /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 964B6987B5654A9C53CE32C027A2F62A /* SnapKit-dummy.m */; };
 		51CD5887014967E77E58F5A163996454 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A39CC5AA56629DC9161FE1ABD734D2 /* ConstraintMaker.swift */; };
+		56FCA868B36E6C834B088DA68187F1C5 /* WZTIMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877E6ADC29ADD8EA1E7C3567870785CE /* WZTIMManager.swift */; };
 		57B1876F2BE4168E5BFDB63D8CC849A0 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F3090CB9A00823FE30DD1358134E3 /* ConstraintLayoutSupport.swift */; };
 		5854DF509E8A016B6235793D04083035 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C6EA0A8758ED2F763FC1689DF5A17 /* ConstraintConstantTarget.swift */; };
 		69CCBEEDFCA6D743D80026568D961919 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B844CE9CE15DCC945F854A5157A76 /* ConstraintMakerExtendable.swift */; };
 		69E3A06BBDFDC7D06A9D4BDC4E895E73 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF6C13D50317BC5A7AE107D83486B5 /* ConstraintRelatableTarget.swift */; };
-		6D9B5D08D3CF5286DE8C0922507E0016 /* WZEMManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1959B523E3605F8A530918E473D65512 /* WZEMManagerDelegate.swift */; };
+		6DF746D9B9CD7AC5F90FEEE62668A977 /* WZIMUserInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6091CF87119BA31BCA1F87E3B6B6C843 /* WZIMUserInfoProtocol.swift */; };
 		6E0EB9E7FAAEDBB7A73ECF3095F69C4A /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE10EBA1E9FA557894E335E9EE5A63B /* UILayoutSupport+Extensions.swift */; };
 		71DE9DC2FA583526AB4D1FD7F00C099C /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789CBE4C2DF7F2E297CF6A11B39C7F /* ConstraintDirectionalInsetTarget.swift */; };
 		75E146C12D1287228A0B493E87CDE31F /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783E3B713735B2669A7D195CE0EC60F6 /* ConstraintMakerRelatable.swift */; };
 		77C9889055A3B32EA13A9616824DB0ED /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CEE5EB3D9C6EDA20AC79C9909E9133 /* ConstraintLayoutGuideDSL.swift */; };
 		7BE34705D167B25EBBC18D7A84EF64AE /* Pods-WZIM_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0FFF4CCB62795D85772DEF2CFEF57B /* Pods-WZIM_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C1702076F3A31D8D2D45A4A9F09B266 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF2E002B6B02D78965FA6AF6352CC1 /* ConstraintMakerEditable.swift */; };
+		7C6FECEBDB6A56DF8FF3CEFBEAB3A291 /* WZIM-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D225D2B607862D56408985BDBF5BBD86 /* WZIM-dummy.m */; };
 		8277256ADEC3C4DCF79957D1CA681A9A /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353BD82CFB3DA7AFA05210E7A8672FC /* ConstraintDSL.swift */; };
 		8705BBF0D428BF0AE1B554A377ECC540 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E65152A1089656795E640FC39BE391 /* ConstraintOffsetTarget.swift */; };
-		8CC22F609D5B20EB2A3BE65717CDC8C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		8F60FC0E191C266CED6C7027D2CF8AF3 /* WZIMUserInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5825BB80E29E538745F8CF3BC0A95 /* WZIMUserInfoProtocol.swift */; };
-		914B8AAC53B9DCCE6AD47CBB2FEA8111 /* WZIMMessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF741A210D3645BAB77FCBD7B6A9FA1 /* WZIMMessageProtocol.swift */; };
+		8D07DE36A13005CD74DCCD3C90CA516D /* WZIMMessageReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB1942466C26A105FCB9CFD365011E /* WZIMMessageReceipt.swift */; };
+		8EC5F12C20D1EA978627B5AFB7E85AAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		9662E114995AD7EF446BCEFB3F849D19 /* Pods-WZIM_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 32798B7650EA3DF324D2422AA5CADE96 /* Pods-WZIM_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99B5296A5EDECE0557B9DA53D9E19CA1 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C74311BFD3E3FF5E9FFBB73E8DA02D /* ConstraintItem.swift */; };
 		9B09968922C73D50040C6EEF57890D6E /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA47745791205D6613D027F3F2BD1143 /* ConstraintConfig.swift */; };
+		9B32457432BC1432B35C9404740A444C /* EMConversation+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEB69F68C26C2DE843CF69C9C0E14E /* EMConversation+WZ.swift */; };
 		9DE26DBC13B775256AFAB45065B07758 /* Pods-WZIM_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AA1F823F600F5042ED65EF69D1D2E /* Pods-WZIM_Example-dummy.m */; };
-		A11B21697B6A9F4679C33E46AA894C57 /* WZIMMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E10914B9AF5F00350A068B489B2EBD /* WZIMMessageType.swift */; };
+		9FE18562670EC7CF86E02E32D4197C2B /* TIMMessage+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAC7FADB870385D1F1769C150C93B2D /* TIMMessage+WZ.swift */; };
 		A270CD9EC3C541FE86E65AEDCEF500CF /* ConstraintLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D68D3C380BF64CC6603E4FC4B9B8557 /* ConstraintLayoutGuide.swift */; };
 		A38B8FCE753DF1B03E8F3399DD70B3BE /* Pods-WZIM_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B7B3E10F66C78066FF69853892372 /* Pods-WZIM_Tests-dummy.m */; };
 		A66ED57B365A35434C5BAF4B990819B7 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E84CC8D0994C36D64BD954D4B1DF1043 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA838F94287379053528AA734C62CF26 /* WZEMManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A2C03EEF2112802112A3D0FF6930D4 /* WZEMManagerDelegate.swift */; };
 		AC35C9341C4BB156BB26FDD237EE3721 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E10B4A0994487B30BA5AE145EF6395D /* ConstraintDirectionalInsets.swift */; };
 		B2387D8A1778949F6053929E24E5946F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		B599696DFEF6B2A5ECF528F4E5BB1846 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AF8A8A2E958939C900C3E248AACB01 /* ConstraintDescription.swift */; };
+		B66338DFC7B6D9475C5B511E5AF91904 /* WZIMTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB655B9A4D7C65D2931AB7DF026B0B5 /* WZIMTableViewCellDelegate.swift */; };
 		B780B272106411CBE258BB60FFC45410 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E3D56B9A2124BF88C0EA87C8A2D457 /* Debugging.swift */; };
-		B90BB7C1033562F022DE7E093DC446F2 /* EMMessage+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D2A059BDDC22B4EE9CF4DA9C0D8ABE /* EMMessage+WZ.swift */; };
-		B9CDA7B386B6B81A25CFBD527CF7BCBB /* WZEMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBEA524F0B421A09021F15DB4439A2 /* WZEMManager.swift */; };
-		BB95AFCB4C9B322307CF6D70429802CA /* TIMConversation+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C63A3E93F460DA18AB20539BE637311 /* TIMConversation+WZ.swift */; };
+		B9E6267EEAD8BDFEB62BFDF51810716D /* WZIMMessageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EDA2D50161E5770BFA1293674341AB /* WZIMMessageProtocol.swift */; };
+		BA24FCF8DCD35E3DD0CB3839560FB3E1 /* TIMConversation+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79553C98B61E462B43A531B645714384 /* TIMConversation+WZ.swift */; };
 		BECA67DFB5E0984DFAEFCB775C31972E /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF034C59128BF735411B96E4D106C8 /* ConstraintView.swift */; };
+		C1DCBB96B2A7160FC8AAC76BBEBB8969 /* WZIMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0BA5995E1C6187C22DDE8BD45E258 /* WZIMConfig.swift */; };
 		C412F27D75AFC0DF0F0289DBB270931C /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3800EBE0A24191C8C4CCF2C5B1B6CE3 /* ConstraintMakerFinalizable.swift */; };
-		CB26FF250FB21950198C5B8B27C31326 /* WZIMConversationProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928208DE1818687BD800C95777208162 /* WZIMConversationProcotol.swift */; };
 		CE62FEABA57B2B53EABF8C7DCCC6B2C4 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D428101845CC09982A995B2BA82F23 /* ConstraintRelation.swift */; };
 		D12DF64B57561C2C260BB23017562726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D4697DC40F3B059E4A0867838CA1814E /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F356FC46F98EB59FF536EED4C9128233 /* ConstraintMultiplierTarget.swift */; };
-		E2BF967202DBF6F800458ED24CA86BEE /* WZIM-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D225D2B607862D56408985BDBF5BBD86 /* WZIM-dummy.m */; };
+		D61A9C3CDCBC83D7FC503BBE43346C5B /* WZIMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4892CD776ED14F474410231FC6F15D91 /* WZIMBaseTableViewCell.swift */; };
 		E8F2429683B3015CBD39CE883770BCA7 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9408869FD19DF22D9274032DD2E4B7F /* ConstraintPriorityTarget.swift */; };
 		E9A970BC24EA15832F248EA020072746 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7756436A820FBA8E8B36E27C42AB4839 /* LayoutConstraintItem.swift */; };
-		EAECFAE57D56C3136BFB4BCF1FCF81C3 /* WZTIMManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356423628C229C80048162CCCB8EA1A /* WZTIMManagerDelegate.swift */; };
 		EB1726F5E0D0EEBA20E4528B1E37A8FA /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825263024CDFB3C5DC5729CBCDAAFEE /* ConstraintViewDSL.swift */; };
-		ED77D8D5AAE1664F3F80C0063B702F80 /* WZIMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4F917B753A5196615C778F6921E82E /* WZIMTableViewCell.swift */; };
 		EE909C7C786140109051BC9562EEC7C8 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D95AB7AAADA1C77E1F19B4FEA12594E /* ConstraintMakerPriortizable.swift */; };
-		F9FFFA4D0E56DD76C23BB817ABDC7CC4 /* EMConversation+WZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78903C17B7BE4F359A23287E870B5F71 /* EMConversation+WZ.swift */; };
-		FBE538D3FB9D37F8D6692B1B10281173 /* WZIMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C994B0A05F987D56E4CD33E6C4F48AF6 /* WZIMConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		04BF30FEF43AAEF9D15E24FFFA582947 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
-			remoteInfo = SnapKit;
-		};
-		144D21444392B06407875318FD3806C4 /* PBXContainerItemProxy */ = {
+		01616C35B86A6176DC5EBB4392B85CF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 894FB12C21EDC4B90938734311ABCBBB;
 			remoteInfo = "Pods-WZIM_Example";
 		};
-		2062F1CE0FD4D91F31D234CF5B453212 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 37C8B4CA3E62FB44CD14CEEF054EDAC2;
-			remoteInfo = TXIMSDK_iOS;
-		};
-		4A53F074B6B867D2FC71A53A735D021B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 37C8B4CA3E62FB44CD14CEEF054EDAC2;
-			remoteInfo = TXIMSDK_iOS;
-		};
-		D393030432812082CD71DE5E1641B824 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 181511AAB6B3D6C720BC9FD0D3CD77C6;
-			remoteInfo = HyphenateLite;
-		};
-		DD3C8884C00F0413C1E9A0258C8921CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 181511AAB6B3D6C720BC9FD0D3CD77C6;
-			remoteInfo = HyphenateLite;
-		};
-		E3561F9CAB1421AF9AD765D006BA6FA8 /* PBXContainerItemProxy */ = {
+		20C58B8E5AB895B47BDE2E1465DFD670 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B321A045EDE374D7DBCAE05955659F01;
 			remoteInfo = WZIM;
 		};
-		F769675A0597BBD93274941833227A78 /* PBXContainerItemProxy */ = {
+		349ED5689AC2D46D88618F70E6EA1063 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 181511AAB6B3D6C720BC9FD0D3CD77C6;
+			remoteInfo = HyphenateLite;
+		};
+		6C362D56DF693F3CDAF509459D9ABAEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
 			remoteInfo = SnapKit;
+		};
+		9246A9E5ACF800F6A15DF1C19DD14B78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
+			remoteInfo = SnapKit;
+		};
+		A288827BEDD4A3276A07393B87A88115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37C8B4CA3E62FB44CD14CEEF054EDAC2;
+			remoteInfo = TXIMSDK_iOS;
+		};
+		D0780FB3E923A9E4C40BA67F0923F176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 181511AAB6B3D6C720BC9FD0D3CD77C6;
+			remoteInfo = HyphenateLite;
+		};
+		D499DB3FDD897F74314A7C5AC340963D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37C8B4CA3E62FB44CD14CEEF054EDAC2;
+			remoteInfo = TXIMSDK_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -158,11 +159,11 @@
 		016ABCAB56FF9AC679620A48A921BA0F /* TIMMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMMessage.h; path = ImSDK.framework/Headers/TIMMessage.h; sourceTree = "<group>"; };
 		01FF21C44BA9D644DFBA8AA4709D55D6 /* HyphenateLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HyphenateLite.release.xcconfig; sourceTree = "<group>"; };
 		07254A86C0F59681127A9D251A4C4D19 /* TIMGroupManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMGroupManager.h; path = ImSDK.framework/Headers/TIMGroupManager.h; sourceTree = "<group>"; };
+		0C704538498D777C7369070BAD969F89 /* EMMessage+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EMMessage+WZ.swift"; sourceTree = "<group>"; };
 		0F38CF6CD7113D4CF2FD75E5C5753508 /* Pods-WZIM_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WZIM_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0F6F3090CB9A00823FE30DD1358134E3 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		122810D088354D7E9462D8849CAE4BAE /* WZIM-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZIM-umbrella.h"; sourceTree = "<group>"; };
 		14E65152A1089656795E640FC39BE391 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
-		1959B523E3605F8A530918E473D65512 /* WZEMManagerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZEMManagerDelegate.swift; sourceTree = "<group>"; };
 		1D3C55153803AFB288D7B4B6CD8E869B /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
 		1E10B4A0994487B30BA5AE145EF6395D /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		1F716F5B72B53432E05ECADAFD040C6D /* TIMManager+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMManager+MsgExt.h"; path = "ImSDK.framework/Headers/TIMManager+MsgExt.h"; sourceTree = "<group>"; };
@@ -171,37 +172,38 @@
 		2A21783D7FE26DD45AAF13FC88206810 /* V2TIMManager+Conversation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Conversation.h"; path = "ImSDK.framework/Headers/V2TIMManager+Conversation.h"; sourceTree = "<group>"; };
 		2A7C38535F6FF75D7A7A91C72B7C8613 /* Pods-WZIM_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2D3CAC345F592516982D10BDAEC3735D /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
+		2DB655B9A4D7C65D2931AB7DF026B0B5 /* WZIMTableViewCellDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		2FAF034C59128BF735411B96E4D106C8 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
-		300DF5A7B0E5A1CAD3905D6B63ECA356 /* WZTIMManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZTIMManager.swift; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		32798B7650EA3DF324D2422AA5CADE96 /* Pods-WZIM_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WZIM_Example-umbrella.h"; sourceTree = "<group>"; };
-		32B5825BB80E29E538745F8CF3BC0A95 /* WZIMUserInfoProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMUserInfoProtocol.swift; sourceTree = "<group>"; };
 		336D321CF226B8DF17F5885A07B2E432 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		345AB0C1DD3EAEE95C1350E8EAD3D0F9 /* HyphenateLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HyphenateLite.debug.xcconfig; sourceTree = "<group>"; };
 		36DE8C0F640B1890ABB89F0CC6D895D0 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
-		37E10914B9AF5F00350A068B489B2EBD /* WZIMMessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageType.swift; sourceTree = "<group>"; };
 		38CEE5EB3D9C6EDA20AC79C9909E9133 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		39D428101845CC09982A995B2BA82F23 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
 		3B05CFA6DFA13467884C352F80497B8A /* SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.release.xcconfig; sourceTree = "<group>"; };
 		3DDBD239A04D923C1E324CC938B12E8E /* ImSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ImSDK.h; path = ImSDK.framework/Headers/ImSDK.h; sourceTree = "<group>"; };
 		40A39CC5AA56629DC9161FE1ABD734D2 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
 		42220E19450F4645D4D3CACD77BDBAF9 /* TIMCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMCallback.h; path = ImSDK.framework/Headers/TIMCallback.h; sourceTree = "<group>"; };
-		42D2A059BDDC22B4EE9CF4DA9C0D8ABE /* EMMessage+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EMMessage+WZ.swift"; sourceTree = "<group>"; };
 		4353BD82CFB3DA7AFA05210E7A8672FC /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
+		4892CD776ED14F474410231FC6F15D91 /* WZIMBaseTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4A5B7B3E10F66C78066FF69853892372 /* Pods-WZIM_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WZIM_Tests-dummy.m"; sourceTree = "<group>"; };
-		4C63A3E93F460DA18AB20539BE637311 /* TIMConversation+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TIMConversation+WZ.swift"; sourceTree = "<group>"; };
+		4BAC7FADB870385D1F1769C150C93B2D /* TIMMessage+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TIMMessage+WZ.swift"; sourceTree = "<group>"; };
 		4D95AB7AAADA1C77E1F19B4FEA12594E /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
+		50EDA2D50161E5770BFA1293674341AB /* WZIMMessageProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageProtocol.swift; sourceTree = "<group>"; };
 		55A7ECC9F05A3D49550A31430A8B2C95 /* V2TIMManager+APNS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+APNS.h"; path = "ImSDK.framework/Headers/V2TIMManager+APNS.h"; sourceTree = "<group>"; };
 		58D1F3E06D9FDF3AD0420048A86AEC4C /* V2TIMManager+Message.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Message.h"; path = "ImSDK.framework/Headers/V2TIMManager+Message.h"; sourceTree = "<group>"; };
 		5B5270E112F4987B7CF94E8DBED31BCA /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
+		5EC8DB52E2E9E5B82D7FAF7B0B5CD2BB /* WZTIMManagerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZTIMManagerDelegate.swift; sourceTree = "<group>"; };
 		5ECE639ED4342B1FB4BC8AAE68CC8A58 /* WZIM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WZIM.framework; path = WZIM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6091CF87119BA31BCA1F87E3B6B6C843 /* WZIMUserInfoProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMUserInfoProtocol.swift; sourceTree = "<group>"; };
 		615EA6940AAA7FB874D4FC88DC1DD183 /* WZIM-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "WZIM-Info.plist"; sourceTree = "<group>"; };
 		618C6DF7A58339DEB56BF80578E90B36 /* TIMErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMErrorCode.h; path = ImSDK.framework/Headers/TIMErrorCode.h; sourceTree = "<group>"; };
-		634CF3F2269021DE8C8E5322D8F5EAB0 /* TIMMessage+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TIMMessage+WZ.swift"; sourceTree = "<group>"; };
 		6825263024CDFB3C5DC5729CBCDAAFEE /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		6911108CEE32DAFBECF5D9A1B6436FC1 /* TIMConversation+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMConversation+MsgExt.h"; path = "ImSDK.framework/Headers/TIMConversation+MsgExt.h"; sourceTree = "<group>"; };
 		69C74311BFD3E3FF5E9FFBB73E8DA02D /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
 		6A34F7378BE4A179763E772B62A53C55 /* Pods-WZIM_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-WZIM_Example.modulemap"; sourceTree = "<group>"; };
+		6CAEB69F68C26C2DE843CF69C9C0E14E /* EMConversation+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EMConversation+WZ.swift"; sourceTree = "<group>"; };
 		6CCD825D3EC2D40351D4E8FE072B6CC1 /* Pods-WZIM_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WZIM_Tests-Info.plist"; sourceTree = "<group>"; };
 		6D4AA1F823F600F5042ED65EF69D1D2E /* Pods-WZIM_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WZIM_Example-dummy.m"; sourceTree = "<group>"; };
 		6FEF6C13D50317BC5A7AE107D83486B5 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
@@ -209,22 +211,23 @@
 		76AE496E4ED0F10254DCDD881C320440 /* TXIMSDK_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TXIMSDK_iOS.debug.xcconfig; sourceTree = "<group>"; };
 		7756436A820FBA8E8B36E27C42AB4839 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		783E3B713735B2669A7D195CE0EC60F6 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
-		78903C17B7BE4F359A23287E870B5F71 /* EMConversation+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "EMConversation+WZ.swift"; sourceTree = "<group>"; };
+		79553C98B61E462B43A531B645714384 /* TIMConversation+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TIMConversation+WZ.swift"; sourceTree = "<group>"; };
 		7C4C3DB01B4ECB63552557BDF7D1CB2F /* Pods-WZIM_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WZIM_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		7C9F7A3ED5AD2791463746CF1090640D /* WZIMTableViewCellDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		7F0D015B3525BEFB4A4F07D4F58F1943 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		808D8BD444C83423805FC3227361F684 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		81397C7CF2716CEC67D7DFF2DBC19D76 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
+		877E6ADC29ADD8EA1E7C3567870785CE /* WZTIMManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZTIMManager.swift; sourceTree = "<group>"; };
 		88E62F2EC10A761978373B25057AE676 /* Pods-WZIM_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8E81153C0C874EED86EB5324EEDB7BB7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		8FDCCA91403A3B282928E34DEC0191F7 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
-		928208DE1818687BD800C95777208162 /* WZIMConversationProcotol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMConversationProcotol.swift; sourceTree = "<group>"; };
-		9356423628C229C80048162CCCB8EA1A /* WZTIMManagerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZTIMManagerDelegate.swift; sourceTree = "<group>"; };
+		8FEB1942466C26A105FCB9CFD365011E /* WZIMMessageReceipt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageReceipt.swift; sourceTree = "<group>"; };
+		963A0DB7BF1EA7E35BAE4EFF7FEC0FFA /* WZIMConversationProcotol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMConversationProcotol.swift; sourceTree = "<group>"; };
 		964B6987B5654A9C53CE32C027A2F62A /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		97789CBE4C2DF7F2E297CF6A11B39C7F /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Source/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0FFF4CCB62795D85772DEF2CFEF57B /* Pods-WZIM_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WZIM_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9A895747B5C4E2998142D63CC588A718 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
+		9BEDC94908668C78BBFDB0C62C2A97BA /* WZEMManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZEMManager.swift; sourceTree = "<group>"; };
 		9D68D3C380BF64CC6603E4FC4B9B8557 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0808D4AC4AA57D950F96CD90F4D5102 /* Pods-WZIM_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WZIM_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -233,11 +236,12 @@
 		A28396AA21483BB6971A521CE1D66BF0 /* TIMComm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMComm.h; path = ImSDK.framework/Headers/TIMComm.h; sourceTree = "<group>"; };
 		A3800EBE0A24191C8C4CCF2C5B1B6CE3 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Source/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		A4339F76AE55D21F5DD6202C4F450AE9 /* TIMManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMManager.h; path = ImSDK.framework/Headers/TIMManager.h; sourceTree = "<group>"; };
-		ACF741A210D3645BAB77FCBD7B6A9FA1 /* WZIMMessageProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageProtocol.swift; sourceTree = "<group>"; };
+		A4A2C03EEF2112802112A3D0FF6930D4 /* WZEMManagerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZEMManagerDelegate.swift; sourceTree = "<group>"; };
+		A7D0BA5995E1C6187C22DDE8BD45E258 /* WZIMConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMConfig.swift; sourceTree = "<group>"; };
+		A90FB7CFCA25FEEA75340D29DD85D6F5 /* WZIMMessageType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageType.swift; sourceTree = "<group>"; };
 		AD1C63367FD63E3A9E3FD7FCAFEF8872 /* WZIM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WZIM.release.xcconfig; sourceTree = "<group>"; };
 		B14EEF5D09715D7CF062196168CA17DA /* Pods-WZIM_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B9408869FD19DF22D9274032DD2E4B7F /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
-		BB7DFFDA8A70DFEF504AD760A28B8A71 /* WZIMMessageReceipt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMMessageReceipt.swift; sourceTree = "<group>"; };
 		BCE10EBA1E9FA557894E335E9EE5A63B /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		BE0ECFE82CE324963DB61B7F84FA4B2F /* WZIM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WZIM.debug.xcconfig; sourceTree = "<group>"; };
 		BEE49245D927B00B92604CD4C0DEAE9A /* TIMConversation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMConversation.h; path = ImSDK.framework/Headers/TIMConversation.h; sourceTree = "<group>"; };
@@ -247,9 +251,7 @@
 		C41B844CE9CE15DCC945F854A5157A76 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		C4C21CF12A6F6A88EB60610FD99DEEC7 /* V2TIMManager+Group.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Group.h"; path = "ImSDK.framework/Headers/V2TIMManager+Group.h"; sourceTree = "<group>"; };
 		C5AF8A8A2E958939C900C3E248AACB01 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
-		C994B0A05F987D56E4CD33E6C4F48AF6 /* WZIMConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMConfig.swift; sourceTree = "<group>"; };
 		CA2DA3407CA5703244E2817BC05F7109 /* V2TIMManager+Friendship.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Friendship.h"; path = "ImSDK.framework/Headers/V2TIMManager+Friendship.h"; sourceTree = "<group>"; };
-		CE4F917B753A5196615C778F6921E82E /* WZIMTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZIMTableViewCell.swift; sourceTree = "<group>"; };
 		D0F6E9E01DA82F74CEF8902E68E872A5 /* Pods-WZIM_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D225D2B607862D56408985BDBF5BBD86 /* WZIM-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WZIM-dummy.m"; sourceTree = "<group>"; };
 		D6E3D56B9A2124BF88C0EA87C8A2D457 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		E46C6EA0A8758ED2F763FC1689DF5A17 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		E4FB507823D02032A9F6A114F8EFBE3B /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
 		E53C3946EB5CB8A14C827F4AA89E5C41 /* WZIM-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZIM-prefix.pch"; sourceTree = "<group>"; };
+		E6A9C7BCB88492F00B088B797D58B753 /* IMTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = IMTableViewCell.swift; sourceTree = "<group>"; };
 		E84CC8D0994C36D64BD954D4B1DF1043 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		EA47745791205D6613D027F3F2BD1143 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		EB3646880D27DB701A46B0EDAE56193B /* TXIMSDK_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TXIMSDK_iOS.release.xcconfig; sourceTree = "<group>"; };
@@ -268,20 +271,11 @@
 		F5EC100C6BDD6220B07E9B6A1717B4EB /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		F5F6F913E9A41E1C539C01D40804AC68 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
 		F6C60BE2232A7EE58A6FD97F5231AAF3 /* WZIM.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = WZIM.modulemap; sourceTree = "<group>"; };
-		F6CBEA524F0B421A09021F15DB4439A2 /* WZEMManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WZEMManager.swift; sourceTree = "<group>"; };
 		F8D50EA3C31412BEEDC62393EFF45356 /* TIMFriendshipManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMFriendshipManager.h; path = ImSDK.framework/Headers/TIMFriendshipManager.h; sourceTree = "<group>"; };
 		FAECC0A88F914443D387E300C9294D22 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		26BC90BBFB260ED2A06909FD3D9908F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC22F609D5B20EB2A3BE65717CDC8C1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3C8B1704CC97EF12D3409771318C6433 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,6 +292,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8FE6468904F9DD257CA4A36D70521B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EC5F12C20D1EA978627B5AFB7E85AAC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C84AE9D6DF5DADCB5C541DCDAF8C58E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,18 +311,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		114994811BE5BAC098CE50068E62D347 /* TIM */ = {
-			isa = PBXGroup;
-			children = (
-				4C63A3E93F460DA18AB20539BE637311 /* TIMConversation+WZ.swift */,
-				634CF3F2269021DE8C8E5322D8F5EAB0 /* TIMMessage+WZ.swift */,
-				300DF5A7B0E5A1CAD3905D6B63ECA356 /* WZTIMManager.swift */,
-				9356423628C229C80048162CCCB8EA1A /* WZTIMManagerDelegate.swift */,
-			);
-			name = TIM;
-			path = WZIM/Classes/TIM;
-			sourceTree = "<group>";
-		};
 		1D31F2647187CF253510C18FC680B196 /* TXIMSDK_iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,28 +340,16 @@
 			path = TXIMSDK_iOS;
 			sourceTree = "<group>";
 		};
-		3BD65CD0020ADF12B5593343CD2D1BB1 /* Core */ = {
+		2DA72B102BE62FA14C00463E1DD7B362 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				ABC7F3AFC86A6AB2939D73271CC3CC19 /* EM */,
-				4B1E94112CE50C1C270FDCFD38E127BF /* Procotol */,
-				114994811BE5BAC098CE50068E62D347 /* TIM */,
-				AEEAD06D9F5460F28C3A6ABA768A1C3A /* UI */,
+				E6A9C7BCB88492F00B088B797D58B753 /* IMTableViewCell.swift */,
+				4892CD776ED14F474410231FC6F15D91 /* WZIMBaseTableViewCell.swift */,
+				A7D0BA5995E1C6187C22DDE8BD45E258 /* WZIMConfig.swift */,
+				2DB655B9A4D7C65D2931AB7DF026B0B5 /* WZIMTableViewCellDelegate.swift */,
 			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		4B1E94112CE50C1C270FDCFD38E127BF /* Procotol */ = {
-			isa = PBXGroup;
-			children = (
-				928208DE1818687BD800C95777208162 /* WZIMConversationProcotol.swift */,
-				ACF741A210D3645BAB77FCBD7B6A9FA1 /* WZIMMessageProtocol.swift */,
-				BB7DFFDA8A70DFEF504AD760A28B8A71 /* WZIMMessageReceipt.swift */,
-				37E10914B9AF5F00350A068B489B2EBD /* WZIMMessageType.swift */,
-				32B5825BB80E29E538745F8CF3BC0A95 /* WZIMUserInfoProtocol.swift */,
-			);
-			name = Procotol;
-			path = WZIM/Classes/Procotol;
+			name = UI;
+			path = WZIM/Classes/UI;
 			sourceTree = "<group>";
 		};
 		4C918A6AE5D08BC4F7F0110D017162C7 /* Pods */ = {
@@ -461,27 +439,29 @@
 			path = HyphenateLite;
 			sourceTree = "<group>";
 		};
-		ABC7F3AFC86A6AB2939D73271CC3CC19 /* EM */ = {
+		A8469B27D2CCA90FDE3208E9FBBF048B /* Procotol */ = {
 			isa = PBXGroup;
 			children = (
-				78903C17B7BE4F359A23287E870B5F71 /* EMConversation+WZ.swift */,
-				42D2A059BDDC22B4EE9CF4DA9C0D8ABE /* EMMessage+WZ.swift */,
-				F6CBEA524F0B421A09021F15DB4439A2 /* WZEMManager.swift */,
-				1959B523E3605F8A530918E473D65512 /* WZEMManagerDelegate.swift */,
+				963A0DB7BF1EA7E35BAE4EFF7FEC0FFA /* WZIMConversationProcotol.swift */,
+				50EDA2D50161E5770BFA1293674341AB /* WZIMMessageProtocol.swift */,
+				8FEB1942466C26A105FCB9CFD365011E /* WZIMMessageReceipt.swift */,
+				A90FB7CFCA25FEEA75340D29DD85D6F5 /* WZIMMessageType.swift */,
+				6091CF87119BA31BCA1F87E3B6B6C843 /* WZIMUserInfoProtocol.swift */,
 			);
-			name = EM;
-			path = WZIM/Classes/EM;
+			name = Procotol;
+			path = WZIM/Classes/Procotol;
 			sourceTree = "<group>";
 		};
-		AEEAD06D9F5460F28C3A6ABA768A1C3A /* UI */ = {
+		A99EA11E6816684941270A159F0ABD8C /* TIM */ = {
 			isa = PBXGroup;
 			children = (
-				C994B0A05F987D56E4CD33E6C4F48AF6 /* WZIMConfig.swift */,
-				CE4F917B753A5196615C778F6921E82E /* WZIMTableViewCell.swift */,
-				7C9F7A3ED5AD2791463746CF1090640D /* WZIMTableViewCellDelegate.swift */,
+				79553C98B61E462B43A531B645714384 /* TIMConversation+WZ.swift */,
+				4BAC7FADB870385D1F1769C150C93B2D /* TIMMessage+WZ.swift */,
+				877E6ADC29ADD8EA1E7C3567870785CE /* WZTIMManager.swift */,
+				5EC8DB52E2E9E5B82D7FAF7B0B5CD2BB /* WZTIMManagerDelegate.swift */,
 			);
-			name = UI;
-			path = WZIM/Classes/UI;
+			name = TIM;
+			path = WZIM/Classes/TIM;
 			sourceTree = "<group>";
 		};
 		B152AF89492AE31EC4338AC2FC847B3B /* Support Files */ = {
@@ -531,7 +511,7 @@
 		C289350A748FA82BA6F8C985FE8441CC /* WZIM */ = {
 			isa = PBXGroup;
 			children = (
-				3BD65CD0020ADF12B5593343CD2D1BB1 /* Core */,
+				F0C719A414B4FFDBF13340C205B5FDAD /* Core */,
 				9414A2BE872E73B6C7528D01F197C7A6 /* Pod */,
 				8D74C4175D60B3023A4F5E80CC4856D0 /* Support Files */,
 			);
@@ -629,6 +609,18 @@
 			path = "Target Support Files/Pods-WZIM_Example";
 			sourceTree = "<group>";
 		};
+		E6D58F25A69BFC13089B480204C99721 /* EM */ = {
+			isa = PBXGroup;
+			children = (
+				6CAEB69F68C26C2DE843CF69C9C0E14E /* EMConversation+WZ.swift */,
+				0C704538498D777C7369070BAD969F89 /* EMMessage+WZ.swift */,
+				9BEDC94908668C78BBFDB0C62C2A97BA /* WZEMManager.swift */,
+				A4A2C03EEF2112802112A3D0FF6930D4 /* WZEMManagerDelegate.swift */,
+			);
+			name = EM;
+			path = WZIM/Classes/EM;
+			sourceTree = "<group>";
+		};
 		EEAA00FDDD6CB2D24AAE5B3A6A0D26E5 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +628,17 @@
 				68F1B6B976BEC7CD779B41E9085C8446 /* Pods-WZIM_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F0C719A414B4FFDBF13340C205B5FDAD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E6D58F25A69BFC13089B480204C99721 /* EM */,
+				A8469B27D2CCA90FDE3208E9FBBF048B /* Procotol */,
+				A99EA11E6816684941270A159F0ABD8C /* TIM */,
+				2DA72B102BE62FA14C00463E1DD7B362 /* UI */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,11 +660,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A4A3474CB792CEEBA5BF9DD0FC90B9A0 /* Headers */ = {
+		D814C1E806F0E5026A249D40562637A0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B940DB8431FB7D303D4F0A2C1E4C5F /* WZIM-umbrella.h in Headers */,
+				005EF30AC92E82AB5B48AC2D2BC61328 /* WZIM-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,10 +709,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				46EF6278F06EC62E990DF56A85BD0559 /* PBXTargetDependency */,
-				92A3CE98198DDF5D45B75A4D05CE9E6F /* PBXTargetDependency */,
-				6FC1DECC60FF14ABC439C59B8934D5DD /* PBXTargetDependency */,
-				9CD04AD7D71C7DE8050058FB2E299C97 /* PBXTargetDependency */,
+				2C6FF9FB7FD2044FE113CC280239EA89 /* PBXTargetDependency */,
+				F4F0DEC4139D6535F5C212165482A2E0 /* PBXTargetDependency */,
+				DBC7DB47F716A5D753F47EFD5C176E96 /* PBXTargetDependency */,
+				93E128A6FD8F7B6EA4CCEC5C83B89D85 /* PBXTargetDependency */,
 			);
 			name = "Pods-WZIM_Example";
 			productName = "Pods-WZIM_Example";
@@ -718,19 +721,19 @@
 		};
 		B321A045EDE374D7DBCAE05955659F01 /* WZIM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7463069D0C1F5F79CACBFA61ACCD8D02 /* Build configuration list for PBXNativeTarget "WZIM" */;
+			buildConfigurationList = AB330D9FFF21F3DECB1EAFDDE6AADCE3 /* Build configuration list for PBXNativeTarget "WZIM" */;
 			buildPhases = (
-				A4A3474CB792CEEBA5BF9DD0FC90B9A0 /* Headers */,
-				DB67EAC1486C7428682EEF79C7F04441 /* Sources */,
-				26BC90BBFB260ED2A06909FD3D9908F8 /* Frameworks */,
-				C637A5D39BBED4E59C1A7EE607BBD737 /* Resources */,
+				D814C1E806F0E5026A249D40562637A0 /* Headers */,
+				492F06C3C7C6D9FB2F2879B5CFA7D551 /* Sources */,
+				B8FE6468904F9DD257CA4A36D70521B0 /* Frameworks */,
+				6E878713D5B6F0C90996BDDF9C7E89F2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F73E2734763E59D2885E0D71F3632142 /* PBXTargetDependency */,
-				DDE867CFF8462570AB4B14BC9E3F4F3E /* PBXTargetDependency */,
-				2908DF7C303542C022C994C849CFEE43 /* PBXTargetDependency */,
+				1CCE074D1C434C48AD559E601667AA23 /* PBXTargetDependency */,
+				94F9B9500D2A8CBFCAB630F4B00B28B4 /* PBXTargetDependency */,
+				3DE82BD63656AA9B87C4C8B7050717E1 /* PBXTargetDependency */,
 			);
 			name = WZIM;
 			productName = WZIM;
@@ -749,7 +752,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				180DD18C90DC9EBEA521361C17C5EF10 /* PBXTargetDependency */,
+				701BF9B4C4ACE863B5849CB24F9F547C /* PBXTargetDependency */,
 			);
 			name = "Pods-WZIM_Tests";
 			productName = "Pods-WZIM_Tests";
@@ -803,14 +806,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C691CAA90D9565F2EFF5EF823D8A80C /* Resources */ = {
+		6E878713D5B6F0C90996BDDF9C7E89F2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C637A5D39BBED4E59C1A7EE607BBD737 /* Resources */ = {
+		9C691CAA90D9565F2EFF5EF823D8A80C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -820,6 +823,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		492F06C3C7C6D9FB2F2879B5CFA7D551 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B32457432BC1432B35C9404740A444C /* EMConversation+WZ.swift in Sources */,
+				00491C392E8BBC1938B3CB6E5ABA5806 /* EMMessage+WZ.swift in Sources */,
+				40D0A02D111B0BE9246BBEBB9FA33287 /* IMTableViewCell.swift in Sources */,
+				BA24FCF8DCD35E3DD0CB3839560FB3E1 /* TIMConversation+WZ.swift in Sources */,
+				9FE18562670EC7CF86E02E32D4197C2B /* TIMMessage+WZ.swift in Sources */,
+				41AE1694D38B20E5C28A466A85A6E196 /* WZEMManager.swift in Sources */,
+				AA838F94287379053528AA734C62CF26 /* WZEMManagerDelegate.swift in Sources */,
+				7C6FECEBDB6A56DF8FF3CEFBEAB3A291 /* WZIM-dummy.m in Sources */,
+				D61A9C3CDCBC83D7FC503BBE43346C5B /* WZIMBaseTableViewCell.swift in Sources */,
+				C1DCBB96B2A7160FC8AAC76BBEBB8969 /* WZIMConfig.swift in Sources */,
+				261EEA104B62220368DE5196C4A66D8A /* WZIMConversationProcotol.swift in Sources */,
+				B9E6267EEAD8BDFEB62BFDF51810716D /* WZIMMessageProtocol.swift in Sources */,
+				8D07DE36A13005CD74DCCD3C90CA516D /* WZIMMessageReceipt.swift in Sources */,
+				28A76CEC446BA26D0E237D57CA881DAE /* WZIMMessageType.swift in Sources */,
+				B66338DFC7B6D9475C5B511E5AF91904 /* WZIMTableViewCellDelegate.swift in Sources */,
+				6DF746D9B9CD7AC5F90FEEE62668A977 /* WZIMUserInfoProtocol.swift in Sources */,
+				56FCA868B36E6C834B088DA68187F1C5 /* WZTIMManager.swift in Sources */,
+				05DFBF19C94E64DE143AB98A9A699256 /* WZTIMManagerDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F6F3574D403FA9279E2BA90DC59BBA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -880,80 +908,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB67EAC1486C7428682EEF79C7F04441 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F9FFFA4D0E56DD76C23BB817ABDC7CC4 /* EMConversation+WZ.swift in Sources */,
-				B90BB7C1033562F022DE7E093DC446F2 /* EMMessage+WZ.swift in Sources */,
-				BB95AFCB4C9B322307CF6D70429802CA /* TIMConversation+WZ.swift in Sources */,
-				28504D94C0502041DA514BE5A7A97B1F /* TIMMessage+WZ.swift in Sources */,
-				B9CDA7B386B6B81A25CFBD527CF7BCBB /* WZEMManager.swift in Sources */,
-				6D9B5D08D3CF5286DE8C0922507E0016 /* WZEMManagerDelegate.swift in Sources */,
-				E2BF967202DBF6F800458ED24CA86BEE /* WZIM-dummy.m in Sources */,
-				FBE538D3FB9D37F8D6692B1B10281173 /* WZIMConfig.swift in Sources */,
-				CB26FF250FB21950198C5B8B27C31326 /* WZIMConversationProcotol.swift in Sources */,
-				914B8AAC53B9DCCE6AD47CBB2FEA8111 /* WZIMMessageProtocol.swift in Sources */,
-				40FD65F625B71B9FDDA0B4FB62EED3D0 /* WZIMMessageReceipt.swift in Sources */,
-				A11B21697B6A9F4679C33E46AA894C57 /* WZIMMessageType.swift in Sources */,
-				ED77D8D5AAE1664F3F80C0063B702F80 /* WZIMTableViewCell.swift in Sources */,
-				31D7961699CF96141666BFA28F2B053E /* WZIMTableViewCellDelegate.swift in Sources */,
-				8F60FC0E191C266CED6C7027D2CF8AF3 /* WZIMUserInfoProtocol.swift in Sources */,
-				007D2B6DAD999C4D9E8E7C98BC930AFC /* WZTIMManager.swift in Sources */,
-				EAECFAE57D56C3136BFB4BCF1FCF81C3 /* WZTIMManagerDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		180DD18C90DC9EBEA521361C17C5EF10 /* PBXTargetDependency */ = {
+		1CCE074D1C434C48AD559E601667AA23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HyphenateLite;
+			target = 181511AAB6B3D6C720BC9FD0D3CD77C6 /* HyphenateLite */;
+			targetProxy = 349ED5689AC2D46D88618F70E6EA1063 /* PBXContainerItemProxy */;
+		};
+		2C6FF9FB7FD2044FE113CC280239EA89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HyphenateLite;
+			target = 181511AAB6B3D6C720BC9FD0D3CD77C6 /* HyphenateLite */;
+			targetProxy = D0780FB3E923A9E4C40BA67F0923F176 /* PBXContainerItemProxy */;
+		};
+		3DE82BD63656AA9B87C4C8B7050717E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TXIMSDK_iOS;
+			target = 37C8B4CA3E62FB44CD14CEEF054EDAC2 /* TXIMSDK_iOS */;
+			targetProxy = D499DB3FDD897F74314A7C5AC340963D /* PBXContainerItemProxy */;
+		};
+		701BF9B4C4ACE863B5849CB24F9F547C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-WZIM_Example";
 			target = 894FB12C21EDC4B90938734311ABCBBB /* Pods-WZIM_Example */;
-			targetProxy = 144D21444392B06407875318FD3806C4 /* PBXContainerItemProxy */;
+			targetProxy = 01616C35B86A6176DC5EBB4392B85CF0 /* PBXContainerItemProxy */;
 		};
-		2908DF7C303542C022C994C849CFEE43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TXIMSDK_iOS;
-			target = 37C8B4CA3E62FB44CD14CEEF054EDAC2 /* TXIMSDK_iOS */;
-			targetProxy = 2062F1CE0FD4D91F31D234CF5B453212 /* PBXContainerItemProxy */;
-		};
-		46EF6278F06EC62E990DF56A85BD0559 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HyphenateLite;
-			target = 181511AAB6B3D6C720BC9FD0D3CD77C6 /* HyphenateLite */;
-			targetProxy = D393030432812082CD71DE5E1641B824 /* PBXContainerItemProxy */;
-		};
-		6FC1DECC60FF14ABC439C59B8934D5DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TXIMSDK_iOS;
-			target = 37C8B4CA3E62FB44CD14CEEF054EDAC2 /* TXIMSDK_iOS */;
-			targetProxy = 4A53F074B6B867D2FC71A53A735D021B /* PBXContainerItemProxy */;
-		};
-		92A3CE98198DDF5D45B75A4D05CE9E6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SnapKit;
-			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = F769675A0597BBD93274941833227A78 /* PBXContainerItemProxy */;
-		};
-		9CD04AD7D71C7DE8050058FB2E299C97 /* PBXTargetDependency */ = {
+		93E128A6FD8F7B6EA4CCEC5C83B89D85 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = WZIM;
 			target = B321A045EDE374D7DBCAE05955659F01 /* WZIM */;
-			targetProxy = E3561F9CAB1421AF9AD765D006BA6FA8 /* PBXContainerItemProxy */;
+			targetProxy = 20C58B8E5AB895B47BDE2E1465DFD670 /* PBXContainerItemProxy */;
 		};
-		DDE867CFF8462570AB4B14BC9E3F4F3E /* PBXTargetDependency */ = {
+		94F9B9500D2A8CBFCAB630F4B00B28B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SnapKit;
 			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = 04BF30FEF43AAEF9D15E24FFFA582947 /* PBXContainerItemProxy */;
+			targetProxy = 9246A9E5ACF800F6A15DF1C19DD14B78 /* PBXContainerItemProxy */;
 		};
-		F73E2734763E59D2885E0D71F3632142 /* PBXTargetDependency */ = {
+		DBC7DB47F716A5D753F47EFD5C176E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = HyphenateLite;
-			target = 181511AAB6B3D6C720BC9FD0D3CD77C6 /* HyphenateLite */;
-			targetProxy = DD3C8884C00F0413C1E9A0258C8921CA /* PBXContainerItemProxy */;
+			name = TXIMSDK_iOS;
+			target = 37C8B4CA3E62FB44CD14CEEF054EDAC2 /* TXIMSDK_iOS */;
+			targetProxy = A288827BEDD4A3276A07393B87A88115 /* PBXContainerItemProxy */;
+		};
+		F4F0DEC4139D6535F5C212165482A2E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SnapKit;
+			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
+			targetProxy = 6C362D56DF693F3CDAF509459D9ABAEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1226,40 +1230,7 @@
 			};
 			name = Release;
 		};
-		D0B88DFFADB1A8B2C6C2D96F361B05D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE0ECFE82CE324963DB61B7F84FA4B2F /* WZIM.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/WZIM/WZIM-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/WZIM/WZIM-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/WZIM/WZIM.modulemap";
-				PRODUCT_MODULE_NAME = WZIM;
-				PRODUCT_NAME = WZIM;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D59AF87C5AC2C46E13AA63C69379FF7D /* Release */ = {
+		DD2867A447423D841484FD44C502CCF3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD1C63367FD63E3A9E3FD7FCAFEF8872 /* WZIM.release.xcconfig */;
 			buildSettings = {
@@ -1374,6 +1345,39 @@
 			};
 			name = Debug;
 		};
+		EDD29EFDB2CFA265CB48BF186328860F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE0ECFE82CE324963DB61B7F84FA4B2F /* WZIM.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/WZIM/WZIM-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/WZIM/WZIM-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/WZIM/WZIM.modulemap";
+				PRODUCT_MODULE_NAME = WZIM;
+				PRODUCT_NAME = WZIM;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		F93AF49C1CAF2486F9DC6AE9F85C0739 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22C7FA8CEA40B0A8C3765F6AC5A0E50D /* SnapKit.debug.xcconfig */;
@@ -1436,20 +1440,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7463069D0C1F5F79CACBFA61ACCD8D02 /* Build configuration list for PBXNativeTarget "WZIM" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D0B88DFFADB1A8B2C6C2D96F361B05D7 /* Debug */,
-				D59AF87C5AC2C46E13AA63C69379FF7D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		7F8CE4DC18DBEA01587212F09727DB3D /* Build configuration list for PBXNativeTarget "SnapKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F93AF49C1CAF2486F9DC6AE9F85C0739 /* Debug */,
 				73B201A0641E8BDF892BA0B27E0AF833 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB330D9FFF21F3DECB1EAFDDE6AADCE3 /* Build configuration list for PBXNativeTarget "WZIM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDD29EFDB2CFA265CB48BF186328860F /* Debug */,
+				DD2867A447423D841484FD44C502CCF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

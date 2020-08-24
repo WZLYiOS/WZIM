@@ -1,16 +1,15 @@
 //
-//  WZIMTableViewCell.swift
-//  SweepTreasure
+//  IMTableViewCell.swift
+//  Pods-WZIM_Example
 //
-//  Created by qiuqixiang on 2020/7/13.
-//  Copyright © 2020 划宝. All rights reserved.
+//  Created by qiuqixiang on 2020/8/24.
 //
 
 import UIKit
 import SnapKit
 
-// MARK - 气泡cell
-open class WZIMTableViewCell: UITableViewCell {
+///
+open class IMTableViewCell: UITableViewCell {
 
     /// 代理
     private weak var pDelegate: WZIMTableViewCellPublicDelegate!
@@ -67,14 +66,14 @@ open class WZIMTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func configView() {
+    public func configView() {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(bubbleImageView)
         contentView.addSubview(stateStackView)
         contentView.addSubview(bottomStackView)
     }
 
-    open func configViewLocation() {
+    public func configViewLocation() {
         bottomStackView.snp.makeConstraints { (make) in
             make.leading.equalTo(0)
             make.right.equalToSuperview()
@@ -84,7 +83,7 @@ open class WZIMTableViewCell: UITableViewCell {
     }
     
     /// 更新数据
-    open func reload(model: WZIMMessageProtocol, publicDelegate: WZIMTableViewCellPublicDelegate, cDelegate: WZIMTableViewCellDelegate) {
+    public func reload(model: WZIMMessageProtocol, publicDelegate: WZIMTableViewCellPublicDelegate, cDelegate: WZIMTableViewCellDelegate) {
         
         pDelegate = publicDelegate
         message = model
@@ -133,18 +132,7 @@ open class WZIMTableViewCell: UITableViewCell {
         }
 
         /// 设置头像
-        pDelegate.WZIMTableViewCell(cell: self, set: avatarImageView)
+//        pDelegate.WZIMTableViewCell(cell: self, set: avatarImageView)
     }
-    
-    
-}
 
-// MARK - 图片九宫格
-extension UIImage {
-    
-    var wzIMResizableImage: UIImage {
-        let widthFloat = floor(self.size.width/2)
-        let heightFloat = floor(self.size.height/2)
-        return self.resizableImage(withCapInsets: UIEdgeInsets(top: heightFloat, left: widthFloat, bottom: heightFloat, right: widthFloat))
-    }
 }

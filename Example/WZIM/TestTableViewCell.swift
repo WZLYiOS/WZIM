@@ -9,7 +9,7 @@
 import UIKit
 import WZIM
 
-class TestTableViewCell: WZIMTableViewCell {
+class TestTableViewCell: WZIMBaseTableViewCell {
 
     /// 文字内容
     private lazy var contentLabel: UILabel = {
