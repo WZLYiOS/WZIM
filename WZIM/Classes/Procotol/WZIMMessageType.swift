@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK - 消息状态
-@objc public enum WZIMMessageStatus: Int {
+public enum WZIMMessageStatus: Int {
     case sending = 1  // 发送中
     case sucess = 2   // 成功
     case fail = 3     // 失败
@@ -19,14 +19,14 @@ import Foundation
 }
 
 // MARK - 会话类型
-@objc public enum WZIMConversationType: Int {
+public enum WZIMConversationType: Int {
     case c2c = 1      // C2C 类型
     case group = 2    // 群聊 类型
     case system =  3  // 系统消息
 }
  
 /// MARK - 消息位置
-@objc public enum WZMessageLocation: Int {
+public enum WZMessageLocation: Int {
     case lelft = 0     // 居左
     case right = 1     // 居右
     case center = 2    // 居中

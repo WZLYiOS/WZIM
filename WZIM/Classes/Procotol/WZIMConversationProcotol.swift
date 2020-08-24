@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK - 消息会话
-@objc public protocol WZIMConversationProcotol {
+public protocol WZIMConversationProcotol {
     
     /// 成功
     typealias sucess = (()-> Void)?

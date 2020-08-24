@@ -9,7 +9,6 @@ import ImSDK
 import Foundation
 
 // MARK - 腾讯管理器
-@objcMembers
 open class WZTIMManager: NSObject {
     
     /// 代理
@@ -40,12 +39,12 @@ open class WZTIMManager: NSObject {
     }
     
     /// 获取会话列表
-   @objc public func getConversationList() -> [TIMConversation] {
+    public func getConversationList() -> [TIMConversation] {
         return TIMManager.sharedInstance()!.getConversationList()
     }
     
     /// 登录
-   @objc public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+   public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         let param = TIMLoginParam()
         param.identifier = identifier
         param.userSig = userSig
@@ -59,7 +58,7 @@ open class WZTIMManager: NSObject {
     }
     
     /// 退出
-    @objc public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMManager.sharedInstance()?.logout({
             sucess?()
         }, fail: { (code, msg) in
@@ -68,7 +67,7 @@ open class WZTIMManager: NSObject {
     }
     
     /// 加入群
-    @objc public func joinGroup(groupId: String, msg: String,sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func joinGroup(groupId: String, msg: String,sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMGroupManager.sharedInstance()?.joinGroup(groupId, msg: msg, succ: {
             sucess?()
         }, fail: { (code, msg) in
@@ -77,7 +76,7 @@ open class WZTIMManager: NSObject {
     }
     
     /// 退出群
-    @objc public func quitGroup(groupId: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+    public func quitGroup(groupId: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         TIMGroupManager.sharedInstance()?.quitGroup(groupId, succ: {
             TIMManager.sharedInstance()?.remove(self)
             sucess?()

@@ -9,24 +9,23 @@ import Foundation
 import HyphenateLite
 
 // MARK - 环信管理器
-@objcMembers
 open class WZEMManager: NSObject {
     
     /// 代理
     private weak var delegate: WZEMManagerDelegate?
     
     /// 初始化SDK
-   @objc public init(appkey: String) {
+   public init(appkey: String) {
         EMClient.shared()?.initializeSDK(with: EMOptions.init(appkey: appkey))
     }
     
-   @objc public func setUserConfig(cDelegate: WZEMManagerDelegate) {
+   public func setUserConfig(cDelegate: WZEMManagerDelegate) {
         delegate = cDelegate
         EMClient.shared()?.chatManager.add(self, delegateQueue: nil)
     }
     
     /// 登录
-   @objc public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+   public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         
         EMClient.shared()?.login(withUsername: identifier, password: userSig, completion: { (msg, err) in
             if err == nil {
@@ -38,7 +37,7 @@ open class WZEMManager: NSObject {
     }
     
     /// 退出
-   @objc public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
+   public func logout(sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         EMClient.shared()?.logout(true, completion: { (err) in
             if err == nil {
                 EMClient.shared()?.chatManager.remove(self)

@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK - 消息体协议
-@objc public protocol WZIMMessageProtocol {
+public protocol WZIMMessageProtocol {
         
     /// 消息状态
     func wzStatus() -> WZIMMessageStatus
