@@ -2,12 +2,21 @@ PODS:
   - HyphenateLite (3.7.0)
   - SnapKit (5.0.1)
   - TXIMSDK_iOS (4.9.1)
-  - WZIM (1.1.3):
-    - WZIM/Core (= 1.1.3)
-  - WZIM/Core (1.1.3):
+  - WZIM (1.1.1):
+    - WZIM/EM (= 1.1.1)
+    - WZIM/Procotol (= 1.1.1)
+    - WZIM/TIM (= 1.1.1)
+    - WZIM/UI (= 1.1.1)
+  - WZIM/EM (1.1.1):
     - HyphenateLite (~> 3.7.0)
-    - SnapKit (~> 5.0.1)
+    - WZIM/Procotol
+  - WZIM/Procotol (1.1.1)
+  - WZIM/TIM (1.1.1):
     - TXIMSDK_iOS (~> 4.9.1)
+    - WZIM/Procotol
+  - WZIM/UI (1.1.1):
+    - SnapKit (~> 5.0.1)
+    - WZIM/Procotol
 
 DEPENDENCIES:
   - WZIM (from `../`)
@@ -26,7 +35,7 @@ SPEC CHECKSUMS:
   HyphenateLite: 87ed77d360dd383e3046230c44360e233fa732e5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
-  WZIM: d306344497e887e67943277d321469bd9d340dd4
+  WZIM: ff6af8497718015025eb1d328de071bd9f359080
 
 PODFILE CHECKSUM: 80618a171723497759384948ba0065261d429655
 
