@@ -5,57 +5,59 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000496">
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000462">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: version_get_podspec" time="0.000838">
+      <testcase classname="fastlane.lanes" name="01: version_get_podspec" time="0.0008">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: pod_lib_lint" time="139.553222">
+      <testcase classname="fastlane.lanes" name="02: pod_lib_lint" time="104.361657">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: version_bump_podspec" time="0.00247">
+      <testcase classname="fastlane.lanes" name="03: version_bump_podspec" time="0.001986">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: git_add" time="0.033654">
+      <testcase classname="fastlane.lanes" name="04: git_add" time="0.016698">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: git_commit" time="0.051513">
+      <testcase classname="fastlane.lanes" name="05: git_commit" time="0.029786">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: push_to_git_remote" time="6.83779">
+      <testcase classname="fastlane.lanes" name="06: push_to_git_remote" time="8.754213">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: git_tag_exists" time="0.029643">
+      <testcase classname="fastlane.lanes" name="07: git_tag_exists" time="0.011294">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: add_git_tag" time="0.041638">
+      <testcase classname="fastlane.lanes" name="08: add_git_tag" time="0.01772">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: push_git_tags" time="9.551168">
+      <testcase classname="fastlane.lanes" name="09: push_git_tags" time="8.311779">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: pod_push" time="299.975252">
+      <testcase classname="fastlane.lanes" name="10: pod_push" time="253.607078">
+        
+          <failure message="/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:83:in `block (2 levels) in parsing_binding'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/Users/npp/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:352:in `run'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/fastlane/lib/fastlane/cli_tools_distributor.rb:119:in `take_off'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/gems/fastlane-2.154.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `load'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/fastlane:23:in `&lt;main&gt;'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'&#10;/Users/npp/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `&lt;main&gt;'&#10;&#10;Exit status of command 'pod trunk push 'WZIM.podspec' --allow-warnings --skip-import-validation' was 1 instead of 0.&#10;Updating spec repo `trunk`&#10;[!] CDN: trunk Repo update failed - 19 error(s):&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_3_3_1.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_8_4_3.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_9_2_f.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_8_0_a.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_1_0_c.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_2_3_a.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_5_8_f.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_f_b_5.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_7_9_5.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_d_a_2.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_1_0_1.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_c_5_1.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_d_e_6.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_b_5_b.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_5_0_9.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_e_0_9.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_e_e_d.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_7_4_a.txt Response: Timeout was reached&#10;CDN: trunk URL couldn't be downloaded: https://cdn.cocoapods.org/all_pods_versions_a_9_e.txt Response: Timeout was reached&#10;" />
         
       </testcase>
     
