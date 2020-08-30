@@ -62,12 +62,21 @@ extension TIMMessage: WZIMMessageProtocol {
         return isSelf() ? .right : .lelft
     }
     
-    /// 自定义custom
-    public func wzSetCustomInt(param: Int) {
-        self.setCustomInt(Int32(param))
+    public var wzCustomInt: Int {
+        get {
+            return Int(self.customInt())
+        }
+        set {
+            self.setCustomInt(Int32(newValue))
+        }
     }
     
-    public func wzCustomInt() -> Int {
-        return Int(self.customInt())
+    public var wzCustomData: Data {
+        get {
+            return customData()
+        }
+        set {
+            setCustomData(newValue)
+        }
     }
 }

@@ -79,13 +79,26 @@ extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDele
 }
 
 extension ViewController: WZIMMessageProtocol {
-    func wzSetCustomInt(param: Int) {
-        
+    
+    var wzCustomInt: Int {
+        get {
+            return 0
+        }
+        set(newValue) {
+            
+        }
     }
     
-    func wzCustomInt() -> Int {
-        return 1
+    var wzCustomData: Data {
+        get {
+            return Data()
+        }
+        set(newValue) {
+            
+        }
     }
+    
+    
     
     func wzStatus() -> WZIMMessageStatus {
         return .deleted

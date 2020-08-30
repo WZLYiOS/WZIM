@@ -81,12 +81,25 @@ extension EMMessage: WZIMMessageProtocol {
         }
     }
     
-    /// 自定义custom
-    public func wzSetCustomInt(param: Int) {
-        
+    public var wzCustomInt: Int {
+        get {
+            let custom = ext["wzCustomInt"] as? Int
+            return custom ?? 0
+        }
+        set {
+            ext["wzCustomInt"] = newValue
+            EMClient.shared().chatManager.update(self, completion: nil)
+        }
     }
     
-    public func wzCustomInt() -> Int {
-        return 1
+    public var wzCustomData: Data {
+        get {
+            let custom = ext["wzCustomData"] as? Data
+            return custom ?? Data()
+        }
+        set {
+            ext["wzCustomData"] = newValue
+            EMClient.shared().chatManager.update(self, completion: nil)
+        }
     }
 }

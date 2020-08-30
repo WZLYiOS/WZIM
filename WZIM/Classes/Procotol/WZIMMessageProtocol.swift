@@ -11,6 +11,8 @@ import Foundation
 // MARK - 消息体协议
 public protocol WZIMMessageProtocol {
         
+    
+    
     /// 消息状态
     func wzStatus() -> WZIMMessageStatus
     
@@ -41,11 +43,11 @@ public protocol WZIMMessageProtocol {
     /// 消息位置
     func wzLoaction() -> WZMessageLocation
     
-    /// 设置音频已读
-    func wzSetCustomInt(param: Int)
+    /// 设置音频已读 0:未读 1 已读
+    var wzCustomInt: Int {set get}
     
-    /// 获取音频是否已读
-    func wzCustomInt() -> Int
+    /// 自定义数据
+    var wzCustomData: Data {set  get}
 }
 
 
