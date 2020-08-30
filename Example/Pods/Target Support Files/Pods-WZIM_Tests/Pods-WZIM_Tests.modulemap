@@ -1,0 +1,6 @@
+framework module Pods_WZIM_Tests {
+  umbrella header "Pods-WZIM_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

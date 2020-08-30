@@ -1,0 +1,6 @@
+framework module WZIM {
+  umbrella header "WZIM-umbrella.h"
+
+  export *
+  module * { export * }
+}
