@@ -2,9 +2,9 @@ PODS:
   - HyphenateLite (3.7.0)
   - SnapKit (5.0.1)
   - TXIMSDK_iOS (4.9.1)
-  - WZIM (1.1.2):
-    - WZIM/Core (= 1.1.2)
-  - WZIM/Core (1.1.2):
+  - WZIM (1.1.3):
+    - WZIM/Core (= 1.1.3)
+  - WZIM/Core (1.1.3):
     - HyphenateLite (~> 3.7.0)
     - SnapKit (~> 5.0.1)
     - TXIMSDK_iOS (~> 4.9.1)
@@ -26,7 +26,7 @@ SPEC CHECKSUMS:
   HyphenateLite: 87ed77d360dd383e3046230c44360e233fa732e5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
-  WZIM: 8d8456d688584818ab107440b9dabf6cbf047dea
+  WZIM: d306344497e887e67943277d321469bd9d340dd4
 
 PODFILE CHECKSUM: 80618a171723497759384948ba0065261d429655
 
