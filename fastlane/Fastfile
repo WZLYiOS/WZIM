@@ -20,13 +20,6 @@ platform :ios do
   desc "release new version"
   lane :release do |options|
 
-    # carthage 打包
-    #carthage(
-     # command: "build",
-      #platform: "iOS", 
-      #use_binaries: true,
-      #no_skip_current: true)
-
     # 获取源码 podspec 文件路径
     podspec_path = find_podspec_path()
 
