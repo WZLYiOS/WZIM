@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = HyphenateLite;
+			productName = HyphenateLite;
 		};
 		37C8B4CA3E62FB44CD14CEEF054EDAC2 /* TXIMSDK_iOS */ = {
 			isa = PBXAggregateTarget;
@@ -24,6 +25,7 @@
 			dependencies = (
 			);
 			name = TXIMSDK_iOS;
+			productName = TXIMSDK_iOS;
 		};
 /* End PBXAggregateTarget section */
 
@@ -80,6 +82,7 @@
 		BECA67DFB5E0984DFAEFCB775C31972E /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF034C59128BF735411B96E4D106C8 /* ConstraintView.swift */; };
 		C412F27D75AFC0DF0F0289DBB270931C /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3800EBE0A24191C8C4CCF2C5B1B6CE3 /* ConstraintMakerFinalizable.swift */; };
 		CE62FEABA57B2B53EABF8C7DCCC6B2C4 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D428101845CC09982A995B2BA82F23 /* ConstraintRelation.swift */; };
+		D0694C4724FDD4C4004D9FC5 /* WZIMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0694C4624FDD4C4004D9FC5 /* WZIMManager.swift */; };
 		D1190054311070D6D5909EB41A5EF522 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D12DF64B57561C2C260BB23017562726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D3076C837FFD6D237C246E02D3E2AE4F /* WZIMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2997B8CDD7CE664DEA6E18ECA303B9E9 /* WZIMBaseTableViewCell.swift */; };
@@ -154,7 +157,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C6389F2B24345761B383A898216BAE /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WZIM_Example.framework; path = "Pods-WZIM_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C6389F2B24345761B383A898216BAE /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		016ABCAB56FF9AC679620A48A921BA0F /* TIMMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMMessage.h; path = ImSDK.framework/Headers/TIMMessage.h; sourceTree = "<group>"; };
 		01FF21C44BA9D644DFBA8AA4709D55D6 /* HyphenateLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HyphenateLite.release.xcconfig; sourceTree = "<group>"; };
 		0390948C21C97030DDD2D48B3E3A335F /* WZTIMManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WZTIMManager.swift; path = WZIM/Classes/TIM/WZTIMManager.swift; sourceTree = "<group>"; };
@@ -196,7 +199,7 @@
 		55A7ECC9F05A3D49550A31430A8B2C95 /* V2TIMManager+APNS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+APNS.h"; path = "ImSDK.framework/Headers/V2TIMManager+APNS.h"; sourceTree = "<group>"; };
 		58D1F3E06D9FDF3AD0420048A86AEC4C /* V2TIMManager+Message.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Message.h"; path = "ImSDK.framework/Headers/V2TIMManager+Message.h"; sourceTree = "<group>"; };
 		5B5270E112F4987B7CF94E8DBED31BCA /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
-		5ECE639ED4342B1FB4BC8AAE68CC8A58 /* WZIM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WZIM.framework; path = WZIM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ECE639ED4342B1FB4BC8AAE68CC8A58 /* WZIM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WZIM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		618C6DF7A58339DEB56BF80578E90B36 /* TIMErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMErrorCode.h; path = ImSDK.framework/Headers/TIMErrorCode.h; sourceTree = "<group>"; };
 		6485D455D4B145EAED486FDFC35061AA /* WZIMMessageProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WZIMMessageProtocol.swift; path = WZIM/Classes/Procotol/WZIMMessageProtocol.swift; sourceTree = "<group>"; };
 		6825263024CDFB3C5DC5729CBCDAAFEE /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
@@ -215,16 +218,16 @@
 		808D8BD444C83423805FC3227361F684 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		81397C7CF2716CEC67D7DFF2DBC19D76 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		88E62F2EC10A761978373B25057AE676 /* Pods-WZIM_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		8C02B5B0A04E44A407C7105E3563671A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		8C02B5B0A04E44A407C7105E3563671A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8FDCCA91403A3B282928E34DEC0191F7 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		91F508EED38A379721907D2F19CEE8E7 /* WZIMUserInfoProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WZIMUserInfoProtocol.swift; path = WZIM/Classes/Procotol/WZIMUserInfoProtocol.swift; sourceTree = "<group>"; };
 		964B6987B5654A9C53CE32C027A2F62A /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		97789CBE4C2DF7F2E297CF6A11B39C7F /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Source/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0FFF4CCB62795D85772DEF2CFEF57B /* Pods-WZIM_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WZIM_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9A895747B5C4E2998142D63CC588A718 /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
 		9D68D3C380BF64CC6603E4FC4B9B8557 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0808D4AC4AA57D950F96CD90F4D5102 /* Pods-WZIM_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WZIM_Example-frameworks.sh"; sourceTree = "<group>"; };
 		A0A8536E6D9113D21203BF0EE08AFC70 /* Pods-WZIM_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WZIM_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A17C9A91EC459FE3B79E6B09FCFA39AF /* Pods-WZIM_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WZIM_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -239,9 +242,9 @@
 		B8040159F008D3423EC99FAAEF688203 /* WZIMConversationProcotol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WZIMConversationProcotol.swift; path = WZIM/Classes/Procotol/WZIMConversationProcotol.swift; sourceTree = "<group>"; };
 		B9408869FD19DF22D9274032DD2E4B7F /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
 		BCE10EBA1E9FA557894E335E9EE5A63B /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
-		BD103BF248D6361BDE958CCF34EF7F7E /* WZIM.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = WZIM.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BD103BF248D6361BDE958CCF34EF7F7E /* WZIM.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = WZIM.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BEE49245D927B00B92604CD4C0DEAE9A /* TIMConversation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMConversation.h; path = ImSDK.framework/Headers/TIMConversation.h; sourceTree = "<group>"; };
-		C07CC6DAEF88F813649FD72893519B83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		C07CC6DAEF88F813649FD72893519B83 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C10A34ECEC5D89AEDEC363BE535D7F45 /* V2TIMManager+Signaling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Signaling.h"; path = "ImSDK.framework/Headers/V2TIMManager+Signaling.h"; sourceTree = "<group>"; };
 		C1AF2E002B6B02D78965FA6AF6352CC1 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		C368F397B992A6028DBF20BF8DEA0B40 /* TIMFriendshipDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMFriendshipDefine.h; path = ImSDK.framework/Headers/TIMFriendshipDefine.h; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 		C5AF8A8A2E958939C900C3E248AACB01 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		C9549BAB342838555F9DB4D1B74A2700 /* EMMessage+WZ.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "EMMessage+WZ.swift"; path = "WZIM/Classes/EM/EMMessage+WZ.swift"; sourceTree = "<group>"; };
 		CA2DA3407CA5703244E2817BC05F7109 /* V2TIMManager+Friendship.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "V2TIMManager+Friendship.h"; path = "ImSDK.framework/Headers/V2TIMManager+Friendship.h"; sourceTree = "<group>"; };
+		D0694C4624FDD4C4004D9FC5 /* WZIMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WZIMManager.swift; sourceTree = "<group>"; };
 		D0F6E9E01DA82F74CEF8902E68E872A5 /* Pods-WZIM_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WZIM_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6E3D56B9A2124BF88C0EA87C8A2D457 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
 		DC1B7EEEA7B62C2941A2AA2D914198F9 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
@@ -259,7 +263,7 @@
 		E84CC8D0994C36D64BD954D4B1DF1043 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		EA47745791205D6613D027F3F2BD1143 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		EB3646880D27DB701A46B0EDAE56193B /* TXIMSDK_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TXIMSDK_iOS.release.xcconfig; sourceTree = "<group>"; };
-		EE06D00963A528215788BB87918574BA /* Pods_WZIM_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WZIM_Tests.framework; path = "Pods-WZIM_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE06D00963A528215788BB87918574BA /* Pods_WZIM_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC3E78D2A85FCFBD8E14C256ECC9A51 /* WZIM-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZIM-umbrella.h"; sourceTree = "<group>"; };
 		F356FC46F98EB59FF536EED4C9128233 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		F402B4A1BE09C764AFCF376A296AD1EF /* WZIM-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WZIM-prefix.pch"; sourceTree = "<group>"; };
@@ -334,7 +338,6 @@
 				4D8DCDDEFFC7F2E4AD6F315FBAAA407C /* Frameworks */,
 				B152AF89492AE31EC4338AC2FC847B3B /* Support Files */,
 			);
-			name = TXIMSDK_iOS;
 			path = TXIMSDK_iOS;
 			sourceTree = "<group>";
 		};
@@ -461,7 +464,6 @@
 				8D05FC92AA0D890012432338C209985C /* Frameworks */,
 				98F6710AA849087E43EB540B619B295D /* Support Files */,
 			);
-			name = HyphenateLite;
 			path = HyphenateLite;
 			sourceTree = "<group>";
 		};
@@ -570,7 +572,6 @@
 				BCE10EBA1E9FA557894E335E9EE5A63B /* UILayoutSupport+Extensions.swift */,
 				BD797A4A3B1C33B4B2787E09FE9E2704 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -608,6 +609,7 @@
 				437F6FBE6474BE9CAA97C209B34EF934 /* WZIMMessageReceipt.swift */,
 				0A363CD3EA1B0387AE5742853A945431 /* WZIMMessageType.swift */,
 				91F508EED38A379721907D2F19CEE8E7 /* WZIMUserInfoProtocol.swift */,
+				D0694C4624FDD4C4004D9FC5 /* WZIMManager.swift */,
 			);
 			name = Procotol;
 			sourceTree = "<group>";
@@ -752,6 +754,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					894FB12C21EDC4B90938734311ABCBBB = {
+						LastSwiftMigration = 1160;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -888,6 +895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0694C4724FDD4C4004D9FC5 /* WZIMManager.swift in Sources */,
 				9DE26DBC13B775256AFAB45065B07758 /* Pods-WZIM_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1191,8 +1199,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1203,6 +1210,7 @@
 			baseConfigurationReference = D0F6E9E01DA82F74CEF8902E68E872A5 /* Pods-WZIM_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1226,6 +1234,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1286,6 +1295,7 @@
 			baseConfigurationReference = 2A7C38535F6FF75D7A7A91C72B7C8613 /* Pods-WZIM_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1309,6 +1319,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

@@ -19,12 +19,10 @@ platform :ios do
 
   desc "release new version"
   lane :release do |options|
-   
-    target_repo    = options[:repo]
-   
+
     # carthage 打包
     #carthage(
-      #command: "build",
+     # command: "build",
       #platform: "iOS", 
       #use_binaries: true,
       #no_skip_current: true)
@@ -35,13 +33,14 @@ platform :ios do
     # 获取版本号
     target_version = version_get_podspec(path: podspec_path)
 
-    #repo_source = "https://github.com/CocoaPods/Specs.git"
+    repo_source = "https://github.com/WZLYiOS/WZPodSpecs.git"
 
     # 验证 podspec
     pod_lib_lint(
       podspec: podspec_path,
       allow_warnings: true,
-      skip_import_validation: true)
+      skip_import_validation: true,
+      sources: [repo_source, "https://github.com/CocoaPods/Specs.git"])
 
     # 设置 podspec 版本
     version_bump_podspec(
@@ -53,7 +52,6 @@ platform :ios do
 
     # 所有需要提交的文件路径
     paths = [podspec_path]
-
     
     # 添加 podspec 和 framework
     git_add(path: paths)
@@ -70,6 +68,7 @@ platform :ios do
     # 推送到远程
     push_to_git_remote
 
+    
 
     # 添加标签
     if !git_tag_exists(tag: target_version)
@@ -83,7 +82,7 @@ platform :ios do
     pod_push(
       path: podspec_path,
       skip_import_validation: true,
-      repo: target_repo,
+      repo: repo_source,
       allow_warnings: true)
   end
 end
