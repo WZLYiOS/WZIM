@@ -10,10 +10,10 @@ import Foundation
 import AVFoundation
 
 // MARK - 音频录制
-final class WZAudioRecorder: NSObject {
+public class WZAudioRecorder: NSObject {
     
     /// 代理
-    weak var delegate: WZAudioRecorderDelegate?
+    public weak var delegate: WZAudioRecorderDelegate?
     
     /// 开始录制时间
     private var startDate: Int = 0
@@ -35,7 +35,7 @@ final class WZAudioRecorder: NSObject {
     private var mp3Path: String = ""
     
     /// 开始录制
-    func starRecorder(aFilePath: String) {
+    public func starRecorder(aFilePath: String) {
         
         /// 权限判断
         AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
@@ -75,7 +75,7 @@ final class WZAudioRecorder: NSObject {
         startDate = Int(NSDate().timeIntervalSince1970)
         isStopRecorde = false
         /// 开启MP3转码
-         delegate?.audioRecorderToMp3(wavFilePath: wavPath, mp3FilePath: aFilePath)
+         delegate?.audioRecorderToMp3(wavFilePath: wavPath, mp3FilePath: aFilePath, isStop: isStopRecorde)
     }
 
     
@@ -88,12 +88,12 @@ final class WZAudioRecorder: NSObject {
     }
     
     /// 停止录制
-    func stop() {
+    public func stop() {
         recorder?.stop()
     }
     
     /// 取消录制
-    func cancelCurrentRecording() {
+    public func cancelCurrentRecording() {
         recorder?.delegate = nil
         if ((recorder?.isRecording) != nil) {
             recorder?.stop()
@@ -105,7 +105,7 @@ final class WZAudioRecorder: NSObject {
     }
     
     /// 获取音量幅度
-    func emPeekRecorderVoiceMeter() -> double_t {
+    public func emPeekRecorderVoiceMeter() -> double_t {
         if ((recorder?.isRecording) != nil) {
             recorder?.updateMeters()
             let xxx = double_t(pow(10, (0.05*recorder!.peakPower(forChannel: 0))))
@@ -116,7 +116,7 @@ final class WZAudioRecorder: NSObject {
 }
 
 // MARK - WZAudioRecorderDelegate
-protocol WZAudioRecorderDelegate: class {
+public protocol WZAudioRecorderDelegate: class {
     
     /// 录制成功
     func audioRecorderDidFinishRecording(_ recorder: WZAudioRecorder, path: String, duration: Int)
@@ -128,13 +128,13 @@ protocol WZAudioRecorderDelegate: class {
     func startAudioRecorder(_ recorder: WZAudioRecorder)
     
     /// 实时Mp3转码
-    func audioRecorderToMp3(wavFilePath: String, mp3FilePath: String)
+    func audioRecorderToMp3(wavFilePath: String, mp3FilePath: String, isStop: Bool)
 }
 
 /// MARK - AVAudioRecorderDelegate
 extension WZAudioRecorder: AVAudioRecorderDelegate {
     
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    public func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             finishRecorder()
         }else{
@@ -143,7 +143,7 @@ extension WZAudioRecorder: AVAudioRecorderDelegate {
         }
     }
     
-    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+    public func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         delegate?.audioRecorderEncodeErrorDidOccur(self, error: error)
         cancelCurrentRecording()
     }

@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 
 // MARK - 录音监听弹窗
-final class WZIMChatRecordView: UIView {
+public class WZIMChatRecordView: UIView {
 
     /// 代理
-    weak var delegate: WZIMChatRecordViewDelegate?
+    public weak var delegate: WZIMChatRecordViewDelegate?
     
     /// 最大时限
     public var maxDuration: CGFloat = 59.0
@@ -39,7 +39,7 @@ final class WZIMChatRecordView: UIView {
     }(UIView())
     
     /// 音量变化图标
-    lazy var voiceChangeImage: UIImageView = {
+    public lazy var voiceChangeImage: UIImageView = {
         $0.contentMode = .scaleAspectFill
         return $0
     }(UIImageView())
@@ -87,13 +87,13 @@ final class WZIMChatRecordView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configView() {
+    public func configView() {
         self.addSubview(recordView)
         recordView.addSubview(voiceChangeImage)
         recordView.addSubview(timerOutSoon)
         recordView.addSubview(voiceCancle)
     }
-    func configViewLocation() {
+    public func configViewLocation() {
         recordView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -117,7 +117,7 @@ final class WZIMChatRecordView: UIView {
         }
     }
     
-    func show() {
+    public func show() {
         UIApplication.shared.keyWindow?.addSubview(self)
         self.frame = UIApplication.shared.keyWindow?.bounds ?? CGRect.zero
     }
@@ -126,7 +126,7 @@ final class WZIMChatRecordView: UIView {
 /// MARK - 扩展
 extension WZIMChatRecordView {
     /// 录音按钮按下
-    func recordButtonTouchDown() {
+    public func recordButtonTouchDown() {
         self.isHidden = false
         timeSum = 0.0
         buttonDragOutside = false
@@ -145,7 +145,7 @@ extension WZIMChatRecordView {
     }
     
     // 手指在录音按钮内部时离开
-    func recordButtonTouchUpInside() {
+    public func recordButtonTouchUpInside() {
         self.isHidden = true
         timeSum = 0
         buttonDragOutside = false
@@ -154,7 +154,7 @@ extension WZIMChatRecordView {
     }
 
     // 手指在录音按钮外部时离开
-    func recordButtonTouchUpOutside() {
+    public func recordButtonTouchUpOutside() {
         self.isHidden = true
         timeSum = 0
         buttonDragOutside = false
@@ -163,7 +163,7 @@ extension WZIMChatRecordView {
     }
     
     // 手指移动到录音按钮内部
-    func recordButtonDragInside() {
+    public func recordButtonDragInside() {
         buttonDragOutside = false
         voiceCancle.text = "手指上滑,取消发送"
         voiceCancle.backgroundColor = UIColor.clear
@@ -172,7 +172,7 @@ extension WZIMChatRecordView {
   
 
     // 手指移动到录音按钮外部
-    func recordButtonDragOutside() {
+    public func recordButtonDragOutside() {
         voiceChangeImage.isHidden = false
         timerOutSoon.isHidden = true
         buttonDragOutside = true
@@ -274,7 +274,7 @@ extension WZIMChatRecordView {
 }
 
 // MARK - WZIMChatRecordViewDelegate
-protocol WZIMChatRecordViewDelegate: class {
+public protocol WZIMChatRecordViewDelegate: class {
     
     /// 超时退出
     func chatRecordView(view: WZIMChatRecordView, recordTimeOut: CGFloat)

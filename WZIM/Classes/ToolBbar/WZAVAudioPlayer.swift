@@ -10,16 +10,16 @@ import Foundation
 import AVFoundation
 
 // MARK - 音频播放
-final class WZAVAudioPlayer: NSObject {
+public class WZAVAudioPlayer: NSObject {
     
     /// 代理
-    weak var delegate: WZAVAudioPlayerDelegate?
+    public weak var delegate: WZAVAudioPlayerDelegate?
     
     /// 音频播放器
-    var wzPlayer: AVAudioPlayer?
+    public var wzPlayer: AVAudioPlayer?
         
     /// 播放某个音频
-    func play(aFilePath: String) {
+    public func play(aFilePath: String) {
         
         if !FileManager.default.fileExists(atPath: aFilePath) {
             delegate?.audioPlayerDecodeErrorDidOccur(self, error: NSError(domain: "文件未找到", code: -1002, userInfo: nil))
@@ -44,7 +44,7 @@ final class WZAVAudioPlayer: NSObject {
     }
     
     /// 停止播放
-    func stopCurrentPlaying() {
+    public func stopCurrentPlaying() {
         UIDevice.current.isProximityMonitoringEnabled = false
         if wzPlayer?.isPlaying ?? false {
             wzPlayer?.stop()
@@ -54,12 +54,12 @@ final class WZAVAudioPlayer: NSObject {
     }
     
     /// 是否播放中
-    func isPlaying() -> Bool {
+    public func isPlaying() -> Bool {
         return wzPlayer?.isPlaying ?? false
     }
     
     /// 是否相同
-    func isSame(path: String) -> Bool {
+    public func isSame(path: String) -> Bool {
         if wzPlayer == nil {
             return false
         }
@@ -82,7 +82,7 @@ final class WZAVAudioPlayer: NSObject {
 }
 
 // MARK - WZAVAudioPlayerDelegate
-protocol WZAVAudioPlayerDelegate: class {
+public protocol WZAVAudioPlayerDelegate: class {
     
     /// 播放结束
     func audioPlayerDidFinishPlaying(_ player: WZAVAudioPlayer, successfully flag: Bool)
@@ -94,12 +94,12 @@ protocol WZAVAudioPlayerDelegate: class {
 /// MARK - AVAudioPlayerDelegate
 extension WZAVAudioPlayer: AVAudioPlayerDelegate {
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         stopCurrentPlaying()
         delegate?.audioPlayerDidFinishPlaying(self, successfully: flag)
     }
     
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+    public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
 
         stopCurrentPlaying()
         delegate?.audioPlayerDecodeErrorDidOccur(self, error: error)

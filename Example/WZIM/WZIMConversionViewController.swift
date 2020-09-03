@@ -171,7 +171,7 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
 
 /// MARK - HBIMTextInputTabbarDelegate
 extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
-
+    
     func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
         if text.count == 0 { return }
         let message = conversation.wzGetTextMessage(text: text)
@@ -199,7 +199,7 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
         return UserSession.shared.tokenConfig!.userId
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String) {
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String, isStop: Bool) {
         
     }
     

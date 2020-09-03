@@ -43,23 +43,23 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
 public class WZIMCustomElem: NSObject, Codable {
     
     /// 消息类型
-    var type: WZMessageCustomType
+    public var type: WZMessageCustomType
     
     /// 消息内容
-    var msg: String
+    public var msg: String
     
     enum CodingKeys: String, CodingKey {
         case type = "type"
         case msg = "msg"
     }
     
-    init(type: WZMessageCustomType, msg: String) {
+    public init(type: WZMessageCustomType, msg: String) {
         self.type = type
         self.msg = msg
     }
     
     /// 解析对象
-    func getDataModel() -> WZMessageElem {
+    public func getDataModel() -> WZMessageElem {
         
         let decoder = CleanJSONDecoder()
 //        decoder.valueNotFoundDecodingStrategy = .custom(CustomAdapter())
@@ -98,19 +98,19 @@ public protocol WZIMVoiceProtocol{
 public class WZIMImageCustomElem: Codable {
     
     /// 图片宽度
-    var width: CGFloat
+    public var width: CGFloat
     
     /// 图片高度
-    var heigth: CGFloat
+    public var heigth: CGFloat
     
     /// 图片大小,单位 Kb
-    var length: CGFloat
+    public var length: CGFloat
     
     /// 图片地址
-    var url: String
+    public var url: String
     
     /// 文件名
-    var fileName: String
+    public var fileName: String
     
     enum CodingKeys: String, CodingKey {
         case width = "width"
@@ -132,21 +132,21 @@ public class WZIMImageCustomElem: Codable {
 // MARK - 表情消息
 public class WZIMFaceCustomMarkModel: Codable {
     
-    enum FaceType: Int, WZIMDefaultEnumCodable {
-        static var defaultCase: WZIMFaceCustomMarkModel.FaceType = .nomar
+    public enum FaceType: Int, WZIMDefaultEnumCodable {
+        public static var defaultCase: WZIMFaceCustomMarkModel.FaceType = .nomar
         case nomar = 1 // 正常消息
         case face = 2  // 表情
         case gif = 3   // gif
     }
     
     /// 1: 正常消息 2：emoj 3：gif
-    var messageType: FaceType
+    public var messageType: FaceType
     
     /// 表情数据
-    var expressionData: WZIMFaceCustomModel
+    public var expressionData: WZIMFaceCustomModel
     
     /// 表情名字
-    var name: String
+    public var name: String
     
     enum CodingKeys: String, CodingKey {
         case messageType = "messageType"

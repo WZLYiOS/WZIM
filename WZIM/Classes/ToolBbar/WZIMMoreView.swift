@@ -79,7 +79,7 @@ public class WZIMMoreView: UIView {
         }
     }
     
-    func reloadUI() {
+    public func reloadUI() {
         collectionView.reloadData()
         collectionView.snp.updateConstraints { (make) in
             make.height.equalTo(dataArray.count > 8 ? 175 : 100)

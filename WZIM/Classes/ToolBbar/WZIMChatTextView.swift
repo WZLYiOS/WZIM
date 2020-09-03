@@ -12,13 +12,13 @@ import UIKit
 open class WZIMChatTextView: UITextView {
     
     /// 默认展示文字，默认为nil
-    var placeHolder: String = ""
+    public var placeHolder: String = ""
     
     /// 默认显示文字颜色，默认为
-    var placeHolderTextColor: UIColor? = nil
+    public var placeHolderTextColor: UIColor? = nil
     
     /// 默认文字字体大小
-    var placeHolderFont: UIFont? = nil
+    public var placeHolderFont: UIFont? = nil
     
     /// 提示文字
     public lazy var placeHolderLabel: UILabel = {
@@ -119,7 +119,7 @@ open class WZIMChatTextView: UITextView {
     }
 }
 // MARK - 扩展
-extension UITextView {
+public extension UITextView {
     
     func getHeight(maxFloat: CGFloat = 110, miniFloat: CGFloat = 35) -> CGFloat {
         

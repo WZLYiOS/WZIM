@@ -54,7 +54,7 @@ public class WZIMTextInputView: UIView {
     }
     
     /// 是否隐藏
-    func chandge(isHidden: Bool, isOpenKeyBor: Bool =  true) {
+    public func chandge(isHidden: Bool, isOpenKeyBor: Bool =  true) {
         self.isHidden = isHidden
         var height = textInput.getHeight()
         if isHidden {
@@ -72,41 +72,3 @@ public class WZIMTextInputView: UIView {
         }
     }
 }
-
-// MARK - 空键盘
-class WZIMkeyboardView: UIView {
-    
-    private lazy var bgView: UIView = {
-        return $0
-    }(UIView())
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configView()
-        configViewLocation()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configView() {
-        self.addSubview(bgView)
-    }
-    func configViewLocation() {
-        bgView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-            make.height.equalTo(0)
-        }
-    }
-    
-    func changge(height: CGFloat) {
-        self.isHidden = height == 0 ? true : false
-        bgView.snp.updateConstraints { (make) in
-            make.height.equalTo(height)
-        }
-        
-    }
-}
-
-

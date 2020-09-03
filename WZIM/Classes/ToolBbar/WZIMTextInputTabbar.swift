@@ -13,7 +13,7 @@ import SnapKit
 public class WZIMTextInputTabbar: UIView {
 
     /// 键盘事件
-    enum KeyboardEvent: Int {
+    public enum KeyboardEvent: Int {
         case hidden = 0 // 关闭键盘
         case voice = 1  // 打开语音
         case input = 2  // 输入键盘
@@ -23,13 +23,13 @@ public class WZIMTextInputTabbar: UIView {
     }
     
     /// 视图tag标签
-    enum KeyboardViewTag: Int {
+    public enum KeyboardViewTag: Int {
         case keyboard = 0  // 键盘
         case more = 1      // 更多
     }
     
     /// 录音事件
-    enum RecordEvent: Int {
+    public enum RecordEvent: Int {
         case down = 0
         case upOutside = 1
         case upInside = 2
@@ -39,7 +39,7 @@ public class WZIMTextInputTabbar: UIView {
         case cancel = 6    // 取消
     }
     
-   public weak var delegate: WZIMTextInputTabbarDelegate!
+    public weak var delegate: WZIMTextInputTabbarDelegate!
     
     /// 输入框
     public lazy var textInputView: WZIMTextInputView = {
@@ -119,7 +119,7 @@ public class WZIMTextInputTabbar: UIView {
     }(WZAudioRecorder())
     
     /// 音频播放
-    lazy var audioPlayer: WZAVAudioPlayer = {
+    public lazy var audioPlayer: WZAVAudioPlayer = {
         $0.delegate = self
         return $0
     }(WZAVAudioPlayer())
@@ -405,7 +405,7 @@ public protocol WZIMTextInputTabbarDelegate: class {
     func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String
     
     /// MP3 转码
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String)
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String, isStop: Bool)
     
     /// 录音结束
     func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int)
@@ -454,19 +454,19 @@ extension WZIMTextInputTabbar: UITextViewDelegate {
 /// MARK - WZAudioRecorderDelegate
 extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
     
-    func audioRecorderToMp3(wavFilePath: String, mp3FilePath: String) {
-        delegate.textInputTabbar(tabbar: self, wavFilePath: wavFilePath, mp3FilePath: mp3FilePath)
+    public func audioRecorderToMp3(wavFilePath: String, mp3FilePath: String, isStop: Bool) {
+        delegate.textInputTabbar(tabbar: self, wavFilePath: wavFilePath, mp3FilePath: mp3FilePath, isStop: isStop)
     }
 
-    func audioRecorderDidFinishRecording(_ recorder: WZAudioRecorder, path: String, duration: Int) {
+    public func audioRecorderDidFinishRecording(_ recorder: WZAudioRecorder, path: String, duration: Int) {
         delegate.textInputTabbar(tabbar: self, audioRecorder: path, duration: duration)
     }
     
-    func audioRecorderEncodeErrorDidOccur(_ recorder: WZAudioRecorder, error: Error?) {
+    public func audioRecorderEncodeErrorDidOccur(_ recorder: WZAudioRecorder, error: Error?) {
         delegate.textInputTabbar(tabbar: self, audioRecorder: error!)
     }
     
-    func startAudioRecorder(_ recorder: WZAudioRecorder) {
+    public func startAudioRecorder(_ recorder: WZAudioRecorder) {
         audioPlayer.stopCurrentPlaying()
     }
 }
@@ -474,11 +474,11 @@ extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
 /// MARK - WZAVAudioPlayerDelegate
 extension WZIMTextInputTabbar: WZAVAudioPlayerDelegate {
     
-    func audioPlayerDidFinishPlaying(_ player: WZAVAudioPlayer, successfully flag: Bool) {
+    public func audioPlayerDidFinishPlaying(_ player: WZAVAudioPlayer, successfully flag: Bool) {
         delegate.textInputTabbar(tabbar: self, audioPlayer: flag)
     }
 
-    func audioPlayerDecodeErrorDidOccur(_ player: WZAVAudioPlayer, error: Error?) {
+    public func audioPlayerDecodeErrorDidOccur(_ player: WZAVAudioPlayer, error: Error?) {
         delegate.textInputTabbar(tabbar: self, audioPlayer: error!)
     }
 }
@@ -486,11 +486,11 @@ extension WZIMTextInputTabbar: WZAVAudioPlayerDelegate {
 /// MARK - WZIMChatRecordViewDelegate
 extension WZIMTextInputTabbar: WZIMChatRecordViewDelegate {
     
-    func chatRecordView(view: WZIMChatRecordView, recordTimeOut: CGFloat) {
+    public func chatRecordView(view: WZIMChatRecordView, recordTimeOut: CGFloat) {
         recordButton(event: .timeOut)
     }
     
-    func getEmPeekRecorderVoiceMeter(view: WZIMChatRecordView) -> CGFloat {
+    public func getEmPeekRecorderVoiceMeter(view: WZIMChatRecordView) -> CGFloat {
         return CGFloat(audioRecorder.emPeekRecorderVoiceMeter())
     }
 }
