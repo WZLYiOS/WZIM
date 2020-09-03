@@ -124,8 +124,11 @@ extension TIMConversation: WZIMConversationProcotol {
         let data = try? JSONEncoder().encode(elem)
         let customElem = WZIMCustomElem(type: .img, msg: String(data: data!, encoding: String.Encoding.utf8)!)
 
+        let xx = TIMCustomElem()
+        xx.data = try? JSONEncoder().encode(customElem)
+        
         let message = TIMMessage()
-        message.add(customElem.getTIMCustomElem())
+        message.add(xx)
         return message
     }
 }

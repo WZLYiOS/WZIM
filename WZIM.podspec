@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   # 协议框架
   s.subspec "Procotol" do |ss|
     ss.source_files = "WZIM/Classes/Procotol/*"
+    ss.dependency 'CleanJSON', '~> 1.0.0'
   end
   
   # 工具
@@ -39,15 +40,21 @@ Pod::Spec.new do |s|
     ss.source_files = "WZIM/Classes/Tool/*"
   end
   
+  # 输入框
+  s.subspec "ToolBbar" do |ss|
+    ss.source_files = "WZIM/Classes/ToolBbar/*"
+    ss.resources    = 'WZIM/**/ToolBbar.bundle'
+    ss.dependency 'WZIM/Tool'
+    ss.dependency 'SnapKit', '~> 5.0.1'
+  end
+  
   # 基础cell和代理事件
   s.subspec "UI" do |ss|
     ss.source_files = "WZIM/Classes/UI/**/*"
     ss.dependency 'WZIM/Procotol'
-    ss.dependency 'WZIM/Tool'
-    ss.dependency 'SnapKit', '~> 5.0.1'
-    ss.dependency 'CleanJSON', '~> 1.0.0'
+    ss.dependency 'WZIM/ToolBbar'
     ss.dependency 'Kingfisher', '~> 5.15.0'
-    ss.resources    = 'WZIM/**/Cell.bundle'
+    ss.resources = 'WZIM/**/Cell.bundle'
   end
   
   # 腾讯SDk
@@ -64,11 +71,6 @@ Pod::Spec.new do |s|
     ss.dependency 'HyphenateLite', '~> 3.7.0'
   end
   
-  # 输入框
-  s.subspec "ToolBbar" do |ss|
-    ss.source_files = "WZIM/Classes/ToolBbar/*"
-    ss.resources    = 'WZIM/**/ToolBbar.bundle'
-    ss.dependency 'WZIM/Tool'
-  end
+  
   
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 录音监听弹窗
 final class WZIMChatRecordView: UIView {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 红娘课程 | 线上视频约会服务 | 开启约会实名认证邀请
 public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {

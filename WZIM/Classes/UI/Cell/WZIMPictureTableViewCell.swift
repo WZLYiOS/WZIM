@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
 
 // MARK - 图片
 public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {

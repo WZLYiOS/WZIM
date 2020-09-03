@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 视频邀请
 public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {

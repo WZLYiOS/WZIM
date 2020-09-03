@@ -8,7 +8,6 @@
 
 import Foundation
 import CleanJSON
-import ImSDK
 
 // MARK - 消息类型
 public enum WZMessageElem {
@@ -73,13 +72,26 @@ public class WZIMCustomElem: NSObject, Codable {
             return .unknown
         }
     }
+}
+
+// MARK - 文字内容协议
+public protocol  WZIMTextProtocol {
     
-    /// 获取腾讯自定义elem
-    func getTIMCustomElem() -> TIMCustomElem {
-        let xx = TIMCustomElem()
-        xx.data = try? JSONEncoder().encode(self)
-        return xx
-    }
+    /// 文字消息
+    func getText() -> String
+}
+
+// MARK - 音频
+public protocol WZIMVoiceProtocol{
+    
+    /// 播放路径
+    func wzPath() -> String
+    
+    /// 音频长度
+    func wzSecond() -> Int
+    
+    /// 下载音频
+    func wzGetSound(sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
 }
 
 // MARK - 图片

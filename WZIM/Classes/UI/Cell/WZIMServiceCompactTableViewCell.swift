@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 服务合同
 public class WZIMServiceCompactTableViewCell: WZIMBaseTableViewCell {

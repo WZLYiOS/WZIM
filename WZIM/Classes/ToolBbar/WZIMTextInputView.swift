@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - IM输入框
 public class WZIMTextInputView: UIView {

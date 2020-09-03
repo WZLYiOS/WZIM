@@ -94,22 +94,6 @@ public enum WZIMToolAppearance {
 }
 
 
-/// MARK - 枚举默认值
-public protocol WZIMDefaultEnumCodable: RawRepresentable, Codable {
-    
-    static var defaultCase: Self { get }
-}
-
-
-public extension WZIMDefaultEnumCodable where Self.RawValue: Decodable {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let rawValue = try container.decode(RawValue.self)
-        self = Self.init(rawValue: rawValue) ?? Self.defaultCase
-    }
-}
-
-
 #if os(iOS)
 import UIKit
 public typealias Color = UIColor

@@ -32,6 +32,17 @@ public enum WZMessageLocation: Int {
     case center = 2    // 居中
 }
 
+/// MARK - 枚举默认值
+public protocol WZIMDefaultEnumCodable: RawRepresentable, Codable {
+    
+    static var defaultCase: Self { get }
+}
 
 
-
+public extension WZIMDefaultEnumCodable where Self.RawValue: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(RawValue.self)
+        self = Self.init(rawValue: rawValue) ?? Self.defaultCase
+    }
+}

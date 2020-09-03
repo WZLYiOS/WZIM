@@ -294,7 +294,7 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         vc.allowPickingImage = true
         vc.allowPickingOriginalPhoto = true
         vc.statusBarStyle = .default
-        WZRoute.present(vc)
+        self.present(vc, animated: true, completion: nil)
     }
     
     func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {

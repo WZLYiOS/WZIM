@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 文字UI
 public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
@@ -50,9 +51,4 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
     }
 }
 
-// MARK - 文字内容协议
-public protocol  WZIMTextProtocol {
-    
-    /// 文字消息
-    func getText() -> String
-}
+

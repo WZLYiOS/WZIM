@@ -59,12 +59,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let model = dataArray[indexPath.row]
-//        let vc = WZIMConversionViewController()
-//        vc.userId = model.wzReceiverId()
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let model = dataArray[indexPath.row]
+        let vc = WZIMConversionViewController()
+        vc.userId = model.wzReceiverId()
+        self.navigationController?.pushViewController(vc, animated: true)
         
 
-        self.navigationController?.pushViewController(ViewController(), animated: true)
+//        self.navigationController?.pushViewController(ViewController(), animated: true)
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "WZIM",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "summary": "IM组件框架。",
   "description": "我主IM依赖库",
   "homepage": "https://github.com/WZLYiOS/WZIM",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WZLYiOS/WZIM.git",
-    "tag": "1.1.2"
+    "tag": "1.2.0"
   },
   "requires_arc": true,
   "static_framework": true,
@@ -27,7 +27,12 @@
   "subspecs": [
     {
       "name": "Procotol",
-      "source_files": "WZIM/Classes/Procotol/*"
+      "source_files": "WZIM/Classes/Procotol/*",
+      "dependencies": {
+        "CleanJSON": [
+          "~> 1.0.0"
+        ]
+      }
     },
     {
       "name": "Tool",
@@ -42,12 +47,6 @@
         ],
         "WZIM/Tool": [
 
-        ],
-        "SnapKit": [
-          "~> 5.0.1"
-        ],
-        "CleanJSON": [
-          "~> 1.0.0"
         ],
         "Kingfisher": [
           "~> 5.15.0"
@@ -86,6 +85,9 @@
       "dependencies": {
         "WZIM/Tool": [
 
+        ],
+        "SnapKit": [
+          "~> 5.0.1"
         ]
       }
     }

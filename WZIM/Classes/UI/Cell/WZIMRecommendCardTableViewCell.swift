@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 推荐卡片
 public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {

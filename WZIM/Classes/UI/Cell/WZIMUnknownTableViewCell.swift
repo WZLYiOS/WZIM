@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MAKR - 未知消息
 class WZIMUnknownTableViewCell: WZIMBaseTableViewCell {

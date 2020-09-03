@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - IMTabbar 更多视图
 public class WZIMMoreView: UIView {

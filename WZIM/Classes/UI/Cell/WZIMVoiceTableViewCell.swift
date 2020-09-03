@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 音频
 public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
@@ -141,15 +142,4 @@ protocol WZIMVoiceTableViewCellDelegate: class {
     func startPlayerVoiceTableViewCell(cell: WZIMVoiceTableViewCell, path: String)
 }
 
-// MARK - 音频
-public protocol WZIMVoiceProtocol{
-    
-    /// 播放路径
-    func wzPath() -> String
-    
-    /// 音频长度
-    func wzSecond() -> Int
-    
-    /// 下载音频
-    func wzGetSound(sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
-}
+

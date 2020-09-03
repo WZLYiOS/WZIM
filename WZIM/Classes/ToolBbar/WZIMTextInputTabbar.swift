@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // MARK - 消息详情页面底部tabbar
 public class WZIMTextInputTabbar: UIView {
@@ -240,10 +241,10 @@ extension WZIMTextInputTabbar {
     @objc private func moreButtonAction(btn: UIButton) {
         btn.isSelected = !btn.isSelected
         if btn.isSelected {
-            eventAction(type: .input)
+            eventAction(type: .more)
             return
         }
-        eventAction(type: .more)
+        eventAction(type: .input)
     }
     
     /// 音频
@@ -258,6 +259,7 @@ extension WZIMTextInputTabbar {
         switch type {
         case .hidden:
             emojButton.isSelected = false
+            moreButton.isSelected = false
             textInputView.textInput.resignFirstResponder()
             if getBottomView(tag: .more)?.isHidden == false {
                 UIView.animate(withDuration: 0.25) {
@@ -266,14 +268,17 @@ extension WZIMTextInputTabbar {
                 }
             }
         case .emoj:
+            moreButton.isSelected = false
             vioceButton.isSelected = false
             recordButton.isHidden = true
             getBottomView(tag: .more)?.isHidden = true
             textInputView.chandge(isHidden: false)
         case .cancelEmoj:
+            moreButton.isSelected = false
             getBottomView(tag: .more)?.isHidden = true
             textInputView.textInput.becomeFirstResponder()
         case .input:
+            moreButton.isSelected = false
             getBottomView(tag: .more)?.isHidden = true
             recordButton.isHidden = true
             textInputView.chandge(isHidden: false)
@@ -289,6 +294,7 @@ extension WZIMTextInputTabbar {
                 self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
             }
         case .voice:
+            moreButton.isSelected = false
             getBottomView(tag: .more)?.isHidden = true
             emojButton.isSelected = false
             recordButton.isHidden = false
