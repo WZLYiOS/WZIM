@@ -214,7 +214,7 @@ public class WZIMTextInputTabbar: UIView {
         }
         UIView.animate(withDuration: duration) {
             self.superview?.layoutIfNeeded()
-            self.delegate?.textInputTabbarDidChange(tabbar: self)
+            self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
         }
     }
     // 键盘隐藏
@@ -286,7 +286,7 @@ extension WZIMTextInputTabbar {
             recordButton.isHidden = true
             UIView.animate(withDuration: 0.25) {
                 self.superview?.layoutIfNeeded()
-                self.delegate?.textInputTabbarDidChange(tabbar: self)
+                self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
             }
         case .voice:
             getBottomView(tag: .more)?.isHidden = true
@@ -371,6 +371,13 @@ extension WZIMTextInputTabbar {
         view.isHidden = true
         bottomStackView.addArrangedSubview(view)
     }
+    
+    /// 清空文本内容
+    public func clearTextInput(){
+        let textView = textInputView.textInput
+        textView.text = ""
+        textViewChangeHeight(textView: textView, animated: true)
+    }
 }
 
 /// MARK - HBIMTextInputTabbarDelegate
@@ -380,7 +387,7 @@ public protocol WZIMTextInputTabbarDelegate: class {
     func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String)
     
     /// 内容输入
-    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar)
+    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool)
     
     /// 表情键盘事件
     func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton)
@@ -410,21 +417,28 @@ public protocol WZIMTextInputTabbarDelegate: class {
 /// MARK - YYTextViewDelegate
 extension WZIMTextInputTabbar: UITextViewDelegate {
     
-    public func textViewDidChange(_ textView: UITextView) {
+    /// 动态修改textView 高度
+    func textViewChangeHeight(textView: UITextView, animated: Bool) {
         let height = textView.getHeight()
          textView.snp.updateConstraints { (make) in
              make.height.equalTo(height)
          }
         UIView.animate(withDuration: 0.25) {
             self.superview?.layoutIfNeeded()
-            self.delegate?.textInputTabbarDidChange(tabbar: self)
+            self.delegate?.textInputTabbarDidChange(tabbar: self, animated: animated)
         }
+        
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        textViewChangeHeight(textView: textView, animated: false)
     }
     
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == "\n" && textView.text.count>0{
             delegate?.textInputTabbar(tabbar: self, replacementText: textView.text)
+            clearTextInput()
             return false
         }
         return true

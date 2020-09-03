@@ -113,6 +113,10 @@ extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDele
 
 /// MARK - WZIMTextInputTabbar
 extension ViewController: WZIMTextInputTabbarDelegate {
+    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool) {
+        
+    }
+    
     func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
         
     }

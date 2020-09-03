@@ -20,11 +20,7 @@ final class WZIMConversionViewController: UIViewController {
     var userId: String = ""
     
     /// 数据源
-    fileprivate var dataArray: [WZIMMessageProtocol] = [] {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+    fileprivate var dataArray: [WZIMMessageProtocol] = []
     
     fileprivate lazy var tableView: UITableView = {
         $0.separatorStyle = .none
@@ -140,8 +136,9 @@ final class WZIMConversionViewController: UIViewController {
             debugPrint("发送失败")
             self.tableView.reloadRows(at: [indexPath], with: .none)
         }
-        tableView.reloadData()
-        scrollToBottom(animated: false)
+        tableView.beginUpdates()
+        tableView.insertRows(at: [indexPath], with: .fade)
+        tableView.endUpdates()
     }
 }
 
@@ -180,8 +177,8 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
         sendMessage(message: message)
     }
     
-    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar) {
-        scrollToBottom(animated: false)
+    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool) {
+        scrollToBottom(animated: animated)
     }
     
     func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton) {
@@ -259,8 +256,8 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
     func didSend(withInput input: UIResponder & UITextInput) {
         if textTabbarView.textInputView.textInput.text.count == 0 { return }
         let message = conversation.wzGetTextMessage(text: textTabbarView.textInputView.textInput.text)
-        textTabbarView.textInputView.textInput.text = ""
         sendMessage(message: message)
+        textTabbarView.clearTextInput()
     }
     
     func tapOverlay() {
@@ -340,7 +337,6 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         
 //        dataArray.append(message)
         tableView.reloadData()
-        scrollToBottom(animated: false)
 //        WZQiNiuUploadQueue.shared.put(items: [item])
     }
 }

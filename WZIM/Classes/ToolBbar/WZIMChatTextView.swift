@@ -19,10 +19,19 @@ open class WZIMChatTextView: UITextView {
     
     /// 默认文字字体大小
     var placeHolderFont: UIFont? = nil
+    
+    /// 提示文字
+    public lazy var placeHolderLabel: UILabel = {
+        $0.textColor = UIColor.gray
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.text = "请输入"
+        return $0
+    }(UILabel())
 
     open override var text: String! {
         willSet {
             self.setNeedsDisplay()
+            self.placeHolderLabel.isHidden = text.count > 0 ? true : false
         }
     }
     open override var attributedText: NSAttributedString! {
@@ -42,9 +51,15 @@ open class WZIMChatTextView: UITextView {
         }
     }
     
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        placeHolderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+    }
+    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         config()
+        self.addSubview(placeHolderLabel)
     }
     
     required public init?(coder: NSCoder) {
@@ -54,9 +69,9 @@ open class WZIMChatTextView: UITextView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        if self.text.count == 0 && self.placeHolder.count > 0 {
-            self.placeHolder.draw(in: rect.insetBy(dx: 8.0, dy: 8.0), withAttributes: placeholderTextAttributes())
-        }
+//        if self.text.count == 0 && self.placeHolder.count > 0 {
+//            self.placeHolder.draw(in: rect.insetBy(dx: 8.0, dy: 8.0), withAttributes: placeholderTextAttributes())
+//        }
     }
     
     func config() {
@@ -73,6 +88,7 @@ open class WZIMChatTextView: UITextView {
         guard let textView = notification.object as? UITextView else {
             return
         }
+        placeHolderLabel.isHidden = textView.text.count > 0 ? true : false
         let view = textView.subviews.first! as UIView
         if (view.frame.size.height < textView.frame.size.height) {
             let center = CGPoint(x: textView.frame.size.width * 0.5, y: textView.frame.size.height * 0.5)
