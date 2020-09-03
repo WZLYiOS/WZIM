@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK - 音频
-public class WZIMVoiceTableViewCell: WZIMChatTableViewCell {
+public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
 
     private weak var delegate: WZIMVoiceTableViewCellDelegate?
     

@@ -69,6 +69,7 @@ open class WZIMChatTextView: UITextView {
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
         
+        self.placeHolderLabel.isHidden = text.count > 0 ? true : false
 //        if self.text.count == 0 && self.placeHolder.count > 0 {
 //            self.placeHolder.draw(in: rect.insetBy(dx: 8.0, dy: 8.0), withAttributes: placeholderTextAttributes())
 //        }

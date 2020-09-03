@@ -71,7 +71,7 @@ extension TIMMessage: WZIMMessageProtocol {
         }
     }
     
-    public var wzCustomData: Data {
+    public var wzCustomData: Data? {
         get {
             return customData()
         }

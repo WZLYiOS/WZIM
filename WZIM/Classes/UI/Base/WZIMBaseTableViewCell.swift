@@ -78,7 +78,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             make.leading.equalTo(0)
             make.right.equalToSuperview()
             make.top.equalTo(bubbleImageView.snp.bottom)
-            make.bottom.lessThanOrEqualToSuperview().priority(.low)
+            make.bottom.lessThanOrEqualToSuperview().offset(-WZIMConfig.bubbleEdge.bottom).priority(.low)
         }
     }
     
@@ -100,7 +100,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
                 make.left.equalTo(avatarImageView.snp.right).offset(WZIMConfig.bubbleEdge.left)
                 make.top.equalToSuperview().offset(WZIMConfig.avatarEdge.top)
             }
-            bubbleImageView.image = WZIMConfig.lelftBubbleImage?.wzIMResizableImage
+            bubbleImageView.image = WZIMConfig.lelftBubbleImage
             stateStackView.isHidden = true
         case .right:
             avatarImageView.snp.remakeConstraints { (make) in
@@ -114,7 +114,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
                 make.top.equalToSuperview().offset(WZIMConfig.avatarEdge.top)
             }
             
-            bubbleImageView.image = WZIMConfig.rightBubbleImage?.wzIMResizableImage
+            bubbleImageView.image = WZIMConfig.rightBubbleImage
             
             stateStackView.snp.remakeConstraints { (make) in
                 make.right.equalTo(bubbleImageView.snp.left)
@@ -136,11 +136,19 @@ open class WZIMBaseTableViewCell: UITableViewCell {
 }
 
 // MARK - 图片九宫格
-extension UIImage {
+public extension UIImage {
     
+    /// 九宫格
     var wzIMResizableImage: UIImage {
         let widthFloat = floor(self.size.width/2)
         let heightFloat = floor(self.size.height/2)
         return self.resizableImage(withCapInsets: UIEdgeInsets(top: heightFloat, left: widthFloat, bottom: heightFloat, right: widthFloat))
+    }
+    
+    /// 特定的
+    func wzStretchableImage(marn: CGFloat = 5) -> UIImage? {
+        let lelft = Int(floor(self.size.width/2))
+        let top = Int(floor(self.size.height/2+marn))
+       return self.stretchableImage(withLeftCapWidth: lelft, topCapHeight: top)
     }
 }

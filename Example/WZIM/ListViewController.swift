@@ -12,7 +12,7 @@ import WZIM
 class ListViewController: UIViewController {
 
     private var dataArray: [WZIMConversationProcotol] {
-        return UserSession.shared.wzTim.getConversationList()
+        return UserSession.shared.getConversationList()
     }
     
     private lazy var tableView: UITableView = {
@@ -39,7 +39,6 @@ class ListViewController: UIViewController {
     
     @objc
     func greetingTextFieldChanged(obj: Notification) {
-        debugPrint(dataArray)
         self.tableView.reloadData()
     }
 }
@@ -60,9 +59,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = dataArray[indexPath.row]
-        let vc = WZIMConversionViewController()
-        vc.userId = model.wzReceiverId()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let model = dataArray[indexPath.row]
+//        let vc = WZIMConversionViewController()
+//        vc.userId = model.wzReceiverId()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+
+        self.navigationController?.pushViewController(ViewController(), animated: true)
     }
 }

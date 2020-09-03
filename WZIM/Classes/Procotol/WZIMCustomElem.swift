@@ -17,6 +17,9 @@ public enum WZMessageElem {
     case sound(WZIMVoiceProtocol)      // 音频
     case face(WZIMFaceCustomMarkModel) // 表情
     case img(WZIMImageCustomElem)      // 图片消息
+    case makingCourse(WZIMMakingCourseCustomElem) // 红娘课程
+    case videoDate(WZIMVideoDateCustomElem) // 线上视频约会服务
+    case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 开启约会实名认证邀请
 }
 
 
@@ -184,4 +187,19 @@ public class WZIMFaceCustomModel: Codable {
         self.image = ""
         self.code = ""
     }
+}
+
+// MARK - 红娘课程
+public class WZIMMakingCourseCustomElem: Codable {
+    
+}
+
+// MARK - 线上视频约会服务
+public class WZIMVideoDateCustomElem: Codable {
+    
+}
+
+// MARK - 开启约会实名认证邀请
+public class WZIMnameAuthInviteCustomElem: Codable {
+    
 }

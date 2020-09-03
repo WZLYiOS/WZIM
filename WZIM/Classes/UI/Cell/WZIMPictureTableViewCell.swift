@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 // MARK - 图片
-public class WZIMPictureTableViewCell: WZIMChatTableViewCell {
+public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     
     /// 图片
     private lazy var photoImageView: UIImageView = {

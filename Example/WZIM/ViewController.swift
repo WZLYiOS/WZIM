@@ -8,9 +8,9 @@
 
 import UIKit
 import WZIM
+import ImSDK
 
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, WZIMTableViewCellDelegate {
 
     
     var userId: String = ""
@@ -22,58 +22,24 @@ class ViewController: UIViewController {
         $0.rowHeight = UITableViewAutomaticDimension
         $0.tableFooterView = UIView()
         $0.tableHeaderView = UIView()
-        
-        $0.register(TestTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
-        $0.register(WZIMBaseTableViewCell.self, forCellReuseIdentifier: "WZIMTableViewCell")
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF5F5F5)
+        $0.register(WZIMVideoInviteTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
         return $0
     }(UITableView())
     
-    /// 底部tabbar输入框
-    private lazy var textTabbarView: WZIMTextInputTabbar = {
-        $0.delegate = self
-        return $0
-    }(WZIMTextInputTabbar())
-    
-    /// 更多视图
-    private lazy var moreView: WZIMMoreView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
-        $0.delegate = self
-        $0.dataArray = [
-        WZIMMoreItem(image: "ToolBbar.bundle/ic_talk_keyboard", title: "相册"),
-        WZIMMoreItem(image: "ToolBbar.bundle/ic_talk_keyboard", title: "拍照")]
-        return $0
-    }(WZIMMoreView())
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-       
-        
-        WZIMConfig.menuItems =  ["复制"]
-        
-        DongtuStore.sharedInstance().delegate = self
         configView()
         configViewLocation()
     }
 
     func configView() {
         view.addSubview(tableView)
-        view.addSubview(textTabbarView)
-        textTabbarView.addMoreView(view: moreView)
     }
     func configViewLocation() {
         tableView.snp.makeConstraints { (make) in
-            make.leading.equalTo(0)
-            make.right.equalToSuperview()
-            make.top.equalToSuperview()
-        }
-        
-        textTabbarView.snp.makeConstraints { (make) in
-            make.top.equalTo(tableView.snp.bottom).offset(10)
-            make.leading.equalTo(0)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 
@@ -83,13 +49,14 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: WZIMBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZIMBaseTableViewCell
-//        cell.reload(model: self, publicDelegate: self, cDelegate: self)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZIMVideoInviteTableViewCell
+        cell.pDelegate = self
+        cell.reload(model: self, cDelegate: self)
         return cell
     }
     
@@ -97,13 +64,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
+extension ViewController: WZIMTableViewCellPublicDelegate {
     func WZIMTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
     
     func WZIMTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
-        debugPrint(menuTitle)
+        
     }
     
     func WZIMTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
@@ -111,85 +78,69 @@ extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDele
     }
 }
 
-/// MARK - WZIMTextInputTabbar
-extension ViewController: WZIMTextInputTabbarDelegate {
-    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool) {
+extension ViewController: WZIMMessageProtocol {
+    
+    func wzStatus() -> WZIMMessageStatus {
+        return .fail
+    }
+    
+    func wzIsReaded() -> Bool {
+        return false
+    }
+    
+    func wzRemove() -> Bool {
+        return false
+    }
+    
+    func wzSender() -> String {
+        return ""
+    }
+    
+    func wzMessageId() -> String {
+        return ""
+    }
+    
+    func wzTimestamp() -> Date {
+        return Date()
+    }
+    
+    func wzGetConversation() -> WZIMConversationProcotol {
+        return TIMManager.sharedInstance()!.getConversationList()!.first!
+    }
+    
+    func wzConvertToImportedMsg() {
         
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
+    func wzSetSender(sender: String) {
         
     }
     
-    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar) {
-        
+    func wzLoaction() -> WZMessageLocation {
+        return .lelft
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton) {
-        if emojiBtn.isSelected {
-            DongtuStore.sharedInstance().attachEmotionKeyboard(toInput: tabbar.textInputView.textInput)
-            return
+    var wzCustomInt: Int {
+        get {
+            return 0
         }
-        DongtuStore.sharedInstance().switchToDefaultKeyboard()
+        set(newValue) {
+            
+        }
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, canPop: Bool) {
-        
+    var wzCustomData: Data? {
+        get {
+            return Data()
+        }
+        set(newValue) {
+            
+        }
     }
     
-    func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String {
-        return UserSession.shared.tokenConfig!.userId
+    func wzCurrentElem() -> WZMessageElem? {
+        return nil
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String) {
-        
-    }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int) {
-        
-    }
-    
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder error: Error) {
-        
-    }
-    
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error) {
-        
-    }
-    
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer flag: Bool) {
-        
-    }
-}
-
-/// MARK  - WZIMMoreViewDelegate
-extension ViewController: WZIMMoreViewDelegate {
-    func WZIMMoreViewDidSelect(moreView: WZIMMoreView, item: WZIMMoreItem) {
-        
-    }
-}
-
-/// MARK - DongtuStoreDelegate
-extension ViewController: DongtuStoreDelegate {
-    
-    func didSelect(_ gif: DTGif) {
-//        let message = conversation.getGifMenssage(gif: gif)
-//        sendMessage(message: message)
-    }
-    
-    func didSelect(_ emoji: DTEmoji) {
-//        let message = conversation.getDTEmojiMessage(emoji: emoji)
-//        sendMessage(message: message)
-    }
-    
-    func didSend(withInput input: UIResponder & UITextInput) {
-//        if textTabbarView.textInputView.textInput.text.count == 0 { return }
-//        let message = conversation.getTextMessage(text: textTabbarView.textInputView.textInput.text)
-//        textTabbarView.textInputView.textInput.text = ""
-//        sendMessage(message: message)
-    }
-    
-    func tapOverlay() {
-        textTabbarView.closeEmojKeyboard()
-    }
 }

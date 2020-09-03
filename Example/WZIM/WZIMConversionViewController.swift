@@ -131,10 +131,12 @@ final class WZIMConversionViewController: UIViewController {
         dataArray.append(message)
         let indexPath = IndexPath(row: dataArray.count - 1, section: 0)
         conversation.wzSendMessage(message: message, sucess: {
+            self.tableView.beginUpdates()
             self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.endUpdates()
         }) { (code, msg) in
             debugPrint("发送失败")
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+//            self.tableView.reloadRows(at: [indexPath], with: .none)
         }
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .fade)

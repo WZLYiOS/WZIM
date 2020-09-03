@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         networkConfig()
+        UserSession.shared.initTIMSDk(appId: 1400073229)
         UserSession.shared.logIn()
         
         let vc = ListViewController()

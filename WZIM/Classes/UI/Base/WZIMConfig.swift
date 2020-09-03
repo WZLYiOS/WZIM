@@ -11,10 +11,10 @@ import Foundation
 public struct WZIMConfig {
     
     /// 左侧会话框
-    public static var lelftBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowone")
+    public static var lelftBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowone")?.wzStretchableImage()
     
     /// 右侧侧会话框
-    public static var rightBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowtwo")
+    public static var rightBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowtwo")?.wzStretchableImage()
     
     /// 头像位置
     public static var avatarSize: CGSize = CGSize(width: 50, height: 50)
@@ -33,5 +33,8 @@ public struct WZIMConfig {
     
     /// 长按菜单
     public static var menuItems: [String] = []
+    
+    /// 最大宽度
+    public static let maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 65
 }
 

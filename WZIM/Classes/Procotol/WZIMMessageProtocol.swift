@@ -45,7 +45,7 @@ public protocol WZIMMessageProtocol {
     var wzCustomInt: Int {set get}
     
     /// 自定义数据
-    var wzCustomData: Data {set  get}
+    var wzCustomData: Data? {set  get}
     
     /// 获取当前消息
     func wzCurrentElem() -> WZMessageElem?

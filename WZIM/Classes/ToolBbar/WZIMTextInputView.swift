@@ -45,7 +45,7 @@ public class WZIMTextInputView: UIView {
     func configViewLocation() {
         textInput.snp.makeConstraints { (make) in
             make.leading.equalTo(10)
-            make.right.equalToSuperview().offset(-10)
+            make.right.equalToSuperview().offset(-5)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
             make.height.equalTo(35)

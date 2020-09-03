@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK - 文字UI
-public class WZIMTextTableViewCell: WZIMChatTableViewCell {
+public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
 
     private lazy var contentLabel: UILabel = {
         $0.numberOfLines = 0
@@ -24,7 +24,7 @@ public class WZIMTextTableViewCell: WZIMChatTableViewCell {
     public override func configViewLocation() {
         super.configViewLocation()
         
-        let maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 65
+        let maxWidth = WZIMConfig.maxWidth
         contentLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.right.equalToSuperview().offset(-16)
@@ -38,16 +38,13 @@ public class WZIMTextTableViewCell: WZIMChatTableViewCell {
         super.reload(model: model, cDelegate: cDelegate)
      
         if case let .text(elem) = model.wzCurrentElem() {
-            contentLabel.textColor = model.wzLoaction() == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
-            let text = NSMutableAttributedString(string: elem.getText())
-            
-//            let mPara = NSMutableParagraphStyle()
-//            mPara.lineSpacing = 4
-//            text.setAttribute(name: NSAttributedString.Key.paragraphStyle, value: mPara, range: NSRange(location: 0, length: text.string.count))
-//            
-//            text.color =
-//            text.font = UIFont.boldSystemFont(ofSize: 15)
-//            text.lineSpacing = 4
+            let color = model.wzLoaction() == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+            let mPara = NSMutableParagraphStyle()
+            mPara.lineSpacing = 4
+            let text = NSMutableAttributedString(string: elem.getText(),
+                                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
+                                                              NSAttributedString.Key.foregroundColor: color,
+                                                              NSAttributedString.Key.paragraphStyle : mPara])
             contentLabel.attributedText = text
         }
     }

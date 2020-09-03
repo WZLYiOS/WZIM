@@ -16,10 +16,6 @@ public class UserSession: NSObject {
     /// 登录token
     var tokenConfig: UserAppPlatformConfig?
     
-    /// 腾讯云IM
-    lazy var wzTim: WZTIMManager = {
-        return $0
-    }(WZTIMManager.init(appId: 1400073229))
     
     func logIn() {
         UserLoginApi.logIn(username: "18150960090", password: "123456")
@@ -28,8 +24,8 @@ public class UserSession: NSObject {
         .subscribe(onNext: { (result) in
             self.tokenConfig = result
             
-            self.wzTim.logIn(identifier: "wzly_\(result.userId )", userSig: result.userSig, sucess: {
-                self.wzTim.setUserConfig(cDelegate: self)
+            self.logIn(identifier: "wzly_\(result.userId )", userSig: result.userSig, sucess: {
+                self.setUserConfig()
             }) { (code, msg) in
                 
             }

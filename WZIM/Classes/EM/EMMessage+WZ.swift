@@ -92,10 +92,10 @@ extension EMMessage: WZIMMessageProtocol {
         }
     }
     
-    public var wzCustomData: Data {
+    public var wzCustomData: Data? {
         get {
             let custom = ext["wzCustomData"] as? Data
-            return custom ?? Data()
+            return custom 
         }
         set {
             ext["wzCustomData"] = newValue
