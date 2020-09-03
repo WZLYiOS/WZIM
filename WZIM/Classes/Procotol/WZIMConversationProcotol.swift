@@ -40,4 +40,24 @@ public protocol WZIMConversationProcotol {
     
     /// 从服务端获取消息
     func wzGetMessage(cont: Int, last: WZIMMessageProtocol?, sucess: getMsgSucess, fail: fail)
+    
+    /// 保存消息到DB
+    func wzSaveMessage(message: WZIMMessageProtocol, sender: String, isRead: Bool)
+    
+    /// 获取普通消息
+    func wzGetTextMessage(text: String) -> WZIMMessageProtocol
+    
+    /// 获取gif 消息
+    func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol
+    
+    /// 获取动图的表情
+    func wzGetDTEmojiMessage(emojiCode: String, emojiName: String) -> WZIMMessageProtocol
+    
+    /// 语音消息
+    func wzGetVoiceMessage(path: String, duration: Int) -> WZIMMessageProtocol
+    
+    /// 图片消息
+    func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol
 }
+
+

@@ -1,42 +1,131 @@
 PODS:
+  - CleanJSON (1.0.6)
+  - DeviceKit (2.3.0)
+  - DongtuStore (3.2.8)
   - HyphenateLite (3.7.0)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+  - MJRefresh (3.1.17)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
   - SnapKit (5.0.1)
   - TXIMSDK_iOS (4.9.1)
-  - WZIM (1.1.1):
-    - WZIM/EM (= 1.1.1)
-    - WZIM/Procotol (= 1.1.1)
-    - WZIM/TIM (= 1.1.1)
-    - WZIM/UI (= 1.1.1)
-  - WZIM/EM (1.1.1):
+  - TZImagePickerController (3.2.9)
+  - WZAlamofire (3.0.0)
+  - WZEncryption (1.0.0)
+  - WZIM (1.1.2):
+    - WZIM/EM (= 1.1.2)
+    - WZIM/Procotol (= 1.1.2)
+    - WZIM/TIM (= 1.1.2)
+    - WZIM/Tool (= 1.1.2)
+    - WZIM/ToolBbar (= 1.1.2)
+    - WZIM/UI (= 1.1.2)
+  - WZIM/EM (1.1.2):
     - HyphenateLite (~> 3.7.0)
-    - WZIM/Procotol
-  - WZIM/Procotol (1.1.1)
-  - WZIM/TIM (1.1.1):
+    - WZIM/UI
+  - WZIM/Procotol (1.1.2)
+  - WZIM/TIM (1.1.2):
     - TXIMSDK_iOS (~> 4.9.1)
-    - WZIM/Procotol
-  - WZIM/UI (1.1.1):
+    - WZIM/UI
+  - WZIM/Tool (1.1.2)
+  - WZIM/ToolBbar (1.1.2):
+    - WZIM/Tool
+  - WZIM/UI (1.1.2):
+    - CleanJSON (~> 1.0.0)
+    - Kingfisher (~> 5.15.0)
     - SnapKit (~> 5.0.1)
     - WZIM/Procotol
+    - WZIM/Tool
+  - WZMoya (3.0.0):
+    - WZMoya/Core (= 3.0.0)
+  - WZMoya/Core (3.0.0):
+    - WZAlamofire (~> 3.0.0)
+  - WZMoya/RxSwift (3.0.0):
+    - RxSwift (~> 5.0.0)
+    - WZMoya/Core
+  - WZNamespaceWrappable (1.0.0)
+  - WZNetwork (3.0.0):
+    - WZNetwork/Core (= 3.0.0)
+  - WZNetwork/Core (3.0.0):
+    - WZMoya (~> 3.0.0)
+    - WZMoya/RxSwift (~> 3.0.0)
+  - WZRefresh (0.2.3):
+    - MJRefresh (~> 3.1.12)
+  - WZRoute (2.0.5):
+    - WZRoute/Source (= 2.0.5)
+  - WZRoute/Source (2.0.5)
+  - WZUIExtension (0.1.5):
+    - WZNamespaceWrappable (~> 1.0.0)
 
 DEPENDENCIES:
+  - CleanJSON (~> 1.0.0)
+  - DeviceKit (~> 2.3.0)
+  - DongtuStore (~> 3.2.1)
+  - RxCocoa (~> 5.1.1)
+  - TZImagePickerController (~> 3.2.7)
+  - WZEncryption (~> 1.0.0)
   - WZIM (from `../`)
+  - WZNetwork (= 3.0.0)
+  - WZRefresh (~> 0.2.3)
+  - WZRoute (~> 2.0.2)
+  - WZUIExtension (~> 0.1.5)
 
 SPEC REPOS:
+  https://github.com/WZLYiOS/WZPodSpecs.git:
+    - WZAlamofire
+    - WZEncryption
+    - WZMoya
+    - WZNamespaceWrappable
+    - WZNetwork
+    - WZUIExtension
   trunk:
+    - CleanJSON
+    - DeviceKit
+    - DongtuStore
     - HyphenateLite
+    - Kingfisher
+    - MJRefresh
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
     - TXIMSDK_iOS
+    - TZImagePickerController
+    - WZRefresh
+    - WZRoute
 
 EXTERNAL SOURCES:
   WZIM:
     :path: "../"
 
 SPEC CHECKSUMS:
+  CleanJSON: fd25726a3f337077a93a006e55c85329662090e2
+  DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
+  DongtuStore: abfd21e213fd2b66034a99197e92fd9bab052671
   HyphenateLite: 87ed77d360dd383e3046230c44360e233fa732e5
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
-  WZIM: ff6af8497718015025eb1d328de071bd9f359080
+  TZImagePickerController: 1f92968aa0e98a06b9e2eccca8560acc19254257
+  WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
+  WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
+  WZIM: 2fd65a5c7586ab9b000b4b0374dadce2e8149cff
+  WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
+  WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4
+  WZNetwork: 1967e3fd38976d5f24195824853f5da559182a05
+  WZRefresh: 9419523abee7e3aaa008bf06dab628146776e978
+  WZRoute: 9c96833ceabc0a5595d1a2df78fc6612481f06c5
+  WZUIExtension: cf6d574c99c418915d5de227929c1deac3f13b1c
 
-PODFILE CHECKSUM: 80618a171723497759384948ba0065261d429655
+PODFILE CHECKSUM: 75094c9a224982d9d35d0d1c7dd395ad21068738
 
 COCOAPODS: 1.9.3

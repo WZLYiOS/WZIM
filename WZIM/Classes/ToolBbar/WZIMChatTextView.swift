@@ -1,0 +1,129 @@
+//
+//  WZIMChatTextView.swift
+//  WZLY
+//
+//  Created by qiuqixiang on 2020/8/26.
+//  Copyright © 2020 我主良缘. All rights reserved.
+//
+
+import UIKit
+
+// MARK - IM输入框
+open class WZIMChatTextView: UITextView {
+    
+    /// 默认展示文字，默认为nil
+    var placeHolder: String = ""
+    
+    /// 默认显示文字颜色，默认为
+    var placeHolderTextColor: UIColor? = nil
+    
+    /// 默认文字字体大小
+    var placeHolderFont: UIFont? = nil
+
+    open override var text: String! {
+        willSet {
+            self.setNeedsDisplay()
+        }
+    }
+    open override var attributedText: NSAttributedString! {
+        willSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    open override var font: UIFont? {
+        willSet {
+            self.setNeedsDisplay()
+        }
+    }
+    open override var textAlignment: NSTextAlignment {
+        willSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        config()
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        if self.text.count == 0 && self.placeHolder.count > 0 {
+            self.placeHolder.draw(in: rect.insetBy(dx: 8.0, dy: 8.0), withAttributes: placeholderTextAttributes())
+        }
+    }
+    
+    func config() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.isUserInteractionEnabled = true
+        self.isExclusiveTouch = true
+        self.returnKeyType = .send
+        self.enablesReturnKeyAutomatically = true
+        NotificationCenter.default.addObserver( self, selector: #selector(didReceiveTextDidChangeNotification), name: UITextView.textDidChangeNotification, object: self)
+        NotificationCenter.default.addObserver( self, selector: #selector(didReceiveTextDidBeginEditinNotification), name: UITextView.textDidBeginEditingNotification, object: self)
+    }
+    @objc func didReceiveTextDidChangeNotification(notification: Notification) {
+        self.setNeedsDisplay()
+        guard let textView = notification.object as? UITextView else {
+            return
+        }
+        let view = textView.subviews.first! as UIView
+        if (view.frame.size.height < textView.frame.size.height) {
+            let center = CGPoint(x: textView.frame.size.width * 0.5, y: textView.frame.size.height * 0.5)
+            view.center = center;
+        } else {
+            view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        }
+    }
+    @objc func didReceiveTextDidBeginEditinNotification(notification: Notification) {
+        guard let textView = notification.object as? UITextView else {
+            return
+        }
+        let view = textView.subviews.first! as UIView
+        if (view.frame.size.height < textView.frame.size.height) {
+            let center = CGPoint(x: textView.frame.size.width * 0.5, y: textView.frame.size.height * 0.5)
+            view.center = center;
+        }
+    }
+    
+    /// 获取文字内容
+    func placeholderTextAttributes() -> [NSAttributedString.Key : Any] {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        paragraphStyle.alignment = self.textAlignment
+        return [NSAttributedString.Key.paragraphStyle : paragraphStyle,
+                NSAttributedString.Key.font: placeHolderFont ?? UIFont.systemFontSize , NSAttributedString.Key.foregroundColor: placeHolderTextColor ?? UIColor.black]
+    }
+}
+// MARK - 扩展
+extension UITextView {
+    
+    func getHeight(maxFloat: CGFloat = 110, miniFloat: CGFloat = 35) -> CGFloat {
+        
+        let textView = self
+        let fixedWidth = textView.frame.size.width
+        if fixedWidth == 0 {
+            return miniFloat
+        }
+        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newFrame = textView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        
+        let height = floor(newFrame.size.height)
+        switch height {
+        case 0...miniFloat:
+            newFrame.size.height = miniFloat
+        case (miniFloat+1)...maxFloat: break
+        default:
+            newFrame.size.height = maxFloat
+        }
+        return newFrame.size.height
+    }
+}

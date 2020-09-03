@@ -9,8 +9,11 @@
 import UIKit
 import WZIM
 
+
 class ViewController: UIViewController {
 
+    
+    var userId: String = ""
     
     private lazy var tableView: UITableView = {
         $0.delegate = self
@@ -25,23 +28,53 @@ class ViewController: UIViewController {
         return $0
     }(UITableView())
     
+    /// 底部tabbar输入框
+    private lazy var textTabbarView: WZIMTextInputTabbar = {
+        $0.delegate = self
+        return $0
+    }(WZIMTextInputTabbar())
+    
+    /// 更多视图
+    private lazy var moreView: WZIMMoreView = {
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        $0.delegate = self
+        $0.dataArray = [
+        WZIMMoreItem(image: "ToolBbar.bundle/ic_talk_keyboard", title: "相册"),
+        WZIMMoreItem(image: "ToolBbar.bundle/ic_talk_keyboard", title: "拍照")]
+        return $0
+    }(WZIMMoreView())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
        
-        WZIMConfig.lelftBubbleImage = UIImage(named: "ic_loveme_dialog_white")
-        WZIMConfig.rightBubbleImage = UIImage(named: "ic_loveme_dialog_purple")
+        
         WZIMConfig.menuItems =  ["复制"]
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
+        
+        DongtuStore.sharedInstance().delegate = self
+        configView()
+        configViewLocation()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func configView() {
+        view.addSubview(tableView)
+        view.addSubview(textTabbarView)
+        textTabbarView.addMoreView(view: moreView)
+    }
+    func configViewLocation() {
+        tableView.snp.makeConstraints { (make) in
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        textTabbarView.snp.makeConstraints { (make) in
+            make.top.equalTo(tableView.snp.bottom).offset(10)
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
 
 }
@@ -56,7 +89,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: WZIMBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZIMBaseTableViewCell
-        cell.reload(model: self, publicDelegate: self, cDelegate: self)
+//        cell.reload(model: self, publicDelegate: self, cDelegate: self)
         return cell
     }
     
@@ -78,107 +111,81 @@ extension ViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDele
     }
 }
 
-extension ViewController: WZIMMessageProtocol {
-    
-    var wzCustomInt: Int {
-        get {
-            return 0
-        }
-        set(newValue) {
-            
-        }
-    }
-    
-    var wzCustomData: Data {
-        get {
-            return Data()
-        }
-        set(newValue) {
-            
-        }
-    }
-    
-    
-    
-    func wzStatus() -> WZIMMessageStatus {
-        return .deleted
-    }
-    
-    func wzIsReaded() -> Bool {
-        return false
-    }
-    
-    func wzRemove() -> Bool {
-        return false
-    }
-    
-    func wzSender() -> String {
-        return ""
-    }
-    
-    func wzMessageId() -> String {
-        return "xxx"
-    }
-    
-    func wzTimestamp() -> Date {
-        return Date()
-    }
-    
-    func wzGetConversation() -> WZIMConversationProcotol {
-        return self
-    }
-    
-    func wzConvertToImportedMsg() {
+/// MARK - WZIMTextInputTabbar
+extension ViewController: WZIMTextInputTabbarDelegate {
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
         
     }
     
-    func wzSetSender(sender: String) {
+    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar) {
         
     }
     
-    func wzLoaction() -> WZMessageLocation {
-        return .right
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton) {
+        if emojiBtn.isSelected {
+            DongtuStore.sharedInstance().attachEmotionKeyboard(toInput: tabbar.textInputView.textInput)
+            return
+        }
+        DongtuStore.sharedInstance().switchToDefaultKeyboard()
     }
     
-    func wzListContent() -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: "1243")
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, canPop: Bool) {
+        
+    }
+    
+    func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String {
+        return UserSession.shared.tokenConfig!.userId
+    }
+    
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String) {
+        
+    }
+    
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int) {
+        
+    }
+    
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder error: Error) {
+        
+    }
+    
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error) {
+        
+    }
+    
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer flag: Bool) {
+        
     }
 }
- 
 
-extension ViewController: WZIMConversationProcotol {
-    func wzLastMessage() -> WZIMMessageProtocol? {
-        return nil
-    }
-    
-    func wzConversationType() -> WZIMConversationType {
-        return .c2c
-    }
-    
-    func wzReceiverId() -> String {
-        return ""
-    }
-    
-    func wzReadMessage(message: WZIMMessageProtocol?) {
+/// MARK  - WZIMMoreViewDelegate
+extension ViewController: WZIMMoreViewDelegate {
+    func WZIMMoreViewDidSelect(moreView: WZIMMoreView, item: WZIMMoreItem) {
         
     }
-    
-    func wzGetUnReadMessageNum() -> Int {
-        return 1
-    }
-    
-    func wzSendMessage(message: WZIMMessageProtocol, sucess: sucess, fail: fail) {
-        
-    }
-    
-    func wzGetMessage(cont: Int, last: WZIMMessageProtocol?, sucess: getMsgSucess, fail: fail) {
-        
-    }
-    
-    func wzGetUserInfo(forceUpdate: Bool, comple: @escaping (WZIMUserInfoProtocol) -> Void) {
-        
-    }
-    
 }
 
-
+/// MARK - DongtuStoreDelegate
+extension ViewController: DongtuStoreDelegate {
+    
+    func didSelect(_ gif: DTGif) {
+//        let message = conversation.getGifMenssage(gif: gif)
+//        sendMessage(message: message)
+    }
+    
+    func didSelect(_ emoji: DTEmoji) {
+//        let message = conversation.getDTEmojiMessage(emoji: emoji)
+//        sendMessage(message: message)
+    }
+    
+    func didSend(withInput input: UIResponder & UITextInput) {
+//        if textTabbarView.textInputView.textInput.text.count == 0 { return }
+//        let message = conversation.getTextMessage(text: textTabbarView.textInputView.textInput.text)
+//        textTabbarView.textInputView.textInput.text = ""
+//        sendMessage(message: message)
+    }
+    
+    func tapOverlay() {
+        textTabbarView.closeEmojKeyboard()
+    }
+}

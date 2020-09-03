@@ -14,6 +14,20 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		D06D169024FF38C700445619 /* UserLoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D168F24FF38C700445619 /* UserLoginApi.swift */; };
+		D06D169224FF3AB500445619 /* UserAppPlatformConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */; };
+		D06D169424FF3BFE00445619 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169324FF3BFE00445619 /* NetworkConfig.swift */; };
+		D06D169724FF3C4C00445619 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169524FF3C4C00445619 /* JSONParsing.swift */; };
+		D06D169824FF3C4C00445619 /* WZResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169624FF3C4C00445619 /* WZResult.swift */; };
+		D06D169A24FF3D7E00445619 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169924FF3D7E00445619 /* UserSession.swift */; };
+		D06D169C24FF40AE00445619 /* Rx+AnyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169B24FF40AE00445619 /* Rx+AnyObject.swift */; };
+		D06D169E24FF40DE00445619 /* WZLYError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169D24FF40DE00445619 /* WZLYError.swift */; };
+		D06D16A024FF43B000445619 /* UserSession+IM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169F24FF43B000445619 /* UserSession+IM.swift */; };
+		D06D16A224FF456800445619 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A124FF456800445619 /* ListViewController.swift */; };
+		D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A324FF45C100445619 /* ListTableViewCell.swift */; };
+		D06D16AE24FF8BFA00445619 /* WZMP3.m in Sources */ = {isa = PBXBuildFile; fileRef = D06D16AD24FF8BFA00445619 /* WZMP3.m */; };
+		D06D16B024FF8E7E00445619 /* WZIMConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */; };
+		D0D342C425008571008AA19D /* WZIMMessageProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */; };
 		D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; };
 		D0D4F99724EE159E00DD06A9 /* Pods_WZIM_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D0D4F99A24EE1E4F00DD06A9 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */; };
@@ -63,6 +77,22 @@
 		6C81EF02CB2779590E70B3B7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8FFD3564E3B9A98C93B535D2 /* WZIM.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WZIM.podspec; path = ../WZIM.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CFA673DE44390B4B992D5AD0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D06D168F24FF38C700445619 /* UserLoginApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginApi.swift; sourceTree = "<group>"; };
+		D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAppPlatformConfig.swift; sourceTree = "<group>"; };
+		D06D169324FF3BFE00445619 /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		D06D169524FF3C4C00445619 /* JSONParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
+		D06D169624FF3C4C00445619 /* WZResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZResult.swift; sourceTree = "<group>"; };
+		D06D169924FF3D7E00445619 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		D06D169B24FF40AE00445619 /* Rx+AnyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+AnyObject.swift"; sourceTree = "<group>"; };
+		D06D169D24FF40DE00445619 /* WZLYError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZLYError.swift; sourceTree = "<group>"; };
+		D06D169F24FF43B000445619 /* UserSession+IM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSession+IM.swift"; sourceTree = "<group>"; };
+		D06D16A124FF456800445619 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		D06D16A324FF45C100445619 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		D06D16AB24FF8BF900445619 /* WZIM_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WZIM_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		D06D16AC24FF8BFA00445619 /* WZMP3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZMP3.h; sourceTree = "<group>"; };
+		D06D16AD24FF8BFA00445619 /* WZMP3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZMP3.m; sourceTree = "<group>"; };
+		D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZIMConversionViewController.swift; sourceTree = "<group>"; };
+		D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WZIMMessageProtocol+.swift"; sourceTree = "<group>"; };
 		D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		F9BB371317B5635A1F130ABE /* Pods_WZIM_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WZIM_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,13 +154,20 @@
 		607FACD21AFB9204008FA782 /* Example for WZIM */ = {
 			isa = PBXGroup;
 			children = (
+				D06D168E24FF38B400445619 /* Login */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */,
+				D06D16A124FF456800445619 /* ListViewController.swift */,
+				D06D16AC24FF8BFA00445619 /* WZMP3.h */,
+				D06D16AD24FF8BFA00445619 /* WZMP3.m */,
+				D06D16A324FF45C100445619 /* ListTableViewCell.swift */,
 				D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				D06D16AB24FF8BF900445619 /* WZIM_Example-Bridging-Header.h */,
 			);
 			name = "Example for WZIM";
 			path = WZIM;
@@ -171,6 +208,23 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		D06D168E24FF38B400445619 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D06D169D24FF40DE00445619 /* WZLYError.swift */,
+				D06D169324FF3BFE00445619 /* NetworkConfig.swift */,
+				D06D169B24FF40AE00445619 /* Rx+AnyObject.swift */,
+				D06D169524FF3C4C00445619 /* JSONParsing.swift */,
+				D06D169624FF3C4C00445619 /* WZResult.swift */,
+				D06D168F24FF38C700445619 /* UserLoginApi.swift */,
+				D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */,
+				D06D169924FF3D7E00445619 /* UserSession.swift */,
+				D06D169F24FF43B000445619 /* UserSession+IM.swift */,
+				D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		EE293176D3E8D4523226BD7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +248,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				D0D4F99824EE159E00DD06A9 /* Embed Frameworks */,
 				2686F96B061980E941D0CD80 /* [CP] Embed Pods Frameworks */,
+				96645675BF1CDD97B42A049E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,7 +290,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1160;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -292,19 +347,61 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-WZIM_Example/Pods-WZIM_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CleanJSON/CleanJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${PODS_ROOT}/HyphenateLite/HyphenateLite.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${PODS_ROOT}/TXIMSDK_iOS/ImSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/WZEncryption/WZEncryption.framework",
+				"${BUILT_PRODUCTS_DIR}/WZRefresh/WZRefresh.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleanJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HyphenateLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZEncryption.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZRefresh.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WZIM_Example/Pods-WZIM_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96645675BF1CDD97B42A049E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WZIM_Example/Pods-WZIM_Example-resources.sh",
+				"${PODS_ROOT}/DongtuStore/DongtuStoreSDK.bundle",
+				"${PODS_ROOT}/../../WZIM/Assets/ToolBbar.bundle",
+				"${PODS_ROOT}/../../WZIM/Assets/Cell.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DongtuStoreSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ToolBbar.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Cell.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WZIM_Example/Pods-WZIM_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B672195EDDF523CC2DF2E9A /* [CP] Check Pods Manifest.lock */ = {
@@ -358,9 +455,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06D16AE24FF8BFA00445619 /* WZMP3.m in Sources */,
+				D06D169024FF38C700445619 /* UserLoginApi.swift in Sources */,
+				D06D169824FF3C4C00445619 /* WZResult.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				D06D169C24FF40AE00445619 /* Rx+AnyObject.swift in Sources */,
+				D06D169424FF3BFE00445619 /* NetworkConfig.swift in Sources */,
+				D0D342C425008571008AA19D /* WZIMMessageProtocol+.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				D06D169224FF3AB500445619 /* UserAppPlatformConfig.swift in Sources */,
+				D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */,
+				D06D169E24FF40DE00445619 /* WZLYError.swift in Sources */,
+				D06D169A24FF3D7E00445619 /* UserSession.swift in Sources */,
 				D0D4F99A24EE1E4F00DD06A9 /* TestTableViewCell.swift in Sources */,
+				D06D169724FF3C4C00445619 /* JSONParsing.swift in Sources */,
+				D06D16B024FF8E7E00445619 /* WZIMConversionViewController.swift in Sources */,
+				D06D16A224FF456800445619 /* ListViewController.swift in Sources */,
+				D06D16A024FF43B000445619 /* UserSession+IM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,11 +617,15 @@
 			baseConfigurationReference = 58B9B79DC2C1312C87DFA9AE /* Pods-WZIM_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WZIM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 4.8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WZIM/WZIM_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -521,11 +636,14 @@
 			baseConfigurationReference = 30A26324FE270C435051C941 /* Pods-WZIM_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WZIM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 4.8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WZIM/WZIM_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

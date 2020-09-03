@@ -10,7 +10,7 @@ import HyphenateLite
 
 // MARK - 环信消息遵循协议
 extension EMMessage: WZIMMessageProtocol {
-    
+        
     /// 消息状态
     public func wzStatus() -> WZIMMessageStatus {
         return WZIMMessageStatus.init(rawValue: Int(status.rawValue)) ?? .sucess
@@ -101,5 +101,8 @@ extension EMMessage: WZIMMessageProtocol {
             ext["wzCustomData"] = newValue
             EMClient.shared().chatManager.update(self, completion: nil)
         }
+    }
+    public func wzCurrentElem() -> WZMessageElem? {
+        return nil
     }
 }

@@ -1,7 +1,7 @@
 {
   "name": "WZIM",
-  "version": "1.1.1",
-  "summary": "IM组件框架",
+  "version": "1.1.2",
+  "summary": "IM组件框架。",
   "description": "我主IM依赖库",
   "homepage": "https://github.com/WZLYiOS/WZIM",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WZLYiOS/WZIM.git",
-    "tag": "1.1.1"
+    "tag": "1.1.2"
   },
   "requires_arc": true,
   "static_framework": true,
@@ -30,22 +30,36 @@
       "source_files": "WZIM/Classes/Procotol/*"
     },
     {
+      "name": "Tool",
+      "source_files": "WZIM/Classes/Tool/*"
+    },
+    {
       "name": "UI",
-      "source_files": "WZIM/Classes/UI/*",
+      "source_files": "WZIM/Classes/UI/**/*",
       "dependencies": {
         "WZIM/Procotol": [
 
         ],
+        "WZIM/Tool": [
+
+        ],
         "SnapKit": [
           "~> 5.0.1"
+        ],
+        "CleanJSON": [
+          "~> 1.0.0"
+        ],
+        "Kingfisher": [
+          "~> 5.15.0"
         ]
-      }
+      },
+      "resources": "WZIM/**/Cell.bundle"
     },
     {
       "name": "TIM",
       "source_files": "WZIM/Classes/TIM/*",
       "dependencies": {
-        "WZIM/Procotol": [
+        "WZIM/UI": [
 
         ],
         "TXIMSDK_iOS": [
@@ -57,11 +71,21 @@
       "name": "EM",
       "source_files": "WZIM/Classes/EM/*",
       "dependencies": {
-        "WZIM/Procotol": [
+        "WZIM/UI": [
 
         ],
         "HyphenateLite": [
           "~> 3.7.0"
+        ]
+      }
+    },
+    {
+      "name": "ToolBbar",
+      "source_files": "WZIM/Classes/ToolBbar/*",
+      "resources": "WZIM/**/ToolBbar.bundle",
+      "dependencies": {
+        "WZIM/Tool": [
+
         ]
       }
     }

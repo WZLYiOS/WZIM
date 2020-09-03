@@ -11,8 +11,6 @@ import Foundation
 // MARK - 消息体协议
 public protocol WZIMMessageProtocol {
         
-    
-    
     /// 消息状态
     func wzStatus() -> WZIMMessageStatus
     
@@ -48,6 +46,9 @@ public protocol WZIMMessageProtocol {
     
     /// 自定义数据
     var wzCustomData: Data {set  get}
+    
+    /// 获取当前消息
+    func wzCurrentElem() -> WZMessageElem?
 }
 
 

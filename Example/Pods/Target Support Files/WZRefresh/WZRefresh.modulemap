@@ -1,0 +1,6 @@
+framework module WZRefresh {
+  umbrella header "WZRefresh-umbrella.h"
+
+  export *
+  module * { export * }
+}

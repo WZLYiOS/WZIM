@@ -1,0 +1,6 @@
+framework module WZAlamofire {
+  umbrella header "WZAlamofire-umbrella.h"
+
+  export *
+  module * { export * }
+}

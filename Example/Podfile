@@ -1,8 +1,23 @@
+
+source 'https://cdn.cocoapods.org'
+source 'https://github.com/WZLYiOS/WZPodSpecs.git'
+
 use_frameworks!
 
 target 'WZIM_Example' do
   pod 'WZIM', :path => '../'
 
+  pod 'WZNetwork', '3.0.0'
+  pod 'DeviceKit', '~> 2.3.0' #设备型号组件
+  pod 'CleanJSON', '~> 1.0.0' #动态处理JSON问题
+  pod 'RxCocoa', '~> 5.1.1' #RxCocoa
+  pod 'WZEncryption', '~> 1.0.0' #加密组件
+  pod 'DongtuStore', '~> 3.2.1' #表情MM
+  pod 'WZRefresh', '~> 0.2.3' #WZRefresh组件
+  pod 'WZRoute', '~> 2.0.2' #路由组件
+  pod 'TZImagePickerController',  '~> 3.2.7' #相册选择组件
+  pod 'WZUIExtension',  '~> 0.1.5' #UI扩展
+  
   target 'WZIM_Tests' do
     inherit! :search_paths
 

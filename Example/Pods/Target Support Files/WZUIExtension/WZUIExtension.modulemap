@@ -1,0 +1,6 @@
+framework module WZUIExtension {
+  umbrella header "WZUIExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

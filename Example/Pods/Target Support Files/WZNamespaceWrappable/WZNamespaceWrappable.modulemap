@@ -1,0 +1,6 @@
+framework module WZNamespaceWrappable {
+  umbrella header "WZNamespaceWrappable-umbrella.h"
+
+  export *
+  module * { export * }
+}

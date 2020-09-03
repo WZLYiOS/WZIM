@@ -55,5 +55,78 @@ extension TIMConversation: WZIMConversationProcotol {
             fail?(Int(code), msg ?? "")
         }
     }
+    
+    public func wzSaveMessage(message: WZIMMessageProtocol, sender: String, isRead: Bool) {
+        save((message as! TIMMessage), sender: sender, isReaded: isRead)
+    }
+    
+    public func wzGetTextMessage(text: String) -> WZIMMessageProtocol {
+        let elem = TIMTextElem()
+        elem.text = text
+        
+        let message = TIMMessage()
+        message.add(elem)
+        return message
+    }
+    
+    public func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
+        
+        let model = WZIMFaceCustomMarkModel()
+        model.expressionData = git
+        model.messageType = .gif
+        model.name = name
+        
+        let elem = TIMFaceElem()
+        elem.data = try? JSONEncoder().encode(model)
+        
+        let message = TIMMessage()
+        message.add(elem)
+        return message
+    }
+    
+    public func wzGetDTEmojiMessage(emojiCode: String, emojiName: String) -> WZIMMessageProtocol {
+        
+        let face = WZIMFaceCustomModel()
+        face.code = emojiCode
+        
+        let model = WZIMFaceCustomMarkModel()
+        model.expressionData = face
+        model.messageType = .face
+        model.name = emojiName
+        
+        let elem = TIMFaceElem()
+        elem.data = try? JSONEncoder().encode(model)
+        
+        let message = TIMMessage()
+        message.add(elem)
+        return message
+    }
+    
+    public func wzGetVoiceMessage(path: String, duration: Int) -> WZIMMessageProtocol {
+        let elem = TIMSoundElem()
+        elem.path = path
+        elem.second = Int32(duration)
+        
+        let message = TIMMessage()
+        message.add(elem)
+        return message
+    }
+    
+    public func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol {
+        
+        let elem = WZIMImageCustomElem()
+        elem.fileName = name
+        elem.width = image.size.width
+        elem.heigth = image.size.height
+        elem.length = CGFloat(image.pngData()!.count/1024)
+        elem.url = url
+        
+        let data = try? JSONEncoder().encode(elem)
+        let customElem = WZIMCustomElem(type: .img, msg: String(data: data!, encoding: String.Encoding.utf8)!)
+
+        let message = TIMMessage()
+        message.add(customElem.getTIMCustomElem())
+        return message
+    }
 }
 

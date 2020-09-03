@@ -34,25 +34,41 @@ Pod::Spec.new do |s|
     ss.source_files = "WZIM/Classes/Procotol/*"
   end
   
+  # 工具
+  s.subspec "Tool" do |ss|
+    ss.source_files = "WZIM/Classes/Tool/*"
+  end
+  
   # 基础cell和代理事件
   s.subspec "UI" do |ss|
-    ss.source_files = "WZIM/Classes/UI/*"
+    ss.source_files = "WZIM/Classes/UI/**/*"
     ss.dependency 'WZIM/Procotol'
+    ss.dependency 'WZIM/Tool'
     ss.dependency 'SnapKit', '~> 5.0.1'
+    ss.dependency 'CleanJSON', '~> 1.0.0'
+    ss.dependency 'Kingfisher', '~> 5.15.0'
+    ss.resources    = 'WZIM/**/Cell.bundle'
   end
   
   # 腾讯SDk
   s.subspec "TIM" do |ss|
     ss.source_files = "WZIM/Classes/TIM/*"
-    ss.dependency 'WZIM/Procotol'
+    ss.dependency 'WZIM/UI'
     ss.dependency 'TXIMSDK_iOS', '~> 4.9.1'
   end
   
   # 环信SDK
   s.subspec "EM" do |ss|
     ss.source_files = "WZIM/Classes/EM/*"
-    ss.dependency 'WZIM/Procotol'
+    ss.dependency 'WZIM/UI'
     ss.dependency 'HyphenateLite', '~> 3.7.0'
+  end
+  
+  # 输入框
+  s.subspec "ToolBbar" do |ss|
+    ss.source_files = "WZIM/Classes/ToolBbar/*"
+    ss.resources    = 'WZIM/**/ToolBbar.bundle'
+    ss.dependency 'WZIM/Tool'
   end
   
 end

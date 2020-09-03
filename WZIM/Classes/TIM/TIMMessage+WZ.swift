@@ -79,4 +79,8 @@ extension TIMMessage: WZIMMessageProtocol {
             setCustomData(newValue)
         }
     }
+    public func wzCurrentElem() -> WZMessageElem? {
+        let elem = getElem(0)
+        return elem?.getElem()
+    }
 }

@@ -1,0 +1,6 @@
+framework module WZRoute {
+  umbrella header "WZRoute-umbrella.h"
+
+  export *
+  module * { export * }
+}

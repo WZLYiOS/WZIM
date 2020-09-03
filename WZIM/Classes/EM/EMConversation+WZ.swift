@@ -62,4 +62,28 @@ extension EMConversation: WZIMConversationProcotol {
             }
         }
     }
+    
+    public func wzSaveMessage(message: WZIMMessageProtocol, sender: String, isRead: Bool) {
+        
+    }
+    
+    public func wzGetTextMessage(text: String) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
+    
+    public func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
+    
+    public func wzGetDTEmojiMessage(emojiCode: String, emojiName: String) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
+    
+    public func wzGetVoiceMessage(path: String, duration: Int) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
+    
+    public func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
 }
