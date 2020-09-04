@@ -14,6 +14,7 @@ class WZIMFaceTableViewCell: WZIMBaseTableViewCell {
     private lazy var dotImageView: DTImageView = {
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = false
+        $0.errorImage = UIImage(named: "common_ic_load_failure")
         return $0
     }(DTImageView())
     
@@ -24,13 +25,12 @@ class WZIMFaceTableViewCell: WZIMBaseTableViewCell {
     
     override func configViewLocation() {
         super.configViewLocation()
-        let size = DTImageView.size(forImageSize: CGSize(width: 120, height: 120), imgMaxSize: CGSize(width: 120, height: 120))
         dotImageView.snp.remakeConstraints { (make) in
             make.leading.equalTo(0)
             make.right.equalToSuperview()
             make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.size.equalTo(size)
+            make.bottom.equalToSuperview().offset(20)
+            make.size.equalTo(CGSize(width: 120, height: 120))
         }
     }
     
@@ -39,6 +39,14 @@ class WZIMFaceTableViewCell: WZIMBaseTableViewCell {
         
         if case let .face(elem) = model.wzCurrentElem() {
             
+            dotImageView.prepareForReuse()
+            let with = elem.expressionData.with == 0 ? 120 : elem.expressionData.with
+            let height = elem.expressionData.height == 0 ? 120 : elem.expressionData.height
+            
+            let size = DTImageView.size(forImageSize: CGSize(width: with, height: height), imgMaxSize: CGSize(width: 200, height: 150))
+            dotImageView.snp.updateConstraints { (make) in
+                make.size.equalTo(size)
+            }
             bubbleImageView.image = nil
             switch elem.messageType {
             case .nomar: break
@@ -50,4 +58,3 @@ class WZIMFaceTableViewCell: WZIMBaseTableViewCell {
         }
     }
 }
-

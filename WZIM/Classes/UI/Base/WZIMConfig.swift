@@ -25,16 +25,7 @@ public struct WZIMConfig {
     /// 消息框边距
     public static var bubbleEdge: UIEdgeInsets = UIEdgeInsets(top: 21, left: 10, bottom: 3, right: 10)
     
-    /// 字体大小
-    public static var timeFont = UIFont.systemFont(ofSize: 12)
-    
-    /// 时间颜色
-    public static var timeColor: UIColor = UIColor(red: 165/255.0, green: 164/255.0, blue: 170/255.0, alpha: 1)
-    
-    /// 长按菜单
-    public static var menuItems: [String] = []
-    
     /// 最大宽度
-    public static let maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 65
+    public static let maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 80
 }
 

@@ -57,7 +57,7 @@ class TestTableViewCell: WZIMBaseTableViewCell {
         private func setMenuItems(){
             self.becomeFirstResponder()
             // 如果 Menu 已经被创建那就不再重复创建 menu
-            if UIMenuController.shared.isMenuVisible, WZIMConfig.menuItems.count == 0{
+            if UIMenuController.shared.isMenuVisible{
                 return
             }
             

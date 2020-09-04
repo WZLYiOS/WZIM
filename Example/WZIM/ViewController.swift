@@ -65,15 +65,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: WZIMTableViewCellPublicDelegate {
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
     
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
         
     }
     
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
+        
+    }
+    
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
         
     }
 }

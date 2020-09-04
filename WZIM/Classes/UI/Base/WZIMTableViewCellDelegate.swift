@@ -19,17 +19,23 @@ public protocol WZIMTableViewCellPublicDelegate: class {
     /// - Parameters:
     ///   - WZIMTableViewCell: cell
     ///   - avatarImageView: 被点击view
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView)
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView)
  
     /// 长按菜单
     /// - Parameters:
     ///   - cell: cell
     ///   - menuTitle: 点击item
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String)
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String)
     
     /// 设置头像
     /// - Parameters:
     ///   - cell: cell
     ///   - avatar: 头像
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView)
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView)
+    
+    /// 消息重发
+    /// - Parameters:
+    ///   - cell: cell
+    ///   - btn: 重发按钮
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton)
 }

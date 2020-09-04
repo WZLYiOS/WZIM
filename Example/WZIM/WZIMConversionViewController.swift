@@ -132,12 +132,14 @@ final class WZIMConversionViewController: UIViewController {
         dataArray.append(message)
         let indexPath = IndexPath(row: dataArray.count - 1, section: 0)
         conversation.wzSendMessage(message: message, sucess: {
-//            self.tableView.beginUpdates()
-//            self.tableView.reloadRows(at: [indexPath], with: .none)
-//            self.tableView.endUpdates()
+            self.tableView.beginUpdates()
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.endUpdates()
         }) { (code, msg) in
             debugPrint("发送失败")
-//            self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.beginUpdates()
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.endUpdates()
         }
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .fade)
@@ -224,16 +226,19 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
 
 /// MARK - WZIMTableViewCellPublicDelegate
 extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
-    
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
     
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
         
     }
     
-    func WZIMTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
+        
+    }
+    
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
         
     }
 }
@@ -251,7 +256,7 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
         
         let message = conversation.wzGetGifMenssage(git: model, name: gif.text)
         sendMessage(message: message)
-        scrollToBottom(animated: false)
+        scrollToBottom(animated: true)
     }
     
     func didSelect(_ emoji: DTEmoji) {

@@ -23,6 +23,8 @@ open class WZIMBaseTableViewCell: UITableViewCell {
         $0.layer.masksToBounds = true
         $0.backgroundColor = UIColor.gray
         $0.contentMode = .scaleAspectFill
+        $0.isUserInteractionEnabled = true
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarImageViewAction)))
         return $0
     }(UIImageView())
     
@@ -31,18 +33,6 @@ open class WZIMBaseTableViewCell: UITableViewCell {
         $0.isUserInteractionEnabled = true
         return $0
     }(UIImageView())
-    
-    /// 发送中和发送失败等
-    public lazy var stateStackView: UIStackView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = UIColor.red
-        $0.axis = .vertical
-        $0.distribution = .fillEqually
-        $0.alignment = .fill
-        $0.spacing = 0
-        return $0
-    }(UIStackView())
-    
     
     /// 底部内容视图，针对多个elem
     public lazy var bottomStackView: UIStackView = {
@@ -53,6 +43,25 @@ open class WZIMBaseTableViewCell: UITableViewCell {
         $0.alignment = .fill
         return $0
     }(UIStackView())
+    
+    /// 发送失败
+    public lazy var sendFailButton: UIButton = {
+        $0.isHidden = true
+        $0.setImage(UIImage(named: "Cell.bundle/ic_talk_fail"), for: .normal)
+        $0.addTarget(self, action: #selector(sendFailButtonAction), for: .touchUpInside)
+        return $0
+    }(UIButton())
+    
+    /// 未读已读
+    public lazy var readButton: UIButton = {
+        $0.setTitle("未读", for: .normal)
+        $0.setTitle("已读", for: .selected)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x4C48D3), for: .normal)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x7C7C7C), for: .selected)
+        $0.isUserInteractionEnabled = false
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        return $0
+    }(UIButton())
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,8 +78,9 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     open func configView() {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(bubbleImageView)
-        contentView.addSubview(stateStackView)
         contentView.addSubview(bottomStackView)
+        contentView.addSubview(sendFailButton)
+        contentView.addSubview(readButton)
     }
 
     open func configViewLocation() {
@@ -80,6 +90,17 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             make.top.equalTo(bubbleImageView.snp.bottom)
             make.bottom.lessThanOrEqualToSuperview().offset(-WZIMConfig.bubbleEdge.bottom).priority(.low)
         }
+        readButton.snp.makeConstraints { (make) in
+            make.right.equalTo(bubbleImageView.snp.left).offset(-10)
+            make.bottom.equalTo(bubbleImageView.snp.bottom)
+        }
+        
+        sendFailButton.snp.makeConstraints { (make) in
+            make.right.equalTo(bubbleImageView.snp.left).offset(-10)
+            make.bottom.equalTo(bubbleImageView.snp.bottom)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+        }
     }
     
     /// 更新数据
@@ -88,7 +109,6 @@ open class WZIMBaseTableViewCell: UITableViewCell {
         message = model    
         switch model.wzLoaction() {
         case .lelft:
-            
             avatarImageView.snp.remakeConstraints { (make) in
                 make.leading.equalTo(WZIMConfig.avatarEdge.left)
                 make.width.equalTo(WZIMConfig.avatarSize.width)
@@ -101,7 +121,8 @@ open class WZIMBaseTableViewCell: UITableViewCell {
                 make.top.equalToSuperview().offset(WZIMConfig.avatarEdge.top)
             }
             bubbleImageView.image = WZIMConfig.lelftBubbleImage
-            stateStackView.isHidden = true
+            sendFailButton.isHidden = true
+            readButton.isHidden = true
         case .right:
             avatarImageView.snp.remakeConstraints { (make) in
                 make.right.equalToSuperview().offset(-WZIMConfig.avatarEdge.right)
@@ -115,23 +136,36 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             }
             
             bubbleImageView.image = WZIMConfig.rightBubbleImage
+           
+            let state = message.wzStatus()
+            sendFailButton.isHidden =  state == .fail ? false : true
+            readButton.isHidden = state == .sucess ? false : true
+            readButton.isSelected = message.wzIsReaded()
             
-            stateStackView.snp.remakeConstraints { (make) in
-                make.right.equalTo(bubbleImageView.snp.left)
-                make.centerY.equalTo(bubbleImageView.snp.centerY)
-            }
-            stateStackView.isHidden = false
         case .center:
             bubbleImageView.snp.remakeConstraints { (make) in
                 make.centerX.equalToSuperview()
                 make.top.equalToSuperview().offset(WZIMConfig.avatarEdge.top)
             }
             bubbleImageView.image = nil
-            stateStackView.isHidden = true
+            sendFailButton.isHidden = true
+            readButton.isHidden = true
         }
 
         /// 设置头像
-        pDelegate.WZIMTableViewCell(cell: self, set: avatarImageView)
+        pDelegate.baseTableViewCell(cell: self, set: avatarImageView)
+    }
+}
+
+///   MARK - 扩展事件
+extension WZIMBaseTableViewCell {
+    
+    @objc private  func sendFailButtonAction(btn: UIButton) {
+        pDelegate.baseTableViewCell(cell: self, resend: btn)
+    }
+    
+    @objc private func avatarImageViewAction(tap: UITapGestureRecognizer) {
+        pDelegate.baseTableViewCell(cell: self, tap: tap.view! as! UIImageView)
     }
 }
 
