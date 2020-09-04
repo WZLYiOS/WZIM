@@ -25,7 +25,7 @@ final class WZIMConversionViewController: UIViewController {
     fileprivate lazy var tableView: UITableView = {
         $0.separatorStyle = .none
         $0.rowHeight = UITableViewAutomaticDimension
-        $0.estimatedRowHeight = 80
+        $0.estimatedRowHeight = 200
         $0.tableFooterView = UIView()
         $0.dataSource = self
         $0.delegate = self
@@ -34,6 +34,7 @@ final class WZIMConversionViewController: UIViewController {
         $0.wz.register(cellWithClass: WZIMPictureTableViewCell.self)
         $0.wz.register(cellWithClass: WZIMTextTableViewCell.self)
         $0.wz.register(cellWithClass: WZIMVoiceTableViewCell.self)
+        $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
         return $0
@@ -131,9 +132,9 @@ final class WZIMConversionViewController: UIViewController {
         dataArray.append(message)
         let indexPath = IndexPath(row: dataArray.count - 1, section: 0)
         conversation.wzSendMessage(message: message, sucess: {
-            self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: [indexPath], with: .none)
-            self.tableView.endUpdates()
+//            self.tableView.beginUpdates()
+//            self.tableView.reloadRows(at: [indexPath], with: .none)
+//            self.tableView.endUpdates()
         }) { (code, msg) in
             debugPrint("发送失败")
 //            self.tableView.reloadRows(at: [indexPath], with: .none)
@@ -243,16 +244,20 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
     func didSelect(_ gif: DTGif) {
         
         let model = WZIMFaceCustomModel()
-//        model.gifId = gif.
-        
+        model.with = Int(gif.size.width)
+        model.height = Int(gif.size.height)
+        model.gifId = gif.imageId
+        model.image = gif.mainImage
         
         let message = conversation.wzGetGifMenssage(git: model, name: gif.text)
         sendMessage(message: message)
+        scrollToBottom(animated: false)
     }
     
     func didSelect(_ emoji: DTEmoji) {
-        let message = conversation.wzGetDTEmojiMessage(emojiCode: emoji.emojiId!, emojiName: emoji.emojiName!)
+        let message = conversation.wzGetDTEmojiMessage(emojiCode: emoji.emojiCode!, emojiName: emoji.emojiName!)
         sendMessage(message: message)
+        scrollToBottom(animated: true)
     }
     
     func didSend(withInput input: UIResponder & UITextInput) {

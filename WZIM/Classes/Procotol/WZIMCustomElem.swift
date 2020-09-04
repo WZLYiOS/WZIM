@@ -19,6 +19,8 @@ public enum WZMessageElem {
     case makingCourse(WZIMMakingCourseCustomElem) // 红娘课程
     case videoDate(WZIMVideoDateCustomElem) // 线上视频约会服务
     case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 开启约会实名认证邀请
+    case time(WZIMTimeCustomElem)       // 时间
+    case share(WZIMShareCustomElem)     // 分享消息
 }
 
 
@@ -214,4 +216,97 @@ public class WZIMVideoDateCustomElem: Codable {
 // MARK - 开启约会实名认证邀请
 public class WZIMnameAuthInviteCustomElem: Codable {
     
+}
+
+// MARK - 时间
+public class WZIMTimeCustomElem: Codable {
+    
+    /// 时间
+    public var time: String
+    
+    enum CodingKeys: String, CodingKey {
+        case time = "time"
+    }
+    
+    public init(time: String) {
+        self.time = time
+    }
+}
+
+// MARK - 分享自定义消息类型
+public class WZIMShareCustomElem: Codable {
+    
+    public enum ShareType: Int, WZIMDefaultEnumCodable {
+        public static var defaultCase: WZIMShareCustomElem.ShareType = .nomar
+        case nomar  // 未知
+        case h5 = 1  // h5活动
+        case activity = 2 // 线下活动
+        case article = 3 // 社区文章
+    }
+    
+    /// 类型
+    var type: ShareType
+    
+    /// 内容
+    var content: WZIMShareContentModel
+    
+    enum CodingKeys: String, CodingKey {
+        case type = "type"
+        case content = "content"
+    }
+    
+    public init(type: ShareType, content: WZIMShareContentModel) {
+        self.type = type
+        self.content = content
+    }
+}
+
+// MARK - 分享消息内容
+public class WZIMShareContentModel: Codable {
+    
+    /// 活动标题
+    var title: String
+    
+    /// 分享缩略图
+    var img: String
+    
+    /// 分享语
+    var desc: String
+    
+    /// 自定义分享H5消息
+    var url: String
+    
+    /// 交友活动id
+    var partyId: String
+    
+    /// 城市
+    var city: String
+    
+    /// 活动开始时间
+    var beginTime: String
+    
+    /// 社区文章
+    var articleId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case img = "img"
+        case desc = "desc"
+        case url = "url"
+        case partyId = "partyid"
+        case city = "city"
+        case beginTime = "begin_time"
+        case articleId = "article_id"
+    }
+    
+    public init(){
+        self.title = ""
+        self.img = ""
+        self.desc = ""
+        self.url = ""
+        self.partyId = ""
+        self.city = ""
+        self.beginTime = ""
+        self.articleId = ""
+    }
 }

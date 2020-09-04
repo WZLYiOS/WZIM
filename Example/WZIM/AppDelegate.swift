@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
-        
-
+        DongtuStore.sharedInstance().setAppId("dd4a0cd3958047aeac271563e23143e3", secret: "699c2364aa5542dbbbee4ec6acf3657e")
         networkConfig()
         UserSession.shared.initTIMSDk(appId: 1400073229)
         UserSession.shared.logIn()

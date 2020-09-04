@@ -20,6 +20,8 @@ extension WZIMMessageProtocol {
             return WZIMTextTableViewCell.self
         case .sound:
             return WZIMVoiceTableViewCell.self
+        case .face:
+            return WZIMFaceTableViewCell.self
         default:
             return WZIMBaseTableViewCell.self
         }
