@@ -14,7 +14,8 @@ import TZImagePickerController
 import WZUIExtension
 
 // MARK - 会话详情
-final class WZIMConversionViewController: UIViewController {
+@objcMembers
+public class WZIMConversionViewController: UIViewController {
 
     /// 用户id
     var userId: String = ""
@@ -65,7 +66,7 @@ final class WZIMConversionViewController: UIViewController {
         debugPrint("消息控制器释放")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -150,10 +151,10 @@ final class WZIMConversionViewController: UIViewController {
 /// MAKR - UITableViewDelegate | UITableViewDataSource
 extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
  
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataArray[indexPath.row]
         let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.getCellIdentifier()) as! WZIMBaseTableViewCell
         cell.pDelegate = self
@@ -161,7 +162,7 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if tableView.panGestureRecognizer.numberOfTouches > 0 {
             textTabbarView.hideKeyboard()
         }
@@ -175,18 +176,18 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
 /// MARK - HBIMTextInputTabbarDelegate
 extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
         if text.count == 0 { return }
         let message = conversation.wzGetTextMessage(text: text)
         tabbar.textInputView.textInput.text = ""
         sendMessage(message: message)
     }
     
-    func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool) {
+    public func textInputTabbarDidChange(tabbar: WZIMTextInputTabbar, animated: Bool) {
         scrollToBottom(animated: animated)
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, emojiBtn: UIButton) {
         
         if emojiBtn.isSelected {
             DongtuStore.sharedInstance().attachEmotionKeyboard(toInput: tabbar.textInputView.textInput)
@@ -194,31 +195,31 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
         }
         DongtuStore.sharedInstance().switchToDefaultKeyboard()
     }
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, canPop: Bool) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, canPop: Bool) {
         
     }
     
-    func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String {
+    public func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String {
         return UserSession.shared.tokenConfig!.userId
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String, isStop: Bool) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String, isStop: Bool) {
         
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int) {
         
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder error: Error) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder error: Error) {
         
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error) {
         
     }
     
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer flag: Bool) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool) {
         
     }
     
@@ -226,19 +227,19 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
 
 /// MARK - WZIMTableViewCellPublicDelegate
 extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
-    func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
+    public func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
     
-    func baseTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
+    public func baseTableViewCell(cell: WZIMBaseTableViewCell, menuTitle: String) {
         
     }
     
-    func baseTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
+    public func baseTableViewCell(cell: WZIMBaseTableViewCell, set avatar: UIImageView) {
         
     }
     
-    func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
+    public func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
         
     }
 }
@@ -246,7 +247,7 @@ extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableView
 /// MARK - DongtuStoreDelegate
 extension WZIMConversionViewController: DongtuStoreDelegate {
     
-    func didSelect(_ gif: DTGif) {
+    public func didSelect(_ gif: DTGif) {
         
         let model = WZIMFaceCustomModel()
         model.with = Int(gif.size.width)
@@ -259,27 +260,27 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
         scrollToBottom(animated: true)
     }
     
-    func didSelect(_ emoji: DTEmoji) {
+    public func didSelect(_ emoji: DTEmoji) {
         let message = conversation.wzGetDTEmojiMessage(emojiCode: emoji.emojiCode!, emojiName: emoji.emojiName!)
         sendMessage(message: message)
         scrollToBottom(animated: true)
     }
     
-    func didSend(withInput input: UIResponder & UITextInput) {
+    public func didSend(withInput input: UIResponder & UITextInput) {
         if textTabbarView.textInputView.textInput.text.count == 0 { return }
         let message = conversation.wzGetTextMessage(text: textTabbarView.textInputView.textInput.text)
         sendMessage(message: message)
         textTabbarView.clearTextInput()
     }
     
-    func tapOverlay() {
+    public func tapOverlay() {
         textTabbarView.closeEmojKeyboard()
     }
 }
 
 /// MARK - WZIMMoreViewDelegate
 extension WZIMConversionViewController: WZIMMoreViewDelegate {
-    func WZIMMoreViewDidSelect(moreView: WZIMMoreView, item: WZIMMoreItem) {
+    public func WZIMMoreViewDidSelect(moreView: WZIMMoreView, item: WZIMMoreItem) {
         switch item.title {
         case "相册":
             openAlbum()

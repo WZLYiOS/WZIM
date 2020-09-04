@@ -417,7 +417,7 @@ public protocol WZIMTextInputTabbarDelegate: class {
     func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error)
     
     /// 音频播放成功
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer flag: Bool)
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool)
 }
 
 /// MARK - YYTextViewDelegate
@@ -475,7 +475,7 @@ extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
 extension WZIMTextInputTabbar: WZAVAudioPlayerDelegate {
     
     public func audioPlayerDidFinishPlaying(_ player: WZAVAudioPlayer, successfully flag: Bool) {
-        delegate.textInputTabbar(tabbar: self, audioPlayer: flag)
+        delegate.textInputTabbar(tabbar: self, player: flag)
     }
 
     public func audioPlayerDecodeErrorDidOccur(_ player: WZAVAudioPlayer, error: Error?) {
