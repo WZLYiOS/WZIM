@@ -83,7 +83,7 @@ extension EMConversation: WZIMConversationProcotol {
         return EMMessage()
     }
     
-    public func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol {
-        return EMMessage()
-    }
+   public func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol {
+       return EMMessage()
+   }
 }

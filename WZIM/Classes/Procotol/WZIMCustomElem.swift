@@ -122,12 +122,12 @@ public class WZIMImageCustomElem: Codable {
         case fileName = "fileName"
     }
     
-    init() {
-        self.width = 0.0
-        self.heigth = 0.0
-        self.length = 0.0
-        self.url = ""
-        self.fileName = ""
+    init(image: UIImage, fileName: String, url: String) {
+        self.width = image.size.width
+        self.heigth = image.size.height
+        self.length = CGFloat(image.pngData()!.count/1024)
+        self.url = url
+        self.fileName = fileName
     }
 }
 

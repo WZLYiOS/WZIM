@@ -112,23 +112,17 @@ extension TIMConversation: WZIMConversationProcotol {
         return message
     }
     
-    public func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol {
-        
-        let elem = WZIMImageCustomElem()
-        elem.fileName = name
-        elem.width = image.size.width
-        elem.heigth = image.size.height
-        elem.length = CGFloat(image.pngData()!.count/1024)
-        elem.url = url
-        
-        let data = try? JSONEncoder().encode(elem)
-        let customElem = WZIMCustomElem(type: .img, msg: String(data: data!, encoding: String.Encoding.utf8)!)
 
-        let xx = TIMCustomElem()
-        xx.data = try? JSONEncoder().encode(customElem)
+    /// 创建自定义消息
+    public func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol {
+        
+        let custom = WZIMCustomElem(type: type, msg: String(data: data, encoding: String.Encoding.utf8)!)
+        
+        let tElem = TIMCustomElem()
+        tElem.data = try? JSONEncoder().encode(custom)
         
         let message = TIMMessage()
-        message.add(xx)
+        message.add(tElem)
         return message
     }
 }

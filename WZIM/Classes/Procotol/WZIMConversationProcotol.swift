@@ -55,9 +55,9 @@ public protocol WZIMConversationProcotol {
     
     /// 语音消息
     func wzGetVoiceMessage(path: String, duration: Int) -> WZIMMessageProtocol
-    
-    /// 图片消息
-    func wzGetImageMessage(url: String, name: String, image: UIImage) -> WZIMMessageProtocol
+        
+    /// 创建自定义消息
+    func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol
 }
 
 
