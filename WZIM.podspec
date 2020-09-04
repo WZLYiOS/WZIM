@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '1.2.2'
+  s.version          = '1.2.3'
   s.summary          = 'IM组件框架。'
 
 
