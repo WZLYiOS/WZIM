@@ -26,13 +26,12 @@ extension TIMConversation: WZIMConversationProcotol {
     /// 是否置顶
     public var isTop: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "com.wzly.im.conversation.isTop")
+            return UserDefaults.standard.bool(forKey: "com.wzly.im.conversation.\(wzReceiverId()).isTop")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "com.wzly.im.conversation.isTop")
+            UserDefaults.standard.set(newValue, forKey: "com.wzly.im.conversation.\(wzReceiverId()).isTop")
         }
     }
-    
     
     /// 获取最后一条消息
     public func wzLastMessage() -> WZIMMessageProtocol? {
