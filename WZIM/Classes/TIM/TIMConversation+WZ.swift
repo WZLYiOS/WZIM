@@ -26,7 +26,7 @@ extension TIMConversation: WZIMConversationProcotol {
     /// 是否置顶
     public var isTop: Bool {
         get {
-            return (UserDefaults.standard.value(forKey: "com.wzly.im.conversation.isTop") as? Bool) ?? false
+            return UserDefaults.standard.bool(forKey: "com.wzly.im.conversation.isTop")
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "com.wzly.im.conversation.isTop")
