@@ -12,6 +12,28 @@ import Foundation
 // MARK - 消息扩展
 extension TIMConversation: WZIMConversationProcotol {
     
+    public var userProfile: Data? {
+        get {
+             let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: getReceiver())
+             return FileManager.default.contents(atPath: aFilePath)
+        }
+        set {
+            let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: getReceiver())
+            try? newValue?.write(to: URL(fileURLWithPath: aFilePath))
+        }
+    }
+    
+    /// 是否置顶
+    public var isTop: Bool {
+        get {
+            return (UserDefaults.standard.value(forKey: "com.wzly.im.conversation.isTop") as? Bool) ?? false
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "com.wzly.im.conversation.isTop")
+        }
+    }
+    
+    
     /// 获取最后一条消息
     public func wzLastMessage() -> WZIMMessageProtocol? {
         return self.getLastMsg()

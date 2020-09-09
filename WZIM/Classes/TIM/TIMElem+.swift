@@ -75,7 +75,7 @@ extension TIMSoundElem: WZIMVoiceProtocol {
         
         /// 自己上传
         if path.count > 0 {
-            let mPath = "\(WZIMToolAppearance.getVoicePath())\((path as NSString).lastPathComponent)"
+            let mPath = "\(WZIMToolAppearance.getDBPath(name: "voice"))\((path as NSString).lastPathComponent)"
             if FileManager.default.fileExists(atPath: mPath) {
                 return mPath
             }

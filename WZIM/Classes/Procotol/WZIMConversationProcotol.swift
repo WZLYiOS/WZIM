@@ -11,6 +11,12 @@ import Foundation
 // MARK - 消息会话
 public protocol WZIMConversationProcotol {
     
+    /// 获取用户资料
+    var userProfile: Data? {set get}
+    
+    /// 是否置顶
+    var isTop: Bool {set get}
+    
     /// 成功
     typealias sucess = (()-> Void)?
     

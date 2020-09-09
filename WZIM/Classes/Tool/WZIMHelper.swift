@@ -68,9 +68,9 @@ public enum WZIMToolAppearance {
     }
     
     /// 路径
-    static func getVoicePath() -> String {
+    static func getDBPath(name: String) -> String {
         var path = NSHomeDirectory()
-        path.append("/Documents/com_wz_imsdk_voice/")
+        path.append("/Documents/com_wz_imsdk_\(name)/")
         
         if !FileManager.default.fileExists(atPath: path) {
             do {
@@ -82,15 +82,25 @@ public enum WZIMToolAppearance {
         return path
     }
     
-    /// 获取路径
+    /// 获取用户id路径
+    static func getUserInfoPath(userId: String) -> String {
+        var path = getDBPath(name: "userinfo")
+        path.append(userId)
+        return path
+    }
+    
+    
+    /// 获取音频路径
     static func getVoicePathMp3(userId: String, uuid: String = "") -> String {
-        var path = getVoicePath()
+        var path = getDBPath(name: "voice")
         path.append(userId)
         let custom = uuid.count > 0 ? uuid : "\(Int(NSDate().timeIntervalSince1970))"
         path.append("_\(custom)")
         path.append(".mp3")
         return path
     }
+    
+    
 }
 
 
