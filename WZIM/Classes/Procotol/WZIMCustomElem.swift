@@ -11,18 +11,17 @@ import CleanJSON
 
 // MARK - 消息类型
 public enum WZMessageElem {
-    case unknown                       // 未知
-    case text(WZIMTextProtocol)        // 文字消息
-    case sound(WZIMVoiceProtocol)      // 音频
-    case face(WZIMFaceCustomMarkModel) // 表情
-    case img(WZIMImageCustomElem)      // 图片消息
+    case unknown                           // 未知
+    case text(WZIMTextProtocol)            // 文字消息
+    case sound(WZIMVoiceProtocol)          // 音频
+    case face(WZIMFaceCustomMarkModel)     // 表情
+    case img(WZIMImageCustomElem)          // 图片消息
     case makingCourse(WZIMMakingCourseCustomElem) // 红娘课程
     case videoDate(WZIMVideoDateCustomElem) // 线上视频约会服务
-    case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 开启约会实名认证邀请
+    case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 邀请认证
     case time(WZIMTimeCustomElem)       // 时间
     case share(WZIMShareCustomElem)     // 分享消息
 }
-
 
 // MARK - 自定义消息
 public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
@@ -61,19 +60,34 @@ public class WZIMCustomElem: NSObject, Codable {
     }
     
     /// 解析对象
-    public func getDataModel() -> WZMessageElem {
-        
-        let decoder = CleanJSONDecoder()
-//        decoder.valueNotFoundDecodingStrategy = .custom(CustomAdapter())
-        
+    var elem: WZMessageElem {
+        guard let data = msg.data(using: String.Encoding.utf8) else {
+            return .unknown
+        }
         switch type {
         case .img:
-            let model = try! decoder.decode(WZIMImageCustomElem.self, from: msg.data(using: String.Encoding.utf8)!)
+            guard let model = try? CleanJSONDecoder().decode(WZIMImageCustomElem.self, from: data) else {
+                return .unknown
+            }
             return .img(model)
+        case .inviteAuth:
+            
+            guard let model = try? CleanJSONDecoder().decode(WZIMnameAuthInviteCustomElem.self, from: data) else {
+                return .unknown
+            }
+            return .nameAuthInvite(model)
+            
+        case .time:
+            guard let model = try? CleanJSONDecoder().decode(WZIMTimeCustomElem.self, from: data) else {
+                return .unknown
+            }
+            return .time(model)
         default:
             return .unknown
         }
     }
+
+    
 }
 
 // MARK - 文字内容协议
@@ -213,9 +227,19 @@ public class WZIMVideoDateCustomElem: Codable {
     
 }
 
-// MARK - 开启约会实名认证邀请
+// MARK - 邀请认证
 public class WZIMnameAuthInviteCustomElem: Codable {
     
+    /// 内容
+    let content: String
+    
+    /// 跳转id
+    let jumpid: String
+    
+    enum CodingKeys: String, CodingKey {
+        case content = "content"
+        case jumpid = "jumpid"
+    }
 }
 
 // MARK - 时间

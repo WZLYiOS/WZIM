@@ -537,6 +537,7 @@
 		CFCAA4EBD5D5CB1078F05463877C2D37 /* SchedulerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB7A81E480046C87E5A8ED638E5E2 /* SchedulerType.swift */; };
 		CFE593FE72A111B13C21CE35C4FDCF19 /* Dematerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E989CF2F5EF724655054175D6173A4B /* Dematerialize.swift */; };
 		CFED3343FC9606C2C8CA1AB660635D22 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509B5D8B41DA7D754E89F1D2F1F8171B /* Photos.framework */; };
+		D0087442250A2120000B5C39 /* WZIMNameAuthInvateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0087441250A2120000B5C39 /* WZIMNameAuthInvateTableViewCell.swift */; };
 		D03841802501109E000A7D90 /* WZIMTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038417F2501109E000A7D90 /* WZIMTimeTableViewCell.swift */; };
 		D0384182250111A8000A7D90 /* WZIMActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0384181250111A8000A7D90 /* WZIMActivityTableViewCell.swift */; };
 		D03DF75AFE3BE4990305DBC1DDB869F6 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5466626ACD2D4CF7F300FF39DFA37D /* UICollectionView+Rx.swift */; };
@@ -1525,6 +1526,7 @@
 		CC8013BF2E7FBD630984F386A3C89F23 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+MJRefresh.m"; path = "MJRefresh/UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		CCB2D6CF52057565EB30CB143CE233FE /* Kingfisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kingfisher.release.xcconfig; sourceTree = "<group>"; };
 		CCC08895A0C9D592FA809CAC5FBEC36F /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = WZAlamofire/Classes/AFError.swift; sourceTree = "<group>"; };
+		D0087441250A2120000B5C39 /* WZIMNameAuthInvateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WZIMNameAuthInvateTableViewCell.swift; sourceTree = "<group>"; };
 		D01ABBD75B34516FBEBD4EA35A43257B /* WZNamespaceWrappable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WZNamespaceWrappable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D038417F2501109E000A7D90 /* WZIMTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WZIMTimeTableViewCell.swift; sourceTree = "<group>"; };
 		D0384181250111A8000A7D90 /* WZIMActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WZIMActivityTableViewCell.swift; sourceTree = "<group>"; };
@@ -2070,6 +2072,7 @@
 				C41B96BFE561D37E46CD9F272A78958F /* WZIMVoiceTableViewCell.swift */,
 				D038417F2501109E000A7D90 /* WZIMTimeTableViewCell.swift */,
 				D0384181250111A8000A7D90 /* WZIMActivityTableViewCell.swift */,
+				D0087441250A2120000B5C39 /* WZIMNameAuthInvateTableViewCell.swift */,
 			);
 			name = Cell;
 			path = WZIM/Classes/UI/Cell;
@@ -4038,6 +4041,7 @@
 				9C6A3B50FE5B54E75051B5442849B3AF /* WZIM-dummy.m in Sources */,
 				23D6566C61D9D73F9F5AD8D69A715F56 /* WZIMBaseTableViewCell.swift in Sources */,
 				2CB9C974E9A6D8B96C0E4941959FED42 /* WZIMChatRecordView.swift in Sources */,
+				D0087442250A2120000B5C39 /* WZIMNameAuthInvateTableViewCell.swift in Sources */,
 				96091790B6920EA50D5AB5E89333F116 /* WZIMChatTextView.swift in Sources */,
 				8A9AD3CAB62673E8C4B87460812002A1 /* WZIMConfig.swift in Sources */,
 				F6B3BD6EA2AB3C54394F41FC539356FA /* WZIMConversationProcotol.swift in Sources */,

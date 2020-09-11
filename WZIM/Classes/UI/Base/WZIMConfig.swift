@@ -26,6 +26,37 @@ public struct WZIMConfig {
     public static var bubbleEdge: UIEdgeInsets = UIEdgeInsets(top: 21, left: 10, bottom: 3, right: 10)
     
     /// 最大宽度
-    public static let maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 80
+    public static var maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 80
+    
+    /// 文字左边颜色
+    public static var lelftTextColor: UIColor = WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+    
+    /// 右边颜色
+    public static var rightTextColor: UIColor = UIColor.white
 }
 
+// MARK - 富文本修改
+public extension NSMutableAttributedString {
+    
+    /// 设置文字
+    func wzSetFont(value: UIFont) {
+        wzSetAttribute(key: NSAttributedString.Key.font, value: value, range: NSRange(location: 0, length: self.length))
+    }
+    
+    /// 设置间距
+    func wzSetLineSpacing(value: Int) {
+        let mPara = NSMutableParagraphStyle()
+        mPara.lineSpacing = CGFloat(value)
+        wzSetAttribute(key: NSAttributedString.Key.paragraphStyle, value: mPara, range: NSRange(location: 0, length: self.length))
+    }
+    
+    /// 设置颜色
+    func wzSetColor(value: UIColor) {
+        wzSetAttribute(key: NSAttributedString.Key.foregroundColor, value: value, range: NSRange(location: 0, length: self.length))
+    }
+    
+    /// 添加key
+    func wzSetAttribute(key: NSAttributedString.Key, value: Any, range: NSRange) {
+        self.addAttribute(key, value: value, range: range)
+    }
+}

@@ -15,8 +15,6 @@ extension TIMElem {
     
     /// 获取当前的
     func getElem() -> WZMessageElem {
-        let decoder = CleanJSONDecoder()
-        
         switch self {
         case is TIMTextElem:
             return .text(self as! TIMTextElem)
@@ -24,15 +22,46 @@ extension TIMElem {
             return .sound(self as! TIMSoundElem)
         case is TIMCustomElem:
             let custom = self as! TIMCustomElem
-            let model = try! decoder.decode(WZIMCustomElem.self, from: custom.data)
-            return model.getDataModel()
+
+            let model = try! CleanJSONDecoder().decode(WZIMCustomElem.self, from: custom.customData)
+            return model.elem
         case is TIMFaceElem:
             let face = self as! TIMFaceElem
-            let model = try! decoder.decode(WZIMFaceCustomMarkModel.self, from: face.data)
+            let model = try! CleanJSONDecoder().decode(WZIMFaceCustomMarkModel.self, from: face.data)
             return .face(model)
         default:
             return .unknown
         }
+    }
+}
+
+// MARK -
+extension TIMCustomElem {
+    
+    /// 服务端返回的消息msg可能是字典
+    var customData: Data {
+        
+        /// 获取json
+        guard var dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {
+            return data
+        }
+        
+        var xxxx = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        debugPrint(xxxx)
+        switch dic["msg"] {
+        case is [String: Any]:
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: dic["msg"] as Any,options: []) else {
+                return data
+            }
+            let str = String(data: jsonData,encoding:String.Encoding.utf8)
+            dic["msg"] = str
+            guard let model = try? JSONSerialization.data(withJSONObject: dic as Any, options: []) else {
+                return data
+            }
+            return model
+        default: break
+        }
+        return data
     }
 }
 

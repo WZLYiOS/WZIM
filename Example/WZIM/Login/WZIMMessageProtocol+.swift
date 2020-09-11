@@ -22,8 +22,10 @@ extension WZIMMessageProtocol {
             return WZIMVoiceTableViewCell.self
         case .face:
             return WZIMFaceTableViewCell.self
+        case .nameAuthInvite:
+            return WZIMNameAuthInvateTableViewCell.self
         default:
-            return WZIMBaseTableViewCell.self
+            return WZIMUnknownTableViewCell.self
         }
     }
 }

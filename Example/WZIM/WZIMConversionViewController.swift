@@ -36,6 +36,8 @@ public class WZIMConversionViewController: UIViewController {
         $0.wz.register(cellWithClass: WZIMTextTableViewCell.self)
         $0.wz.register(cellWithClass: WZIMVoiceTableViewCell.self)
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
+        $0.wz.register(cellWithClass: WZIMUnknownTableViewCell.self)
+        $0.wz.register(cellWithClass: WZIMNameAuthInvateTableViewCell.self)
         $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
         return $0

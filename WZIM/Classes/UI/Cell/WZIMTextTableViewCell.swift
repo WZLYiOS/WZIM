@@ -39,7 +39,7 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
         super.reload(model: model, cDelegate: cDelegate)
      
         if case let .text(elem) = model.wzCurrentElem() {
-            let color = model.wzLoaction() == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+            let color = model.wzLoaction() == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
             let mPara = NSMutableParagraphStyle()
             mPara.lineSpacing = 4
             let text = NSMutableAttributedString(string: elem.getText(),

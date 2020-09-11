@@ -37,6 +37,7 @@ public class WZIMUnknownTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
+        contentLabel.textColor = model.wzLoaction() == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
         contentLabel.text = "未知消息，请更新APP版本查看！"
     }
 }
