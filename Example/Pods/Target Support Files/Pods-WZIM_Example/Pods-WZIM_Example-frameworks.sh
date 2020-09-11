@@ -209,6 +209,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/TXIMSDK_iOS/ImSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WZEncryption/WZEncryption.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WZLame/WZLame.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WZRefresh/WZRefresh.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -224,6 +225,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/TXIMSDK_iOS/ImSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WZEncryption/WZEncryption.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WZLame/WZLame.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WZRefresh/WZRefresh.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

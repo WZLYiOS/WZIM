@@ -1,0 +1,6 @@
+framework module WZLame {
+  umbrella header "WZLame-umbrella.h"
+
+  export *
+  module * { export * }
+}

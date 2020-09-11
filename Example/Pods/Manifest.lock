@@ -18,29 +18,31 @@ PODS:
   - TZImagePickerController (3.2.9)
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (1.2.0):
-    - WZIM/EM (= 1.2.0)
-    - WZIM/Procotol (= 1.2.0)
-    - WZIM/TIM (= 1.2.0)
-    - WZIM/Tool (= 1.2.0)
-    - WZIM/ToolBbar (= 1.2.0)
-    - WZIM/UI (= 1.2.0)
-  - WZIM/EM (1.2.0):
+  - WZIM (1.2.7):
+    - WZIM/EM (= 1.2.7)
+    - WZIM/Procotol (= 1.2.7)
+    - WZIM/TIM (= 1.2.7)
+    - WZIM/Tool (= 1.2.7)
+    - WZIM/ToolBbar (= 1.2.7)
+    - WZIM/UI (= 1.2.7)
+  - WZIM/EM (1.2.7):
     - HyphenateLite (~> 3.7.0)
     - WZIM/UI
-  - WZIM/Procotol (1.2.0):
+  - WZIM/Procotol (1.2.7):
     - CleanJSON (~> 1.0.0)
-  - WZIM/TIM (1.2.0):
+  - WZIM/TIM (1.2.7):
     - TXIMSDK_iOS (~> 4.9.1)
     - WZIM/UI
-  - WZIM/Tool (1.2.0)
-  - WZIM/ToolBbar (1.2.0):
+  - WZIM/Tool (1.2.7)
+  - WZIM/ToolBbar (1.2.7):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
-  - WZIM/UI (1.2.0):
+    - WZLame (~> 4.0.0)
+  - WZIM/UI (1.2.7):
     - Kingfisher (~> 5.15.0)
     - WZIM/Procotol
-    - WZIM/Tool
+    - WZIM/ToolBbar
+  - WZLame (4.0.0)
   - WZMoya (3.0.0):
     - WZMoya/Core (= 3.0.0)
   - WZMoya/Core (3.0.0):
@@ -79,6 +81,7 @@ SPEC REPOS:
   https://github.com/WZLYiOS/WZPodSpecs.git:
     - WZAlamofire
     - WZEncryption
+    - WZLame
     - WZMoya
     - WZNamespaceWrappable
     - WZNetwork
@@ -118,7 +121,8 @@ SPEC CHECKSUMS:
   TZImagePickerController: 1f92968aa0e98a06b9e2eccca8560acc19254257
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: 8010ef3cfad08c906e59cba8ce802f7356dadafa
+  WZIM: 7cc80250551775c75c0bbc99a8dd4de3e7bf9d0a
+  WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4
   WZNetwork: 1967e3fd38976d5f24195824853f5da559182a05

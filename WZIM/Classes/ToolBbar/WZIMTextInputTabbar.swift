@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import WZLame
 
 // MARK - 消息详情页面底部tabbar
 public class WZIMTextInputTabbar: UIView {
@@ -404,9 +405,6 @@ public protocol WZIMTextInputTabbarDelegate: class {
     /// 获取用户id
     func userIdTextInputTabbar(tabbar: WZIMTextInputTabbar) -> String
     
-    /// MP3 转码
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, wavFilePath: String, mp3FilePath: String, isStop: Bool)
-    
     /// 录音结束
     func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int)
     
@@ -455,7 +453,7 @@ extension WZIMTextInputTabbar: UITextViewDelegate {
 extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
     
     public func audioRecorderToMp3(wavFilePath: String, mp3FilePath: String, isStop: Bool) {
-        delegate.textInputTabbar(tabbar: self, wavFilePath: wavFilePath, mp3FilePath: mp3FilePath, isStop: isStop)
+        WZLame.convent(toMp3: wavFilePath, withFilePath: mp3FilePath, withStop: isStop)
     }
 
     public func audioRecorderDidFinishRecording(_ recorder: WZAudioRecorder, path: String, duration: Int) {

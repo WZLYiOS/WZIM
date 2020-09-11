@@ -362,6 +362,7 @@
 				"${PODS_ROOT}/TXIMSDK_iOS/ImSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/WZEncryption/WZEncryption.framework",
+				"${BUILT_PRODUCTS_DIR}/WZLame/WZLame.framework",
 				"${BUILT_PRODUCTS_DIR}/WZRefresh/WZRefresh.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -378,6 +379,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZEncryption.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLame.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZRefresh.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

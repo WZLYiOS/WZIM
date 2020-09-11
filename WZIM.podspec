@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '1.2.7'
+  s.version          = '1.2.8'
   s.summary          = 'IM组件框架。'
 
 
@@ -46,6 +46,7 @@ Pod::Spec.new do |s|
     ss.resources    = 'WZIM/**/ToolBbar.bundle'
     ss.dependency 'WZIM/Tool'
     ss.dependency 'SnapKit', '~> 5.0.1'
+    ss.dependency 'WZLame', '~> 4.0.0'
   end
   
   # 基础cell和代理事件
