@@ -31,7 +31,7 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case sms = "sms"   // 发送短信
     case safe = "safe" // 安全提醒
     case time = "time" // 时间
-    case img = "img"   // 时间
+    case img = "img"   // 图片
     case notice = "notice" // 透传
     case userInfo = "userInfo" // 用户信息
     case share = "share" // 分享消息

@@ -26,7 +26,6 @@
 		D06D16A024FF43B000445619 /* UserSession+IM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169F24FF43B000445619 /* UserSession+IM.swift */; };
 		D06D16A224FF456800445619 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A124FF456800445619 /* ListViewController.swift */; };
 		D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A324FF45C100445619 /* ListTableViewCell.swift */; };
-		D06D16AE24FF8BFA00445619 /* WZMP3.m in Sources */ = {isa = PBXBuildFile; fileRef = D06D16AD24FF8BFA00445619 /* WZMP3.m */; };
 		D06D16B024FF8E7E00445619 /* WZIMConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */; };
 		D0D342C425008571008AA19D /* WZIMMessageProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */; };
 		D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; };
@@ -91,8 +90,6 @@
 		D06D16A124FF456800445619 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		D06D16A324FF45C100445619 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		D06D16AB24FF8BF900445619 /* WZIM_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WZIM_Example-Bridging-Header.h"; sourceTree = "<group>"; };
-		D06D16AC24FF8BFA00445619 /* WZMP3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZMP3.h; sourceTree = "<group>"; };
-		D06D16AD24FF8BFA00445619 /* WZMP3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZMP3.m; sourceTree = "<group>"; };
 		D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZIMConversionViewController.swift; sourceTree = "<group>"; };
 		D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WZIMMessageProtocol+.swift"; sourceTree = "<group>"; };
 		D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,8 +159,6 @@
 				D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */,
 				D03841832501C50E000A7D90 /* WZIMFaceTableViewCell.swift */,
 				D06D16A124FF456800445619 /* ListViewController.swift */,
-				D06D16AC24FF8BFA00445619 /* WZMP3.h */,
-				D06D16AD24FF8BFA00445619 /* WZMP3.m */,
 				D06D16A324FF45C100445619 /* ListTableViewCell.swift */,
 				D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -460,7 +455,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06D16AE24FF8BFA00445619 /* WZMP3.m in Sources */,
 				D06D169024FF38C700445619 /* UserLoginApi.swift in Sources */,
 				D06D169824FF3C4C00445619 /* WZResult.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
