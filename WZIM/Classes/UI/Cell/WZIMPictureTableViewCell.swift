@@ -12,9 +12,17 @@ import Kingfisher
 // MARK - 图片
 public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     
+    /// 代理
+    weak var delegate: WZIMPictureTableViewCellDelegate?
+    
+    /// 数据源
+    public var dataMarkModel: WZIMImageCustomElem!
+    
     /// 图片
     private lazy var photoImageView: UIImageView = {
         $0.contentMode = .scaleAspectFill
+        $0.isUserInteractionEnabled = true
+        $0.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))
         return $0
     }(UIImageView())
     
@@ -50,6 +58,9 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
        super.reload(model: model, cDelegate: cDelegate)
         
         if case let .img(elem) = model.wzCurrentElem() {
+            delegate = cDelegate as? WZIMPictureTableViewCellDelegate
+            percentMaskLabel.isHidden = true
+            dataMarkModel = elem
             let size = imageSize(elem: elem)
             
             if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)), let image = UIImage(data: data) {
@@ -76,6 +87,26 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         let thumbnailSize = picThumbHeight * picThumbWidth > 150 * 150 ? CGSize(width: 150, height: 150) : CGSize(width: picThumbWidth, height: picThumbHeight)
         return thumbnailSize
     }
+    
+    /// 更新进度
+    public func upload(percent: CGFloat) {
+        percentMaskLabel.text = "\(percent)%"
+        percentMaskLabel.isHidden = percent >= 1 ? true : false
+    }
+    
+    @objc private func photoImageViewTapAction(tap: UIGestureRecognizer) {
+        delegate?.pictureCell(cell: self, tapImageView: tap.view as! UIImageView)
+    }
+}
+
+// MARK - WZIMPictureTableViewCellDelegate
+public protocol WZIMPictureTableViewCellDelegate: WZIMTableViewCellDelegate {
+    
+    /// 图片点击
+    /// - Parameters:
+    ///   - cell: cell
+    ///   - tapImageView: 被点击图片
+    func pictureCell(cell: WZIMPictureTableViewCell, tapImageView: UIImageView)
 }
 
 

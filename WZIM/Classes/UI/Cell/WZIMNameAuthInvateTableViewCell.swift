@@ -75,7 +75,7 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - 代理
-public protocol WZIMNameAuthInvateTableViewCellDelegate: class {
+public protocol WZIMNameAuthInvateTableViewCellDelegate: WZIMTableViewCellDelegate {
     
     /// 点击事件
     func tapNameAuthInvateCell(cell: WZIMNameAuthInvateTableViewCell)
