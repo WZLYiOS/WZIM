@@ -31,13 +31,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
-        $0.wz.register(cellWithClass: WZIMBaseTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMPictureTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMTextTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMVoiceTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMUnknownTableViewCell.self)
-        $0.wz.register(cellWithClass: WZIMNameAuthInvateTableViewCell.self)
+        $0.wzIMRegisterCell()
         $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
         return $0
@@ -310,11 +304,11 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     
-    func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
+    @nonobjc func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
+    @nonobjc func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
         
         for item in assets {
             TZImageManager.default()?.getOriginalPhotoData(with: (item as! PHAsset), completion: { [weak self] (data, info, isDegraded) in
