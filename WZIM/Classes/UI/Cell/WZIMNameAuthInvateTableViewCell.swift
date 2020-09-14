@@ -15,7 +15,7 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
     weak var delegate: WZIMNameAuthInvateTableViewCellDelegate?
     
     /// 数据
-    var dataMarkModel: WZIMnameAuthInviteCustomElem!
+    public var dataMarkModel: WZIMnameAuthInviteCustomElem!
     
     private lazy var titleLabel: UILabel = {
         $0.font = UIFont.systemFont(ofSize: 15)
@@ -75,7 +75,7 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - 代理
-protocol WZIMNameAuthInvateTableViewCellDelegate: class {
+public protocol WZIMNameAuthInvateTableViewCellDelegate: class {
     
     /// 点击事件
     func tapNameAuthInvateCell(cell: WZIMNameAuthInvateTableViewCell)

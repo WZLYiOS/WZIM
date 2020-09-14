@@ -231,10 +231,10 @@ public class WZIMVideoDateCustomElem: Codable {
 public class WZIMnameAuthInviteCustomElem: Codable {
     
     /// 内容
-    let content: String
+    public let content: String
     
     /// 跳转id
-    let jumpid: String
+    public let jumpid: String
     
     enum CodingKeys: String, CodingKey {
         case content = "content"
@@ -269,10 +269,10 @@ public class WZIMShareCustomElem: Codable {
     }
     
     /// 类型
-    var type: ShareType
+    public var type: ShareType
     
     /// 内容
-    var content: WZIMShareContentModel
+    public var content: WZIMShareContentModel
     
     enum CodingKeys: String, CodingKey {
         case type = "type"
@@ -289,28 +289,28 @@ public class WZIMShareCustomElem: Codable {
 public class WZIMShareContentModel: Codable {
     
     /// 活动标题
-    var title: String
+    public var title: String
     
     /// 分享缩略图
-    var img: String
+    public var img: String
     
     /// 分享语
-    var desc: String
+    public var desc: String
     
     /// 自定义分享H5消息
-    var url: String
+    public var url: String
     
     /// 交友活动id
-    var partyId: String
+    public var partyId: String
     
     /// 城市
-    var city: String
+    public var city: String
     
     /// 活动开始时间
-    var beginTime: String
+    public var beginTime: String
     
     /// 社区文章
-    var articleId: String
+    public var articleId: String
     
     enum CodingKeys: String, CodingKey {
         case title = "title"

@@ -46,8 +46,6 @@ extension TIMCustomElem {
             return data
         }
         
-        var xxxx = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        debugPrint(xxxx)
         switch dic["msg"] {
         case is [String: Any]:
             guard let jsonData = try? JSONSerialization.data(withJSONObject: dic["msg"] as Any,options: []) else {
