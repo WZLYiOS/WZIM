@@ -68,7 +68,7 @@ public enum WZIMToolAppearance {
     }
     
     /// 路径
-    static func getDBPath(name: String) -> String {
+    public static func getDBPath(name: String) -> String {
         var path = NSHomeDirectory()
         path.append("/Documents/com_wz_imsdk_\(name)/")
         
@@ -83,7 +83,7 @@ public enum WZIMToolAppearance {
     }
     
     /// 获取用户id路径
-    static func getUserInfoPath(userId: String) -> String {
+    public static func getUserInfoPath(userId: String) -> String {
         var path = getDBPath(name: "userinfo")
         path.append(userId)
         return path
@@ -91,7 +91,7 @@ public enum WZIMToolAppearance {
     
     
     /// 获取音频路径
-    static func getVoicePathMp3(userId: String, uuid: String = "") -> String {
+    public static func getVoicePathMp3(userId: String, uuid: String = "") -> String {
         var path = getDBPath(name: "voice")
         path.append(userId)
         let custom = uuid.count > 0 ? uuid : "\(Int(NSDate().timeIntervalSince1970))"
