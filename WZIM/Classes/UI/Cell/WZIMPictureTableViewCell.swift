@@ -51,8 +51,13 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         
         if case let .img(elem) = model.wzCurrentElem() {
             let size = imageSize(elem: elem)
-            let url = URL(string: elem.url)
-            photoImageView.kf.setImage(with: url)
+            
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)), let image = UIImage(data: data) {
+                photoImageView.image = image
+            }else{
+                let url = URL(string: elem.url)
+                photoImageView.kf.setImage(with: url)
+            }
             photoImageView.snp.updateConstraints { (make) in
                 make.size.equalTo(size)
             }

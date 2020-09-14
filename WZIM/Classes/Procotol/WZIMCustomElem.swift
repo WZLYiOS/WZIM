@@ -128,20 +128,32 @@ public class WZIMImageCustomElem: Codable {
     /// 文件名
     public var fileName: String
     
+    /// 文件路径
+    public var filePath: String
+    
     enum CodingKeys: String, CodingKey {
         case width = "width"
         case heigth = "heigth"
         case length = "length"
         case url = "url"
         case fileName = "fileName"
+        case filePath = "filePath"
     }
     
-    init(image: UIImage, fileName: String, url: String) {
-        self.width = image.size.width
-        self.heigth = image.size.height
-        self.length = CGFloat(image.pngData()!.count/1024)
+    init(filePath: String, fileName: String, url: String) {
+        self.filePath = filePath
         self.url = url
         self.fileName = fileName
+        
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)), let image = UIImage(data: data) {
+            self.width = image.size.width
+            self.heigth = image.size.height
+            self.length = CGFloat(image.pngData()!.count/1024)
+        }else{
+            self.width = 0
+            self.heigth = 0
+            self.length = 0
+        }
     }
 }
 
