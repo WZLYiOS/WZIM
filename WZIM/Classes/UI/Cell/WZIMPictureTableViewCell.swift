@@ -58,17 +58,19 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
        super.reload(model: model, cDelegate: cDelegate)
         
         if case let .img(elem) = model.wzCurrentElem() {
+            
             delegate = cDelegate as? WZIMPictureTableViewCellDelegate
             percentMaskLabel.isHidden = true
             dataMarkModel = elem
             let size = imageSize(elem: elem)
             
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)), let image = UIImage(data: data) {
-                photoImageView.image = image
-            }else{
-                let url = URL(string: elem.url)
-                photoImageView.kf.setImage(with: url)
-            }
+//            if ImageCache.default.isCached(forKey: elem.filePath) {
+//                setImageView(filePath: elem.filePath, imageView: photoImageView)
+//            }else{
+//                
+//            }
+            let url = URL(string: elem.url)
+            photoImageView.kf.setImage(with: url)
             photoImageView.snp.updateConstraints { (make) in
                 make.size.equalTo(size)
             }
@@ -109,4 +111,19 @@ public protocol WZIMPictureTableViewCellDelegate: WZIMTableViewCellDelegate {
     func pictureCell(cell: WZIMPictureTableViewCell, tapImageView: UIImageView)
 }
 
-
+/// MARK - 扩展
+public extension WZIMPictureTableViewCell {
+    
+    /// 把图片存入磁盘
+    static func storeDisk(filePath: String, image: UIImage) {
+        ImageCache.default.store(image, forKey: filePath)
+    }
+    
+    /// 从磁盘加载图片
+    func setImageView(filePath: String, imageView: UIImageView) {
+        ImageCache.default.retrieveImageInDiskCache(forKey: filePath, options: nil, callbackQueue: .mainAsync) { (result) in
+            let imx = try? result.get()
+            imageView.image = imx
+        }
+    }
+}

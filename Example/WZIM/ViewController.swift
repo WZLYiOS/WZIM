@@ -83,6 +83,10 @@ extension ViewController: WZIMTableViewCellPublicDelegate {
 }
 
 extension ViewController: WZIMMessageProtocol {
+    func uploadElem(elem: WZMessageElem) {
+        
+    }
+    
     
     func wzStatus() -> WZIMMessageStatus {
         return .fail

@@ -87,6 +87,9 @@ extension UserSession {
           })
       }
    
+    func crurrentUserId() -> String {
+        return TIMManager.sharedInstance()!.getLoginUser()
+    }
 }
 
 // MARK - TIMConnListener

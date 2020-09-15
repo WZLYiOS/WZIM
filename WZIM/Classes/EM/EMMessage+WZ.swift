@@ -105,4 +105,8 @@ extension EMMessage: WZIMMessageProtocol {
     public func wzCurrentElem() -> WZMessageElem? {
         return nil
     }
+    
+    public func uploadElem(elem: WZMessageElem) {
+        
+    }
 }

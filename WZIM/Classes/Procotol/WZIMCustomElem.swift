@@ -31,7 +31,7 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case sms = "sms"   // 发送短信
     case safe = "safe" // 安全提醒
     case time = "time" // 时间
-    case img = "img"   // 图片
+    case img = "img"   // 时间
     case notice = "notice" // 透传
     case userInfo = "userInfo" // 用户信息
     case share = "share" // 分享消息
@@ -129,7 +129,7 @@ public class WZIMImageCustomElem: Codable {
     public var fileName: String
     
     /// 文件路径
-    public var filePath: String
+//    public var filePath: String
     
     enum CodingKeys: String, CodingKey {
         case width = "width"
@@ -137,23 +137,26 @@ public class WZIMImageCustomElem: Codable {
         case length = "length"
         case url = "url"
         case fileName = "fileName"
-        case filePath = "filePath"
+//        case filePath = "filePath"
     }
     
-    init(filePath: String, fileName: String, url: String) {
-        self.filePath = filePath
+   public init(image: UIImage, fileName: String, url: String) {
+//        self.filePath = ""
+        self.width = image.size.width
+        self.heigth = image.size.height
+        self.length = CGFloat(image.pngData()!.count/1024)
         self.url = url
         self.fileName = fileName
+    }
+    
+    /// 封装自定义data
+    public func getCustomElem() -> Data? {
         
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)), let image = UIImage(data: data) {
-            self.width = image.size.width
-            self.heigth = image.size.height
-            self.length = CGFloat(image.pngData()!.count/1024)
-        }else{
-            self.width = 0
-            self.heigth = 0
-            self.length = 0
+        guard let data = try? JSONEncoder().encode(self) else {
+            return nil
         }
+        let custom = WZIMCustomElem(type: .img, msg: String(data: data, encoding: String.Encoding.utf8)!)
+        return try? JSONEncoder().encode(custom)
     }
 }
 

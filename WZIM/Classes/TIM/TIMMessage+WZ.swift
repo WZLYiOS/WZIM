@@ -8,6 +8,7 @@
 
 import ImSDK
 import Foundation
+import CleanJSON
 
 // MARK - 消息协议实现
 extension TIMMessage: WZIMMessageProtocol {

@@ -12,6 +12,7 @@ import WZRoute
 import WZRefresh
 import TZImagePickerController
 import WZUIExtension
+import Kingfisher
 
 // MARK - 会话详情
 @objcMembers
@@ -123,11 +124,27 @@ public class WZIMConversionViewController: UIViewController {
         tableView.scrollToRow(at: tempIndexPath, at: .bottom, animated: animated)
     }
     
+    
+}
+
+/// 扩展
+extension WZIMConversionViewController {
+    
     /// 发送消息
     func sendMessage(message: WZIMMessageProtocol) {
         
-        dataArray.append(message)
-        let indexPath = IndexPath(row: dataArray.count - 1, section: 0)
+        let isContains = dataArray.contains(where: { (mess) -> Bool in
+            return mess.wzMessageId() == message.wzMessageId()
+        })
+        if !isContains {
+            dataArray.append(message)
+        }
+        
+        guard let row = dataArray.firstIndex(where: {$0.wzMessageId() == message.wzMessageId()}) else {
+            return
+        }
+        let indexPath = IndexPath(row: row, section: 0)
+        
         conversation.wzSendMessage(message: message, sucess: {
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: [indexPath], with: .none)
@@ -138,9 +155,12 @@ public class WZIMConversionViewController: UIViewController {
             self.tableView.reloadRows(at: [indexPath], with: .none)
             self.tableView.endUpdates()
         }
-        tableView.beginUpdates()
-        tableView.insertRows(at: [indexPath], with: .fade)
-        tableView.endUpdates()
+        
+        if !isContains {
+            tableView.beginUpdates()
+            tableView.insertRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
     }
 }
 
@@ -304,17 +324,14 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     
-    @nonobjc func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
+    func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    @nonobjc func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
+    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
         
-        for item in assets {
-            TZImageManager.default()?.getOriginalPhotoData(with: (item as! PHAsset), completion: { [weak self] (data, info, isDegraded) in
-                guard let self = self else { return }
-                self.sendImageMessage(image: UIImage(data: data!)!)
-            })
+        for item in photos {
+            self.sendImageMessage(image: item)
         }
     }
     
@@ -324,28 +341,25 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
 //            guard let self = self else { return }
 //            self.sendImageMessage(image: image)
 //        }
+        
+        
     }
     
     /// 发送图片消息
     func sendImageMessage(image: UIImage) {
+        let filePath = "com.wzly.img.\(Int(NSDate().timeIntervalSince1970))"
+        WZIMPictureTableViewCell.storeDisk(filePath: filePath, image: image)
+        let model = WZIMImageCustomElem(image: image, fileName: "123", url: filePath)
+        let data = try! JSONEncoder().encode(model)
+        let message = conversation.wzCreateCustom(type: .img, data: data)
+        conversation.wzSaveMessage(message: message, sender: UserSession.shared.crurrentUserId(), isRead: false)
+        dataArray.append(message)
         
-//        let item = WZQiNiuUploadItem()
-//        item.type = .im
-//        item.obj = image
-//        item.params.userid = UserSession.shared.userInfo!.user.userid
-//        item.compleSucessBlock = { (key, url) in
-//
-//        }
-//        item.compleFailBlock = { (msg) in
-//        }
-        /// 导入SDwebimage
-//        let path = "\(Environment.apiUrl)\(item.params.name)"
-//        SDImageCache.shared.store(image, forKey: path, completion: nil)
-//        let message = conversation.getImageMessage(url: path, name: item.params.name, image: image)
-//        conversation.wzSaveMessage(message: message, sender: "wzly_\(UserSession.shared.userInfo!.user.userid)", isRead: false)
-        
-//        dataArray.append(message)
-        tableView.reloadData()
-//        WZQiNiuUploadQueue.shared.put(items: [item])
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: dataArray.count - 1, section: 0)], with: .fade)
+        tableView.endUpdates()
+        scrollToBottom(animated: true)
+    
+        sendMessage(message: message)
     }
 }
