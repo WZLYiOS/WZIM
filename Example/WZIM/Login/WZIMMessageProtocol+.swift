@@ -24,6 +24,8 @@ extension WZIMMessageProtocol {
             return WZIMFaceTableViewCell.self
         case .nameAuthInvite:
             return WZIMNameAuthInvateTableViewCell.self
+        case .time:
+            return WZIMTimeTableViewCell.self
         default:
             return WZIMUnknownTableViewCell.self
         }

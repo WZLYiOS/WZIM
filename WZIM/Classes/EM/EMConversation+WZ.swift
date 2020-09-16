@@ -92,7 +92,7 @@ extension EMConversation: WZIMConversationProcotol {
         return EMMessage()
     }
     
-    public func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
+    public func wzGetGifMenssage(gif git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
         return EMMessage()
     }
     
@@ -104,7 +104,14 @@ extension EMConversation: WZIMConversationProcotol {
         return EMMessage()
     }
     
-   public func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol {
+   public func wzCreateCustom(type: WZMessageCustomType, data: WZMessageElem) -> WZIMMessageProtocol {
        return EMMessage()
    }
+    
+    public func wzCreateImageMessage(elem: WZIMImageCustomElem) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
+    public func wzCreateTimeMessage(date: Date) -> WZIMMessageProtocol {
+        return EMMessage()
+    }
 }

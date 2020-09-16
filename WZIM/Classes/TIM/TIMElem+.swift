@@ -23,8 +23,11 @@ extension TIMElem {
         case is TIMCustomElem:
             let custom = self as! TIMCustomElem
 
-            let model = try! CleanJSONDecoder().decode(WZIMCustomElem.self, from: custom.customData)
-            return model.elem
+            guard let model = try? CleanJSONDecoder().decode(WZIMCustomElem.self, from: custom.customData) else {
+                return .unknown
+            }
+            
+            return model.getMsgElem()
         case is TIMFaceElem:
             let face = self as! TIMFaceElem
             let model = try! CleanJSONDecoder().decode(WZIMFaceCustomMarkModel.self, from: face.data)

@@ -54,7 +54,7 @@ public protocol WZIMConversationProcotol {
     func wzGetTextMessage(text: String) -> WZIMMessageProtocol
     
     /// 获取gif 消息
-    func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol
+    func wzGetGifMenssage(gif: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol
     
     /// 获取动图的表情
     func wzGetDTEmojiMessage(emojiCode: String, emojiName: String) -> WZIMMessageProtocol
@@ -63,7 +63,13 @@ public protocol WZIMConversationProcotol {
     func wzGetVoiceMessage(path: String, duration: Int) -> WZIMMessageProtocol
         
     /// 创建自定义消息
-    func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol
+    func wzCreateCustom(type: WZMessageCustomType, data: WZMessageElem) -> WZIMMessageProtocol
+    
+    /// 发送图片消息
+    func wzCreateImageMessage(elem: WZIMImageCustomElem) -> WZIMMessageProtocol
+    
+    /// 获取时间消息
+    func wzCreateTimeMessage(date: Date) -> WZIMMessageProtocol
 }
 
 

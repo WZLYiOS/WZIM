@@ -15,7 +15,8 @@ extension TIMMessage: WZIMMessageProtocol {
     
     /// 消息状态
     public func wzStatus() -> WZIMMessageStatus {
-        return WZIMMessageStatus.init(rawValue: status().rawValue) ?? .sucess
+        let ss = WZIMMessageStatus.init(rawValue: status().rawValue) ?? .fail
+        return ss
     }
     
     /// 是否已读

@@ -106,8 +106,15 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     /// 更新数据
     open func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
 
-        message = model    
-        switch model.wzLoaction() {
+        message = model
+        /// 设置头像
+        pDelegate.baseTableViewCell(cell: self, set: avatarImageView)
+        uploadConstraints(type: model.wzLoaction())
+    }
+    
+    /// 更新位置
+    open func uploadConstraints(type: WZMessageLocation) {
+        switch type {
         case .lelft:
             avatarImageView.snp.remakeConstraints { (make) in
                 make.leading.equalTo(WZIMConfig.avatarEdge.left)
@@ -123,6 +130,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             bubbleImageView.image = WZIMConfig.lelftBubbleImage
             sendFailButton.isHidden = true
             readButton.isHidden = true
+            avatarImageView.isHidden = false
         case .right:
             avatarImageView.snp.remakeConstraints { (make) in
                 make.right.equalToSuperview().offset(-WZIMConfig.avatarEdge.right)
@@ -139,9 +147,9 @@ open class WZIMBaseTableViewCell: UITableViewCell {
            
             let state = message.wzStatus()
             sendFailButton.isHidden =  state == .fail ? false : true
-            readButton.isHidden = state == .sucess ? false : true
+            readButton.isHidden = !sendFailButton.isHidden
             readButton.isSelected = message.wzIsReaded()
-            
+            avatarImageView.isHidden = false
         case .center:
             bubbleImageView.snp.remakeConstraints { (make) in
                 make.centerX.equalToSuperview()
@@ -150,10 +158,8 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             bubbleImageView.image = nil
             sendFailButton.isHidden = true
             readButton.isHidden = true
+            avatarImageView.isHidden = true
         }
-
-        /// 设置头像
-        pDelegate.baseTableViewCell(cell: self, set: avatarImageView)
     }
 }
 

@@ -61,8 +61,10 @@ extension TIMConversation: WZIMConversationProcotol {
     
     public func wzSendMessage(message: WZIMMessageProtocol, sucess: sucess, fail: fail) {
         send((message as! TIMMessage), succ: {
+            self.messageSended(message: message, isSucess: true)
             sucess?()
         }) { (code, msg) in
+            self.messageSended(message: message, isSucess: false)
             fail?(Int(code), msg ?? "")
         }
     }
@@ -90,10 +92,10 @@ extension TIMConversation: WZIMConversationProcotol {
         return message
     }
     
-    public func wzGetGifMenssage(git: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
+    public func wzGetGifMenssage(gif: WZIMFaceCustomModel, name: String) -> WZIMMessageProtocol {
         
         let model = WZIMFaceCustomMarkModel()
-        model.expressionData = git
+        model.expressionData = gif
         model.messageType = .gif
         model.name = name
         
@@ -135,16 +137,48 @@ extension TIMConversation: WZIMConversationProcotol {
     
 
     /// 创建自定义消息
-    public func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZIMMessageProtocol {
+    public func wzCreateCustom(type: WZMessageCustomType, data: WZMessageElem) -> WZIMMessageProtocol {
         
-        let custom = WZIMCustomElem(type: type, msg: String(data: data, encoding: String.Encoding.utf8)!)
+        let custom = WZIMCustomElem(type: type, msg: data)
         
         let tElem = TIMCustomElem()
-        tElem.data = try? JSONEncoder().encode(custom)
+        tElem.data = custom.getEncodeData()
         
         let message = TIMMessage()
         message.add(tElem)
         return message
     }
+    
+    /// 图片消息
+    public func wzCreateImageMessage(elem: WZIMImageCustomElem) -> WZIMMessageProtocol {
+        var message = wzCreateCustom(type: .img, data: .img(elem))
+        message.wzCustomInt = 2
+        message.wzCustomData = "\(Int(NSDate().timeIntervalSince1970))".data(using: String.Encoding.utf8)
+        let xx = message.wzCustomData
+        return message
+    }
+    
+    /// 获取时间消息
+    public func wzCreateTimeMessage(date: Date) -> WZIMMessageProtocol {
+        let elem = WZIMTimeCustomElem(time: "\((date as  NSDate).timeIntervalSince1970)")
+        let timeMessage = wzCreateCustom(type: .time, data: .time(elem))
+        return timeMessage
+    }
 }
+
+/// MARK - 扩展
+extension TIMConversation {
+    /// 修改消息状态等
+    private func messageSended(message: WZIMMessageProtocol, isSucess: Bool) {
+        
+        var mess = message
+        switch mess.wzCurrentElem() {
+        case .img:
+            mess.wzCustomData = "\(NSDate().timeIntervalSince1970)".data(using: String.Encoding.utf8)
+            mess.wzCustomInt = isSucess ? 0 : 1
+        default: break
+        }
+    }
+}
+
 

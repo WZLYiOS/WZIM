@@ -50,5 +50,3 @@ public protocol WZIMMessageProtocol {
     /// 获取当前消息
     func wzCurrentElem() -> WZMessageElem?
 }
-
-

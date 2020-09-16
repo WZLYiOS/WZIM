@@ -10,7 +10,7 @@ import Foundation
 import CleanJSON
 
 // MARK - 消息类型
-public enum WZMessageElem {
+public enum WZMessageElem: Decodable {
     case unknown                           // 未知
     case text(WZIMTextProtocol)            // 文字消息
     case sound(WZIMVoiceProtocol)          // 音频
@@ -21,6 +21,56 @@ public enum WZMessageElem {
     case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 邀请认证
     case time(WZIMTimeCustomElem)       // 时间
     case share(WZIMShareCustomElem)     // 分享消息
+    case sms(WZIMRemindContentElem)     // 短信消息
+    case notice(String)         // 透传消息
+    case hibox(WZIMHiboxElem)           // 打招呼消息
+    
+    public init(from decoder: Decoder) throws {
+        throw CordinateError.missingValue
+    }
+    
+    enum CordinateError: Error {
+        case missingValue
+    }
+    
+    /// 获取string
+    public func getMsg() -> String {
+        switch self {
+        case let .face(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .img(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .makingCourse(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .videoDate(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .nameAuthInvite(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .time(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .share(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .sms(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .notice(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        case let .hibox(elem):
+            let data = try! JSONEncoder().encode(elem)
+            return String(data: data, encoding: .utf8) ?? ""
+        default:
+            return ""
+        }
+    }
+    
 }
 
 // MARK - 自定义消息
@@ -41,12 +91,12 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
 }
 
 // MARK - 我主自定义消息
-public class WZIMCustomElem: NSObject, Codable {
+public class WZIMCustomElem: Codable {
     
     /// 消息类型
     public var type: WZMessageCustomType
     
-    /// 消息内容
+    /// 消息elem
     public var msg: String
     
     enum CodingKeys: String, CodingKey {
@@ -54,40 +104,38 @@ public class WZIMCustomElem: NSObject, Codable {
         case msg = "msg"
     }
     
-    public init(type: WZMessageCustomType, msg: String) {
+    public init(type: WZMessageCustomType, msg: WZMessageElem) {
         self.type = type
-        self.msg = msg
+        self.msg = msg.getMsg()
     }
     
-    /// 解析对象
-    var elem: WZMessageElem {
-        guard let data = msg.data(using: String.Encoding.utf8) else {
+    func getMsgElem() -> WZMessageElem {
+        
+        guard let data = msg.data(using: .utf8) else {
             return .unknown
         }
         switch type {
         case .img:
-            guard let model = try? CleanJSONDecoder().decode(WZIMImageCustomElem.self, from: data) else {
-                return .unknown
-            }
-            return .img(model)
+            return .img(try! CleanJSONDecoder().decode(WZIMImageCustomElem.self, from: data))
         case .inviteAuth:
-            
-            guard let model = try? CleanJSONDecoder().decode(WZIMnameAuthInviteCustomElem.self, from: data) else {
-                return .unknown
-            }
-            return .nameAuthInvite(model)
-            
+            return .nameAuthInvite(try! CleanJSONDecoder().decode(WZIMnameAuthInviteCustomElem.self, from: data))
         case .time:
-            guard let model = try? CleanJSONDecoder().decode(WZIMTimeCustomElem.self, from: data) else {
-                return .unknown
-            }
-            return .time(model)
+            return .time(try! CleanJSONDecoder().decode(WZIMTimeCustomElem.self, from: data))
+        case .notice:
+            return .notice(try! CleanJSONDecoder().decode(String.self, from: data))
+        case .sms:
+            return .sms(try! CleanJSONDecoder().decode(WZIMRemindContentElem.self, from: data))
+        case .hibox:
+            return .hibox(try! CleanJSONDecoder().decode(WZIMHiboxElem.self, from: data))
         default:
             return .unknown
         }
     }
-
     
+    /// 获取该模型Data
+    public func getEncodeData() -> Data? {
+        return try? JSONEncoder().encode(self)
+    }
 }
 
 // MARK - 文字内容协议
@@ -147,16 +195,6 @@ public class WZIMImageCustomElem: Codable {
         self.length = CGFloat(image.pngData()!.count/1024)
         self.url = url
         self.fileName = fileName
-    }
-    
-    /// 封装自定义data
-    public func getCustomElem() -> Data? {
-        
-        guard let data = try? JSONEncoder().encode(self) else {
-            return nil
-        }
-        let custom = WZIMCustomElem(type: .img, msg: String(data: data, encoding: String.Encoding.utf8)!)
-        return try? JSONEncoder().encode(custom)
     }
 }
 
@@ -260,7 +298,7 @@ public class WZIMnameAuthInviteCustomElem: Codable {
 // MARK - 时间
 public class WZIMTimeCustomElem: Codable {
     
-    /// 时间
+    /// 时间戳
     public var time: String
     
     enum CodingKeys: String, CodingKey {
@@ -349,3 +387,54 @@ public class WZIMShareContentModel: Codable {
         self.articleId = ""
     }
 }
+
+/// MARK - 提示类型消息
+public class WZIMRemindContentElem: Codable {
+    
+    /// 提示语
+    public var remindMsg: String
+    
+    /// 跳转类型 0 不跳转 1红娘牵线 2 开通会员
+    public var jumpType: Int
+    
+    /// 标红点击跳转的文字
+    public var label: String
+    
+    /// 色值
+    public var color: String
+    
+    /// 1：短信提醒 120002:不符合对方设置的聊天对象  4:安全提醒
+    public var msgType: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case remindMsg = "RemindMsg"
+        case jumpType = "jumpType"
+        case label = "label"
+        case color = "color"
+        case msgType = "msgType"
+    }
+    public init(remindMsg: String, jumpType: Int, label: String, color: String, msgType: Int) {
+        self.remindMsg = remindMsg
+        self.jumpType = jumpType
+        self.label = label
+        self.color = color
+        self.msgType = msgType
+    }
+}
+
+/// MARK - 打招呼类型
+public class WZIMHiboxElem: Codable {
+    
+    /// 打招呼内容
+    public let text: String
+    
+    /// 打招呼类型
+    public let hiboxType: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case text = "Text"
+        case hiboxType = "HiboxType"
+    }
+}
+
+

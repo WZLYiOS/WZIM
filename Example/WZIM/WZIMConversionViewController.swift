@@ -22,7 +22,9 @@ public class WZIMConversionViewController: UIViewController {
     var userId: String = ""
     
     /// 数据源
-    fileprivate var dataArray: [WZIMMessageProtocol] = []
+    private lazy var dataArray: WZMMessageArray = {
+        return $0
+    }(WZMMessageArray(delegete: self))
     
     fileprivate lazy var tableView: UITableView = {
         $0.separatorStyle = .none
@@ -32,6 +34,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.dataSource = self
         $0.delegate = self
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()
         $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
@@ -58,6 +61,9 @@ public class WZIMConversionViewController: UIViewController {
         WZIMMoreItem(image: "im_ic_talk_shot", title: "拍照")]
         return $0
     }(WZIMMoreView())
+    
+    /// 获取消息，用于下拉加载更多
+    private var messageForGet: WZIMMessageProtocol? = nil
     
     deinit {
         debugPrint("消息控制器释放")
@@ -101,16 +107,25 @@ public class WZIMConversionViewController: UIViewController {
         }
     }
     
-    @objc func pullToRefresh() {
+    @objc private func pullToRefresh() {
         
-        conversation.wzGetMessage(cont: 50, last: dataArray.first, sucess: { [weak self](list) in
+        /// 获取消息
+        conversation.wzGetMessage(cont: 10, last: messageForGet, sucess: { [weak self](list) in
             guard let self = self else { return }
             
-            self.dataArray.insert(contentsOf: list, at: 0)
+            let tmpList = self.dataArray.insert(contentsOf: list, at: 0)
             self.tableView.wz_endRefreshing()
             self.tableView.reloadData()
+            if self.messageForGet == nil{
+                self.scrollToBottom(animated: false)
+            }else{
+                self.tableView.scrollToRow(at: IndexPath(row: tmpList.count, section: 0), at: .top, animated: false)
+            }
+            if list.count > 0 {
+                self.messageForGet = list.first
+            }
         }) { (code, msg) in
-            
+            self.tableView.wz_endRefreshing()
         }
     }
     
@@ -133,34 +148,34 @@ extension WZIMConversionViewController {
     /// 发送消息
     func sendMessage(message: WZIMMessageProtocol) {
         
-        let isContains = dataArray.contains(where: { (mess) -> Bool in
-            return mess.wzMessageId() == message.wzMessageId()
-        })
-        if !isContains {
-            dataArray.append(message)
+        if case .img = message.wzCurrentElem() {
+            /// 图片消息保存本地
+            conversation.wzSaveMessage(message: message, sender: UserSession.shared.crurrentUserId(), isRead: false)
         }
         
-        guard let row = dataArray.firstIndex(where: {$0.wzMessageId() == message.wzMessageId()}) else {
+        /// 添加消息
+        let list = dataArray.append(message)
+    
+        /// 判断位置
+        guard let indexPaths = dataArray.wzGetIndexPath(tmps: list) else {
             return
         }
-        let indexPath = IndexPath(row: row, section: 0)
-        
+
         conversation.wzSendMessage(message: message, sucess: {
             self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.reloadRows(at: indexPaths, with: .none)
             self.tableView.endUpdates()
         }) { (code, msg) in
             debugPrint("发送失败")
             self.tableView.beginUpdates()
-            self.tableView.reloadRows(at: [indexPath], with: .none)
+            self.tableView.reloadRows(at: indexPaths, with: .none)
             self.tableView.endUpdates()
         }
         
-        if !isContains {
-            tableView.beginUpdates()
-            tableView.insertRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
-        }
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPaths, with: .fade)
+        tableView.endUpdates()
+        scrollToBottom(animated: true)
     }
 }
 
@@ -168,10 +183,10 @@ extension WZIMConversionViewController {
 extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
  
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        return dataArray.array.count
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataArray[indexPath.row]
+        let model = dataArray.array[indexPath.row]
         let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.getCellIdentifier()) as! WZIMBaseTableViewCell
         cell.pDelegate = self
         cell.reload(model: model, cDelegate: self)
@@ -271,7 +286,7 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
         model.gifId = gif.imageId
         model.image = gif.mainImage
         
-        let message = conversation.wzGetGifMenssage(git: model, name: gif.text)
+        let message = conversation.wzGetGifMenssage(gif: model, name: gif.text)
         sendMessage(message: message)
         scrollToBottom(animated: true)
     }
@@ -350,16 +365,19 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         let filePath = "com.wzly.img.\(Int(NSDate().timeIntervalSince1970))"
         WZIMPictureTableViewCell.storeDisk(filePath: filePath, image: image)
         let model = WZIMImageCustomElem(image: image, fileName: "123", url: filePath)
-        let data = try! JSONEncoder().encode(model)
-        let message = conversation.wzCreateCustom(type: .img, data: data)
-        conversation.wzSaveMessage(message: message, sender: UserSession.shared.crurrentUserId(), isRead: false)
-        dataArray.append(message)
-        
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: dataArray.count - 1, section: 0)], with: .fade)
-        tableView.endUpdates()
-        scrollToBottom(animated: true)
-    
+        let message = conversation.wzCreateImageMessage(elem: model)
         sendMessage(message: message)
+    }
+}
+
+/// MARK  - WZMMessageArrayDelegate
+extension WZIMConversionViewController: WZMMessageArrayDelegate{
+
+    public func messageArray(arry: WZMMessageArray, date: Date) -> WZIMMessageProtocol {
+        return conversation.wzCreateTimeMessage(date: date)
+    }
+    
+    public func messageArray(arry: WZMMessageArray, remove row: Int) {
+        
     }
 }

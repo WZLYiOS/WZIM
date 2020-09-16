@@ -22,6 +22,7 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     private lazy var photoImageView: UIImageView = {
         $0.contentMode = .scaleAspectFill
         $0.isUserInteractionEnabled = true
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xE5E5E5)
         $0.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))
         return $0
     }(UIImageView())
@@ -63,12 +64,6 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
             percentMaskLabel.isHidden = true
             dataMarkModel = elem
             let size = imageSize(elem: elem)
-            
-//            if ImageCache.default.isCached(forKey: elem.filePath) {
-//                setImageView(filePath: elem.filePath, imageView: photoImageView)
-//            }else{
-//                
-//            }
             let url = URL(string: elem.url)
             photoImageView.kf.setImage(with: url)
             photoImageView.snp.updateConstraints { (make) in
@@ -78,6 +73,28 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
             let imageViewMask = UIImageView(image: bubbleImageView.image)
             imageViewMask.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
             photoImageView.layer.mask = imageViewMask.layer
+            if message.wzLoaction() == .right {
+                
+                
+                let newTime = Int(NSDate().timeIntervalSince1970)
+                /// wzCustomInt  发送中：2  发送失败：1 成功：0
+                /// 异常处理：未等回调就退出详情页，根据上传间隔10s处理
+                if let dataTime = message.wzCustomData,
+                    let time = String(data: dataTime, encoding: String.Encoding.utf8),
+                    (newTime - (Int(time) ?? 0)) > 10,
+                    message.wzCustomInt == 2 {
+                    sendFailButton.isHidden = false
+                    percentMaskLabel.isHidden = true
+                }else{
+                    if message.wzCustomInt == 1 {
+                        sendFailButton.isHidden = false
+                    }else{
+                        sendFailButton.isHidden = true
+                    }
+                    percentMaskLabel.isHidden = message.wzCustomInt == 2 ? false : true
+                }
+                readButton.isHidden = !sendFailButton.isHidden
+            }
         }
     }
     
@@ -92,7 +109,7 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     
     /// 更新进度
     public func upload(percent: CGFloat) {
-        percentMaskLabel.text = "\(percent)%"
+        percentMaskLabel.text = String(format: "%.0f%%", percent*100)
         percentMaskLabel.isHidden = percent >= 1 ? true : false
     }
     

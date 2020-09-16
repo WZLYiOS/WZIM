@@ -35,8 +35,9 @@ public class WZIMTimeTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
+        uploadConstraints(type: .center)
         if case let .time(elem) = model.wzCurrentElem() {
-            timeLabel.text = elem.time
+            timeLabel.text = Date.wzImTimeStampToString(timeStamp: elem.time, formatterStr: "MM-dd HH:mm")
         }
     }
 }
