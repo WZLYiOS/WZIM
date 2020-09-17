@@ -22,12 +22,14 @@ extension TIMElem {
             return .sound(self as! TIMSoundElem)
         case is TIMCustomElem:
             let custom = self as! TIMCustomElem
-
-            guard let model = try? CleanJSONDecoder().decode(WZIMCustomElem.self, from: custom.customData) else {
+            
+            /// 将所有JSON 格式的字符串自动转成 Codable 对象或数组
+            let decoder = CleanJSONDecoder()
+            decoder.jsonStringDecodingStrategy = .all
+            guard let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data) else {
                 return .unknown
             }
-            
-            return model.getMsgElem()
+            return model.msgElem
         case is TIMFaceElem:
             let face = self as! TIMFaceElem
             let model = try! CleanJSONDecoder().decode(WZIMFaceCustomMarkModel.self, from: face.data)
@@ -35,34 +37,6 @@ extension TIMElem {
         default:
             return .unknown
         }
-    }
-}
-
-// MARK -
-extension TIMCustomElem {
-    
-    /// 服务端返回的消息msg可能是字典
-    var customData: Data {
-        
-        /// 获取json
-        guard var dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] else {
-            return data
-        }
-        
-        switch dic["msg"] {
-        case is [String: Any]:
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: dic["msg"] as Any,options: []) else {
-                return data
-            }
-            let str = String(data: jsonData,encoding:String.Encoding.utf8)
-            dic["msg"] = str
-            guard let model = try? JSONSerialization.data(withJSONObject: dic as Any, options: []) else {
-                return data
-            }
-            return model
-        default: break
-        }
-        return data
     }
 }
 

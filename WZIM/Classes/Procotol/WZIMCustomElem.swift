@@ -32,45 +32,6 @@ public enum WZMessageElem: Decodable {
     enum CordinateError: Error {
         case missingValue
     }
-    
-    /// 获取string
-    public func getMsg() -> String {
-        switch self {
-        case let .face(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .img(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .makingCourse(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .videoDate(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .nameAuthInvite(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .time(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .share(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .sms(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .notice(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        case let .hibox(elem):
-            let data = try! JSONEncoder().encode(elem)
-            return String(data: data, encoding: .utf8) ?? ""
-        default:
-            return ""
-        }
-    }
-    
 }
 
 // MARK - 自定义消息
@@ -91,50 +52,48 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
 }
 
 // MARK - 我主自定义消息
-public class WZIMCustomElem: Codable {
+public class WZIMCustomElem: Decodable {
     
     /// 消息类型
     public var type: WZMessageCustomType
     
     /// 消息elem
-    public var msg: String
+    public var msgElem: WZMessageElem
     
     enum CodingKeys: String, CodingKey {
         case type = "type"
         case msg = "msg"
     }
     
-    public init(type: WZMessageCustomType, msg: WZMessageElem) {
-        self.type = type
-        self.msg = msg.getMsg()
-    }
-    
-    func getMsgElem() -> WZMessageElem {
-        
-        guard let data = msg.data(using: .utf8) else {
-            return .unknown
-        }
+    required public init(from decoder: Decoder) throws {
+        let vals = try decoder.container(keyedBy: WZIMCustomElem.CodingKeys.self)
+        type = try vals.decode(WZMessageCustomType.self, forKey: CodingKeys.type)
+
         switch type {
         case .img:
-            return .img(try! CleanJSONDecoder().decode(WZIMImageCustomElem.self, from: data))
+            let model = try vals.decode(WZIMImageCustomElem.self, forKey: CodingKeys.msg)
+            msgElem = .img(model)
         case .inviteAuth:
-            return .nameAuthInvite(try! CleanJSONDecoder().decode(WZIMnameAuthInviteCustomElem.self, from: data))
+            msgElem = .nameAuthInvite(try vals.decode(WZIMnameAuthInviteCustomElem.self, forKey: CodingKeys.msg))
         case .time:
-            return .time(try! CleanJSONDecoder().decode(WZIMTimeCustomElem.self, from: data))
+            msgElem = .time(try vals.decode(WZIMTimeCustomElem.self, forKey: CodingKeys.msg))
         case .notice:
-            return .notice(try! CleanJSONDecoder().decode(String.self, from: data))
+            msgElem = .notice(try vals.decode(String.self, forKey: CodingKeys.msg))
         case .sms:
-            return .sms(try! CleanJSONDecoder().decode(WZIMRemindContentElem.self, from: data))
+            msgElem = .sms(try vals.decode(WZIMRemindContentElem.self, forKey: CodingKeys.msg))
         case .hibox:
-            return .hibox(try! CleanJSONDecoder().decode(WZIMHiboxElem.self, from: data))
+            msgElem = .hibox(try vals.decode(WZIMHiboxElem.self, forKey: CodingKeys.msg))
         default:
-            return .unknown
+            msgElem = .unknown
         }
     }
     
     /// 获取该模型Data
-    public func getEncodeData() -> Data? {
-        return try? JSONEncoder().encode(self)
+    public static func getData(type: WZMessageCustomType, msgData: Data) -> Data? {
+        
+        let dic = ["type": type.rawValue, "msg": String(data: msgData, encoding: .utf8) ?? ""]
+        let data = try? JSONSerialization.data(withJSONObject: dic, options: [])
+        return data
     }
 }
 
