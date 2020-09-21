@@ -34,10 +34,10 @@ class WZIMFaceTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         
-        if case let .face(elem) = model.wzCurrentElem() {
+        if case let .face(elem) = model.currentElem {
             
             dotImageView.prepareForReuse()
             let with = elem.expressionData.with == 0 ? 120 : elem.expressionData.with

@@ -1,6 +1,6 @@
 {
   "name": "WZIM",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "summary": "IM组件框架。",
   "description": "我主IM依赖库",
   "homepage": "https://github.com/WZLYiOS/WZIM",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/WZLYiOS/WZIM.git",
-    "tag": "1.3.3"
+    "tag": "1.3.5"
   },
   "requires_arc": true,
   "static_framework": true,

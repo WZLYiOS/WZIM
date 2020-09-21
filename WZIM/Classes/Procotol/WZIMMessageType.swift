@@ -22,7 +22,6 @@ public enum WZIMMessageStatus: Int {
 public enum WZIMConversationType: Int {
     case c2c = 1      // C2C 类型
     case group = 2    // 群聊 类型
-    case system =  3  // 系统消息
 }
  
 /// MARK - 消息位置

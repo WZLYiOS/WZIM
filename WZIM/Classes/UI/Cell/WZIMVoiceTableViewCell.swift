@@ -62,19 +62,19 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         
-        if case let .sound(elem) = model.wzCurrentElem() {
+        if case let .sound(elem) = model.currentElem {
             dataModel = elem
             delegate = cDelegate as? WZIMVoiceTableViewCellDelegate
             
-            playTimeLabel.textColor = model.wzLoaction() == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+            playTimeLabel.textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
             playTimeLabel.text = "\(elem.wzSecond())\""
             
-            switch model.wzLoaction() {
+            switch model.loaction {
             case .right:
-                unReadImageView.isHidden = message.wzCustomInt > 0 ? true : false
+                unReadImageView.isHidden = message.customInt > 0 ? true : false
                 playImageView.animationImages = [UIImage(named: "Cell.bundle/ic_chat_speaker_six")!,
                                                  UIImage(named: "Cell.bundle/ic_chat_speaker_four")!,
                                                  UIImage(named: "Cell.bundle/ic_chat_speaker_five")!,
@@ -123,7 +123,7 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
     /// 点击播放
     @objc private func tapAction(){
         
-        message.wzCustomInt = 1
+        message.customInt = 1
         dataModel.wzGetSound(sucess: { [weak self](path) in
             guard let self = self else { return }
             self.delegate?.startPlayerVoiceTableViewCell(cell: self, path: path)

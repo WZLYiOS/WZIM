@@ -15,7 +15,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     public weak var pDelegate: WZIMTableViewCellPublicDelegate!
     
     /// 消息
-    public var message: WZIMMessageProtocol!
+    public var message: WZMessageProtocol!
     
     /// 头像
     public lazy var avatarImageView: UIImageView = {
@@ -37,7 +37,6 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     /// 底部内容视图，针对多个elem
     public lazy var bottomStackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = UIColor.red
         $0.axis = .vertical
         $0.distribution = .fill
         $0.alignment = .fill
@@ -104,12 +103,12 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     }
     
     /// 更新数据
-    open func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    open func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
 
         message = model
         /// 设置头像
         pDelegate.baseTableViewCell(cell: self, set: avatarImageView)
-        uploadConstraints(type: model.wzLoaction())
+        uploadConstraints(type: model.loaction)
     }
     
     /// 更新位置
@@ -145,10 +144,10 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             
             bubbleImageView.image = WZIMConfig.rightBubbleImage
            
-            let state = message.wzStatus()
+            let state = message.sendStatus
             sendFailButton.isHidden =  state == .fail ? false : true
             readButton.isHidden = !sendFailButton.isHidden
-            readButton.isSelected = message.wzIsReaded()
+            readButton.isSelected = message.isReaded
             avatarImageView.isHidden = false
         case .center:
             bubbleImageView.snp.remakeConstraints { (make) in
@@ -160,6 +159,11 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             readButton.isHidden = true
             avatarImageView.isHidden = true
         }
+    }
+    
+    /// 获取文字颜色
+    open func getTextColor() -> UIColor {
+        return  message.loaction == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
     }
 }
 

@@ -9,11 +9,11 @@
 import Foundation
 import WZIM
 
-extension WZIMMessageProtocol {
+extension WZMessageProtocol {
     /// cell 标识
     func getCellIdentifier() -> UITableViewCell.Type {
         
-        switch wzCurrentElem() {
+        switch currentElem {
         case .img:
             return WZIMPictureTableViewCell.self
         case .text:

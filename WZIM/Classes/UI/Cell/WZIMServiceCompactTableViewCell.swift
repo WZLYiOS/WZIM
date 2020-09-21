@@ -87,7 +87,7 @@ public class WZIMServiceCompactTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         
         

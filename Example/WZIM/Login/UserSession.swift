@@ -25,7 +25,7 @@ public class UserSession: NSObject {
             self.tokenConfig = result
             
             self.logIn(identifier: "wzly_\(result.userId )", userSig: result.userSig, sucess: {
-                self.setUserConfig()
+                
             }) { (code, msg) in
                 
             }

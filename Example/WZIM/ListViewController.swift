@@ -11,9 +11,7 @@ import WZIM
 
 class ListViewController: UIViewController {
 
-    private var dataArray: [WZIMConversationProcotol] {
-        return UserSession.shared.getConversationList()
-    }
+    private var dataArray: [WZConversationProcotol] = []
     
     private lazy var tableView: UITableView = {
         $0.delegate = self
@@ -23,6 +21,7 @@ class ListViewController: UIViewController {
         $0.tableFooterView = UIView()
         $0.tableHeaderView = UIView()
         $0.register(ListTableViewCell.self, forCellReuseIdentifier: "ListTableViewCell")
+        $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         return $0
     }(UITableView())
     
@@ -34,12 +33,24 @@ class ListViewController: UIViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(greetingTextFieldChanged(obj:)), name: UserSession.ImLoginSucessNotification, object: nil)
     }
     
     @objc
     func greetingTextFieldChanged(obj: Notification) {
-        self.tableView.reloadData()
+        pullToRefresh()
+    }
+    
+    @objc func pullToRefresh() {
+        
+        
+        UserSession.shared.imManager.wzGetConversationList(nextSeq: 0, count: 100) { [self] (list, seq, isFinish) in
+            self.dataArray =  list
+            self.tableView.reloadData()
+        } fail: { (code, msg) in
+            debugPrint("获取会话列表失败")
+        }
     }
 }
 
@@ -61,7 +72,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = dataArray[indexPath.row]
         let vc = WZIMConversionViewController()
-        vc.userId = model.wzReceiverId()
+        vc.userId = model.receiverId
         self.navigationController?.pushViewController(vc, animated: true)
         
 

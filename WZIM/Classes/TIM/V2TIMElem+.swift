@@ -11,17 +11,17 @@ import CleanJSON
 import ImSDK
 
 // MARK - 自定义
-extension TIMElem {
+extension V2TIMElem {
     
     /// 获取当前的
     func getElem() -> WZMessageElem {
         switch self {
-        case is TIMTextElem:
-            return .text(self as! TIMTextElem)
-        case is TIMSoundElem:
-            return .sound(self as! TIMSoundElem)
-        case is TIMCustomElem:
-            let custom = self as! TIMCustomElem
+        case is V2TIMTextElem:
+            return .text(self as! V2TIMTextElem)
+        case is V2TIMSoundElem:
+            return .sound(self as! V2TIMSoundElem)
+        case is V2TIMCustomElem:
+            let custom = self as! V2TIMCustomElem
             
             /// 将所有JSON 格式的字符串自动转成 Codable 对象或数组
             let decoder = CleanJSONDecoder()
@@ -30,10 +30,12 @@ extension TIMElem {
                 return .unknown
             }
             return model.msgElem
-        case is TIMFaceElem:
-            let face = self as! TIMFaceElem
+        case is V2TIMFaceElem:
+            let face = self as! V2TIMFaceElem
             let model = try! CleanJSONDecoder().decode(WZIMFaceCustomMarkModel.self, from: face.data)
             return .face(model)
+        case is V2TIMImageElem:
+            return .img(self as! V2TIMImageElem)
         default:
             return .unknown
         }
@@ -41,7 +43,7 @@ extension TIMElem {
 }
 
 // MARK - 遵循文字
-extension TIMTextElem: WZIMTextProtocol {
+extension V2TIMTextElem: WZIMTextProtocol {
     
     public func getText() -> String {
         return text
@@ -49,10 +51,10 @@ extension TIMTextElem: WZIMTextProtocol {
 }
 
 // MARK - 音频
-extension TIMSoundElem: WZIMVoiceProtocol {
+extension V2TIMSoundElem: WZIMVoiceProtocol {
     
     public func wzSecond() -> Int {
-        return Int(second)
+        return Int(duration)
     }
     
     public func wzGetSound(sucess: ((String) -> Void)?, fail: ((Error) -> Void)?) {
@@ -66,9 +68,9 @@ extension TIMSoundElem: WZIMVoiceProtocol {
             return
         }
         
-        getSound(oPath, succ: {
+        downloadSound(oPath, progress: nil) {
             sucess?(oPath)
-        }) { (code, msg) in
+        } fail: { (code, msg) in
             fail?(NSError(domain: msg ?? "", code: Int(code), userInfo: nil))
             debugPrint("音频下载失败：\(String(describing: oPath))")
         }
@@ -88,4 +90,33 @@ extension TIMSoundElem: WZIMVoiceProtocol {
         let oPath = WZIMToolAppearance.getVoicePathMp3(userId: TIMManager.sharedInstance()!.getLoginUser(), uuid: uuid)
         return  oPath
     }
+}
+
+extension V2TIMImageElem: WZIMImageElemProtocol {
+   
+    public var filePath: String {
+        return self.path
+    }
+    
+    public var uuid: String {
+        return imageList.first?.uuid ?? ""
+    }
+    
+    public var size: Int {
+        return Int(imageList.first?.size ?? 0)
+    }
+    
+    public var width: Int {
+        return Int(imageList.first?.width ?? 150)
+    }
+    
+    public var height: Int {
+        return Int(imageList.first?.height ?? 150)
+    }
+    
+    public var url: String {
+        return imageList.first?.url ?? ""
+    }
+    
+    
 }

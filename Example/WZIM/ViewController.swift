@@ -82,53 +82,28 @@ extension ViewController: WZIMTableViewCellPublicDelegate {
     }
 }
 
-extension ViewController: WZIMMessageProtocol {
-    func uploadElem(elem: WZMessageElem) {
-        
-    }
-    
-    
-    func wzStatus() -> WZIMMessageStatus {
-        return .fail
-    }
-    
-    func wzIsReaded() -> Bool {
-        return false
-    }
-    
-    func wzRemove() -> Bool {
-        return false
-    }
-    
-    func wzSender() -> String {
+extension ViewController: WZMessageProtocol {
+    var messageId: String {
         return ""
     }
     
-    func wzMessageId() -> String {
-        return ""
-    }
-    
-    func wzTimestamp() -> Date {
+    var timeTamp: Date {
         return Date()
     }
     
-    func wzGetConversation() -> WZIMConversationProcotol {
-        return TIMManager.sharedInstance()!.getConversationList()!.first!
+    var senderId: String {
+        return ""
     }
     
-    func wzConvertToImportedMsg() {
-        
+    var receiverId: String {
+        return ""
     }
     
-    func wzSetSender(sender: String) {
-        
+    var loaction: WZMessageLocation {
+        return .right
     }
     
-    func wzLoaction() -> WZMessageLocation {
-        return .lelft
-    }
-    
-    var wzCustomInt: Int {
+    var customInt: Int {
         get {
             return 0
         }
@@ -137,18 +112,25 @@ extension ViewController: WZIMMessageProtocol {
         }
     }
     
-    var wzCustomData: Data? {
+    var customData: Data? {
         get {
-            return Data()
+            return nil
         }
         set(newValue) {
             
         }
     }
     
-    func wzCurrentElem() -> WZMessageElem? {
-        return nil
+    var sendStatus: WZIMMessageStatus {
+        return .deleted
     }
     
+    var isReaded: Bool {
+        return false
+    }
+    
+    var currentElem: WZMessageElem {
+        return .unknown
+    }
     
 }

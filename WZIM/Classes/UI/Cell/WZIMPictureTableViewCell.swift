@@ -16,13 +16,15 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     weak var delegate: WZIMPictureTableViewCellDelegate?
     
     /// 数据源
-    public var dataMarkModel: WZIMImageCustomElem!
+    public var dataMarkModel: WZIMImageElemProtocol!
     
     /// 图片
     private lazy var photoImageView: UIImageView = {
         $0.contentMode = .scaleAspectFill
         $0.isUserInteractionEnabled = true
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xE5E5E5)
+        $0.layer.cornerRadius = 5
+        $0.layer.masksToBounds = true
         $0.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))
         return $0
     }(UIImageView())
@@ -55,62 +57,54 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
        super.reload(model: model, cDelegate: cDelegate)
         
-        if case let .img(elem) = model.wzCurrentElem() {
+        if case let .img(elem) = model.currentElem {
             
             delegate = cDelegate as? WZIMPictureTableViewCellDelegate
             percentMaskLabel.isHidden = true
             dataMarkModel = elem
-            let size = imageSize(elem: elem)
-            let url = URL(string: elem.url)
-            photoImageView.kf.setImage(with: url)
+            
+            var size = CGSize(width: UIScreen.main.bounds.size.width * 0.4, height: UIScreen.main.bounds.size.width * 0.6)
+            
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)),
+               let image = UIImage(data: data) {
+                
+                photoImageView.image = image
+                size = imageSize(image.size.width, image.size.height)
+            }else{
+                size = imageSize(CGFloat(elem.width), CGFloat(elem.height))
+                photoImageView.kf.setImage(with: URL(string: elem.url))
+            }
+
+            percentMaskLabel.isHidden = message.sendStatus == .sending ? false : true
             photoImageView.snp.updateConstraints { (make) in
                 make.size.equalTo(size)
-            }
-            
-            let imageViewMask = UIImageView(image: bubbleImageView.image)
-            imageViewMask.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            photoImageView.layer.mask = imageViewMask.layer
-            if message.wzLoaction() == .right {
-                
-                
-                let newTime = Int(NSDate().timeIntervalSince1970)
-                /// wzCustomInt  发送中：2  发送失败：1 成功：0
-                /// 异常处理：未等回调就退出详情页，根据上传间隔10s处理
-                if let dataTime = message.wzCustomData,
-                    let time = String(data: dataTime, encoding: String.Encoding.utf8),
-                    (newTime - (Int(time) ?? 0)) > 10,
-                    message.wzCustomInt == 2 {
-                    sendFailButton.isHidden = false
-                    percentMaskLabel.isHidden = true
-                }else{
-                    if message.wzCustomInt == 1 {
-                        sendFailButton.isHidden = false
-                    }else{
-                        sendFailButton.isHidden = true
-                    }
-                    percentMaskLabel.isHidden = message.wzCustomInt == 2 ? false : true
-                }
-                readButton.isHidden = !sendFailButton.isHidden
             }
         }
     }
     
     /// 图片尺寸
-    func imageSize(elem: WZIMImageCustomElem) -> CGSize {
-        let scale = min(200/elem.heigth, 120/elem.width)
-        let picThumbHeight = elem.heigth * scale
-        let picThumbWidth = elem.width * scale
-        let thumbnailSize = picThumbHeight * picThumbWidth > 150 * 150 ? CGSize(width: 150, height: 150) : CGSize(width: picThumbWidth, height: picThumbHeight)
-        return thumbnailSize
+    private func imageSize( _ width: CGFloat ,_ height: CGFloat) -> CGSize {
+        
+        /// 最大宽度
+        let maxWith: CGFloat = UIScreen.main.bounds.size.width * 0.4
+        
+        if width < maxWith {
+            return CGSize(width: width, height: height)
+        }
+        
+        if height > width {
+            return CGSize(width: width/height*maxWith, height: maxWith)
+        }
+        return CGSize(width: height/width*maxWith, height: maxWith)
     }
     
     /// 更新进度
     public func upload(percent: CGFloat) {
-        percentMaskLabel.text = String(format: "%.0f%%", percent*100)
-        percentMaskLabel.isHidden = percent >= 1 ? true : false
+        percentMaskLabel.text = String(format: "%.0f%%", percent)
+        percentMaskLabel.isHidden = percent >= 100 ? true : false
     }
     
     @objc private func photoImageViewTapAction(tap: UIGestureRecognizer) {
@@ -132,8 +126,17 @@ public protocol WZIMPictureTableViewCellDelegate: WZIMTableViewCellDelegate {
 public extension WZIMPictureTableViewCell {
     
     /// 把图片存入磁盘
-    static func storeDisk(filePath: String, image: UIImage) {
-        ImageCache.default.store(image, forKey: filePath)
+    /// - Parameters:
+    ///   - name: 文件名
+    ///   - image: 图片
+    /// - Returns: 路径
+    static func storeDisk(imageData: Data, compleHandler: ((_ path:  String) -> Void)?) {
+     
+        let name = "WZIM/image/\(Int(NSDate().timeIntervalSince1970))"
+        ImageCache.default.storeToDisk(imageData, forKey: name, processorIdentifier: "", expiration: nil, callbackQueue: .mainAsync) { [self] (result) in
+            let filePath = ImageCache.default.cachePath(forKey: name)
+            compleHandler?(filePath)
+        }
     }
     
     /// 从磁盘加载图片

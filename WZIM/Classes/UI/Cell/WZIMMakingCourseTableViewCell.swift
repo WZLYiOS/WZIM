@@ -88,7 +88,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         topLabel.text = "追求女孩时，如何避免尬聊，7 个小方法，让申老师来告诉你"
         

@@ -79,12 +79,11 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         delegete = cDelegate as? WZIMVideoInviteTableViewCellDeleagte
-        let data = model.wzCustomData
-    
-        if data == nil {
+     
+        if model.customData == nil {
             lelftButton.isSelected = false
             lelftButton.isUserInteractionEnabled = true
             lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: 0xFB4E38).cgColor

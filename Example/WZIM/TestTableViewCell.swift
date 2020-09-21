@@ -40,7 +40,7 @@ class TestTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    open override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    open override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         contentLabel.text = "萨克哈大可接受的卡的哈肯定会卡收到货阿莎看的哈看的哈快速点击哈可点击哈看"
     }

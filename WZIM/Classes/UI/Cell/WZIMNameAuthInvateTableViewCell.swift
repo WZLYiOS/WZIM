@@ -60,14 +60,13 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
         delegate?.tapNameAuthInvateCell(cell: self)
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        if case let .nameAuthInvite(elem) = model.wzCurrentElem() {
+        if case let .nameAuthInvite(elem) = model.currentElem {
             delegate = cDelegate as? WZIMNameAuthInvateTableViewCellDelegate
             dataMarkModel = elem
-            let color = model.wzLoaction() == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
             let text = NSMutableAttributedString(string: elem.content)
-            text.wzSetColor(value: color)
+            text.wzSetColor(value: getTextColor())
             text.wzSetLineSpacing(value: 4)
             titleLabel.attributedText = text
         }

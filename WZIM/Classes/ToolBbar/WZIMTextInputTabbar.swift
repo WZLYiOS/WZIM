@@ -109,7 +109,6 @@ public class WZIMTextInputTabbar: UIView {
         $0.axis = .vertical
         $0.distribution = .fillEqually
         $0.alignment = .fill
-        $0.backgroundColor = UIColor.red
         return $0
     }(UIStackView(arrangedSubviews: [keyboardView]))
     

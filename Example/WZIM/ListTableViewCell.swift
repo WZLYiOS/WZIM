@@ -18,7 +18,7 @@ class ListTableViewCell: UITableViewCell {
     }(UILabel())
     
     private lazy var avatarImageView: UIImageView = {
-        $0.backgroundColor = UIColor.red
+        $0.backgroundColor = UIColor.gray
         $0.layer.cornerRadius = 25
         $0.layer.masksToBounds = true
         $0.contentMode = .scaleAspectFill
@@ -64,8 +64,8 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
-    func reload(model: WZIMConversationProcotol) {
-        nameLabel.text = model.wzReceiverId()
+    func reload(model: WZConversationProcotol) {
+        nameLabel.text = model.receiverId
 //        contentLabel.text = model.wzLastMessage()?.wzMessageId()
     }
 }

@@ -13,7 +13,7 @@ import SnapKit
 public class WZIMMoreView: UIView {
     
     /// 横向排列个数
-    public weak var delegate: WZIMMoreViewDelegate?
+    public weak var delegate: WZIMMoreViewDelegate!
     
     /// 列表
     private lazy var collectionView: UICollectionView = {
@@ -42,15 +42,9 @@ public class WZIMMoreView: UIView {
         return $0
     }(UIPageControl())
     
-    /// 数据源
-    public var dataArray: [WZIMMoreItem] = [] {
-        didSet {
-            self.reloadUI()
-        }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(delegate: WZIMMoreViewDelegate) {
+        super.init(frame: CGRect.zero)
+        self.delegate = delegate
         self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF3F3F3)
         configView()
         configViewLocation()
@@ -80,31 +74,31 @@ public class WZIMMoreView: UIView {
     }
     
     public func reloadUI() {
+        let list = delegate.listMoreView(moreView: self)
         collectionView.reloadData()
         collectionView.snp.updateConstraints { (make) in
-            make.height.equalTo(dataArray.count > 8 ? 175 : 100)
+            make.height.equalTo(list.count > 8 ? 175 : 100)
         }
-        pageControl.numberOfPages = (dataArray.count+8-1)/8;
-        pageControl.isHidden = dataArray.count > 8 ? false : true
+        pageControl.numberOfPages = (list.count+8-1)/8;
+        pageControl.isHidden = list.count > 8 ? false : true
     }
 }
 
 /// MARK - UICollectionViewDataSource
-extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegate {
+extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataArray.count
+        return delegate.listMoreView(moreView: self).count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WZIMMoreCollectionViewCell.self), for: indexPath) as! WZIMMoreCollectionViewCell
-        cell.reload(model: dataArray[indexPath.row])
+        cell.reload(model: delegate.listMoreView(moreView: self)[indexPath.row])
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.WZIMMoreViewDidSelect(moreView: self, item: dataArray[indexPath.row])
+        delegate?.moreView(moreView: self, select: delegate.listMoreView(moreView: self)[indexPath.row])
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -133,7 +127,10 @@ class WZIMMoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
 public protocol WZIMMoreViewDelegate: class {
     
     /// 点击回调
-    func WZIMMoreViewDidSelect(moreView: WZIMMoreView, item: WZIMMoreItem)
+    func moreView(moreView: WZIMMoreView, select item: WZIMMoreItem)
+    
+    /// 获取数据源
+    func listMoreView(moreView: WZIMMoreView) -> [WZIMMoreItem]
 }
 
 // MARK - 更多cell

@@ -90,9 +90,9 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        if model.wzLoaction() == .right {
+        if model.loaction == .right {
             bubbleImageView.image = UIImage(named: "Cell.bundle/ic_talk_inputbox_style4")?.wzStretchableImage()
         }
         

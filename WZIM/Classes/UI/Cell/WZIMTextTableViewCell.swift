@@ -35,11 +35,11 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
-    public override func reload(model: WZIMMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
+    public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
      
-        if case let .text(elem) = model.wzCurrentElem() {
-            let color = model.wzLoaction() == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
+        if case let .text(elem) = model.currentElem {
+            let color = getTextColor()
             let mPara = NSMutableParagraphStyle()
             mPara.lineSpacing = 4
             let text = NSMutableAttributedString(string: elem.getText(),

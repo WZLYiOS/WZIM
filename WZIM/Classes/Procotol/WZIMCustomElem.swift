@@ -15,7 +15,7 @@ public enum WZMessageElem: Decodable {
     case text(WZIMTextProtocol)            // 文字消息
     case sound(WZIMVoiceProtocol)          // 音频
     case face(WZIMFaceCustomMarkModel)     // 表情
-    case img(WZIMImageCustomElem)          // 图片消息
+    case img(WZIMImageElemProtocol)          // 图片消息
     case makingCourse(WZIMMakingCourseCustomElem) // 红娘课程
     case videoDate(WZIMVideoDateCustomElem) // 线上视频约会服务
     case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 邀请认证
@@ -39,10 +39,12 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     
     public static var defaultCase: WZMessageCustomType = .none
     case none  // 未知消息
+    /// 本地自定义消息
     case sms = "sms"   // 发送短信
     case safe = "safe" // 安全提醒
     case time = "time" // 时间
-    case img = "img"   // 时间
+
+    /// 消息
     case notice = "notice" // 透传
     case userInfo = "userInfo" // 用户信息
     case share = "share" // 分享消息
@@ -70,9 +72,6 @@ public class WZIMCustomElem: Decodable {
         type = try vals.decode(WZMessageCustomType.self, forKey: CodingKeys.type)
 
         switch type {
-        case .img:
-            let model = try vals.decode(WZIMImageCustomElem.self, forKey: CodingKeys.msg)
-            msgElem = .img(model)
         case .inviteAuth:
             msgElem = .nameAuthInvite(try vals.decode(WZIMnameAuthInviteCustomElem.self, forKey: CodingKeys.msg))
         case .time:
@@ -115,46 +114,6 @@ public protocol WZIMVoiceProtocol{
     
     /// 下载音频
     func wzGetSound(sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
-}
-
-// MARK - 图片
-public class WZIMImageCustomElem: Codable {
-    
-    /// 图片宽度
-    public var width: CGFloat
-    
-    /// 图片高度
-    public var heigth: CGFloat
-    
-    /// 图片大小,单位 Kb
-    public var length: CGFloat
-    
-    /// 图片地址
-    public var url: String
-    
-    /// 文件名
-    public var fileName: String
-    
-    /// 文件路径
-//    public var filePath: String
-    
-    enum CodingKeys: String, CodingKey {
-        case width = "width"
-        case heigth = "heigth"
-        case length = "length"
-        case url = "url"
-        case fileName = "fileName"
-//        case filePath = "filePath"
-    }
-    
-   public init(image: UIImage, fileName: String, url: String) {
-//        self.filePath = ""
-        self.width = image.size.width
-        self.heigth = image.size.height
-        self.length = CGFloat(image.pngData()!.count/1024)
-        self.url = url
-        self.fileName = fileName
-    }
 }
 
 // MARK - 表情消息
@@ -395,5 +354,29 @@ public class WZIMHiboxElem: Codable {
         case hiboxType = "HiboxType"
     }
 }
+
+/// MARK - 图片协议
+public protocol WZIMImageElemProtocol {
+    
+    /// 要发送的图片路径
+    var filePath: String {get}
+    
+    /// 图片 ID，内部标识，可用于外部缓存key
+    var uuid: String {get}
+    
+    /// 图片大小
+    var size: Int {get}
+    
+    /// 图片宽度
+    var width: Int {get}
+    
+    /// 图片高度
+    var height: Int {get}
+    
+    /// 下载URL
+    var url: String {get}
+}
+
+
 
 
