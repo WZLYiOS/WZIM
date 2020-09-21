@@ -89,3 +89,14 @@ extension V2TIMMessage: WZMessageProtocol {
         }
     }
 }
+
+/// MARK - WZMessageReceiptProtocol
+extension V2TIMMessageReceipt: WZMessageReceiptProtocol {
+    public var userId: String {
+        return userID
+    }
+    
+    public var time: Int {
+        return Int(timestamp)
+    }
+}

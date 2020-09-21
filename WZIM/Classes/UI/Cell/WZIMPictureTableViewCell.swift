@@ -98,7 +98,7 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         if height > width {
             return CGSize(width: width/height*maxWith, height: maxWith)
         }
-        return CGSize(width: height/width*maxWith, height: maxWith)
+        return CGSize(width: maxWith, height: height/width*maxWith)
     }
     
     /// 更新进度
@@ -133,7 +133,7 @@ public extension WZIMPictureTableViewCell {
     static func storeDisk(imageData: Data, compleHandler: ((_ path:  String) -> Void)?) {
      
         let name = "WZIM/image/\(Int(NSDate().timeIntervalSince1970))"
-        ImageCache.default.storeToDisk(imageData, forKey: name, processorIdentifier: "", expiration: nil, callbackQueue: .mainAsync) { [self] (result) in
+        ImageCache.default.storeToDisk(imageData, forKey: name, processorIdentifier: "", expiration: nil, callbackQueue: .mainAsync) { (result) in
             let filePath = ImageCache.default.cachePath(forKey: name)
             compleHandler?(filePath)
         }
