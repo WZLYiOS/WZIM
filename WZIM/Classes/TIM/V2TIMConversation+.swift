@@ -26,9 +26,9 @@ extension V2TIMConversation: WZConversationProcotol {
     public var receiverId: String {
         switch type {
         case .C2C:
-            return userID
+            return userID.imDelPrefix
         default:
-            return groupID
+            return groupID.imDelPrefix
         }
     }
     

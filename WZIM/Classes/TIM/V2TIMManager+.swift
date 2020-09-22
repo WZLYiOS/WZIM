@@ -8,21 +8,42 @@
 import ImSDK
 import Foundation
 
+/// 添加前缀
+public extension String {
+    
+    /// 添加前缀
+    var imPrefix: String {
+        
+        if self.contains("wzly_") {
+            return self
+        }
+        return "wzly_\(self)"
+    }
+    
+    /// 去除前缀
+    var imDelPrefix: String{
+        if self.contains("wzly_") {
+            return self.replacingOccurrences(of: "wzly_", with: "")
+        }
+        return self
+    }
+}
+
 // MARK - 管理器遵循协议
 extension V2TIMManager: WZIMManagerProcotol {
     
     public func setReadMessage(receiverId: String, type: WZIMConversationType) {
         
         if type == .c2c {
-            markC2CMessage(asRead: receiverId, succ: nil, fail: nil)
+            markC2CMessage(asRead: receiverId.imPrefix, succ: nil, fail: nil)
             return
         }
-        markGroupMessage(asRead: receiverId, succ: nil, fail: nil)
+        markGroupMessage(asRead: receiverId.imPrefix, succ: nil, fail: nil)
     }
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
         let msg = (message as! V2TIMMessage)
-        return send(msg, receiver: receiverId, groupID: nil, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
+        return send(msg, receiver: receiverId.imPrefix, groupID: nil, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
             progress?(CGFloat(progre))
         } succ: {
             sucess?()
@@ -33,7 +54,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func sendGruopMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
         let msg = (message as! V2TIMMessage)
-        return send(msg, receiver: nil, groupID: receiverId, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
+        return send(msg, receiver: nil, groupID: receiverId.imPrefix, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
             progress?(CGFloat(progre))
         } succ: {
             sucess?()
@@ -44,10 +65,15 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func getC2CMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
         
-        getC2CHistoryMessageList(receiverId, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
-            let arr = list?.sorted { (obj0, obj1) -> Bool in
+        getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
+            var arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
+            arr = arr?.sorted(by: { (obj0, obj1) -> Bool in
+                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                return top0 > top1
+            })
             sucess?(arr ?? [])
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
@@ -55,10 +81,15 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func getGroupMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
-        getGroupHistoryMessageList(receiverId, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
-            let arr = list?.sorted { (obj0, obj1) -> Bool in
+        getGroupHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
+            var arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
+            arr = arr?.sorted(by: { (obj0, obj1) -> Bool in
+                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                return top0 > top1
+            })
             sucess?(arr ?? [])
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
@@ -66,22 +97,22 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func setUserProfile(receiverId: String, data: Data) {
-        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId)
+        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId.imPrefix)
         try? data.write(to: URL(fileURLWithPath: aFilePath))
     }
     
     public func getUserProfile(receiverId: String) -> Data? {
         
-        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId)
+        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId.imPrefix)
         return FileManager.default.contents(atPath: aFilePath)
     }
     
     public func setConversationTop(receiverId: String, isTop: Bool) {
-        UserDefaults.standard.set(isTop, forKey: "com.wzly.im.conversation.\(String(describing: getLoginUser())).\(receiverId).isTop")
+        UserDefaults.standard.set(isTop, forKey: "com.wzly.im.conversation.\(String(describing: getLoginUser())).\(receiverId.imPrefix).isTop")
     }
     
     public func getConversationTop(receiverId: String) -> Bool {
-        return UserDefaults.standard.bool(forKey: "com.wzly.im.conversation.\(String(describing: getLoginUser())).\(receiverId).isTop")
+        return UserDefaults.standard.bool(forKey: "com.wzly.im.conversation.\(String(describing: getLoginUser())).\(receiverId.imPrefix).isTop")
     }
     
     public func wzCreateTextMessage(text: String) -> WZMessageProtocol {

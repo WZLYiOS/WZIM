@@ -98,7 +98,7 @@ extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UIColl
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.moreView(moreView: self, select: delegate.listMoreView(moreView: self)[indexPath.row])
+        delegate.moreView(moreView: self, select: delegate.listMoreView(moreView: self)[indexPath.row])
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

@@ -20,14 +20,14 @@ extension V2TIMMessage: WZMessageProtocol {
     }
     
     public var senderId: String {
-        return sender
+        return sender.imDelPrefix
     }
     
     public var receiverId: String {
         if userID.count > 0 {
-            return userID
+            return userID.imDelPrefix
         }
-        return groupID
+        return groupID.imDelPrefix
     }
     
     public var loaction: WZMessageLocation {
@@ -92,8 +92,9 @@ extension V2TIMMessage: WZMessageProtocol {
 
 /// MARK - WZMessageReceiptProtocol
 extension V2TIMMessageReceipt: WZMessageReceiptProtocol {
+    
     public var userId: String {
-        return userID
+        return userID.imDelPrefix
     }
     
     public var time: Int {
