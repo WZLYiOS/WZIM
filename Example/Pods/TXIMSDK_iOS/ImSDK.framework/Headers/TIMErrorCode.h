@@ -37,6 +37,7 @@ enum ERROR_CODE {
     ERR_SDK_COMM_FILE_TOO_LARGE                 = 7005,    ///< 文件大小超出了限制，图片、语音最大限制是28MB，视频、文件最大限制是100MB
     ERR_SDK_COMM_FILE_SIZE_EMPTY                = 7006,    ///< 空文件，要求文件大小不是0字节，如果上传图片、语音、视频或文件，请检查文件是否正确生成。
     ERR_SDK_COMM_FILE_OPEN_FAILED               = 7007,    ///< 文件打开失败，请检查文件是否存在，或者已被独占打开，引起 SDK 打开失败。
+    ERR_SDK_COMM_API_CALL_FREQUENCY_LIMIT       = 7008,    ///< API 调用超频
 
     // 帐号错误码
 
@@ -58,7 +59,8 @@ enum ERROR_CODE {
     ERR_INVALID_CONVERSATION                    = 6004,    ///< 会话无效，getConversation 时检查是否已经登录，如未登录获取会话，会有此错误码返回。
     ERR_FILE_TRANS_AUTH_FAILED                  = 6006,    ///< 文件传输鉴权失败，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_FILE_TRANS_NO_SERVER                    = 6007,    ///< 文件传输获取 Server 列表失败，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
-    ERR_FILE_TRANS_UPLOAD_FAILED                = 6008,    ///< 文件传输上传失败，请检查网络是否连接，如果上传的是图片，确认图片能够正常打开。
+    ERR_FILE_TRANS_UPLOAD_FAILED                = 6008,    ///< 文件传输上传失败，请检查网络是否连接
+    ERR_IMAGE_UPLOAD_FAILED_NOTIMAGE            = 6031,    ///< 文件传输上传失败，请检查上传的图片是否能够正常打开。
     ERR_FILE_TRANS_DOWNLOAD_FAILED              = 6009,    ///< 文件传输下载失败，请检查网络，或者文件、语音是否已经过期，目前资源文件存储7天。
     ERR_HTTP_REQ_FAILED                         = 6010,    ///< HTTP 请求失败，请检查 URL 地址是否合法，可在网页浏览器尝试访问该 URL 地址。
     ERR_INVALID_MSG_ELEM                        = 6016,    ///< IM SDK 无效消息 elem，具体可查看错误信息进一步定义哪个字段。

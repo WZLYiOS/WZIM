@@ -15,21 +15,21 @@ public class WZIMTextInputView: UIView {
     /// 输入框
     public lazy var textInput: WZIMChatTextView = {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x31345C)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x31345C")
         $0.placeHolderFont = $0.font
-        $0.placeHolderTextColor = WZIMToolAppearance.hexadecimal(rgb: 0xA5A4AA)
+        $0.placeHolderTextColor = WZIMToolAppearance.hexadecimal(rgb: "0xA5A4AA")
         $0.returnKeyType = .send
         $0.backgroundColor = UIColor.clear
         $0.placeHolderLabel.text = "请输入聊天内容"
         $0.placeHolderLabel.font = $0.font
-        $0.placeHolderLabel.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xA5A4AA)
+        $0.placeHolderLabel.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xA5A4AA")
         return $0
     }(WZIMChatTextView())
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         self.layer.cornerRadius = 17.5
         self.layer.masksToBounds = true
         configView()

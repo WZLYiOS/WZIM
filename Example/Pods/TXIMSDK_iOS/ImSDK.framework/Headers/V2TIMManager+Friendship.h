@@ -312,6 +312,10 @@ typedef NS_ENUM(NSInteger, V2TIMFriendAcceptType) {
 /// 好友备注
 @property(nonatomic,strong) NSString *friendRemark;
 
+/// 好友自定义字段
+/// 首先要在 [控制台](https://console.cloud.tencent.com/im) (功能配置 -> 好友自定义字段) 配置好友自定义字段，然后再调用该接口进行设置，key 值不需要加 Tag_SNS_Custom_ 前缀。
+@property(nonatomic,strong) NSDictionary<NSString *,NSData *> *friendCustomInfo;
+
 /// 好友所在分组列表
 @property(nonatomic,strong,readonly) NSArray *friendGroups;
 

@@ -446,6 +446,10 @@ typedef NS_ENUM(NSInteger, V2TIMGroupMemberRole) {
 /// 用户好友验证方式
 @property(nonatomic,assign) V2TIMFriendAllowType allowType;
 
+/// 用户自定义字段
+/// 首先要在 [控制台](https://console.cloud.tencent.com/im) (功能配置 -> 用户自定义字段) 配置用户自定义字段，然后再调用该接口进行设置，key 值不需要加 Tag_Profile_Custom_ 前缀。
+@property(nonatomic,strong) NSDictionary<NSString *,NSData *> * customInfo;
+
 @end
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -474,6 +478,9 @@ typedef NS_ENUM(NSInteger, V2TIMGroupMemberRole) {
 
 /// 群成员详细资料
 @interface V2TIMGroupMemberFullInfo : V2TIMGroupMemberInfo
+/// 群成员自定义字段
+/// 首先要在 [控制台](https://console.cloud.tencent.com/im) (功能配置 -> 群成员自定义字段) 配置用户自定义字段，然后再调用该接口进行设置。
+@property(nonatomic,strong) NSDictionary<NSString *,NSData *> * customInfo;
 
 /// 群成员角色,修改群成员角色请调用 V2TIMManager+Group.h -> setGroupMemberRole 接口
 @property(nonatomic,assign,readonly) V2TIMGroupMemberRole role;

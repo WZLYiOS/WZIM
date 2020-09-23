@@ -26,14 +26,14 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
     
     private lazy var titleLabel: UILabel = {
         $0.numberOfLines = 2
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x2c2c2c)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x2c2c2c")
         $0.font = UIFont.boldSystemFont(ofSize: 13)
         return $0
     }(UILabel())
     
     private lazy var timeLabel: UILabel = {
         $0.font = UIFont.systemFont(ofSize: 11)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x999999)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x999999")
         return $0
     }(UILabel())
     

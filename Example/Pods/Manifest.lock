@@ -14,31 +14,31 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SnapKit (5.0.1)
-  - TXIMSDK_iOS (4.9.1)
+  - TXIMSDK_iOS (5.0.6)
   - TZImagePickerController (3.2.9)
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (1.3.5):
-    - WZIM/EM (= 1.3.5)
-    - WZIM/Procotol (= 1.3.5)
-    - WZIM/TIM (= 1.3.5)
-    - WZIM/Tool (= 1.3.5)
-    - WZIM/ToolBbar (= 1.3.5)
-    - WZIM/UI (= 1.3.5)
-  - WZIM/EM (1.3.5):
+  - WZIM (1.3.8):
+    - WZIM/EM (= 1.3.8)
+    - WZIM/Procotol (= 1.3.8)
+    - WZIM/TIM (= 1.3.8)
+    - WZIM/Tool (= 1.3.8)
+    - WZIM/ToolBbar (= 1.3.8)
+    - WZIM/UI (= 1.3.8)
+  - WZIM/EM (1.3.8):
     - HyphenateLite (~> 3.7.0)
     - WZIM/UI
-  - WZIM/Procotol (1.3.5):
+  - WZIM/Procotol (1.3.8):
     - CleanJSON (~> 1.0.0)
-  - WZIM/TIM (1.3.5):
-    - TXIMSDK_iOS (~> 4.9.1)
+  - WZIM/TIM (1.3.8):
+    - TXIMSDK_iOS (~> 5.0.6)
     - WZIM/UI
-  - WZIM/Tool (1.3.5)
-  - WZIM/ToolBbar (1.3.5):
+  - WZIM/Tool (1.3.8)
+  - WZIM/ToolBbar (1.3.8):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
     - WZLame (~> 4.0.0)
-  - WZIM/UI (1.3.5):
+  - WZIM/UI (1.3.8):
     - Kingfisher (~> 5.15.0)
     - WZIM/Procotol
     - WZIM/ToolBbar
@@ -78,6 +78,8 @@ DEPENDENCIES:
   - WZUIExtension (~> 0.1.5)
 
 SPEC REPOS:
+  https://cdn.cocoapods.org/:
+    - TXIMSDK_iOS
   https://github.com/WZLYiOS/WZPodSpecs.git:
     - WZAlamofire
     - WZEncryption
@@ -97,7 +99,6 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SnapKit
-    - TXIMSDK_iOS
     - TZImagePickerController
     - WZRefresh
     - WZRoute
@@ -117,11 +118,11 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  TXIMSDK_iOS: 587e25fa8b42c9f228bb9065084270fa6990190f
+  TXIMSDK_iOS: f7a138a1271c61492bd912f180ef2a0eff15a2dd
   TZImagePickerController: 1f92968aa0e98a06b9e2eccca8560acc19254257
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: 5e7492dfb962ed9f507cd0d4bad6fb40e0a3e33e
+  WZIM: 422a75640fb9a5ada27d858679e001f886307b4f
   WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4

@@ -234,6 +234,8 @@
 /**
  *  3.3 删除单个会话
  *
+ *  删除会话的同时会把会话的漫游消息从本地和后台都删除。
+ *
  *  @param type 会话类型，详情请参考 TIMComm.h 里面的 TIMConversationType 定义
  *  @param conversationId 会话 Id
  *                        单聊类型（C2C）   ：为对方 userID；
@@ -243,22 +245,6 @@
  *  @return YES:删除成功；NO:删除失败
  */
 - (BOOL)deleteConversation:(TIMConversationType)type receiver:(NSString*)conversationId;
-
-/**
- *  3.4 删除单个会话和对应的会话消息
- *
- *  本接口与 deleteConversation() 的差异在于，deleteConversation() 只是删除单个会话，而本接口会额外把本地缓存的消息记录也一并删除掉。
- *  
- *  @note 本接口只能删除本地缓存的历史消息，无法删除云端保存的历史消息。
- *  @param type 会话类型，详情请参考 TIMComm.h 里面的 TIMConversationType 定义
- *  @param conversationId 会话 Id
- *                        单聊类型（C2C）   ：为对方 userID；
- *                        群组类型（GROUP） ：为群组 groupId；
- *                        系统类型（SYSTEM）：为 @""
- *
- *  @return YES:删除成功；NO:删除失败
- */
-- (BOOL)deleteConversationAndMessages:(TIMConversationType)type receiver:(NSString*)conversationId;
 
 /// @}
 

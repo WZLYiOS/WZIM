@@ -124,26 +124,36 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 - (V2TIMMessage *)createTextMessage:(NSString *)text;
 
 /**
- *  2.2 创建自定义消息
+ *  2.2 创建文本消息，并且可以附带 @ 提醒功能
+ *
+ *  提醒消息仅适用于在群组中发送的消息
+ *
+ *  @param atUserList 需要 @ 的用户列表，如果需要 @ALL，请传入 kImSDK_MesssageAtALL 常量字符串。
+ *  举个例子，假设该条文本消息希望@提醒 denny 和 lucy 两个用户，同时又希望@所有人，atUserList 传 @[@"denny",@"lucy",kImSDK_MesssageAtALL]
+ */
+- (V2TIMMessage *)createTextAtMessage:(NSString *)text atUserList:(NSMutableArray<NSString *> *)atUserList;
+
+/**
+ *  2.3 创建自定义消息
  */
 - (V2TIMMessage *)createCustomMessage:(NSData *)data;
 
 /**
- *  2.3 创建图片消息（图片文件最大支持 28 MB）
+ *  2.4 创建图片消息（图片文件最大支持 28 MB）
  *
  *  @note 如果是系统相册拿的图片，需要先把图片导入 APP 的目录下，具体请参考 Demo TUIChatController -> imagePickerController 代码示例
  */
 - (V2TIMMessage *)createImageMessage:(NSString *)imagePath;
 
 /**
- *  2.4 创建语音消息（语音文件最大支持 28 MB）
+ *  2.5 创建语音消息（语音文件最大支持 28 MB）
  *
  *  @param duration 音频时长，单位 s
  */
 - (V2TIMMessage *)createSoundMessage:(NSString *)audioFilePath duration:(int)duration;
 
 /**
- *  2.5 创建视频消息（视频文件最大支持 100 MB）
+ *  2.6 创建视频消息（视频文件最大支持 100 MB）
  *
  *  @param type 视频类型，如 mp4 mov 等
  *  @param duration 视频时长，单位 s
@@ -157,17 +167,17 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
                         snapshotPath:(NSString *)snapshotPath;
 
 /**
- *  2.6 创建文件消息（文件最大支持 100 MB）
+ *  2.7 创建文件消息（文件最大支持 100 MB）
  */
 - (V2TIMMessage *)createFileMessage:(NSString *)filePath fileName:(NSString *)fileName;
 
 /**
- *  2.7 创建地理位置消息
+ *  2.8 创建地理位置消息
  */
 - (V2TIMMessage *)createLocationMessage:(NSString *)desc longitude:(double)longitude latitude:(double)latitude;
 
 /**
- *  2.8 创建表情消息
+ *  2.9 创建表情消息
  *
  *  SDK 并不提供表情包，如果开发者有表情包，可使用 index 存储表情在表情包中的索引，或者使用 data 存储表情映射的字符串 key，这些都由用户自定义，SDK 内部只做透传。
  *
@@ -190,13 +200,13 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
  *  @param receiver 消息接收者的 userID, 如果是发送 C2C 单聊消息，只需要指定 receiver 即可。
  *  @param groupID 目标群组 ID，如果是发送群聊消息，只需要指定 groupID 即可。
  *  @param priority 消息优先级，仅针对群聊消息有效。请把重要消息设置为高优先级（比如红包、礼物消息），高频且不重要的消息设置为低优先级（比如点赞消息）。
- *  @param onlineUserOnly 是否只有在线用户才能收到，如果设置为 YES ，接收方离线收不到，历史消息也拉取不到，常被用于实现”对方正在输入”或群组里的非重要提示等弱提示功能。
- *  @param offlinePushInfo 苹果 APNS 离线推送时携带的标题和声音，如果您指定 onlineUserOnly 为 YES，则无法设置 offlinePushInfo。
+ *  @param onlineUserOnly 是否只有在线用户才能收到，如果设置为 YES ，接收方历史消息拉取不到，常被用于实现”对方正在输入”或群组里的非重要提示等弱提示功能。
+ *  @param offlinePushInfo 苹果 APNS 离线推送时携带的标题和声音。
  *  @param progress 文件上传进度（当发送消息中包含图片、语音、视频、文件等富媒体消息时才有效）。
  *  @return msgID 消息唯一标识
  *
  *  @note
- *  - 如果需要消息离线推送，请先在 V2TIMManager+APNS.h 开启推送，推送开启后，除了 onlineUserOnly 为 YES 的消息和自定义消息，其他消息默认都会推送。
+ *  - 如果需要消息离线推送，请先在 V2TIMManager+APNS.h 开启推送，推送开启后，除了自定义消息，其他消息默认都会推送。
  *  - 如果自定义消息也需要推送，请设置 offlinePushInfo 的 desc 字段，设置成功后，推送的时候会默认展示 desc 信息。
  */
 - (NSString *)sendMessage:(V2TIMMessage *)message
@@ -260,12 +270,23 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 /**
  *  4.6 删除本地消息
  *
- *  @note 消息只能本地删除，消息删除后，SDK 会在本地把这条消息标记为已删除状态，getHistoryMessage 不能再拉取到，如果程序卸载重装，本地会失去对这条消息的删除标记，getHistoryMessage 还能再拉取到该条消息。
+ *  @note 该接口只能删除本地历史，消息删除后，SDK 会在本地把这条消息标记为已删除状态，getHistoryMessage 不能再拉取到，如果程序卸载重装，本地会失去对这条消息的删除标记，getHistoryMessage 还能再拉取到该条消息。
  */
 - (void)deleteMessageFromLocalStorage:(V2TIMMessage *)msg succ:(V2TIMSucc)succ fail:(V2TIMFail)fail;
 
 /**
- *  4.7 向群组消息列表中添加一条消息
+ *  4.7 删除本地及云端的消息
+ *
+ *  @note 该接口会在 deleteMessageFromLocalStorage 的基础上，同步删除云端存储的消息，且无法恢复。需要注意的是：
+ *  - 一次最多只能删除 30 条消息
+ *  - 要删除的消息必须属于同一会话
+ *  - 一秒钟最多只能调用一次该接口
+ *  - 如果该账号在其他设备上拉取过这些消息，那么调用该接口删除后，这些消息仍然会保存在那些设备上，即删除消息不支持多端同步。
+ */
+- (void)deleteMessages:(NSArray<V2TIMMessage *>*)msgList succ:(V2TIMSucc)succ fail:(V2TIMFail)fail;
+
+/**
+ *  4.8 向群组消息列表中添加一条消息
  *
  *  该接口主要用于满足向群组聊天会话中插入一些提示性消息的需求，比如“您已经退出该群”，这类消息有展示
  *  在聊天消息区的需求，但并没有发送给其他人的必要。
@@ -318,7 +339,7 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 @property(nonatomic,strong,readonly) NSString *msgID;
 
 /// 消息时间
-@property(nonatomic,assign,readonly) NSDate *timestamp;
+@property(nonatomic,strong,readonly) NSDate *timestamp;
 
 /// 消息发送者
 @property(nonatomic,strong,readonly) NSString *sender;
@@ -333,10 +354,17 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 @property(nonatomic,strong,readonly) NSString *nameCard;
 
 /// 消息发送者头像
+/// 在 C2C 场景下，陌生人的头像不会实时更新，如需更新陌生人的头像（如在 UI 上点击陌生人头像以展示陌生人信息时），
+/// 请调用 V2TIMManager.h -> getUsersInfo 接口触发信息的拉取。待拉取成功后，SDK 会更新本地头像信息，即 faceURL 字段的内容。
+/// @note 请不要在收到每条消息后都去 getUsersInfo，会严重影响程序性能。
 @property(nonatomic,strong,readonly) NSString *faceURL;
 
 /// 如果是群组消息，groupID 为会话群组 ID，否则为 nil
 @property(nonatomic,strong,readonly) NSString *groupID;
+
+/// 群聊中的消息序列号云端生成，在群里是严格递增且唯一的,
+/// 单聊中的序列号是本地生成，不能保证严格递增且唯一。
+@property(nonatomic,assign,readonly) uint64_t seq;
 
 /// 如果是单聊消息，userID 为会话用户 ID，否则为 nil，
 /// 假设自己和 userA 聊天，无论是自己发给 userA 的消息还是 userA 发给自己的消息，这里的 userID 均为 userA
@@ -353,6 +381,9 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 
 /// 消息对方是否已读（只有 C2C 消息有效）
 @property(nonatomic,assign,readonly) BOOL isPeerRead;
+
+/// 群消息中被 @ 的用户 UserID 列表（即该消息都 @ 了哪些人）
+@property(nonatomic,strong,readonly) NSMutableArray<NSString *> *groupAtUserList;
 
 /// 消息类型
 @property(nonatomic,assign,readonly) V2TIMElemType elemType;
@@ -399,6 +430,7 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 @interface V2TIMElem : NSObject
 
 /// 获取下一个 Elem，如果您的消息有多个 Elem，可以通过当前 Elem 获取下一个 Elem 对象，如果返回值为 nil，表示 Elem 获取结束。
+/// 详细使用方法请参考文档 [消息收发](https://cloud.tencent.com/document/product/269/44490#4.-.E6.9C.89.E5.A4.9A.E4.B8.AA-elem-.E7.9A.84.E6.B6.88.E6.81.AF.E5.BA.94.E8.AF.A5.E5.A6.82.E4.BD.95.E8.A7.A3.E6.9E.90.EF.BC.9F)
 - (V2TIMElem *)nextElem;
 @end
 
@@ -459,7 +491,7 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 /// 图片高度
 @property(nonatomic,assign,readonly) int height;
 
-/// 图片 url
+/// 图片 url（URL 的有效期为）
 @property(nonatomic,strong,readonly) NSString * url;
 
 /**
@@ -524,7 +556,7 @@ typedef NS_ENUM(NSInteger, V2TIMGroupInfoChangeType){
 @property(nonatomic,assign,readonly) int videoSize;
 
 /// 视频类型
-@property(nonatomic,assign,readonly) NSString *videoType;
+@property(nonatomic,strong,readonly) NSString *videoType;
 
 /// 视频时长
 @property(nonatomic,assign,readonly) int duration;

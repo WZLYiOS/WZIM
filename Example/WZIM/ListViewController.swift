@@ -25,9 +25,13 @@ class ListViewController: UIViewController {
         return $0
     }(UITableView())
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "测试", style: .plain, target: self, action: #selector(rightBarButtonAction))
+        
         // Do any additional setup after loading the view.
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -52,6 +56,10 @@ class ListViewController: UIViewController {
             debugPrint("获取会话列表失败")
         }
     }
+    
+    @objc func rightBarButtonAction(){
+        self.navigationController?.pushViewController(ViewController(), animated: true)
+    }
 }
 
 // MARK - HBConversationViewController
@@ -75,7 +83,5 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         vc.userId = model.receiverId
         self.navigationController?.pushViewController(vc, animated: true)
         
-
-//        self.navigationController?.pushViewController(ViewController(), animated: true)
     }
 }

@@ -26,6 +26,9 @@ public enum WZMessageElem: Decodable {
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
     case dateService(WZMessageDateServiceElem)         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
+    case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
+    
+    
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
     }
@@ -56,6 +59,7 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case dateAuthInvite = "dateAuthInvite" // 约会实名认证邀请
     case videoTalkInvite = "videoTalkInvite"  // 视频谈单邀请
     case nameAuthPop = "dateApplyAuthPopup" // 牵线首次登陆实名认证弹窗
+    case dateServiceHnSetRecCon = "dateServiceHnSetRecCon" // 红娘设置推荐条件)
 }
 
 // MARK - 我主自定义消息
@@ -95,6 +99,8 @@ public class WZIMCustomElem: Decodable {
             msgElem = .dateService(try vals.decode(WZMessageDateServiceElem.self, forKey: CodingKeys.msg))
         case .nameAuthPop:
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
+        case .dateServiceHnSetRecCon:
+            msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
         default:
             msgElem = .unknown
         }
@@ -205,14 +211,26 @@ public class WZIMFaceCustomModel: Codable {
 public class WZVideoTalkInviteElem: Codable {
     
     /// 用户名
-    let userName: String
+    public let userName: String
     
     /// 头像
-    let avatar: String
+    public let avatar: String
+    
+    /// 房间id
+    public let roomid: String
+    
+    /// 我主良缘情感顾问
+    public let label: String
+    
+    /// 我可以为你在线推荐对象吗
+    public let text: String
     
     enum CodingKeys: String, CodingKey {
         case userName = "username"
         case avatar = "avatar"
+        case roomid = "roomid"
+        case label = "label"
+        case text = "text"
     }
 }
 
@@ -443,6 +461,20 @@ public class WZMessageCardElem: Codable {
 // MARK - 约会实名认证邀请
 public class WZMessageDateAuthInviteElem: Codable {
     
+    /// 约会实名认证邀请
+    public let text: String
+    
+    /// 我主良缘实名认证
+    public let title: String
+    
+    /// 图片
+    public let img: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case text = "text"
+        case img = "img"
+    }
 }
 
 // MARK - 线上视频约会服务
@@ -462,5 +494,24 @@ public class WZMessageNmeAuthPopElem: Codable {
     enum CodingKeys: String, CodingKey {
         case userId = "userid"
         case text = "text"
+    }
+}
+
+// MARK - 红娘设置推荐条件
+public class WZMessageServiceHnSetRecConElem: Codable {
+    
+    /// 用户id
+    public let userId: String
+    
+    /// 该用户已开通红娘服务, 您是ta的专属红娘,请了解基础信息后，为其设置推荐条件"
+    public let text: String
+    
+    /// 推荐条件
+    public let label: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+        case text = "text"
+        case label = "keyword"
     }
 }

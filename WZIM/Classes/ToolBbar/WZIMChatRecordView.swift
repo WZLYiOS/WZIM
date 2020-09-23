@@ -50,7 +50,7 @@ public class WZIMChatRecordView: UIView {
         $0.backgroundColor = UIColor.clear
         $0.text = "手指上滑,取消发送"
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xdfdfdf)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xdfdfdf")
         $0.layer.cornerRadius = 5
         $0.layer.borderColor = UIColor.red.withAlphaComponent(0.5).cgColor
         return $0
@@ -67,7 +67,7 @@ public class WZIMChatRecordView: UIView {
         $0.textAlignment = .center
         $0.backgroundColor = UIColor.clear
         $0.font = UIFont.systemFont(ofSize: 80)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xdfdfdf)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xdfdfdf")
         return $0
     }(UILabel())
     
@@ -177,7 +177,7 @@ extension WZIMChatRecordView {
         timerOutSoon.isHidden = true
         buttonDragOutside = true
         voiceCancle.text = "松开手指,取消发送"
-        voiceCancle.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0x9d3836)
+        voiceCancle.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0x9d3836")
     }
    
     /// 图片效果

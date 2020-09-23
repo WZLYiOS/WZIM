@@ -69,7 +69,7 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
             dataModel = elem
             delegate = cDelegate as? WZIMVoiceTableViewCellDelegate
             
-            playTimeLabel.textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+            playTimeLabel.textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
             playTimeLabel.text = "\(elem.wzSecond())\""
             
             switch model.loaction {

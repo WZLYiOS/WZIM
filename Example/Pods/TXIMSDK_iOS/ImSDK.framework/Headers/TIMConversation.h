@@ -188,14 +188,19 @@
 - (int)revokeMessage:(TIMMessage*)msg succ:(TIMSucc)succ fail:(TIMFail)fail;
 
 /**
- *  4.2 删除当前会话的本地历史消息
+ *  4.2 删除当前会话的本地及漫游消息
+ *
+ *  @note 该接口会删除本地历史的同时也会把漫游消息即保存在服务器上的消息也删除，卸载重装后无法再拉取到。需要注意的是：
+ *  - 一次最多只能删除 30 条消息
+ *  - 一秒钟最多只能调用一次
+ *  - 如果该账号在其他设备上拉取过这些消息，那么调用该接口删除后，这些消息仍然会保存在那些设备上，即删除消息不支持多端同步。
  *
  *  @param succ  成功时回调
  *  @param fail  失败时回调
  *
  *  @return 0 本次操作成功
  */
-- (int)deleteLocalMessage:(TIMSucc)succ fail:(TIMFail)fail;
+- (int)deleteMessages:(NSArray<TIMMessage *>*)msgList succ:(TIMSucc)succ fail:(TIMFail)fail;
 
 ///@}
 
@@ -234,6 +239,13 @@
  *  @return 群名称
  */
 - (NSString*)getGroupName;
+
+/**
+ *  5.4 获取 @ 信息列表
+ *
+ *  @return @ 信息列表
+ */
+- (NSMutableArray<TIMGroupAtInfo *> *)getGroupAtInfoList;
 
 ///@}
 

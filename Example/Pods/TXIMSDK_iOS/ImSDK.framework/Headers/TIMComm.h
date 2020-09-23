@@ -160,6 +160,25 @@ typedef NS_ENUM(NSInteger, TIMMessagePriority) {
 };
 
 /**
+ *  @ 类型
+ */
+typedef NS_ENUM(NSInteger, TIMGroupAtType) {
+    /**
+     *  @ 我
+     */
+    TIM_AT_ME                         = 1,
+    /**
+     *  @ 群里所有人
+     */
+    TIM_AT_ALL                        = 2,
+    /**
+     *  @ 群里所有人并且单独 @ 我
+     */
+    TIM_AT_ALL_AT_ME                  = 3,
+};
+
+
+/**
  *  图片压缩选项
  */
 typedef NS_ENUM(NSInteger, TIM_IMAGE_COMPRESS_TYPE){
@@ -1152,6 +1171,15 @@ typedef void (^TIMSendToUsersFail)(int code, NSString *err, TIMSendToUsersDetail
 
 ///收到已读回执时，这个时间戳之前的消息都已读
 @property(nonatomic,assign) time_t timestamp;
+@end
+
+/// 消息 @ 信息
+@interface TIMGroupAtInfo : NSObject
+/// @ 消息 seq
+@property(nonatomic,assign) uint64_t seq;
+
+/// @ 类型
+@property(nonatomic,assign) TIMGroupAtType atType;
 @end
 
 /// Android 离线推送配置

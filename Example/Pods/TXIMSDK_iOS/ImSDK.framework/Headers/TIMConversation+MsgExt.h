@@ -47,6 +47,32 @@
  */
 - (NSString*)getSelfIdentifier;
 
+/**
+ *  删除单个会话和对应的本地会话消息
+ *
+ *  与 deleteConversation() 的差异在于本接口在删除会话的同时仅仅删除了本地消息，如果该会话因为发消息等操作重新激活，仍然能拉取到漫游消息。
+ *
+ *  @note 本接口只能删除本地缓存的历史消息，无法删除云端保存的历史消息。
+ *  @param type 会话类型，详情请参考 TIMComm.h 里面的 TIMConversationType 定义
+ *  @param conversationId 会话 Id
+ *                        单聊类型（C2C）   ：为对方 userID；
+ *                        群组类型（GROUP） ：为群组 groupId；
+ *                        系统类型（SYSTEM）：为 @""
+ *
+ *  @return YES:删除成功；NO:删除失败
+ */
+- (BOOL)deleteConversationAndMessages:(TIMConversationType)type receiver:(NSString*)conversationId;
+
+/**
+ *  删除当前会话的本地历史消息
+ *
+ *  @param succ  成功时回调
+ *  @param fail  失败时回调
+ *
+ *  @return 0 本次操作成功
+ */
+- (int)deleteLocalMessage:(TIMSucc)succ fail:(TIMFail)fail;
+
 @end
 
 #endif /* TIMConversation_h */

@@ -171,6 +171,7 @@ typedef NS_ENUM(NSInteger, V2TIMGroupApplicationHandleResult) {
  *  @note 直播群（AVChatRoom）的特殊限制：
  *  - 不支持管理员角色的拉取，群成员个数最大只支持 31 个（新进来的成员会排前面），用户每次登录后，都需要重新加入群组，否则拉取群成员会报 10007 错误码。
  *  - 群成员资料信息仅支持 userID | nickName | faceURL | role 字段。
+ *  - role 字段不支持管理员角色，如果您的业务逻辑依赖于管理员角色，可以使用群自定义字段 groupAttributes 管理该角色。
  */
 - (void)getGroupMemberList:(NSString*)groupID filter:(V2TIMGroupMemberFilter)filter nextSeq:(uint64_t)nextSeq succ:(V2TIMGroupMemberInfoResultSucc)succ fail:(V2TIMFail)fail;
 

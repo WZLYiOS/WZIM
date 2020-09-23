@@ -34,7 +34,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.tableFooterView = UIView()
         $0.dataSource = self
         $0.delegate = self
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()
         $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
@@ -51,7 +51,7 @@ public class WZIMConversionViewController: UIViewController {
     
     /// 更多视图
     private lazy var moreView: WZIMMoreView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         return $0
     }(WZIMMoreView(delegate: self))
     
@@ -74,7 +74,7 @@ public class WZIMConversionViewController: UIViewController {
     
     /// 配置基础
     func config() {
-        view.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF8F8F8)
+        view.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         WZIMConfig.avatarSize = CGSize(width: 40, height: 40)
         WZIMConfig.bubbleEdge = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
         DongtuStore.sharedInstance().delegate = self
@@ -323,7 +323,7 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
         vc.naviBgColor = UIColor.white
         vc.navigationBar.tintColor = UIColor.black
         vc.naviTitleColor = UIColor.black
-        vc.barItemTextColor = WZIMToolAppearance.hexadecimal(rgb: 0x7c7c7c)
+        vc.barItemTextColor = WZIMToolAppearance.hexadecimal(rgb: "0x7c7c7c")
         vc.allowPickingVideo = false
         vc.allowPickingImage = true
         vc.allowPickingOriginalPhoto = true
@@ -348,8 +348,6 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
 //            guard let self = self else { return }
 //            self.sendImageMessage(image: image)
 //        }
-        
-        
     }
     
     /// 发送图片消息

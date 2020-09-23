@@ -14,6 +14,7 @@
 
 @protocol V2TIMConversationListener;
 @class V2TIMConversation;
+@class V2TIMGroupAtInfo;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -30,6 +31,13 @@ typedef void(^V2TIMConversationResultSucc)(NSArray<V2TIMConversation *>*list, ui
 typedef NS_ENUM(NSInteger, V2TIMConversationType) {
     V2TIM_C2C                             = 1,  ///< 单聊
     V2TIM_GROUP                           = 2,  ///< 群聊
+};
+
+/// @ 类型
+typedef NS_ENUM(NSInteger, V2TIMGroupAtType) {
+    V2TIM_AT_ME                           = 1,  ///< @ 我
+    V2TIM_AT_ALL                          = 2,  ///< @ 群里所有人
+    V2TIM_AT_ALL_AT_ME                    = 3,  ///< @ 群里所有人并且单独 @ 我
 };
 
 /**
@@ -51,17 +59,24 @@ typedef NS_ENUM(NSInteger, V2TIMConversationType) {
  */
 - (void)getConversationList:(uint64_t)nextSeq count:(int)count succ:(V2TIMConversationResultSucc)succ fail:(V2TIMFail)fail;
 
+
 /**
- *  1.3 删除会话
- * 
- * @note 请注意如下特殊逻辑:
- * - 删除会话会在本地删除的同时，在服务器也会同步删除。
- * - 会话内的消息不会从服务器删除，如果其他人在此会话继续发言，仍然可以从后台拉取该会话的漫游消息。
+ * 1.3 获取单个会话
+ *
+ * @param conversationID  会话唯一 ID，如果是 C2C 单聊，组成方式为 c2c_userID，如果是群聊，组成方式为 group_groupID
+ */
+- (V2TIMConversation *)getConversation:(NSString *)conversationID;
+
+/**
+ *  1.4 删除会话以及该会话中的历史消息
+ *
+ * @note 请注意:
+ * - 该会话以及会话中的历史消息，会被 SDK 从本地和服务端一同删除掉，并且不可恢复。
  */
 - (void)deleteConversation:(NSString *)conversationID succ:(V2TIMSucc)succ fail:(V2TIMFail)fail;
 
 /**
- *  1.4 设置会话草稿
+ *  1.5 设置会话草稿
  *
  *  只在本地保存，不会存储 Server，不能多端同步，程序卸载重装会失效。
  */
@@ -138,10 +153,23 @@ typedef NS_ENUM(NSInteger, V2TIMConversationType) {
 /// 会话最后一条消息，可以通过 lastMessage -> timestamp 对会话做排序，timestamp 越大，会话越靠前
 @property(nonatomic,strong,readonly) V2TIMMessage *lastMessage;
 
+/// 群会话 @ 信息列表，用于展示 “有人@我” 或 “@所有人” 这两种提醒状态
+@property(nonatomic,strong,readonly) NSArray<V2TIMGroupAtInfo *> *groupAtInfolist;
+
 /// 草稿信息，设置草稿信息请调用 setConversationDraft() 接口
 @property(nonatomic,strong,readonly) NSString *draftText;
 
 /// 草稿编辑时间，草稿设置的时候自动生成
-@property(nonatomic,assign,readonly) NSDate *draftTimestamp;
+@property(nonatomic,strong,readonly) NSDate *draftTimestamp;
+
+@end
+
+/// @ 信息
+@interface V2TIMGroupAtInfo : NSObject
+/// @ 消息序列号，即带有 “@我” 或者 “@所有人” 标记的消息的序列号
+@property(nonatomic,assign,readonly) uint64_t seq;
+
+/// @ 提醒类型，分成 “@我” 、“@所有人” 以及 “@我并@所有人” 三类
+@property(nonatomic,assign,readonly) V2TIMGroupAtType atType;
 
 @end

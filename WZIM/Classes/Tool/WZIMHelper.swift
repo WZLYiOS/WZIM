@@ -14,7 +14,7 @@ import Foundation
 public enum WZIMToolAppearance {
     
     /// 主题颜色
-    public static let theme = WZIMToolAppearance.hexadecimal(rgb: 0xfb4d38)
+    public static let theme = WZIMToolAppearance.hexadecimal(rgb: "0xfb4d38")
     
     /// 副主题颜色
     public static let vice = WZIMToolAppearance.rgb(r: 170, g: 170, b: 170)
@@ -23,10 +23,10 @@ public enum WZIMToolAppearance {
     public static let line = WZIMToolAppearance.rgb(r: 244, g: 244, b: 244)
     
     /// 文本颜色
-    public static let textColor = WZIMToolAppearance.hexadecimal(rgb: 0x1C1C1C)
+    public static let textColor = WZIMToolAppearance.hexadecimal(rgb: "0x1C1C1C")
     
     /// 文字light颜色
-    public static let lightedTextColor = WZIMToolAppearance.hexadecimal(rgb: 0xFB4D38)
+    public static let lightedTextColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4D38")
     
     /// tintColor
     public static let tint = UIColor.white
@@ -42,9 +42,41 @@ public enum WZIMToolAppearance {
     /// 16进制颜色方法
     /// - Parameter rgb: 16进制
     /// - Parameter alpha: 透明度
-    public static func hexadecimal(rgb: Int, alpha: Float = 1) -> UIColor {
-        return rgb.color ~ alpha
+    public static func hexadecimal(rgb: String, alpha: Float = 1) -> UIColor {
+        var cstr = rgb.trimmingCharacters(in:  CharacterSet.whitespacesAndNewlines).uppercased() as NSString;
+         if(cstr.length < 6){
+             return UIColor.clear;
+          }
+         if(cstr.hasPrefix("0X")){
+             cstr = cstr.substring(from: 2) as NSString
+         }
+         if(cstr.hasPrefix("#")){
+           cstr = cstr.substring(from: 1) as NSString
+         }
+          if(cstr.length != 6){
+           return UIColor.clear;
+         }
+         var range = NSRange.init()
+         range.location = 0
+         range.length = 2
+         //r
+         let rStr = cstr.substring(with: range);
+         //g
+         range.location = 2;
+         let gStr = cstr.substring(with: range)
+         //b
+         range.location = 4;
+         let bStr = cstr.substring(with: range)
+         var r :UInt32 = 0x0;
+         var g :UInt32 = 0x0;
+         var b :UInt32 = 0x0;
+         Scanner.init(string: rStr).scanHexInt32(&r);
+         Scanner.init(string: gStr).scanHexInt32(&g);
+         Scanner.init(string: bStr).scanHexInt32(&b);
+        return UIColor.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: CGFloat(alpha));
     }
+    
+   
     
     /// 安全区域底部
     public static var safeAreaInsetsBottom: Int {
@@ -102,51 +134,3 @@ public enum WZIMToolAppearance {
 }
 
 
-#if os(iOS)
-import UIKit
-public typealias Color = UIColor
-#elseif os(OSX)
-import AppKit
-public typealias Color = NSColor
-#endif
-
-
-// MARK: - 扩展16进制转换
-public extension Int {
-    var color: Color {
-        let red = CGFloat(self as Int >> 16 & 0xff) / 255
-        let green = CGFloat(self >> 8 & 0xff) / 255
-        let blue  = CGFloat(self & 0xff) / 255
-        return Color(red: red, green: green, blue: blue, alpha: 1)
-    }
-}
-
-precedencegroup AlphaPrecedence {
-    associativity: left
-    higherThan: RangeFormationPrecedence
-    lowerThan: AdditionPrecedence
-}
-
-infix operator ~ : AlphaPrecedence
-
-public func ~ (color: Color, alpha: Int) -> Color {
-    return color ~ CGFloat(alpha)
-}
-public func ~ (color: Color, alpha: Float) -> Color {
-    return color ~ CGFloat(alpha)
-}
-public func ~ (color: Color, alpha: CGFloat) -> Color {
-    return color.withAlphaComponent(alpha)
-}
-
-/// e.g. `50%`
-postfix operator %
-public postfix func % (percent: Int) -> CGFloat {
-    return CGFloat(percent)%
-}
-public postfix func % (percent: Float) -> CGFloat {
-    return CGFloat(percent)%
-}
-public postfix func % (percent: CGFloat) -> CGFloat {
-    return percent / 100
-}

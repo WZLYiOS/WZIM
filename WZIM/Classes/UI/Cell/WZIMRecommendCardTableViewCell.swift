@@ -13,7 +13,7 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
 
     /// 头像
     private lazy var lelftImageView: UIImageView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xD1CFCF)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xD1CFCF")
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
         $0.contentMode = .scaleAspectFill
@@ -23,20 +23,20 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
     /// 姓名
     private lazy var nameLabel: UILabel = {
         $0.font =  UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
         return $0
     }(UILabel())
     
     /// 信息
     private lazy var infoLabel: UILabel = {
         $0.font = UIFont.systemFont(ofSize: 13)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xAAAAAA)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xAAAAAA")
         return $0
     }(UILabel())
     
     /// 线
     private lazy var lineLabel: UILabel = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF0F0F0)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF0F0F0")
         return $0
     }(UILabel())
     
@@ -44,7 +44,7 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
     private lazy var timeLabel: UILabel = {
         $0.text = "本名片10分钟内有效"
         $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xBBBBBB)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xBBBBBB")
         return $0
     }(UILabel())
     

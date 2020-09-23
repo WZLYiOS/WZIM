@@ -22,7 +22,7 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     private lazy var photoImageView: UIImageView = {
         $0.contentMode = .scaleAspectFill
         $0.isUserInteractionEnabled = true
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xE5E5E5)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE5E5E5")
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
         $0.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))

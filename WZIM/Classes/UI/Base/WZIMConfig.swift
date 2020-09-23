@@ -29,7 +29,7 @@ public struct WZIMConfig {
     public static var maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 80
     
     /// 文字左边颜色
-    public static var lelftTextColor: UIColor = WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+    public static var lelftTextColor: UIColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
     
     /// 右边颜色
     public static var rightTextColor: UIColor = UIColor.white
@@ -51,8 +51,27 @@ public extension NSMutableAttributedString {
     }
     
     /// 设置颜色
-    func wzSetColor(value: UIColor) {
-        wzSetAttribute(key: NSAttributedString.Key.foregroundColor, value: value, range: NSRange(location: 0, length: self.length))
+    func wzSetColor(value: UIColor, range: NSRange? = nil) {
+
+        if range != nil {
+            wzSetAttribute(key: NSAttributedString.Key.foregroundColor, value: value, range: range!)
+            return
+        }
+        wzSetAttribute(key: NSAttributedString.Key.foregroundColor, value: value, range:  NSRange(location: 0, length: self.length))
+    }
+    
+    /// 设置下划线
+    func wzSetUnderline(style: NSUnderlineStyle = .single, color: UIColor? = nil, range: NSRange) {
+        if self.length < range.location + range.length {
+            return
+        }
+        let attrs = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
+        self.addAttributes(attrs, range: range)
+        
+        if let tempColor = color {
+            let attr2 = [NSAttributedString.Key.underlineColor: tempColor]
+            self.addAttributes(attr2, range: range)
+        }
     }
     
     /// 添加key

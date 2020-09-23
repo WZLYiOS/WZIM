@@ -55,8 +55,8 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     public lazy var readButton: UIButton = {
         $0.setTitle("未读", for: .normal)
         $0.setTitle("已读", for: .selected)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x4C48D3), for: .normal)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x7C7C7C), for: .selected)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x4C48D3"), for: .normal)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x7C7C7C"), for: .selected)
         $0.isUserInteractionEnabled = false
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return $0

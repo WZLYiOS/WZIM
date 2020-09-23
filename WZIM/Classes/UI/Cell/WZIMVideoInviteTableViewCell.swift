@@ -16,7 +16,7 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
     
     /// 顶部文案
     private lazy var topLabel: UILabel = {
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.numberOfLines = 0
         $0.text = "服务合同"
@@ -25,8 +25,8 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
     
     private lazy var lelftButton: UIButton = {
         $0.setTitle("不同意", for: .normal)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0xFB4E38), for: .normal)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0xCCCCCC), for: .selected)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0xFB4E38"), for: .normal)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0xCCCCCC"), for: .selected)
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 15
         $0.layer.borderWidth = 0.5
@@ -86,16 +86,16 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
         if model.customData == nil {
             lelftButton.isSelected = false
             lelftButton.isUserInteractionEnabled = true
-            lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: 0xFB4E38).cgColor
-            rightButton.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xFB4E38)
+            lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4E38").cgColor
+            rightButton.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4E38")
             rightButton.isSelected = false
             rightButton.isUserInteractionEnabled = true
             return
         }
         lelftButton.isSelected = true
         lelftButton.isUserInteractionEnabled = false
-        lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: 0xD4D4D4).cgColor
-        rightButton.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xD4D4D4)
+        lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: "0xD4D4D4").cgColor
+        rightButton.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xD4D4D4")
         rightButton.isSelected = true
         rightButton.isUserInteractionEnabled = false
         

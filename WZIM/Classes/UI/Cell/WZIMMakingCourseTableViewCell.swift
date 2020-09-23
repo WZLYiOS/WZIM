@@ -13,7 +13,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
 
     /// 顶部文案
     private lazy var topLabel: UILabel = {
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x3C3C3C)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.numberOfLines = 0
         return $0
@@ -21,7 +21,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     
     /// 图
     private lazy var picImageView: UIImageView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xE4E4E4)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE4E4E4")
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
         return $0
@@ -29,7 +29,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     
     /// 线
     private lazy var lineLabel: UILabel = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF0F0F0)
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF0F0F0")
         return $0
     }(UILabel())
     
@@ -44,7 +44,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     private lazy var titleLbale: UILabel = {
         $0.text = "红娘课程"
         $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xBCBCBC)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xBCBCBC")
         return $0
     }(UILabel())
     

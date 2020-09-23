@@ -21,7 +21,7 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.textAlignment = .center
         $0.numberOfLines = 0
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x999999)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x999999")
         $0.isUserInteractionEnabled = true
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
         return $0
@@ -30,7 +30,7 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
     private lazy var subLabel: UILabel = {
         $0.text = "前往认证中心>>"
         $0.font = UIFont.boldSystemFont(ofSize: 14)
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0xFB4D38)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4D38")
         $0.isUserInteractionEnabled = true
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
         return $0

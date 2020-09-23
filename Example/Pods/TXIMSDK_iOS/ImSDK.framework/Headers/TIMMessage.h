@@ -22,6 +22,9 @@
 @class TIMSnapshot;
 @class TIMOfflinePushInfo;
 
+/// 填入 kMesssageAtALL 表示当前消息需要 @ 群里所有人
+extern NSString * const kImSDK_MesssageAtALL;
+
 #pragma mark 一，消息封装
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -186,6 +189,8 @@
  *
  *  @return  发送者头像
  *
+ *  @note 在 C2C 场景下，陌生人的头像不会更新，建议在 UI 上点击陌生人信息的时候主动调用 TIMFriendshipManager.h -> getUsersProfile（forceUpdate 设置为 YES） 去拉取资料，拉取成功后，SDK 会更新本地头像，下次 getSenderFaceURL 会拿到更新后的头像，注意请不要在收到每条消息都去 getUsersProfile，会严重影响程序性能。
+ *
  */
 - (NSString *)getSenderFaceURL;
 
@@ -318,6 +323,23 @@
  *  @return 0：成功；1：失败
  */
 - (int)setSender:(NSString*)sender;
+
+/**
+ *  1.33 设置群组 @ 用户列表
+ *
+ *  @ 消息仅支持在群组发送
+ *
+ *  @pram userList 需要 @ 的用户列表，如果需要 @ALL，请传入 kImSDK_MesssageAtALL 常量字符串。
+ *  举个例子，假设该条文本消息希望@提醒 denny 和 lucy 两个用户，同时又希望@所有人，atUserList 传 @[@"denny",@"lucy",kImSDK_MesssageAtALL]
+ *
+ *  @return 0：成功；1：失败
+ */
+- (int)setGroupAtUserList:(NSMutableArray<NSString *> *)userList;
+
+/**
+ *  1.34 获取群组 @ 用户列表
+ */
+- (NSMutableArray<NSString *> *)groupAtUserList;
 
 @end
 

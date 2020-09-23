@@ -22,8 +22,8 @@ class ViewController: UIViewController, WZIMTableViewCellDelegate {
         $0.rowHeight = UITableViewAutomaticDimension
         $0.tableFooterView = UIView()
         $0.tableHeaderView = UIView()
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF5F5F5)
-        $0.register(WZIMVideoInviteTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF5F5F5")
+        $0.register(WZMessageRemindTableViewCell.self, forCellReuseIdentifier: "TestTableViewCell")
         return $0
     }(UITableView())
     
@@ -54,7 +54,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZIMVideoInviteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZMessageRemindTableViewCell
         cell.pDelegate = self
         cell.reload(model: self, cDelegate: self)
         return cell

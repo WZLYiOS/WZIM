@@ -79,13 +79,13 @@ public class WZIMTextInputTabbar: UIView {
         $0.setTitle("按住说话", for: .normal)
         $0.setTitle("松开结束", for: .highlighted)
         $0.setBackgroundImage(WZIMToolAppearance.image(color: UIColor.white), for: .normal)
-        $0.setBackgroundImage(WZIMToolAppearance.image(color: WZIMToolAppearance.hexadecimal(rgb: 0xc6c7ca)), for: .highlighted)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x1C1C1C), for: .normal)
-        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: 0x7C7C7C), for: .normal)
+        $0.setBackgroundImage(WZIMToolAppearance.image(color: WZIMToolAppearance.hexadecimal(rgb: "0xc6c7ca")), for: .highlighted)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x1C1C1C"), for: .normal)
+        $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x7C7C7C"), for: .normal)
         $0.layer.cornerRadius = 18
         $0.layer.masksToBounds = true
         $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: 0xE6E6E6).cgColor
+        $0.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: "0xE6E6E6").cgColor
         $0.addTarget(self, action: #selector(recordButtonTouchDown), for: .touchDown)
         $0.addTarget(self, action: #selector(recordButtonTouchUpOutside), for: .touchUpOutside)
         $0.addTarget(self, action: #selector(recordButtonTouchUpInside), for: .touchUpInside)
@@ -203,9 +203,15 @@ public class WZIMTextInputTabbar: UIView {
     @objc func keyboardWillShow(notification: Notification) {
         
          //通知里的内容
-        let userInfo = notification.userInfo as NSDictionary?
-        let duration = userInfo!.object(forKey: UIResponder.keyboardAnimationCurveUserInfoKey) as! Double
-        let aValue = userInfo!.object(forKey: UIResponder.keyboardFrameEndUserInfoKey)
+        
+        guard let userInfo = notification.userInfo as NSDictionary? else {
+            return
+        }
+        
+        let durationNumber = userInfo.object(forKey: UIResponder.keyboardAnimationDurationUserInfoKey) as? NSNumber
+        let duration = Double(truncating: durationNumber ?? NSNumber.init(value: 0.25))
+        
+        let aValue = userInfo.object(forKey: UIResponder.keyboardFrameEndUserInfoKey)
         let keyboardRect = (aValue as AnyObject).cgRectValue
         let y = keyboardRect?.size.height ?? 0
         getBottomView(tag: .more)?.isHidden = true
@@ -213,7 +219,8 @@ public class WZIMTextInputTabbar: UIView {
         keyboardView.snp.updateConstraints { (make) in
             make.height.equalTo(y)
         }
-        UIView.animate(withDuration: duration) {
+        
+        UIView.animate(withDuration: duration == 0 ? 0.25 : duration) {
             self.superview?.layoutIfNeeded()
             self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
         }

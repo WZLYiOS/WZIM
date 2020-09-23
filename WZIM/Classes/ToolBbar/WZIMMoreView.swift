@@ -37,15 +37,15 @@ public class WZIMMoreView: UIView {
     
     /// 分页器
     private lazy var pageControl: UIPageControl = {
-        $0.pageIndicatorTintColor = WZIMToolAppearance.hexadecimal(rgb: 0xcccdce)
-        $0.currentPageIndicatorTintColor = WZIMToolAppearance.hexadecimal(rgb: 0x7c7e7f)
+        $0.pageIndicatorTintColor = WZIMToolAppearance.hexadecimal(rgb: "0xcccdce")
+        $0.currentPageIndicatorTintColor = WZIMToolAppearance.hexadecimal(rgb: "0x7c7e7f")
         return $0
     }(UIPageControl())
     
     public init(delegate: WZIMMoreViewDelegate) {
         super.init(frame: CGRect.zero)
         self.delegate = delegate
-        self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: 0xF3F3F3)
+        self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF3F3F3")
         configView()
         configViewLocation()
     }
@@ -143,7 +143,7 @@ final class WZIMMoreCollectionViewCell: UICollectionViewCell {
     
     /// 文字
     private lazy var titleLabel: UILabel = {
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x666666)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x666666")
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 12)
         return $0

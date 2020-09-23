@@ -14,7 +14,7 @@ public class WZIMTimeTableViewCell: WZIMBaseTableViewCell {
     private lazy var timeLabel: UILabel = {
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.textAlignment = .center
-        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: 0x999999)
+        $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x999999")
         return $0
     }(UILabel())
     

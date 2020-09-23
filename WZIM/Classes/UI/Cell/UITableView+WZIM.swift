@@ -24,6 +24,7 @@ public extension UITableView {
         wzRegister(cellWithClass: WZIMUnknownTableViewCell.self)
         wzRegister(cellWithClass: WZIMVideoInviteTableViewCell.self)
         wzRegister(cellWithClass: WZIMVoiceTableViewCell.self)
+        wzRegister(cellWithClass: WZMessageAppointmentNameAuthCell.self)
     }
     
     /// 使用类名UITableViewCell
