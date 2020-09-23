@@ -38,13 +38,18 @@ public class WZAudioRecorder: NSObject {
     public func starRecorder(aFilePath: String) {
         
         /// 权限判断
-        AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
+        AVAudioSession.sharedInstance().requestRecordPermission { [weak self](granted) in
+            guard let self = self else { return }
             if granted == false {
                 self.delegate?.audioRecorderEncodeErrorDidOccur(self, error: NSError(domain: "请开启麦克风权限", code: -1003, userInfo: nil))
-                return
+            }else{
+                self.starRecordering(aFilePath: aFilePath)
             }
         }
-        
+    }
+    
+    /// 开启录制
+    private func starRecordering(aFilePath: String) {
         /// 开始录制
         delegate?.startAudioRecorder(self)
         

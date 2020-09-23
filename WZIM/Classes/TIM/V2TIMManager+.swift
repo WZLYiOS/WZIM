@@ -66,14 +66,9 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func getC2CMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
         
         getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
-            var arr = list?.sorted { (obj0, obj1) -> Bool in
+            let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
-            arr = arr?.sorted(by: { (obj0, obj1) -> Bool in
-                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                return top0 > top1
-            })
             sucess?(arr ?? [])
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
@@ -82,14 +77,9 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func getGroupMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
         getGroupHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
-            var arr = list?.sorted { (obj0, obj1) -> Bool in
+            let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
-            arr = arr?.sorted(by: { (obj0, obj1) -> Bool in
-                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                return top0 > top1
-            })
             sucess?(arr ?? [])
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
@@ -163,7 +153,12 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func wzGetConversationList(nextSeq: Int, count: Int, comple: ConversationListHandler, fail: FailHandler) {
         self.getConversationList(UInt64(nextSeq), count: Int32(count)) { (lists, page, isFinish) in
-            comple?(lists ?? [], Int(page), isFinish)
+            let arr = lists?.sorted(by: { (obj0, obj1) -> Bool in
+                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+                return top0 > top1
+            })
+            comple?(arr ?? [], Int(page), isFinish)
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
         }

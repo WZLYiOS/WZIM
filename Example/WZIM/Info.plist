@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>你可以分享相机胶卷中的照片、可以修改头像、聊天时发送图片信息、将图片保存到“我的相册”</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>你可以分享相机胶卷中的照片、可以修改头像、聊天时发送图片信息、将图片保存到“我的相册”</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -31,6 +27,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>你可以分享相机胶卷中的照片、可以修改头像、聊天时发送图片信息、将图片保存到“我的相册”</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>你可以分享相机胶卷中的照片、可以修改头像、聊天时发送图片信息、将图片保存到“我的相册”</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

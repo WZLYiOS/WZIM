@@ -15,16 +15,17 @@ public enum WZMessageElem: Decodable {
     case text(WZIMTextProtocol)            // 文字消息
     case sound(WZIMVoiceProtocol)          // 音频
     case face(WZIMFaceCustomMarkModel)     // 表情
-    case img(WZIMImageElemProtocol)          // 图片消息
-    case makingCourse(WZIMMakingCourseCustomElem) // 红娘课程
-    case videoDate(WZIMVideoDateCustomElem) // 线上视频约会服务
+    case img(WZIMImageElemProtocol)        // 图片消息
     case nameAuthInvite(WZIMnameAuthInviteCustomElem) // 邀请认证
     case time(WZIMTimeCustomElem)       // 时间
     case share(WZIMShareCustomElem)     // 分享消息
     case sms(WZIMRemindContentElem)     // 短信消息
-    case notice(String)         // 透传消息
+    case notice(WZTNoticeElem)                 // 透传消息
     case hibox(WZIMHiboxElem)           // 打招呼消息
-    
+    case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
+    case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
+    case dateService(WZMessageDateServiceElem)         // 线上视频约会服务
+    case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
     }
@@ -51,6 +52,10 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case hibox = "hibox" // 打招呼消息
     case inviteAuth = "inviteAuth" // 邀请认证
     case chatCard = "chatCard" // 卡片
+    case dateService = "dateService" // 线上视频约会服务
+    case dateAuthInvite = "dateAuthInvite" // 约会实名认证邀请
+    case videoTalkInvite = "videoTalkInvite"  // 视频谈单邀请
+    case nameAuthPop = "dateApplyAuthPopup" // 牵线首次登陆实名认证弹窗
 }
 
 // MARK - 我主自定义消息
@@ -77,11 +82,19 @@ public class WZIMCustomElem: Decodable {
         case .time:
             msgElem = .time(try vals.decode(WZIMTimeCustomElem.self, forKey: CodingKeys.msg))
         case .notice:
-            msgElem = .notice(try vals.decode(String.self, forKey: CodingKeys.msg))
+            msgElem = .notice(try vals.decode(WZTNoticeElem.self, forKey: CodingKeys.msg))
         case .sms:
             msgElem = .sms(try vals.decode(WZIMRemindContentElem.self, forKey: CodingKeys.msg))
         case .hibox:
             msgElem = .hibox(try vals.decode(WZIMHiboxElem.self, forKey: CodingKeys.msg))
+        case .videoTalkInvite:
+            msgElem = .videoTalkInvite(try vals.decode(WZVideoTalkInviteElem.self, forKey: CodingKeys.msg))
+        case .dateAuthInvite:
+            msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
+        case .dateService:
+            msgElem = .dateService(try vals.decode(WZMessageDateServiceElem.self, forKey: CodingKeys.msg))
+        case .nameAuthPop:
+            msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         default:
             msgElem = .unknown
         }
@@ -188,14 +201,19 @@ public class WZIMFaceCustomModel: Codable {
     }
 }
 
-// MARK - 红娘课程
-public class WZIMMakingCourseCustomElem: Codable {
+// MARK - 视频谈单邀请
+public class WZVideoTalkInviteElem: Codable {
     
-}
-
-// MARK - 线上视频约会服务
-public class WZIMVideoDateCustomElem: Codable {
+    /// 用户名
+    let userName: String
     
+    /// 头像
+    let avatar: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userName = "username"
+        case avatar = "avatar"
+    }
 }
 
 // MARK - 邀请认证
@@ -377,6 +395,72 @@ public protocol WZIMImageElemProtocol {
     var url: String {get}
 }
 
+// MARK - 推送用户卡片
+public class WZMessageCardElem: Codable {
+    
+    public enum CardType: Int, WZIMDefaultEnumCodable {
+        public static var defaultCase: WZMessageCardElem.CardType = .crm
+        case crm = 1
+        case app = 2
+    }
+    
+    /// 卡片id
+    public var cardId: String
+    
+    /// 用户名
+    public var userName: String
+    
+    /// 城市
+    public var area: String
+    
+    /// 年龄
+    public var age: Int
+    
+    /// 本名片10分钟内有效
+    public var expreTip: String
+    
+    /// 头像
+    public var avatar: String
+    
+    /// 地址
+    public var url: String
+    
+    /// 用户id
+    public var userId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case cardId = "card_id"
+        case userName = "username"
+        case area = "area"
+        case age = "age"
+        case expreTip = "expre_tip"
+        case avatar = "avatar"
+        case url = "url"
+        case userId = "userid"
+    }
+}
 
+// MARK - 约会实名认证邀请
+public class WZMessageDateAuthInviteElem: Codable {
+    
+}
 
+// MARK - 线上视频约会服务
+public class WZMessageDateServiceElem: Codable {
+    
+}
 
+// MARK - 牵线首次登陆实名认证弹窗
+public class WZMessageNmeAuthPopElem: Codable {
+    
+    /// 用户id
+    public let userId: String
+    
+    /// xxx想与您进行视频约会，完成实名认证后即可安排约会
+    public let text: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+        case text = "text"
+    }
+}

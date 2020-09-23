@@ -77,7 +77,7 @@ public class WZIMMoreView: UIView {
         let list = delegate.listMoreView(moreView: self)
         collectionView.reloadData()
         collectionView.snp.updateConstraints { (make) in
-            make.height.equalTo(list.count > 8 ? 175 : 100)
+            make.height.equalTo(list.count > 4 ? 175 : 100)
         }
         pageControl.numberOfPages = (list.count+8-1)/8;
         pageControl.isHidden = list.count > 8 ? false : true

@@ -548,6 +548,7 @@
 		D03DF75AFE3BE4990305DBC1DDB869F6 /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FE851CB8E9B17F80BAC6C8B219A92 /* UICollectionView+Rx.swift */; };
 		D05C678B251599AE00A0AACB /* WZIMManagerProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C678A251599AE00A0AACB /* WZIMManagerProcotol.swift */; };
 		D05C67A525159D3D00A0AACB /* V2TIMManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C67A425159D3D00A0AACB /* V2TIMManager+.swift */; };
+		D05C6976251AE7F500A0AACB /* WZTNoticeElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C6975251AE7F500A0AACB /* WZTNoticeElem.swift */; };
 		D12DF64B57561C2C260BB23017562726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC5E4FEEE10BBEF8C6DED9DCF061D3A /* Foundation.framework */; };
 		D15DC3BE7C68691D743B1908ABB91E07 /* NSLayoutConstraint+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D0401CD3F537A5B922EA6994956478 /* NSLayoutConstraint+Rx.swift */; };
 		D1997362C1D4AFDB55C2B774D9B12E31 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095055E777E7D585D8F28ED3102435C4 /* Filter.swift */; };
@@ -1564,6 +1565,7 @@
 		D01E29EE952A394030C1F129BAD741E1 /* AuthenticationChallengeResponsable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationChallengeResponsable.swift; path = Sources/Networking/AuthenticationChallengeResponsable.swift; sourceTree = "<group>"; };
 		D05C678A251599AE00A0AACB /* WZIMManagerProcotol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WZIMManagerProcotol.swift; path = WZIM/Classes/Procotol/WZIMManagerProcotol.swift; sourceTree = "<group>"; };
 		D05C67A425159D3D00A0AACB /* V2TIMManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "V2TIMManager+.swift"; path = "WZIM/Classes/TIM/V2TIMManager+.swift"; sourceTree = "<group>"; };
+		D05C6975251AE7F500A0AACB /* WZTNoticeElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WZTNoticeElem.swift; path = WZIM/Classes/Procotol/WZTNoticeElem.swift; sourceTree = "<group>"; };
 		D07E912C25F3EFCAC5750E8B6586A730 /* RxTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTarget.swift; path = RxCocoa/Common/RxTarget.swift; sourceTree = "<group>"; };
 		D092E6ADE983B7652D81A252B3C54426 /* ElementAt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElementAt.swift; path = RxSwift/Observables/ElementAt.swift; sourceTree = "<group>"; };
 		D10CD0BB68ED7D593A680981AB9D9A3B /* Generate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Generate.swift; path = RxSwift/Observables/Generate.swift; sourceTree = "<group>"; };
@@ -1958,6 +1960,7 @@
 				34D394647DA592B90553A85BF73EA081 /* WZMessageProtocol.swift */,
 				359DD01180AAD68E19CBA57ABD128E18 /* WZMMessageArray.swift */,
 				D05C678A251599AE00A0AACB /* WZIMManagerProcotol.swift */,
+				D05C6975251AE7F500A0AACB /* WZTNoticeElem.swift */,
 			);
 			name = Procotol;
 			sourceTree = "<group>";
@@ -4727,6 +4730,7 @@
 				4F57F0E96404138D5B81844942832D18 /* WZAudioRecorder.swift in Sources */,
 				211963A57FBCB32C501369BEB4E7E437 /* WZAVAudioPlayer.swift in Sources */,
 				9A4F058BF4358700E1B44A2FEAC82BFA /* WZConversationProcotol.swift in Sources */,
+				D05C6976251AE7F500A0AACB /* WZTNoticeElem.swift in Sources */,
 				513C5AD090BD28EB5399D070C8D8CB9E /* WZIM-dummy.m in Sources */,
 				E391FB608570E889FA6A6DE465EEE047 /* WZIMActivityTableViewCell.swift in Sources */,
 				B998598E966058169AB99FAB4A2CBDD8 /* WZIMBaseTableViewCell.swift in Sources */,
