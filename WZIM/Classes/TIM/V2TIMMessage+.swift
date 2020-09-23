@@ -16,7 +16,7 @@ extension V2TIMMessage: WZMessageProtocol {
     }
     
     public var timeTamp: Date {
-        return timestamp as Date
+        return timestamp 
     }
     
     public var senderId: String {

@@ -45,6 +45,6 @@ extension V2TIMConversation: WZConversationProcotol {
     }
     
     public var draftTime: Date? {
-        return draftTimestamp as Date? 
+        return draftTimestamp
     }
 }
