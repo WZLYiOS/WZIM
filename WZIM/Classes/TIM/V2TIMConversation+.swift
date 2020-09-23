@@ -36,7 +36,7 @@ extension V2TIMConversation: WZConversationProcotol {
         return Int(unreadCount)
     }
     
-    public var lastMsg: WZMessageProtocol {
+    public var lastMsg: WZMessageProtocol? {
         return lastMessage
     }
     

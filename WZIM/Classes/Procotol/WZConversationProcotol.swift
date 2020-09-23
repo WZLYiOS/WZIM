@@ -23,7 +23,7 @@ public protocol WZConversationProcotol {
     var unReadCount: Int { get }
     
     /// 会话最后一条消息，可以通过 lastMessage -> timestamp 对会话做排序，timestamp 越大，会话越靠前
-    var lastMsg: WZMessageProtocol { get }
+    var lastMsg: WZMessageProtocol? { get }
     
     /// 草稿信息，设置草稿信息请调用 setConversationDraft() 接口
     var draft: String? { get }
