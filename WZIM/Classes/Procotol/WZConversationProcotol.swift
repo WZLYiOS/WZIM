@@ -44,6 +44,9 @@ public protocol WZConversationDelegate: class {
     /// 同步服务器会话失败
     func onSyncServerFailed()
     
+    /// 刷新会话列表
+    func onRefreshConversation()
+    
     /// 有新的会话（比如收到一个新同事发来的单聊消息、或者被拉入了一个新的群组中），可以根据会话的 lastMessage -> timestamp 重新对会话列表做排序。
     func onNewConversation(conversationList: [WZConversationProcotol])
     

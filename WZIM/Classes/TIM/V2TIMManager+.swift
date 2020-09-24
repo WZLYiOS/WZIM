@@ -35,10 +35,18 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func setReadMessage(receiverId: String, type: WZIMConversationType) {
         
         if type == .c2c {
-            markC2CMessage(asRead: receiverId.imPrefix, succ: nil, fail: nil)
+            markC2CMessage(asRead: receiverId.imPrefix) {
+                
+            } fail: { (code, msg) in
+                
+            }
             return
         }
-        markGroupMessage(asRead: receiverId.imPrefix, succ: nil, fail: nil)
+        markGroupMessage(asRead: receiverId.imPrefix) {
+            
+        } fail: { (code, msg) in
+            
+        }
     }
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {

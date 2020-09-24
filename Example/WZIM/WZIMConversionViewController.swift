@@ -70,6 +70,7 @@ public class WZIMConversionViewController: UIViewController {
         configViewLocation()
         config()
         tableView.wz_beginRefreshing()
+        UserSession.shared.imManager.setReadMessage(receiverId: userId, type: .c2c)
     }
     
     /// 配置基础
