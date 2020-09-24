@@ -37,6 +37,9 @@ extension V2TIMConversation: WZConversationProcotol {
     }
     
     public var lastMsg: WZMessageProtocol? {
+        if lastMessage.msgID.count == 0 || lastMessage.msgID == nil  || lastMessage.msgID == "(null)" {
+            return nil
+        }
         return lastMessage
     }
     

@@ -153,6 +153,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func wzGetConversationList(nextSeq: Int, count: Int, comple: ConversationListHandler, fail: FailHandler) {
         self.getConversationList(UInt64(nextSeq), count: Int32(count)) { (lists, page, isFinish) in
+        
             let arr = lists?.sorted(by: { (obj0, obj1) -> Bool in
                 let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
                 let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
