@@ -310,8 +310,16 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
     }
     
     public func listMoreView(moreView: WZIMMoreView) -> [WZIMMoreItem] {
-        return [WZIMMoreItem(image: "im_ic_talk_photo", title: "相册"),
-                WZIMMoreItem(image: "im_ic_talk_shot", title: "拍照")]
+        return [WZIMMoreItem(image: "im_ic_talk_photo", title: "0"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "1"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "2"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "3"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "4"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "5"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "6"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "7"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "8"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "9")]
     }
 }
 

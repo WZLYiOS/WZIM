@@ -24,7 +24,7 @@ public enum WZMessageElem: Decodable {
     case hibox(WZIMHiboxElem)           // 打招呼消息
     case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
-    case dateService(WZMessageDateServiceElem)         // 线上视频约会服务
+    case dateService(WZMessageDateAuthInviteElem)         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     
@@ -96,7 +96,7 @@ public class WZIMCustomElem: Decodable {
         case .dateAuthInvite:
             msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .dateService:
-            msgElem = .dateService(try vals.decode(WZMessageDateServiceElem.self, forKey: CodingKeys.msg))
+            msgElem = .dateService(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .nameAuthPop:
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         case .dateServiceHnSetRecCon:
@@ -458,7 +458,7 @@ public class WZMessageCardElem: Codable {
     }
 }
 
-// MARK - 约会实名认证邀请
+// MARK - 约会实名认证邀请 | 线上视频约会服务
 public class WZMessageDateAuthInviteElem: Codable {
     
     /// 约会实名认证邀请
@@ -475,11 +475,6 @@ public class WZMessageDateAuthInviteElem: Codable {
         case text = "text"
         case img = "img"
     }
-}
-
-// MARK - 线上视频约会服务
-public class WZMessageDateServiceElem: Codable {
-    
 }
 
 // MARK - 牵线首次登陆实名认证弹窗

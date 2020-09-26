@@ -31,9 +31,18 @@ public class WZIMMoreView: UIView {
         temView.showsHorizontalScrollIndicator = false
         temView.showsVerticalScrollIndicator = false
         temView.isPagingEnabled = true
+        temView.alwaysBounceHorizontal = true
         temView.register(WZIMMoreCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: WZIMMoreCollectionViewCell.self))
         return temView
     }()
+    
+    /// 数据源
+    private var rowCount: Int = 0
+    
+    private var itemsInSection: Int = 0
+    private var sectionCount: Int = 0
+    
+    private var itemIndexs:[IndexPath: Int] = [:]
     
     /// 分页器
     private lazy var pageControl: UIPageControl = {
@@ -74,31 +83,64 @@ public class WZIMMoreView: UIView {
     }
     
     public func reloadUI() {
+    
         let list = delegate.listMoreView(moreView: self)
-        collectionView.reloadData()
+       
+        let columnCount = 4
+        rowCount = list.count > columnCount ? 2 : 1
+        itemsInSection =  columnCount * rowCount
+        sectionCount = Int(ceil(Double(list.count) / Double(itemsInSection)))
+        
+        for curSection in 0...sectionCount {
+            for itemIndex in 0...itemsInSection {
+                
+                let row = itemIndex % rowCount
+                let column = itemIndex / rowCount
+                let reIndex = columnCount * row + column + curSection * itemsInSection;
+                itemIndexs[IndexPath(row: itemIndex, section: curSection)] = reIndex
+            }
+        }
+        
+        pageControl.numberOfPages = sectionCount
+        pageControl.isHidden = sectionCount == 1 ? true : false
         collectionView.snp.updateConstraints { (make) in
             make.height.equalTo(list.count > 4 ? 175 : 100)
         }
-        pageControl.numberOfPages = (list.count+8-1)/8;
-        pageControl.isHidden = list.count > 8 ? false : true
+        collectionView.reloadData()
+        
     }
 }
 
 /// MARK - UICollectionViewDataSource
 extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sectionCount
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate.listMoreView(moreView: self).count
+        return itemsInSection
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WZIMMoreCollectionViewCell.self), for: indexPath) as! WZIMMoreCollectionViewCell
-        cell.reload(model: delegate.listMoreView(moreView: self)[indexPath.row])
+        
+        let index = Int(itemIndexs[indexPath] ?? 0)
+        let list = delegate.listMoreView(moreView: self)
+        if index <= list.count - 1 {
+            cell.reload(model: list[index])
+        }else{
+            cell.reload(model: nil)
+        }
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate.moreView(moreView: self, select: delegate.listMoreView(moreView: self)[indexPath.row])
+        let index = Int(itemIndexs[indexPath] ?? 0)
+        let list = delegate.listMoreView(moreView: self)
+        if index <= list.count - 1 {
+            delegate.moreView(moreView: self, select: list[index])
+        }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -142,7 +184,7 @@ final class WZIMMoreCollectionViewCell: UICollectionViewCell {
     }(UIImageView())
     
     /// 文字
-    private lazy var titleLabel: UILabel = {
+    public lazy var titleLabel: UILabel = {
         $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x666666")
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 12)
@@ -177,9 +219,16 @@ final class WZIMMoreCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func reload(model: WZIMMoreItem) {
-        topImageView.image = UIImage(named: model.image)
-        titleLabel.text = model.title
+    func reload(model: WZIMMoreItem?) {
+        
+        guard let ix = model else {
+            topImageView.image = nil
+            titleLabel.text = ""
+            return
+        }
+        
+        topImageView.image = UIImage(named: ix.image)
+        titleLabel.text = ix.title
     }
 }
 

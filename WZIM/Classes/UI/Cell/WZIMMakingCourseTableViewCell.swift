@@ -37,12 +37,10 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     /// 线上视频约会服务 :
     /// 开启约会实名认证邀请
     private lazy var lelftImageView: UIImageView = {
-        $0.image = UIImage(named: "Cell.bundle/ic_chat_course")
         return $0
     }(UIImageView())
     
     private lazy var titleLbale: UILabel = {
-        $0.text = "红娘课程"
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xBCBCBC")
         return $0
@@ -90,8 +88,20 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        topLabel.text = "追求女孩时，如何避免尬聊，7 个小方法，让申老师来告诉你"
         
+        switch message.currentElem {
+        case let .dateAuthInvite(elem):
+            topLabel.text = elem.text.count == 0 ? "开启约会实名认证邀请" : elem.text
+            lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_certification")
+            titleLbale.text = elem.title.count == 0 ? "我主良缘实名认证" : elem.title
+            picImageView.kf.setImage(with: URL(string: elem.img), placeholder: UIImage(named: "Cell.bundle/chat_name_auth_pic"))
+        case let .dateService(elem):
+            topLabel.text = elem.text.count == 0 ? "线上视频约会服务" : elem.text
+            lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_video")
+            titleLbale.text = elem.title.count == 0 ? "我主良缘线上视频约会" : elem.title
+            picImageView.kf.setImage(with: URL(string: elem.img), placeholder: UIImage(named: "Cell.bundle/chat_service_pic"))
+        default: break
+        }
     }
-
+    
 }
