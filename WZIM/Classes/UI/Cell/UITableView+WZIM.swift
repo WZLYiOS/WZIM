@@ -26,6 +26,7 @@ public extension UITableView {
         wzRegister(cellWithClass: WZIMVoiceTableViewCell.self)
         wzRegister(cellWithClass: WZMessageAppointmentNameAuthCell.self)
         wzRegister(cellWithClass: WZMessageRemindTableViewCell.self)
+        wzRegister(cellWithClass: WZIMVideoInviteSelfTableViewCell.self)
     }
     
     /// 使用类名UITableViewCell
