@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>在聊天时你可以使用麦克风发送语音消息</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

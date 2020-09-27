@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '1.4.4'
+  s.version          = '1.4.5'
   s.summary          = 'IM组件框架。'
 
 
@@ -71,7 +71,5 @@ Pod::Spec.new do |s|
     ss.dependency 'WZIM/UI'
     ss.dependency 'HyphenateLite', '~> 3.7.0'
   end
-  
-  
   
 end

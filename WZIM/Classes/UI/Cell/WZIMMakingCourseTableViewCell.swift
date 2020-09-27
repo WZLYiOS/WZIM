@@ -11,6 +11,9 @@ import SnapKit
 // MARK - 红娘课程 | 线上视频约会服务 | 开启约会实名认证邀请
 public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
 
+    /// 代理
+    weak var delegate: WZIMMakingCourseTableViewCellDelegate?
+    
     /// 顶部文案
     private lazy var topLabel: UILabel = {
         $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
@@ -24,6 +27,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE4E4E4")
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
+        $0.isUserInteractionEnabled = true
         return $0
     }(UIImageView())
     
@@ -53,6 +57,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
         bubbleImageView.addSubview(lineLabel)
         bubbleImageView.addSubview(lelftImageView)
         bubbleImageView.addSubview(titleLbale)
+        bubbleImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bubbleImageViewAction)))
     }
     
     public override func configViewLocation() {
@@ -104,4 +109,15 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
+    /// 点击
+    @objc private func bubbleImageViewAction(tap: UITapGestureRecognizer) {
+        delegate?.courseTableViewCell(tap: self)
+    }
+}
+
+/// MARK - WZIMMakingCourseTableViewCellDelegate
+public protocol WZIMMakingCourseTableViewCellDelegate: WZIMTableViewCellDelegate {
+    
+    /// 事件点击
+    func courseTableViewCell(tap cell: WZIMMakingCourseTableViewCell)
 }

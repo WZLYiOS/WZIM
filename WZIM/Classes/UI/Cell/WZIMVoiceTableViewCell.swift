@@ -133,7 +133,7 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - WZIMVoiceTableViewCellDelegate
-protocol WZIMVoiceTableViewCellDelegate: class {
+public protocol WZIMVoiceTableViewCellDelegate: class {
     
     /// 获取播放状态
     func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool

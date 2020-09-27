@@ -11,27 +11,42 @@ import SnapKit
 // MARK - 文字UI
 public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
 
-    private lazy var contentLabel: UILabel = {
-        $0.numberOfLines = 0
+    private lazy var contentLabel: UITextView = {
+        $0.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.textContainer.lineFragmentPadding = 0
+        $0.isEditable = false
+        $0.dataDetectorTypes = .all
+        $0.backgroundColor = UIColor.clear
+        return $0
+    }(UITextView())
+    
+    /// 自动布局使用
+    private lazy var label: UILabel = {
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     
     public override func configView() {
         super.configView()
-        bubbleImageView.addSubview(contentLabel)
+        bubbleImageView.addSubview(label)
+        label.addSubview(contentLabel)
     }
     
     public override func configViewLocation() {
         super.configViewLocation()
         
         let maxWidth = WZIMConfig.maxWidth
-        contentLabel.snp.makeConstraints { (make) in
+        label.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.right.equalToSuperview().offset(-16)
             make.top.equalToSuperview().offset(15)
             make.bottom.lessThanOrEqualTo(-15)
             make.width.lessThanOrEqualTo(maxWidth)
+        }
+        contentLabel.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -42,11 +57,15 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
             let color = getTextColor()
             let mPara = NSMutableParagraphStyle()
             mPara.lineSpacing = 4
-            let text = NSMutableAttributedString(string: elem.getText(),
-                                                 attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
-                                                              NSAttributedString.Key.foregroundColor: color,
-                                                              NSAttributedString.Key.paragraphStyle : mPara])
-            contentLabel.attributedText = text
+            
+            label.attributedText = NSMutableAttributedString(string: elem.getText(),
+                                                             attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
+                                                                          NSAttributedString.Key.foregroundColor: UIColor.clear,
+                                                                          NSAttributedString.Key.paragraphStyle : mPara])
+            contentLabel.attributedText = NSMutableAttributedString(string: elem.getText(),
+                                                                               attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
+                                                                                            NSAttributedString.Key.foregroundColor: color,
+                                                                                            NSAttributedString.Key.paragraphStyle : mPara])
         }
     }
 }

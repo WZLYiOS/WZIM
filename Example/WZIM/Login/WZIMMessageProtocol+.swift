@@ -28,6 +28,8 @@ extension WZMessageProtocol {
             return WZIMTimeTableViewCell.self
         case .dateAuthInvite, .dateService:
             return WZIMMakingCourseTableViewCell.self
+        case .card:
+            return WZIMRecommendCardTableViewCell.self
         default:
             return WZIMUnknownTableViewCell.self
         }

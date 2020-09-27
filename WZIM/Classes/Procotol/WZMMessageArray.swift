@@ -11,7 +11,7 @@ import Foundation
 open class WZMMessageArray {
     
     /// 代理
-    public var delegete: WZMMessageArrayDelegate!
+    public weak var delegete: WZMMessageArrayDelegate!
     
     /// 数组
     public var array: [WZMessageProtocol] = []

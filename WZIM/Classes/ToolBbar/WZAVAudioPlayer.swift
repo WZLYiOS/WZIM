@@ -77,7 +77,8 @@ public class WZAVAudioPlayer: NSObject {
         }
         wzPlayer?.delegate = nil
         wzPlayer = nil
-        debugPrint("")
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
+        UIDevice.current.isProximityMonitoringEnabled = false
     }
 }
 

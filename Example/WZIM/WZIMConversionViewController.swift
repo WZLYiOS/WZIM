@@ -27,7 +27,7 @@ public class WZIMConversionViewController: UIViewController {
         return $0
     }(WZMMessageArray(delegete: self))
     
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
         $0.rowHeight = UITableViewAutomaticDimension
         $0.estimatedRowHeight = 200
@@ -162,8 +162,6 @@ extension WZIMConversionViewController {
         tableView.endUpdates()
         scrollToBottom(animated: true)
     }
-    
-    
 }
 
 /// MAKR - UITableViewDelegate | UITableViewDataSource
@@ -226,7 +224,8 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
     }
     
     public func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder path: String, duration: Int) {
-        
+        let message = UserSession.shared.imManager.wzCreateVoiceMessage(path: path, duration: duration)
+        sendMessage(message: message)
     }
     
     public func textInputTabbar(tabbar: WZIMTextInputTabbar, audioRecorder error: Error) {
@@ -378,5 +377,21 @@ extension WZIMConversionViewController: WZMMessageArrayDelegate{
     
     public func messageArray(arry: WZMMessageArray, remove row: Int) {
         
+    }
+}
+
+/// MARK - WZIMVoiceTableViewCellDelegate
+extension WZIMConversionViewController: WZIMVoiceTableViewCellDelegate{
+    public func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool {
+        
+        if textTabbarView.audioPlayer.isSame(path: elem.wzPath()) {
+            return textTabbarView.audioPlayer.isPlaying()
+        }
+        return false
+    }
+    
+    public func startPlayerVoiceTableViewCell(cell: WZIMVoiceTableViewCell, path: String) {
+        textTabbarView.audioPlayer.play(aFilePath: path)
+        tableView.reloadData()
     }
 }

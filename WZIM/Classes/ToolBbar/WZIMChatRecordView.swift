@@ -137,7 +137,7 @@ extension WZIMChatRecordView {
         // 需要根据声音大小切换recordView动画
         voiceCancle.text = "手指上滑,取消发送";
         voiceCancle.backgroundColor = UIColor.clear
-        timer = Timer.init(timeInterval: 0.05, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
     @objc private func timerAction() {
@@ -262,7 +262,7 @@ extension WZIMChatRecordView {
     private func timeOut() {
         timerOutSoon.isHidden = true
         voiceChangeImage.isHidden = false
-        voiceChangeImage.image = UIImage(named: "icon_warning_pop")
+        voiceChangeImage.image = UIImage(named: "ToolBbar.bundle/icon_warning_pop")
         voiceCancle.backgroundColor = UIColor.clear
         voiceCancle.text = "说话时间太长"
         delegate?.chatRecordView(view: self, recordTimeOut: timeSum)

@@ -27,7 +27,7 @@ public enum WZMessageElem: Decodable {
     case dateService(WZMessageDateAuthInviteElem)         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
-    
+    case card(WZMessageCardElem) // 卡片消息
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -101,6 +101,8 @@ public class WZIMCustomElem: Decodable {
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         case .dateServiceHnSetRecCon:
             msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
+        case .chatCard:
+            msgElem = .card(try vals.decode(WZMessageCardElem.self, forKey: CodingKeys.msg))
         default:
             msgElem = .unknown
         }
@@ -446,6 +448,9 @@ public class WZMessageCardElem: Codable {
     /// 用户id
     public var userId: String
     
+    /// 1:crm 2:app
+    public let type: CardType
+    
     enum CodingKeys: String, CodingKey {
         case cardId = "card_id"
         case userName = "username"
@@ -455,6 +460,7 @@ public class WZMessageCardElem: Codable {
         case avatar = "avatar"
         case url = "url"
         case userId = "userid"
+        case type = "type"
     }
 }
 
@@ -492,7 +498,7 @@ public class WZMessageNmeAuthPopElem: Codable {
     }
 }
 
-// MARK - 红娘设置推荐条件
+/// MARK - 红娘设置推荐条件
 public class WZMessageServiceHnSetRecConElem: Codable {
     
     /// 用户id
@@ -510,3 +516,5 @@ public class WZMessageServiceHnSetRecConElem: Codable {
         case label = "keyword"
     }
 }
+
+

@@ -11,6 +11,12 @@ import SnapKit
 // MARK - 推荐卡片
 public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
 
+    /// 代理
+    weak var delegate: WZIMRecommendCardTableViewCellDelegate?
+    
+    /// 数据
+    public var markModel: WZMessageCardElem!
+    
     /// 头像
     private lazy var lelftImageView: UIImageView = {
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xD1CFCF")
@@ -92,12 +98,23 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
+        delegate = cDelegate as? WZIMRecommendCardTableViewCellDelegate
         if model.loaction == .right {
             bubbleImageView.image = UIImage(named: "Cell.bundle/ic_talk_inputbox_style4")?.wzStretchableImage()
         }
         
-        nameLabel.text = "潘先生"
-        infoLabel.text = "福建福州-26岁"
+        if case let .card(elem) = message.currentElem {
+            markModel = elem
+            avatarImageView.kf.setImage(with: URL(string: elem.avatar))
+            nameLabel.text = elem.userName
+            infoLabel.text = "\(elem.area)-\(elem.age)岁"
+            timeLabel.text = elem.expreTip
+        }
     }
 }
 
+/// MARK - 代理
+public protocol WZIMRecommendCardTableViewCellDelegate: WZIMTableViewCellDelegate {
+    /// 点击事件
+    func cardTableViewCell(tap cell: WZIMRecommendCardTableViewCell)
+}
