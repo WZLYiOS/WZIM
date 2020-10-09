@@ -1,6 +1,0 @@
-framework module WZMoya {
-  umbrella header "WZMoya-umbrella.h"
-
-  export *
-  module * { export * }
-}
