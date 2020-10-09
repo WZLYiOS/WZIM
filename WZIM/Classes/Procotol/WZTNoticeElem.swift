@@ -27,6 +27,7 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case moodChecked = 25 // 我的问候语审核透传
     case star = 39 // 星标会员
     case svip = 40 // 超级会员
+    case task = 43 // B端每日任务
 }
 
 // MARK - 透传消息elem
@@ -47,6 +48,7 @@ public enum WZMessageNoticeElem: Decodable {
     case moodChecked(WZTNoticeMoodCheckedModel)
     case star(WZTNoticeMemberFlagModel)
     case svip(WZTNoticeMemberFlagModel)
+    case task(WZMessageTaskModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -102,6 +104,8 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .faceAtuth(try vals.decode(WZTNoticeSecretaryModel.self, forKey: CodingKeys.elem))
         case .moodChecked:
             elem = .moodChecked(try vals.decode(WZTNoticeMoodCheckedModel.self, forKey: CodingKeys.elem))
+        case .task:
+            elem = .task(try vals.decode(WZMessageTaskModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
@@ -306,3 +310,48 @@ public class WZTNoticeMoodCheckedModel: Codable {
     }
 }
 
+/// MARK - B端每日任务
+public class WZMessageTaskModel: Codable {
+    
+    enum OperationType: Int, WZIMDefaultEnumCodable{
+        static var defaultCase: WZMessageTaskModel.OperationType = .none
+        case none
+        case refresh = 1 // 刷新
+        case changed = 2 // 修改
+        case remove = 3  // 移除
+    }
+    
+    /// 任务数量
+    public let taskNum: Int
+    
+    /// 任务卡片ID
+    public let taskId: String
+    
+    ///
+    public let type: Int
+    
+    /// 操作类型
+    let status: OperationType
+    
+    /// 对应操作数据
+    let ext: WZMessageTaskExt
+    
+    enum CodingKeys: String, CodingKey {
+        case taskNum = "userid"
+        case taskId = "task_id"
+        case type = "type"
+        case status = "status"
+        case ext = "ext"
+    }
+}
+
+/// MARK - B端每日任务
+public class WZMessageTaskExt: Codable {
+    
+    /// 2
+    let itemId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case itemId = "item_id"
+    }
+}
