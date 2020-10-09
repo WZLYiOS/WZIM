@@ -64,3 +64,5 @@ public protocol WZMessageDelegate: class {
     func onRecvMessageRevoked(msgId: String)
 }
 
+
+

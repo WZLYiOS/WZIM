@@ -48,13 +48,13 @@ class ListViewController: UIViewController {
     
     @objc func pullToRefresh() {
         
-        
         UserSession.shared.imManager.wzGetConversationList(nextSeq: 0, count: 100) { [self] (list, seq, isFinish) in
             self.dataArray =  list
             self.tableView.reloadData()
         } fail: { (code, msg) in
             debugPrint("获取会话列表失败")
         }
+        
     }
     
     @objc func rightBarButtonAction(){
