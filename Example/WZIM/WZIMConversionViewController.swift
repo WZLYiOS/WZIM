@@ -138,7 +138,13 @@ public class WZIMConversionViewController: UIViewController {
 extension WZIMConversionViewController {
     
     /// 发送消息
-    func sendMessage(message: WZMessageProtocol) {
+    func sendMessage(message: WZMessageProtocol, isResend: Bool = false) {
+        
+        tableView.beginUpdates()
+        
+        if isResend {
+            dataArray.remove(message: message)
+        }
         /// 添加消息
         let indexPaths = dataArray.append(message)
         UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message) { (progress) in
@@ -149,9 +155,6 @@ extension WZIMConversionViewController {
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: indexPaths, with: .none)
             self.tableView.endUpdates()
-//            let cell: WZIMBaseTableViewCell = (self.tableView.cellForRow(at: indexPaths.last!) as? WZIMBaseTableViewCell)!
-//            cell.reloadMessageState()
-            
         } fail: { (code, msg) in
             debugPrint("发送失败")
             self.tableView.beginUpdates()
@@ -159,7 +162,6 @@ extension WZIMConversionViewController {
             self.tableView.endUpdates()
         }
         
-        tableView.beginUpdates()
         tableView.insertRows(at: indexPaths, with: .fade)
         tableView.endUpdates()
         scrollToBottom(animated: true)
@@ -259,8 +261,7 @@ extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableView
     }
     
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
-        dataArray.remove(message: cell.message)
-        sendMessage(message: cell.message)
+        sendMessage(message: cell.message, isResend: true)
     }
 }
 
