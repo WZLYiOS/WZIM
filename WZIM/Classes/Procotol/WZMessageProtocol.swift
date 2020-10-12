@@ -51,18 +51,7 @@ public protocol WZMessageReceiptProtocol {
     var time: Int { get }
 }
 
-// MARK - 消息回调
-public protocol WZMessageDelegate: class {
-    
-    /// 收到新消息
-    func onRecvNewMessage(msg: WZMessageProtocol)
-    
-    /// 收到消息已读回执（仅单聊有效）
-    func onRecvC2CReadReceipt(receiptList: WZMessageReceiptProtocol)
-    
-    /// 收到消息撤回
-    func onRecvMessageRevoked(msgId: String)
-}
+
 
 
 

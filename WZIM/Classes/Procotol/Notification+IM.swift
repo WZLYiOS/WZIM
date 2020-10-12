@@ -23,6 +23,16 @@ public extension Notification {
             return Notification.Name(rawValue: name+userId)
         }
     }
+    
+    /// 新增会话通知
+    var addConversationNotification: Notification.Name {
+        return Notification.Name("com.wzly.im.conversation.add")
+    }
+    
+    /// 会话修改通知
+    var changedConversationNotification: Notification.Name {
+        return Notification.Name("com.wzly.im.conversation.changed")
+    }
 }
 
 /// MARK - 通知
