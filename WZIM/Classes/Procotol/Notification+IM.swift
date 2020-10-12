@@ -25,12 +25,12 @@ public extension Notification {
     }
     
     /// 新增会话通知
-    var addConversationNotification: Notification.Name {
+    static func addConversationNotification() -> Notification.Name {
         return Notification.Name("com.wzly.im.conversation.add")
     }
     
     /// 会话修改通知
-    var changedConversationNotification: Notification.Name {
+    static func changedConversationNotification() -> Notification.Name {
         return Notification.Name("com.wzly.im.conversation.changed")
     }
 }
