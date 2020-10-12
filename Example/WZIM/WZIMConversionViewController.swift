@@ -300,8 +300,22 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
     
     public func moreView(moreView: WZIMMoreView, select item: WZIMMoreItem) {
         switch item.title {
-        case "相册":
-            openAlbum()
+        case "0":
+            
+            let model = WZSignalingModel(roomId: 89988, callEnd: 99999009)
+            
+            let data = try! JSONEncoder().encode(model)
+            let str = String(data: data, encoding: .utf8)
+            
+            
+            /// 发送邀请
+            V2TIMManager.sharedInstance()?.invite("wzly_\(userId)", data: str, timeout: 0, succ: {
+                debugPrint("xxxx")
+            }, fail: { (errCode, msg) in
+                debugPrint("1333")
+            })
+            
+            
         case "拍照":
             openCamera()
         default: break

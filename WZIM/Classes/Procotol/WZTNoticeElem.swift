@@ -298,7 +298,6 @@ public class WZTNoticeSecretaryModel: Codable {
     }
 }
 
-
 /// MARK - 我的问候语审核透传
 public class WZTNoticeMoodCheckedModel: Codable {
     
@@ -313,8 +312,8 @@ public class WZTNoticeMoodCheckedModel: Codable {
 /// MARK - B端每日任务
 public class WZMessageTaskModel: Codable {
     
-    enum OperationType: Int, WZIMDefaultEnumCodable{
-        static var defaultCase: WZMessageTaskModel.OperationType = .none
+    public enum OperationType: Int, WZIMDefaultEnumCodable{
+        public static var defaultCase: WZMessageTaskModel.OperationType = .none
         case none
         case refresh = 1 // 刷新
         case changed = 2 // 修改
@@ -331,10 +330,10 @@ public class WZMessageTaskModel: Codable {
     public let type: Int
     
     /// 操作类型
-    let status: OperationType
+    public let status: OperationType
     
     /// 对应操作数据
-    let ext: WZMessageTaskExt
+    public let ext: WZMessageTaskExt
     
     enum CodingKeys: String, CodingKey {
         case taskNum = "userid"
@@ -349,7 +348,7 @@ public class WZMessageTaskModel: Codable {
 public class WZMessageTaskExt: Codable {
     
     /// 2
-    let itemId: String
+    public let itemId: String
     
     enum CodingKeys: String, CodingKey {
         case itemId = "item_id"

@@ -12,7 +12,7 @@ import SnapKit
 public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
 
     /// 数据
-    public var markModel: WZVideoTalkInviteElem!
+    public var markModel: WZSignalingElem!
     
     /// 代理
     weak var delegete: WZIMVideoInviteTableViewCellDeleagte?
@@ -84,15 +84,17 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
         delegete = cDelegate as? WZIMVideoInviteTableViewCellDeleagte
-        if case let .videoTalkInvite(elem) = message.currentElem {
-            markModel = elem
-            let text = NSMutableAttributedString(string: "专属顾问向你发起了视频申请，是否同意？")
-            text.wzSetLineSpacing(value: 3)
-            topLabel.attributedText = text
-        }else{
-            
+        
+        guard case let .signaling(elem) = message.currentElem else {
+            return
         }
-        if model.customData == nil {
+        
+        markModel = elem
+        let text = NSMutableAttributedString(string: "专属顾问向你发起了视频申请，是否同意？")
+        text.wzSetLineSpacing(value: 3)
+        topLabel.attributedText = text
+        
+        if model.customInt == 0 {
             lelftButton.isSelected = false
             lelftButton.isUserInteractionEnabled = true
             lelftButton.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4E38").cgColor
@@ -140,16 +142,24 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
     public override func configViewLocation() {
         super.configViewLocation()
         topLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(21)
-            make.right.equalToSuperview().offset(-21)
+            make.leading.equalTo(16)
+            make.right.equalToSuperview().offset(-16)
             make.top.equalToSuperview().offset(15)
+            make.bottom.lessThanOrEqualTo(-15)
             make.width.lessThanOrEqualTo(WZIMConfig.maxWidth)
-            make.bottom.lessThanOrEqualToSuperview().offset(-15).priority(.low)
         }
     }
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        topLabel.text = "发起视频通话"
+        guard case let .signaling(elem) = message.currentElem else {
+            return
+        }
+        sendFailButton.isHidden = true
+        readButton.isHidden = true
+        topLabel.textColor = getTextColor()
+        let text = NSMutableAttributedString(string: elem.getText(isSelf: message.loaction == .lelft ? false : true))
+        text.wzSetLineSpacing(value: 3)
+        topLabel.attributedText = text
     }
 }

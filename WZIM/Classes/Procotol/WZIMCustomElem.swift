@@ -28,6 +28,7 @@ public enum WZMessageElem: Decodable {
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
+    case signaling(WZSignalingElem) // 信令消息
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -60,6 +61,7 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case videoTalkInvite = "videoTalkInvite"  // 视频谈单邀请
     case nameAuthPop = "dateApplyAuthPopup" // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon = "dateServiceHnSetRecCon" // 红娘设置推荐条件)
+    case signaling = "signaling" // 信令消息
 }
 
 // MARK - 我主自定义消息

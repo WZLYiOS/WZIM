@@ -176,4 +176,44 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func wzDeleteConversation(conversationId: String) {
         deleteConversation(conversationId, succ: nil, fail: nil)
     }
+    
+    public func inviteC2C(userId: String, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
+        return invite(userId.imPrefix, data: data, timeout: Int32(timeOut)) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func inviteGroup(groupId: String, userIds: [String], data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
+        return invite(inGroup: groupId.imPrefix, inviteeList: userIds, data: data, timeout: Int32(timeOut)) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func cancel(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
+        cancel(inviteId.imPrefix, data: data) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func accept(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
+        accept(inviteId.imPrefix, data: data) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func reject(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
+        reject(inviteId.imPrefix, data: data) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
 }

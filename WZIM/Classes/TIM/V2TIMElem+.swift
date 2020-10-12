@@ -26,10 +26,18 @@ extension V2TIMElem {
             /// 将所有JSON 格式的字符串自动转成 Codable 对象或数组
             let decoder = CleanJSONDecoder()
             decoder.jsonStringDecodingStrategy = .all
-            guard let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data) else {
-                return .unknown
+            
+            if let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data), model.type != .none {
+                return model.msgElem
+            }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType != .none {
+                
+                if model.data.callEnd > 0 {
+                    model.actionType = .end
+                }
+                
+                return .signaling(model)
             }
-            return model.msgElem
+            return .unknown
         case is V2TIMFaceElem:
             let face = self as! V2TIMFaceElem
             let model = try! CleanJSONDecoder().decode(WZIMFaceCustomMarkModel.self, from: face.data)

@@ -140,4 +140,50 @@ public protocol WZIMManagerProcotol {
     /// 删除会话
     /// - Parameter conversationId: 会话id
     func wzDeleteConversation(conversationId: String)
+    
+    /// 发送邀请
+    /// - Parameters:
+    ///   - userId: 被邀请用户
+    ///   - data: 自定义内容
+    ///   - timeOut: 过期时间
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    @discardableResult
+    func inviteC2C(userId: String, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
+    
+    /// 邀请群成员
+    /// - Parameters:
+    ///   - groupId: 群id
+    ///   - userIds: 用户s
+    ///   - data: 自定义内容
+    ///   - timeOut: 过期时间
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    @discardableResult
+    func inviteGroup(groupId: String, userIds: [String],data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
+    
+    /// 取消邀请
+    /// - Parameters:
+    ///   - inviteId: 邀请id
+    ///   - data: 自定义内容
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    func cancel(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler)
+    
+    /// 接受邀请
+    /// - Parameters:
+    ///   - inviteId: 邀请id
+    ///   - data: 自定义内容
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    func accept(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler)
+    
+    /// 拒绝邀请
+    /// - Parameters:
+    ///   - inviteId: 邀请id
+    ///   - data: 自定义内容
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    func reject(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler)
 }
+
