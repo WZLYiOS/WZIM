@@ -31,6 +31,11 @@ public extension String {
 
 // MARK - 管理器遵循协议
 extension V2TIMManager: WZIMManagerProcotol {
+    
+    public func loginStatus() -> WZIMLoginStatus {
+        return WZIMLoginStatus.init(rawValue: getLoginStatus().rawValue) ?? .logOut
+    }
+    
     public func revokeMessage(msg: WZMessageProtocol, sucess: SucessHandler, fail: FailHandler) {
         revokeMessage((msg as! V2TIMMessage)) {
             sucess?()

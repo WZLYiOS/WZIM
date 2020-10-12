@@ -192,5 +192,8 @@ public protocol WZIMManagerProcotol {
     ///   - sucess: 成功
     ///   - fail: 失败
     func reject(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler)
+    
+    /// 获取SDK 登录状态
+    func loginStatus() -> WZIMLoginStatus
 }
 

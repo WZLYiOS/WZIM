@@ -8,6 +8,13 @@
 
 import Foundation
 
+// MARK - SDK 登录状态
+public enum WZIMLoginStatus: Int {
+    case logIned = 1  // 已登录
+    case loginIng = 2 // 登录中
+    case logOut = 3   // 无登录
+}
+
 // MARK - 消息状态
 public enum WZIMMessageStatus: Int {
     case sending = 1  // 发送中
