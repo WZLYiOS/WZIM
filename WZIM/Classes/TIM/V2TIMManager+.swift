@@ -31,6 +31,14 @@ public extension String {
 
 // MARK - 管理器遵循协议
 extension V2TIMManager: WZIMManagerProcotol {
+    public func revokeMessage(msg: WZMessageProtocol, sucess: SucessHandler, fail: FailHandler) {
+        revokeMessage((msg as! V2TIMMessage)) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code), msg ?? "")
+        }
+    }
+    
     
     public func setReadMessage(receiverId: String, type: WZIMConversationType) {
         

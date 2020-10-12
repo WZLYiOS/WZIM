@@ -64,7 +64,14 @@ public protocol WZIMManagerProcotol {
     ///   - sucess: 成功
     ///   - fail: 失败
     func getGroupMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler)
-        
+    
+    /// 消息撤回
+    /// - Parameters:
+    ///   - msg: 撤回的消息
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    func revokeMessage(msg: WZMessageProtocol, sucess: SucessHandler, fail: FailHandler)
+    
     /// 设置消息已读
     /// - Parameters:
     ///   - receiverId: 用户id

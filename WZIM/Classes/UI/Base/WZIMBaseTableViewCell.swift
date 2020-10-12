@@ -145,8 +145,8 @@ open class WZIMBaseTableViewCell: UITableViewCell {
             bubbleImageView.image = WZIMConfig.rightBubbleImage
            
             let state = message.sendStatus
-            sendFailButton.isHidden =  state == .fail ? false : true
-            readButton.isHidden = !sendFailButton.isHidden
+            sendFailButton.isHidden = state == .fail ? false : true
+            readButton.isHidden = state == .sending ? true : !sendFailButton.isHidden
             readButton.isSelected = message.isReaded
             avatarImageView.isHidden = false
         case .center:
@@ -164,6 +164,11 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     /// 获取文字颜色
     open func getTextColor() -> UIColor {
         return  message.loaction == .right ? WZIMConfig.rightTextColor : WZIMConfig.lelftTextColor
+    }
+    
+    /// 更新发送状态
+    open func reloadMessageState(){
+        uploadConstraints(type: message.loaction)
     }
 }
 

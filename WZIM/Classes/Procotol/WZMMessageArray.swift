@@ -86,15 +86,14 @@ open class WZMMessageArray {
             return
         }
         
-        if row > 0 {
-            let lastMsg = array[row-1]
-            if case .time = lastMsg.currentElem {
-                array.remove(at: row-1)
-                delegete.messageArray(arry: self, remove: row-1)
-            }
+        if row > 0, case .time = array[row-1].currentElem {
+            array.remove(at: row)
+            array.remove(at: row-1)
+            delegete.messageArray(arry: self, remove: [row-1, row])
+            return
         }
         array.remove(at: row)
-        delegete.messageArray(arry: self, remove: row)
+        delegete.messageArray(arry: self, remove: [row])
     }
     
     /// 根据消息查找位置
@@ -123,7 +122,7 @@ public protocol WZMMessageArrayDelegate: class {
     func messageArray(arry: WZMMessageArray, date: Date) -> WZMessageProtocol
     
     /// 移除某个元素
-    func messageArray(arry: WZMMessageArray, remove row: Int)
+    func messageArray(arry: WZMMessageArray, remove row: [Int])
 }
 
 /// MARK - 扩展

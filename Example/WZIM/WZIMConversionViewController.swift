@@ -149,7 +149,9 @@ extension WZIMConversionViewController {
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: indexPaths, with: .none)
             self.tableView.endUpdates()
-        
+//            let cell: WZIMBaseTableViewCell = (self.tableView.cellForRow(at: indexPaths.last!) as? WZIMBaseTableViewCell)!
+//            cell.reloadMessageState()
+            
         } fail: { (code, msg) in
             debugPrint("发送失败")
             self.tableView.beginUpdates()
@@ -257,7 +259,8 @@ extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableView
     }
     
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton) {
-        
+        dataArray.remove(message: cell.message)
+        sendMessage(message: cell.message)
     }
 }
 
@@ -389,8 +392,8 @@ extension WZIMConversionViewController: WZMMessageArrayDelegate{
         return UserSession.shared.imManager.wzCreateTimeMessage(date: date)
     }
     
-    public func messageArray(arry: WZMMessageArray, remove row: Int) {
-        
+    public func messageArray(arry: WZMMessageArray, remove row: [Int]) {
+        tableView.deleteRows(at: row.map({IndexPath(row: $0, section: 0)}), with: .fade)
     }
 }
 
