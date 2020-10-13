@@ -8,30 +8,30 @@
 import Foundation
 
 // MARK - IM 订阅名称
-public extension Notification {
-    
-    /// IM 各种消息 订阅名称
-    static func getImNotificationName(notif: WZMessageNotification) -> Notification.Name {
+public extension Notification.Name {
+
+    /// Im通知
+    struct wzIMTask {
         
-        let name = "com.wzly.im.message.\(notif)."
-        switch notif {
-        case let .notice(type):
-            return Notification.Name(rawValue: name+"\(type.rawValue)")
-        case .revoked:
-            return Notification.Name(rawValue: name)
-        case let .msg(userId), let .readReceipt(userId):
-            return Notification.Name(rawValue: name+userId)
+        /// 会话添加
+        public static let conversationAdd = Notification.Name("com.wzly.im.conversation.add")
+        
+        /// 会话修改
+        public static let conversationChange = Notification.Name("com.wzly.im.conversation.changed")
+        
+        /// IM 各种消息 订阅名称
+        static func getMessage(notif: WZMessageNotification) -> Notification.Name {
+            
+            let name = "com.wzly.im.message.\(notif)."
+            switch notif {
+            case let .notice(type):
+                return Notification.Name(rawValue: name+"\(type.rawValue)")
+            case .revoked:
+                return Notification.Name(rawValue: name)
+            case let .msg(userId), let .readReceipt(userId):
+                return Notification.Name(rawValue: name+userId)
+            }
         }
-    }
-    
-    /// 新增会话通知
-    static func addConversationNotification() -> Notification.Name {
-        return Notification.Name("com.wzly.im.conversation.add")
-    }
-    
-    /// 会话修改通知
-    static func changedConversationNotification() -> Notification.Name {
-        return Notification.Name("com.wzly.im.conversation.changed")
     }
 }
 
