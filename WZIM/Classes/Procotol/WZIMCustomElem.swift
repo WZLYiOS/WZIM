@@ -25,6 +25,8 @@ public enum WZMessageElem: Decodable {
     case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
     case dateService         // 线上视频约会服务
+    case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
+    case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
     case signaling(WZSignalingElem) // 信令消息
     
@@ -48,11 +50,13 @@ public enum WZMessageElem: Decodable {
         case .img:
             return "[图片]"
         case .nameAuthInvite, .dateAuthInvite:
-            return isSelf ? "发起了实名邀请" : "向您发起了视频申请"
+            return isSelf ? "发起了实名邀请" : "向您发起了实名邀请"
         case let .share(model):
             return model.content.title
         case let .hibox(model):
             return model.text
+        case .videoTalkInvite:
+            return isSelf ? "发起通话" : "向您发起了视频申请"
         case .dateService:
             return isSelf ? "推荐了服务" : "向您推荐了服务"
         case .card:
@@ -90,6 +94,8 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case dateService = "dateService" // 线上视频约会服务
     case dateAuthInvite = "dateAuthInvite" // 约会实名认证邀请
     case videoTalkInvite = "videoTalkInvite"  // 视频谈单邀请
+    case nameAuthPop = "dateApplyAuthPopup" // 牵线首次登陆实名认证弹窗
+    case dateServiceHnSetRecCon = "dateServiceHnSetRecCon" // 红娘设置推荐条件)
     case signaling = "signaling" // 信令消息
     case dateRemind = "dateRemind" // 约会提醒
 }
@@ -129,6 +135,10 @@ public class WZIMCustomElem: Decodable {
             msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .dateService:
             msgElem = .dateService
+        case .nameAuthPop:
+            msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
+        case .dateServiceHnSetRecCon:
+            msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
         case .chatCard:
             msgElem = .card(try vals.decode(WZMessageCardElem.self, forKey: CodingKeys.msg))
         default:
@@ -511,5 +521,38 @@ public class WZMessageDateAuthInviteElem: Codable {
     }
 }
 
+// MARK - 牵线首次登陆实名认证弹窗
+public class WZMessageNmeAuthPopElem: Codable {
+    
+    /// 用户id
+    public let userId: String
+    
+    /// xxx想与您进行视频约会，完成实名认证后即可安排约会
+    public let text: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+        case text = "text"
+    }
+}
+
+/// MARK - 红娘设置推荐条件
+public class WZMessageServiceHnSetRecConElem: Codable {
+    
+    /// 用户id
+    public let userId: String
+    
+    /// 该用户已开通红娘服务, 您是ta的专属红娘,请了解基础信息后，为其设置推荐条件"
+    public let text: String
+    
+    /// 推荐条件
+    public let label: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+        case text = "text"
+        case label = "keyword"
+    }
+}
 
 
