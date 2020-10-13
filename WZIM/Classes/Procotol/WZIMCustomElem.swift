@@ -39,7 +39,7 @@ public enum WZMessageElem: Decodable {
     }
     
     /// 列表内容
-    func listContent(isSelf: Bool) -> String {
+    public func listContent(isSelf: Bool) -> String {
         switch self {
         case let .text(model):
             return model.getText()
