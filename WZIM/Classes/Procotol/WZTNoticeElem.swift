@@ -374,6 +374,6 @@ public class WZMessageNoticeDateRemindModel: Codable {
     enum CodingKeys: String, CodingKey {
         case time = "time"
         case content = "content"
-        case unreadNum = "unreadNum"
+        case unreadNum = "unReadNum"
     }
 }
