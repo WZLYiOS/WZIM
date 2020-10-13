@@ -28,6 +28,7 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case star = 39 // 星标会员
     case svip = 40 // 超级会员
     case task = 43 // B端每日任务
+    case dateRemind = 44 // 约会提醒
 }
 
 // MARK - 透传消息elem
@@ -49,6 +50,7 @@ public enum WZMessageNoticeElem: Decodable {
     case star(WZTNoticeMemberFlagModel)
     case svip(WZTNoticeMemberFlagModel)
     case task(WZMessageTaskModel)
+    case dateRemind(WZMessageNoticeDateRemindModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -106,6 +108,8 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .moodChecked(try vals.decode(WZTNoticeMoodCheckedModel.self, forKey: CodingKeys.elem))
         case .task:
             elem = .task(try vals.decode(WZMessageTaskModel.self, forKey: CodingKeys.elem))
+        case .dateRemind:
+            elem = .dateRemind(try vals.decode(WZMessageNoticeDateRemindModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
@@ -352,5 +356,24 @@ public class WZMessageTaskExt: Codable {
     
     enum CodingKeys: String, CodingKey {
         case itemId = "item_id"
+    }
+}
+
+/// MARK - 约会提醒
+public class WZMessageNoticeDateRemindModel: Codable {
+    
+    /// 时间
+    public var time: String
+    
+    /// 内容
+    public var content: String
+    
+    /// 未读数量
+    public var unreadNum: String
+    
+    enum CodingKeys: String, CodingKey {
+        case time = "time"
+        case content = "content"
+        case unreadNum = "unreadNum"
     }
 }

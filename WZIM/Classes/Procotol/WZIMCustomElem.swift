@@ -29,7 +29,6 @@ public enum WZMessageElem: Decodable {
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
     case signaling(WZSignalingElem) // 信令消息
-    case dateRemind  // 约会提醒
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -107,8 +106,6 @@ public class WZIMCustomElem: Decodable {
             msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
         case .chatCard:
             msgElem = .card(try vals.decode(WZMessageCardElem.self, forKey: CodingKeys.msg))
-        case .dateRemind:
-            msgElem = .dateRemind
         default:
             msgElem = .unknown
         }
