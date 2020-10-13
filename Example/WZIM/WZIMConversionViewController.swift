@@ -46,14 +46,10 @@ public class WZIMConversionViewController: UIViewController {
     /// 底部tabbar输入框
     private lazy var textTabbarView: WZIMTextInputTabbar = {
         $0.delegate = self
+        $0.moreView.delegate = self
+        $0.moreView.reloadUI()
         return $0
     }(WZIMTextInputTabbar())
-    
-    /// 更多视图
-    private lazy var moreView: WZIMMoreView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
-        return $0
-    }(WZIMMoreView(delegate: self))
     
     /// 获取消息，用于下拉加载更多
     private var messageForGet: WZMessageProtocol? = nil
@@ -79,13 +75,11 @@ public class WZIMConversionViewController: UIViewController {
         WZIMConfig.avatarSize = CGSize(width: 40, height: 40)
         WZIMConfig.bubbleEdge = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
         DongtuStore.sharedInstance().delegate = self
-        moreView.reloadUI()
     }
 
     func configView() {
         view.addSubview(tableView)
         view.addSubview(textTabbarView)
-        textTabbarView.addMoreView(view: moreView)
     }
     func configViewLocation() {
         tableView.snp.makeConstraints { (make) in

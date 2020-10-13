@@ -44,7 +44,7 @@ public class WZIMTextInputTabbar: UIView {
     
     /// 输入框
     public lazy var textInputView: WZIMTextInputView = {
-        $0.textInput.delegate = self
+        $0.delegate = self
         return $0
     }(WZIMTextInputView())
     
@@ -96,12 +96,20 @@ public class WZIMTextInputTabbar: UIView {
     }(UIButton(type: .custom))
         
     /// 键盘
-    private lazy var keyboardView: UIView = {
+    private lazy var keyboardView: WZIMKeyboardView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.isHidden = true
         $0.tag = KeyboardViewTag.keyboard.rawValue
         return $0
-    }(UIView())
+    }(WZIMKeyboardView())
+    
+    /// 更多视图
+    public lazy var moreView: WZIMMoreView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isHidden = true
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
+        $0.tag = KeyboardViewTag.more.rawValue
+        return $0
+    }(WZIMMoreView())
     
     /// 底部背景视图
     private lazy var bottomStackView: UIStackView = {
@@ -110,7 +118,7 @@ public class WZIMTextInputTabbar: UIView {
         $0.distribution = .fillEqually
         $0.alignment = .fill
         return $0
-    }(UIStackView(arrangedSubviews: [keyboardView]))
+    }(UIStackView(arrangedSubviews: [moreView,keyboardView]))
     
     /// 音频录制
     private lazy var audioRecorder: WZAudioRecorder = {
@@ -160,6 +168,7 @@ public class WZIMTextInputTabbar: UIView {
         textInputView.snp.makeConstraints { (make) in
             make.leading.equalTo(65)
             make.top.equalToSuperview().offset(10)
+            make.height.equalTo(35)
         }
         
         bottomStackView.snp.makeConstraints { (make) in
@@ -167,7 +176,6 @@ public class WZIMTextInputTabbar: UIView {
             make.leading.equalTo(0)
             make.right.equalToSuperview()
             make.top.equalTo(textInputView.snp.bottom).offset(10)
-            make.height.greaterThanOrEqualTo(WZIMToolAppearance.safeAreaInsetsBottom)
         }
         
         vioceButton.snp.makeConstraints { (make) in
@@ -203,7 +211,6 @@ public class WZIMTextInputTabbar: UIView {
     @objc func keyboardWillShow(notification: Notification) {
         
          //通知里的内容
-        
         guard let userInfo = notification.userInfo as NSDictionary? else {
             return
         }
@@ -216,10 +223,7 @@ public class WZIMTextInputTabbar: UIView {
         let y = keyboardRect?.size.height ?? 0
         getBottomView(tag: .more)?.isHidden = true
         keyboardView.isHidden = false
-        keyboardView.snp.updateConstraints { (make) in
-            make.height.equalTo(y)
-        }
-        
+        keyboardView.change(height: y)
         UIView.animate(withDuration: duration == 0 ? 0.25 : duration) {
             self.superview?.layoutIfNeeded()
             self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
@@ -377,19 +381,9 @@ extension WZIMTextInputTabbar {
         eventAction(type: .cancelEmoj)
     }
     
-    /// 添加更多视图
-   public  func addMoreView(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.tag = KeyboardViewTag.more.rawValue
-        view.isHidden = true
-        bottomStackView.addArrangedSubview(view)
-    }
-    
     /// 清空文本内容
     public func clearTextInput(){
-        let textView = textInputView.textInput
-        textView.text = ""
-        textViewChangeHeight(textView: textView, animated: true)
+        textInputView.clearTextInput()
     }
 }
 
@@ -425,33 +419,17 @@ public protocol WZIMTextInputTabbarDelegate: class {
 }
 
 /// MARK - YYTextViewDelegate
-extension WZIMTextInputTabbar: UITextViewDelegate {
+extension WZIMTextInputTabbar: WZIMTextInputViewDelegate {
     
-    /// 动态修改textView 高度
-    func textViewChangeHeight(textView: UITextView, animated: Bool) {
-        let height = textView.getHeight()
-         textView.snp.updateConstraints { (make) in
-             make.height.equalTo(height)
-         }
+    public func textViewDidChange(view: WZIMTextInputView, animated: Bool) {
         UIView.animate(withDuration: 0.25) {
             self.superview?.layoutIfNeeded()
             self.delegate?.textInputTabbarDidChange(tabbar: self, animated: animated)
         }
-        
     }
     
-    public func textViewDidChange(_ textView: UITextView) {
-        textViewChangeHeight(textView: textView, animated: false)
-    }
-    
-    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if text == "\n" && textView.text.count>0{
-            delegate?.textInputTabbar(tabbar: self, replacementText: textView.text)
-            clearTextInput()
-            return false
-        }
-        return true
+    public func textViewDidReturn(view: WZIMTextInputView) {
+        delegate?.textInputTabbar(tabbar: self, replacementText: view.textInput.text)
     }
 }
 
@@ -496,5 +474,41 @@ extension WZIMTextInputTabbar: WZIMChatRecordViewDelegate {
     
     public func getEmPeekRecorderVoiceMeter(view: WZIMChatRecordView) -> CGFloat {
         return CGFloat(audioRecorder.emPeekRecorderVoiceMeter())
+    }
+}
+
+
+class WZIMKeyboardView: UIView {
+    
+    private lazy var bgView: UIView = {
+        return $0
+    }(UIView())
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configView()
+        configViewLocation()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    func configView() {
+        self.addSubview(bgView)
+    }
+    func configViewLocation() {
+        bgView.snp.makeConstraints { (make) in
+            make.leading.equalTo(0)
+            make.right.equalToSuperview().offset(0)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().priority(.low)
+            make.height.equalTo(WZIMToolAppearance.safeAreaInsetsBottom)
+        }
+    }
+    
+    func change(height: CGFloat) {
+        bgView.snp.updateConstraints { (make) in
+            make.height.equalTo(height)
+        }
     }
 }

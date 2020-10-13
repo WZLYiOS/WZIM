@@ -68,11 +68,7 @@ open class WZIMChatTextView: UITextView {
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
         self.placeHolderLabel.isHidden = text.count > 0 ? true : false
-//        if self.text.count == 0 && self.placeHolder.count > 0 {
-//            self.placeHolder.draw(in: rect.insetBy(dx: 8.0, dy: 8.0), withAttributes: placeholderTextAttributes())
-//        }
     }
     
     func config() {
@@ -84,13 +80,17 @@ open class WZIMChatTextView: UITextView {
         NotificationCenter.default.addObserver( self, selector: #selector(didReceiveTextDidChangeNotification), name: UITextView.textDidChangeNotification, object: self)
         NotificationCenter.default.addObserver( self, selector: #selector(didReceiveTextDidBeginEditinNotification), name: UITextView.textDidBeginEditingNotification, object: self)
     }
+    
+
     @objc func didReceiveTextDidChangeNotification(notification: Notification) {
         self.setNeedsDisplay()
+        
         guard let textView = notification.object as? UITextView else {
             return
         }
         placeHolderLabel.isHidden = textView.text.count > 0 ? true : false
         let view = textView.subviews.first! as UIView
+        
         if (view.frame.size.height < textView.frame.size.height) {
             let center = CGPoint(x: textView.frame.size.width * 0.5, y: textView.frame.size.height * 0.5)
             view.center = center;
@@ -123,24 +123,14 @@ public extension UITextView {
     
     func getHeight(maxFloat: CGFloat = 110, miniFloat: CGFloat = 35) -> CGFloat {
         
-        let textView = self
-        let fixedWidth = textView.frame.size.width
-        if fixedWidth == 0 {
-            return miniFloat
-        }
-        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = textView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        
-        let height = floor(newFrame.size.height)
+        let height = ceil(self.contentSize.height)
         switch height {
         case 0...miniFloat:
-            newFrame.size.height = miniFloat
-        case (miniFloat+1)...maxFloat: break
+             return miniFloat
+        case (miniFloat+1)...maxFloat:
+            return height
         default:
-            newFrame.size.height = maxFloat
+            return maxFloat
         }
-        return newFrame.size.height
     }
 }

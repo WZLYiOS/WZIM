@@ -13,12 +13,12 @@ import SnapKit
 public class WZIMMoreView: UIView {
     
     /// 横向排列个数
-    public weak var delegate: WZIMMoreViewDelegate!
+    public weak var delegate: WZIMMoreViewDelegate?
     
     /// 列表
     private lazy var collectionView: UICollectionView = {
         
-        let flowLayout = WZIMMoreCollectionViewFlowLayout()
+        let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.size.width/4, height: 80)
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 15
@@ -51,12 +51,10 @@ public class WZIMMoreView: UIView {
         return $0
     }(UIPageControl())
     
-    public init(delegate: WZIMMoreViewDelegate) {
-        super.init(frame: CGRect.zero)
-        self.delegate = delegate
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF3F3F3")
         configView()
-        configViewLocation()
     }
     
     required init?(coder: NSCoder) {
@@ -67,24 +65,10 @@ public class WZIMMoreView: UIView {
         self.addSubview(collectionView)
         self.addSubview(pageControl)
     }
-    func configViewLocation() {
-        collectionView.snp.makeConstraints { (make) in
-            make.leading.equalTo(0)
-            make.right.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
-            make.height.equalTo(175)
-        }
-        pageControl.snp.makeConstraints { (make) in
-            make.top.equalTo(collectionView.snp.bottom).offset(20)
-            make.height.equalTo(7)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-WZIMToolAppearance.safeAreaInsetsBottom-13)
-        }
-    }
-    
+
     public func reloadUI() {
     
-        let list = delegate.listMoreView(moreView: self)
+        let list = delegate?.listMoreView(moreView: self) ?? []
        
         let columnCount = 4
         rowCount = list.count > columnCount ? 2 : 1
@@ -103,11 +87,19 @@ public class WZIMMoreView: UIView {
         
         pageControl.numberOfPages = sectionCount
         pageControl.isHidden = sectionCount == 1 ? true : false
+        collectionView.reloadData()
         collectionView.snp.updateConstraints { (make) in
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
             make.height.equalTo(list.count > 4 ? 175 : 100)
         }
-        collectionView.reloadData()
-        
+        pageControl.snp.updateConstraints { (make) in
+            make.top.equalTo(collectionView.snp.bottom).offset(20)
+            make.height.equalTo(7)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-WZIMToolAppearance.safeAreaInsetsBottom-13).priority(.low)
+        }
     }
 }
 
@@ -126,7 +118,7 @@ extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WZIMMoreCollectionViewCell.self), for: indexPath) as! WZIMMoreCollectionViewCell
         
         let index = Int(itemIndexs[indexPath] ?? 0)
-        let list = delegate.listMoreView(moreView: self)
+        let list = delegate!.listMoreView(moreView: self)
         if index <= list.count - 1 {
             cell.reload(model: list[index])
         }else{
@@ -137,31 +129,15 @@ extension WZIMMoreView: UICollectionViewDataSource, UIScrollViewDelegate, UIColl
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = Int(itemIndexs[indexPath] ?? 0)
-        let list = delegate.listMoreView(moreView: self)
+        let list = delegate!.listMoreView(moreView: self)
         if index <= list.count - 1 {
-            delegate.moreView(moreView: self, select: list[index])
+            delegate!.moreView(moreView: self, select: list[index])
         }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let x = ceil(scrollView.contentOffset.x/self.frame.size.width)
         pageControl.currentPage = Int(x);
-    }
-}
-
-// MARK - 重写ContentSize
-class WZIMMoreCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    
-    override var collectionViewContentSize: CGSize {
-        
-        let size: CGSize = super.collectionViewContentSize
-        let collectionViewWidth: CGFloat = self.collectionView?.frame.size.width ?? 0
-        if collectionViewWidth == 0 {
-            return size
-        }
-        let nbOfScreen: Int = Int(ceil(size.width / collectionViewWidth))
-        let newSize: CGSize = CGSize(width: collectionViewWidth * CGFloat(nbOfScreen), height: size.height)
-        return newSize
     }
 }
 

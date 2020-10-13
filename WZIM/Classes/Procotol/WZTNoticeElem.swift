@@ -340,7 +340,7 @@ public class WZMessageTaskModel: Codable {
     public let ext: WZMessageTaskExt
     
     enum CodingKeys: String, CodingKey {
-        case taskNum = "userid"
+        case taskNum = "task_num"
         case taskId = "task_id"
         case type = "type"
         case status = "status"

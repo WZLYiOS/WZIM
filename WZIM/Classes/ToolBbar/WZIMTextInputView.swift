@@ -12,6 +12,9 @@ import SnapKit
 // MARK - IM输入框
 public class WZIMTextInputView: UIView {
 
+    /// 代理
+    public weak var delegate: WZIMTextInputViewDelegate?
+    
     /// 输入框
     public lazy var textInput: WZIMChatTextView = {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
@@ -23,6 +26,7 @@ public class WZIMTextInputView: UIView {
         $0.placeHolderLabel.text = "请输入聊天内容"
         $0.placeHolderLabel.font = $0.font
         $0.placeHolderLabel.textColor = WZIMToolAppearance.hexadecimal(rgb: "0xA5A4AA")
+        $0.delegate = self
         return $0
     }(WZIMChatTextView())
     
@@ -49,7 +53,6 @@ public class WZIMTextInputView: UIView {
             make.right.equalToSuperview().offset(-5)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(35)
         }
     }
     
@@ -67,8 +70,52 @@ public class WZIMTextInputView: UIView {
                 textInput.resignFirstResponder()
             }
         }
-        textInput.snp.updateConstraints { (make) in
+        
+        self.snp.updateConstraints { (make) in
             make.height.equalTo(height)
         }
+    }
+    
+    func clearTextInput() {
+        let textView = textInput
+        textView.text = ""
+        textViewChangeHeight(textView: textView, animated: true)
+    }
+}
+
+/// MARK - WZIMTextInputViewDelegate
+public protocol WZIMTextInputViewDelegate: class {
+    
+    /// 内容输入
+    func textViewDidChange(view: WZIMTextInputView, animated: Bool)
+    
+    /// 内容返回
+    func textViewDidReturn(view: WZIMTextInputView)
+}
+
+/// MARK - YYTextViewDelegate
+extension WZIMTextInputView: UITextViewDelegate {
+    
+    /// 动态修改textView 高度
+    func textViewChangeHeight(textView: UITextView, animated: Bool) {
+        let height = textView.getHeight()
+         self.snp.updateConstraints { (make) in
+             make.height.equalTo(height)
+         }
+        self.delegate?.textViewDidChange(view: self, animated: animated)
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        textViewChangeHeight(textView: textView, animated: false)
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" && textView.text.count>0{
+            delegate?.textViewDidReturn(view: self)
+            clearTextInput()
+            return false
+        }
+        return true
     }
 }
