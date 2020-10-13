@@ -66,7 +66,6 @@ class ListTableViewCell: UITableViewCell {
     
     func reload(model: WZConversationProcotol) {
         nameLabel.text = model.receiverId
-        debugPrint("\(model.lastMsg?.timeTamp)")
 //        contentLabel.text = model.wzLastMessage()?.wzMessageId()
     }
 }

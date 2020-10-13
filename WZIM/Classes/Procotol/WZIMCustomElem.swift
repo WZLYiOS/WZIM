@@ -24,11 +24,12 @@ public enum WZMessageElem: Decodable {
     case hibox(WZIMHiboxElem)           // 打招呼消息
     case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
-    case dateService(WZMessageDateAuthInviteElem)         // 线上视频约会服务
+    case dateService         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
     case signaling(WZSignalingElem) // 信令消息
+    case dateRemind  // 约会提醒
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -62,6 +63,7 @@ public enum WZMessageCustomType: String, WZIMDefaultEnumCodable {
     case nameAuthPop = "dateApplyAuthPopup" // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon = "dateServiceHnSetRecCon" // 红娘设置推荐条件)
     case signaling = "signaling" // 信令消息
+    case dateRemind = "dateRemind" // 约会提醒
 }
 
 // MARK - 我主自定义消息
@@ -98,13 +100,15 @@ public class WZIMCustomElem: Decodable {
         case .dateAuthInvite:
             msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .dateService:
-            msgElem = .dateService(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
+            msgElem = .dateService
         case .nameAuthPop:
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         case .dateServiceHnSetRecCon:
             msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
         case .chatCard:
             msgElem = .card(try vals.decode(WZMessageCardElem.self, forKey: CodingKeys.msg))
+        case .dateRemind:
+            msgElem = .dateRemind
         default:
             msgElem = .unknown
         }
