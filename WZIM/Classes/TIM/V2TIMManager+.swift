@@ -207,7 +207,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func cancel(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        cancel(inviteId.imPrefix, data: data) {
+        cancel(inviteId, data: data) {
             sucess?()
         } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
@@ -215,7 +215,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func accept(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        accept(inviteId.imPrefix, data: data) {
+        accept(inviteId, data: data) {
             sucess?()
         } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
@@ -223,7 +223,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func reject(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        reject(inviteId.imPrefix, data: data) {
+        reject(inviteId, data: data) {
             sucess?()
         } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
