@@ -36,16 +36,36 @@ public class WZSignalingElem: Codable {
     public var actionType: ActionType
         
     /// 自定义内容
-    public let data: WZSignalingModel
+    public var data: WZSignalingModel
     
-    public init(actionType: ActionType, data: WZSignalingModel) {
+    /// 邀请id
+    public var inviteID: String
+    
+    /// 邀请列表
+    public var inviteeList: [String]
+    
+    /// 邀请者
+    public var inviter: String
+    
+    /// 过期时间
+    public var timeout: Int
+    
+    public init(actionType: ActionType, data: WZSignalingModel, inviteID: String, inviteeList: [String], inviter: String, timeout: Int) {
         self.actionType = actionType
         self.data = data
+        self.inviteID = inviteID
+        self.inviter = inviter
+        self.inviteeList = inviteeList
+        self.timeout = timeout
     }
     
     enum CodingKeys: String, CodingKey {
         case actionType = "actionType"
         case data = "data"
+        case inviteID = "inviteID"
+        case inviteeList = "inviteeList"
+        case inviter = "inviter"
+        case timeout = "timeout"
     }
     
     public func getText(isSelf: Bool) -> String {

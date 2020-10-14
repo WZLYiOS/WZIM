@@ -19,6 +19,9 @@ public extension Notification.Name {
         /// 会话修改
         public static let conversationChange = Notification.Name("com.wzly.im.conversation.changed")
         
+        /// 信令消息
+        public static let signaling = Notification.Name("com.wzly.im.message.signaling")
+        
         /// IM 各种消息 订阅名称
         public static func getMessage(notif: WZMessageNotification) -> Notification.Name {
             
