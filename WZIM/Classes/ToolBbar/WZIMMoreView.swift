@@ -53,7 +53,6 @@ public class WZIMMoreView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF3F3F3")
         configView()
     }
     
@@ -98,7 +97,7 @@ public class WZIMMoreView: UIView {
             make.top.equalTo(collectionView.snp.bottom).offset(20)
             make.height.equalTo(7)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-WZIMToolAppearance.safeAreaInsetsBottom-13).priority(.low)
+            make.bottom.equalToSuperview().offset(-13).priority(.low)
         }
     }
 }

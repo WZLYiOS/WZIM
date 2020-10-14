@@ -99,6 +99,8 @@ public class WZIMTextInputTabbar: UIView {
     private lazy var keyboardView: WZIMKeyboardView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.tag = KeyboardViewTag.keyboard.rawValue
+        $0.backgroundColor = UIColor.white
+        $0.isHidden = true
         return $0
     }(WZIMKeyboardView())
     
@@ -106,7 +108,6 @@ public class WZIMTextInputTabbar: UIView {
     public lazy var moreView: WZIMMoreView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isHidden = true
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.tag = KeyboardViewTag.more.rawValue
         return $0
     }(WZIMMoreView())
@@ -115,10 +116,11 @@ public class WZIMTextInputTabbar: UIView {
     private lazy var bottomStackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .vertical
-        $0.distribution = .fillEqually
+        $0.distribution = .fill
         $0.alignment = .fill
+        $0.layer.masksToBounds = true
         return $0
-    }(UIStackView(arrangedSubviews: [moreView,keyboardView]))
+    }(UIStackView(arrangedSubviews: [moreView, keyboardView, bottomView]))
     
     /// 音频录制
     private lazy var audioRecorder: WZAudioRecorder = {
@@ -138,10 +140,17 @@ public class WZIMTextInputTabbar: UIView {
         return $0
     }(WZIMChatRecordView())
     
+    /// 底部间距颜色
+    public lazy var bottomView: UIView = {
+        $0.backgroundColor = UIColor.white
+        $0.heightAnchor.constraint(equalToConstant: CGFloat(WZIMToolAppearance.safeAreaInsetsBottom)).isActive = true
+        return $0
+    }(UIView())
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
-        
+
         configView()
         configViewLocation()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification,object: nil)
@@ -172,12 +181,12 @@ public class WZIMTextInputTabbar: UIView {
         }
         
         bottomStackView.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
             make.leading.equalTo(0)
             make.right.equalToSuperview()
             make.top.equalTo(textInputView.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
         }
-        
+    
         vioceButton.snp.makeConstraints { (make) in
             make.leading.equalTo(15)
             make.width.equalTo(35)
@@ -223,7 +232,7 @@ public class WZIMTextInputTabbar: UIView {
         let y = keyboardRect?.size.height ?? 0
         getBottomView(tag: .more)?.isHidden = true
         keyboardView.isHidden = false
-        keyboardView.change(height: y)
+        keyboardView.change(height: y-CGFloat(WZIMToolAppearance.safeAreaInsetsBottom))
         UIView.animate(withDuration: duration == 0 ? 0.25 : duration) {
             self.superview?.layoutIfNeeded()
             self.delegate?.textInputTabbarDidChange(tabbar: self, animated: false)
@@ -441,6 +450,7 @@ extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
     }
 
     public func audioRecorderDidFinishRecording(_ recorder: WZAudioRecorder, path: String, duration: Int) {
+        if duration == 0 || !FileManager.default.fileExists(atPath: path) { return }
         delegate.textInputTabbar(tabbar: self, audioRecorder: path, duration: duration)
     }
     
@@ -502,7 +512,7 @@ class WZIMKeyboardView: UIView {
             make.right.equalToSuperview().offset(0)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().priority(.low)
-            make.height.equalTo(WZIMToolAppearance.safeAreaInsetsBottom)
+            make.height.equalTo(0)
         }
     }
     

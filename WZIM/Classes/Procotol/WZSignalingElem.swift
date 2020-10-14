@@ -34,16 +34,17 @@ public class WZSignalingElem: Codable {
     
     /// 事件类型
     public var actionType: ActionType
-    
-    /// 业务id
-    public let businessID: Int
-    
+        
     /// 自定义内容
     public let data: WZSignalingModel
     
+    public init(actionType: ActionType, data: WZSignalingModel) {
+        self.actionType = actionType
+        self.data = data
+    }
+    
     enum CodingKeys: String, CodingKey {
         case actionType = "actionType"
-        case businessID = "businessID"
         case data = "data"
     }
     
