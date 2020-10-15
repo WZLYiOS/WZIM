@@ -81,26 +81,11 @@ public class WZSignalingElem: Codable {
         case .timeOut:
             return "无应答"
         case .end:
-            return "已接听 结束通话，通话时长：\(getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
+            return "已接听 结束通话，通话时长：\(WZIMToolAppearance.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
         default:
             return "未知错误"
         }
     }
-    
-    private func getFormatPlayTime(secounds:TimeInterval)->String{
-            if secounds.isNaN{
-                return "00:00"
-            }
-            var Min = Int(secounds / 60)
-            let Sec = Int(secounds.truncatingRemainder(dividingBy: 60))
-            var Hour = 0
-            if Min>=60 {
-                Hour = Int(Min / 60)
-                Min = Min - Hour*60
-                return String(format: "%02d:%02d:%02d", Hour, Min, Sec)
-            }
-            return String(format: "%02d:%02d", Min, Sec)
-        }
 }
 
 /// MARK - 邀请信息

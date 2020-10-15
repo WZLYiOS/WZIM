@@ -14,6 +14,7 @@ import TZImagePickerController
 import WZUIExtension
 import Kingfisher
 import ImSDK
+import UITableView_FDTemplateLayoutCell
 
 // MARK - 会话详情
 @objcMembers
@@ -29,11 +30,12 @@ public class WZIMConversionViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
-        $0.rowHeight = UITableViewAutomaticDimension
-        $0.estimatedRowHeight = 200
+        $0.rowHeight = 0
+        $0.estimatedRowHeight = 0
         $0.tableFooterView = UIView()
         $0.dataSource = self
         $0.delegate = self
+        $0.fd_debugLogEnabled = true
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()
@@ -165,12 +167,23 @@ extension WZIMConversionViewController {
 /// MAKR - UITableViewDelegate | UITableViewDataSource
 extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
  
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let model = dataArray.array[indexPath.row]
+        return tableView.fd_heightForCell(withIdentifier: String(describing: model.getCellIdentifier()), cacheByKey: (model.messageId as! NSString)) { (cell) in
+            let xCell = cell as! WZIMBaseTableViewCell
+            xCell.fd_isTemplateLayoutCell = true
+            xCell.pDelegate = self
+            xCell.reload(model: model, cDelegate: self)
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.array.count
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataArray.array[indexPath.row]
         let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.getCellIdentifier()) as! WZIMBaseTableViewCell
+        
         cell.pDelegate = self
         cell.reload(model: model, cDelegate: self)
         return cell
@@ -272,13 +285,11 @@ extension WZIMConversionViewController: DongtuStoreDelegate {
         
         let message = UserSession.shared.imManager.wzCreateGifMenssage(gif: model, name: gif.text)
         sendMessage(message: message)
-        scrollToBottom(animated: true)
     }
     
     public func didSelect(_ emoji: DTEmoji) {
         let message = UserSession.shared.imManager.wzCreateDTEmojiMessage(emojiCode: emoji.emojiCode!, emojiName: emoji.emojiName!)
         sendMessage(message: message)
-        scrollToBottom(animated: true)
     }
     
     public func didSend(withInput input: UIResponder & UITextInput) {
@@ -306,12 +317,12 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
             let str = String(data: data, encoding: .utf8)
             
             
-            /// 发送邀请
-            V2TIMManager.sharedInstance()?.invite("wzly_\(userId)", data: str, timeout: 0, succ: {
-                debugPrint("xxxx")
-            }, fail: { (errCode, msg) in
-                debugPrint("1333")
-            })
+//            /// 发送邀请
+//            V2TIMManager.sharedInstance()?.invite("wzly_\(userId)", data: str, timeout: 0, succ: {
+//                debugPrint("xxxx")
+//            }, fail: { (errCode, msg) in
+//                debugPrint("1333")
+//            })
             
             
         case "拍照":

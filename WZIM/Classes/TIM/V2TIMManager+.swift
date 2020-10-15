@@ -190,19 +190,20 @@ extension V2TIMManager: WZIMManagerProcotol {
         deleteConversation(conversationId, succ: nil, fail: nil)
     }
     
-    public func inviteC2C(userId: String, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        return invite(userId.imPrefix, data: data, timeout: Int32(timeOut)) {
+    public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
+        
+        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: nil, timeout: Int32(timeOut)) {
             sucess?()
         } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
     
-    public func inviteGroup(groupId: String, userIds: [String], data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        return invite(inGroup: groupId.imPrefix, inviteeList: userIds, data: data, timeout: Int32(timeOut)) {
+    public func inviteGroup(groupId: String, onlineUserOnly: Bool, userIds: [String], data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
+        return inviteGroup(groupId: groupId.imPrefix, onlineUserOnly: onlineUserOnly, userIds: userIds, data: data, timeOut: timeOut) {
             sucess?()
         } fail: { (code, msg) in
-            fail?(Int(code),msg ?? "")
+            fail?(Int(code),msg)
         }
     }
     

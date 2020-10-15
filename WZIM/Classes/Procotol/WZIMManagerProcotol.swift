@@ -156,7 +156,7 @@ public protocol WZIMManagerProcotol {
     ///   - sucess: 成功
     ///   - fail: 失败
     @discardableResult
-    func inviteC2C(userId: String, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
+    func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
     
     /// 邀请群成员
     /// - Parameters:
@@ -167,7 +167,7 @@ public protocol WZIMManagerProcotol {
     ///   - sucess: 成功
     ///   - fail: 失败
     @discardableResult
-    func inviteGroup(groupId: String, userIds: [String],data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
+    func inviteGroup(groupId: String, onlineUserOnly: Bool, userIds: [String],data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
     
     /// 取消邀请
     /// - Parameters:

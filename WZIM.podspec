@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '1.6.9'
+  s.version          = '1.7.0'
   s.summary          = 'IM组件框架。'
 
 
@@ -62,14 +62,14 @@ Pod::Spec.new do |s|
   s.subspec "TIM" do |ss|
     ss.source_files = "WZIM/Classes/TIM/*"
     ss.dependency 'WZIM/UI'
-    ss.dependency 'TXIMSDK_iOS', '~> 5.0.6'
+    ss.dependency 'TXIMSDK_iOS', '5.0.10'
   end
   
   # 环信SDK
   s.subspec "EM" do |ss|
     ss.source_files = "WZIM/Classes/EM/*"
     ss.dependency 'WZIM/UI'
-    ss.dependency 'HyphenateLite', '~> 3.7.0'
+    ss.dependency 'HyphenateLite', '3.7.1'
   end
   
 end
