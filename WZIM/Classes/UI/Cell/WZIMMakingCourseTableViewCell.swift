@@ -93,7 +93,7 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        
+        self.delegate = cDelegate as? WZIMMakingCourseTableViewCellDelegate
         switch message.currentElem {
         case let .dateAuthInvite(elem):
             topLabel.text = elem.text.count == 0 ? "开启约会实名认证邀请" : elem.text

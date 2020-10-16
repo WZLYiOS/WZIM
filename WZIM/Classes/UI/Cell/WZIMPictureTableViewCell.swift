@@ -25,7 +25,6 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE5E5E5")
         $0.layer.cornerRadius = 5
         $0.layer.masksToBounds = true
-        $0.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))
         return $0
     }(UIImageView())
     
@@ -36,14 +35,23 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         $0.textColor = UIColor.white
         $0.font = UIFont.systemFont(ofSize: 13)
         $0.text = "0.1%"
+        $0.isUserInteractionEnabled = true
         $0.isHidden = true
         return $0
     }(UILabel())
 
+    private lazy var controll: UIButton = {
+        $0.addTarget(self, action: #selector(photoImageViewTapAction), for: .touchUpInside)
+        $0.backgroundColor = UIColor.clear
+        return $0
+    }(UIButton())
+    
     public override func configView() {
         super.configView()
         bubbleImageView.addSubview(photoImageView)
         bubbleImageView.addSubview(percentMaskLabel)
+//        bubbleImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(photoImageViewTapAction)))
+        bubbleImageView.addSubview(controll)
     }
     
     public override func configViewLocation() {
@@ -55,33 +63,35 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         percentMaskLabel.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        controll.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
        super.reload(model: model, cDelegate: cDelegate)
-        
-        if case let .img(elem) = model.currentElem {
-            
-            delegate = cDelegate as? WZIMPictureTableViewCellDelegate
-            percentMaskLabel.isHidden = true
-            dataMarkModel = elem
-            
-            var size = CGSize(width: UIScreen.main.bounds.size.width * 0.4, height: UIScreen.main.bounds.size.width * 0.6)
-            
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)),
-               let image = UIImage(data: data) {
-                
-                photoImageView.image = image
-                size = imageSize(image.size.width, image.size.height)
-            }else{
-                size = imageSize(CGFloat(elem.width), CGFloat(elem.height))
-                photoImageView.kf.setImage(with: URL(string: elem.url))
-            }
 
-            percentMaskLabel.isHidden = message.sendStatus == .sending ? false : true
-            photoImageView.snp.updateConstraints { (make) in
-                make.size.equalTo(size)
-            }
+        guard case let .img(elem) = model.currentElem else {
+            return
+        }
+        delegate = cDelegate as? WZIMPictureTableViewCellDelegate
+        dataMarkModel = elem
+        
+        var size = CGSize(width: UIScreen.main.bounds.size.width * 0.4, height: UIScreen.main.bounds.size.width * 0.6)
+        
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: elem.filePath)),
+           let image = UIImage(data: data) {
+            
+            photoImageView.image = image
+            size = imageSize(image.size.width, image.size.height)
+        }else{
+            size = imageSize(CGFloat(elem.width), CGFloat(elem.height))
+            photoImageView.kf.setImage(with: URL(string: elem.url))
+        }
+
+        percentMaskLabel.isHidden = message.sendStatus == .sending ? false : true
+        photoImageView.snp.updateConstraints { (make) in
+            make.size.equalTo(size)
         }
     }
     
@@ -107,8 +117,8 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         percentMaskLabel.isHidden = percent >= 100 ? true : false
     }
     
-    @objc private func photoImageViewTapAction(tap: UIGestureRecognizer) {
-        delegate?.pictureCell(cell: self, tapImageView: tap.view as! UIImageView)
+    @objc private func photoImageViewTapAction(tap: UIControl) {
+        delegate?.pictureCell(cell: self, tapImageView: photoImageView)
     }
 }
 
