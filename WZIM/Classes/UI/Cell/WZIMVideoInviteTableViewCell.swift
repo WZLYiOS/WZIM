@@ -118,7 +118,7 @@ public class WZIMVideoInviteTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - WZIMVideoInviteTableViewCellDeleagte
-protocol WZIMVideoInviteTableViewCellDeleagte: class {
+public protocol WZIMVideoInviteTableViewCellDeleagte: class {
     
     /// 是否同意
     func videoInviteTableViewCell(cell: WZIMVideoInviteTableViewCell, isAgree: Bool)

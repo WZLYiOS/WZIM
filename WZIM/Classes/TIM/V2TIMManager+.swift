@@ -173,14 +173,18 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func wzGetConversationList(nextSeq: Int, count: Int, comple: ConversationListHandler, fail: FailHandler) {
-        self.getConversationList(UInt64(nextSeq), count: Int32(count)) { (lists, page, isFinish) in
+        getConversationList(UInt64(nextSeq), count: Int32(count)) { (lists, page, isFinish) in
         
-            let arr = lists?.sorted(by: { (obj0, obj1) -> Bool in
+            guard let list = lists else {
+                comple?([], nextSeq, isFinish)
+                return
+            }
+            let arr = list.sorted(by: { (obj0, obj1) -> Bool in
                 let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
                 let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
                 return top0 > top1
             })
-            comple?(arr ?? [], Int(page), isFinish)
+            comple?(arr, nextSeq, isFinish)
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
@@ -200,10 +204,10 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func inviteGroup(groupId: String, onlineUserOnly: Bool, userIds: [String], data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        return inviteGroup(groupId: groupId.imPrefix, onlineUserOnly: onlineUserOnly, userIds: userIds, data: data, timeOut: timeOut) {
+        return invite(inGroup: groupId.imPrefix, inviteeList: userIds, data: data, onlineUserOnly: onlineUserOnly, timeout: Int32(timeOut)) {
             sucess?()
         } fail: { (code, msg) in
-            fail?(Int(code),msg)
+            fail?(Int(code),msg ?? "")
         }
     }
     
