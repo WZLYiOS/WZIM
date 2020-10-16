@@ -56,6 +56,7 @@ public class WZMessageAppointmentNameAuthCell: WZIMBaseTableViewCell {
         bubbleImageView.addSubview(lineView)
         bubbleImageView.addSubview(lelftImageView)
         bubbleImageView.addSubview(bottomLabel)
+        bubbleImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bubbleImageViewAction)))
     }
     
     public override func configViewLocation() {
@@ -87,6 +88,10 @@ public class WZMessageAppointmentNameAuthCell: WZIMBaseTableViewCell {
             make.left.equalTo(lelftImageView.snp.right).offset(5)
             make.centerY.equalTo(lelftImageView.snp.centerY)
         }
+    }
+    
+    @objc private func bubbleImageViewAction(tap: UITapGestureRecognizer){
+        delegate?.disectAppointmentNameAuthCell(cell: self)
     }
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {

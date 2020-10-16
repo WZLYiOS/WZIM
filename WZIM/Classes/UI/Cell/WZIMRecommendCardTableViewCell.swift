@@ -61,6 +61,7 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
         bubbleImageView.addSubview(infoLabel)
         bubbleImageView.addSubview(lineLabel)
         bubbleImageView.addSubview(timeLabel)
+        bubbleImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bubbleImageViewAction)))
     }
     
     public override func configViewLocation() {
@@ -94,6 +95,9 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
             make.height.equalTo(12)
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
+    }
+    @objc func bubbleImageViewAction(btn: UITapGestureRecognizer) {
+        delegate?.cardTableViewCell(tap: self)
     }
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
