@@ -59,6 +59,48 @@ public enum WZMessageNoticeElem: Decodable {
     enum CordinateError: Error {
         case missingValue
     }
+    
+    /// 返回数据
+    var data: Any? {
+        switch self {
+        case let .dynamic(model):
+            return model
+        case let .charmFinish(model):
+            return model
+        case let .checked(model):
+            return model
+        case let .addressNum(model):
+            return model
+        case let .redNum(model):
+            return model
+        case let .allTeskFinish(model):
+            return model
+        case let .memberFlag(model):
+            return model
+        case let .forYouQhys(model):
+            return model
+        case let .secretary(model):
+            return model
+        case let .openVip(model):
+            return model
+        case let .changedUserName(model):
+            return model
+        case let .faceAtuth(model):
+            return model
+        case let .moodChecked(model):
+            return model
+        case let .star(model):
+            return model
+        case let .svip(model):
+            return model
+        case let .task(model):
+            return model
+        case let .dateRemind(model):
+            return model
+        default:
+            return nil
+        }
+    }
 }
 
 
