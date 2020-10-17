@@ -47,3 +47,27 @@ public enum WZMessageNotification {
     case revoked                      // 撤回消息
     case readReceipt(String)          // 消息已读
 }
+
+/// MARK - 通知
+public extension WZMessageProtocol {
+    
+    /// 订阅名称
+    var postName: Notification.Name {
+        switch currentElem {
+        case let .notice(elem):
+            return Notification.Name.wzIMTask.getMessage(notif: .notice(elem.type))
+        default:
+            return Notification.Name.wzIMTask.getMessage(notif: .msg(receiverId))
+        }
+    }
+    
+    /// 订阅实体内容
+    var postData: Any? {
+        switch currentElem {
+        case let .notice(elem):
+            return elem.elem.data
+        default:
+            return self
+        }
+    }
+}

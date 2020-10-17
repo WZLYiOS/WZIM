@@ -72,17 +72,6 @@ public enum WZMessageElem: Decodable {
             return "未知消息"
         }
     }
-    
-    /// 获取订阅名称
-    func postName(receiverId: String) -> Notification.Name {
-        
-        switch self {
-        case let .notice(elem):
-            return Notification.Name.wzIMTask.getMessage(notif: .notice(elem.type))
-        default:
-            return Notification.Name.wzIMTask.getMessage(notif: .msg(receiverId))
-        }
-    }
 }
 
 // MARK - 自定义消息
