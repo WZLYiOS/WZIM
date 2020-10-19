@@ -29,6 +29,7 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case svip = 40 // 超级会员
     case task = 43 // B端每日任务
     case dateRemind = 44 // 约会提醒
+    case hnService = 45 // 红娘服务
 }
 
 // MARK - 透传消息elem
@@ -51,6 +52,7 @@ public enum WZMessageNoticeElem: Decodable {
     case svip(WZTNoticeMemberFlagModel)
     case task(WZMessageTaskModel)
     case dateRemind(WZMessageNoticeDateRemindModel)
+    case hnService(WZMessageNoticeHnServiceModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -96,6 +98,8 @@ public enum WZMessageNoticeElem: Decodable {
         case let .task(model):
             return model
         case let .dateRemind(model):
+            return model
+        case let .hnService(model):
             return model
         default:
             return nil
@@ -152,6 +156,8 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .task(try vals.decode(WZMessageTaskModel.self, forKey: CodingKeys.elem))
         case .dateRemind:
             elem = .dateRemind(try vals.decode(WZMessageNoticeDateRemindModel.self, forKey: CodingKeys.elem))
+        case .hnService:
+            elem = .hnService(try vals.decode(WZMessageNoticeHnServiceModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
@@ -437,3 +443,16 @@ public class WZMessageNoticeDateRemindModel: Codable {
         case unreadNum = "unReadNum"
     }
 }
+
+/// MARK - 红娘服务
+public class WZMessageNoticeHnServiceModel: Codable {
+    
+    /// 用户id
+    let userId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+    }
+}
+
+
