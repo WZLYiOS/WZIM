@@ -28,4 +28,33 @@ public extension Date {
         let timeStamp = Int(timeInterval)
         return timeStamp
     }
+    
+    /// 日期显示
+    static func wzImDateText(_ time: String) -> String {
+        let string = NSString(string: time)
+        let timeSta: TimeInterval = string.doubleValue
+        let date = Date(timeIntervalSince1970: timeSta)
+        return date.wzImDate
+    }
+ 
+    /// 时间显示
+    var wzImDate: String {
+        let calendar = Calendar.current
+        let unit: Set<Calendar.Component> = [ .year, .month, .day]
+        let nowCmps = calendar.dateComponents(unit, from: Date())
+        let myCmps = calendar.dateComponents(unit, from: self)
+        let dateFmt = DateFormatter()
+//        let compUnit: Set<Calendar.Component> = [ .year, .month, .day, .weekday]
+//        let comp = calendar.dateComponents(compUnit, from: self)
+        if (nowCmps.year != myCmps.year) {
+            dateFmt.dateFormat = "yyyy年MM月dd日";
+        }else{
+            if (nowCmps.day==myCmps.day) {
+                dateFmt.dateFormat = "HH:mm"
+            }else{
+                dateFmt.dateFormat = "MM月dd日 HH:mm"
+            }
+        }
+        return dateFmt.string(from: self)
+    }
 }
