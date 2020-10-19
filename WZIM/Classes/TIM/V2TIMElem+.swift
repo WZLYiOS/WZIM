@@ -54,6 +54,9 @@ extension V2TIMElem {
 extension V2TIMTextElem: WZIMTextProtocol {
     
     public func getText() -> String {
+        if text == nil || text == "null" {
+            return ""
+        }
         return text
     }
 }

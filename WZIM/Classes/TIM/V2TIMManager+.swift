@@ -179,11 +179,12 @@ extension V2TIMManager: WZIMManagerProcotol {
                 comple?([], nextSeq, isFinish)
                 return
             }
-            let arr = list.sorted(by: { (obj0, obj1) -> Bool in
+            var arr = list.sorted(by: { (obj0, obj1) -> Bool in
                 let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
                 let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
                 return top0 > top1
             })
+            arr.removeAll(where: {$0.receiverId == "admin"})
             comple?(arr, nextSeq, isFinish)
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")

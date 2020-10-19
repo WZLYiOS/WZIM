@@ -219,6 +219,16 @@ public class WZTNoticeCharmFinishModel: Codable {
 /// MARK - 后台审核透传
 public class WZTNoticeCheckedModel: Codable {
     
+   public enum TeskType: Int, WZIMDefaultEnumCodable {
+    public static var defaultCase: WZTNoticeCheckedModel.TeskType = .none
+        case none
+        case avatar = 1 // 头像审核
+        case nikName = 3   // 昵称审核
+        case nameAth = 4   // 实名
+        case education = 5 // 学历
+        case avatarAthu = 6 // 头像认证
+    }
+    
     /// 用户id
     public let userId: String
     
@@ -228,8 +238,8 @@ public class WZTNoticeCheckedModel: Codable {
     /// 审核状态 1通过 0 不通过
     public let flag: String
     
-    /// 通知的任务类型 1=&头像审核 3=&昵称审核 4=&实名 5=&学历
-    public let stype: String
+    /// 通知的任务类型 1=&头像审核 3=&昵称审核 4=&实名 5=&学历 6: 头像认证
+    public let stype: TeskType
     
     /// 扩展
     public let ext: WZTNoticeCheckedModel
@@ -336,11 +346,19 @@ public class WZTNoticeForYouQhysModel: Codable {
 /// MARK - 小秘书透传等
 public class WZTNoticeSecretaryModel: Codable {
     
-    /// 文案
-    public let messgae: String
+    /// 时间
+    public var time: String
+    
+    /// 内容
+    public var content: String
+    
+    /// 未读数量
+    public var unreadNum: String
     
     enum CodingKeys: String, CodingKey {
-        case messgae = "messgae"
+        case time = "time"
+        case content = "content"
+        case unreadNum = "unReadNum"
     }
 }
 

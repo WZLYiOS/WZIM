@@ -103,7 +103,6 @@ public class WZAudioRecorder: NSObject {
         if ((recorder?.isRecording) != nil) {
             recorder?.stop()
         }
-        UIDevice.current.isProximityMonitoringEnabled = true
         isStopRecorde = true
         recorder = nil
         mp3Path = ""
