@@ -179,13 +179,7 @@ extension V2TIMManager: WZIMManagerProcotol {
                 comple?([], nextSeq, isFinish)
                 return
             }
-            var arr = list.sorted(by: { (obj0, obj1) -> Bool in
-                let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-                return top0 > top1
-            })
-            arr.removeAll(where: {$0.receiverId == "admin"})
-            comple?(arr, nextSeq, isFinish)
+            comple?(self.sorted(list: list), nextSeq, isFinish)
         } fail: { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
@@ -234,5 +228,16 @@ extension V2TIMManager: WZIMManagerProcotol {
         } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
+    }
+    
+    /// 置顶排序一下
+    public func sorted(list: [V2TIMConversation]) -> [V2TIMConversation] {
+        var arr = list.sorted(by: { (obj0, obj1) -> Bool in
+            let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+            let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+            return top0 > top1
+        })
+        arr.removeAll(where: {$0.receiverId == "admin"})
+        return arr
     }
 }
