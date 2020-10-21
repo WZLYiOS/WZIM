@@ -35,6 +35,8 @@ extension WZMessageProtocol {
                 return WZIMVideoInviteTableViewCell.self
             }
             return WZIMVideoInviteSelfTableViewCell.self
+        case .share:
+            return WZIMActivityTableViewCell.self
         default:
             return WZIMUnknownTableViewCell.self
         }

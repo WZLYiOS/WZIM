@@ -28,6 +28,7 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
         $0.numberOfLines = 2
         $0.textColor = WZIMToolAppearance.hexadecimal(rgb: "0x2c2c2c")
         $0.font = UIFont.boldSystemFont(ofSize: 13)
+        $0.numberOfLines = 2
         return $0
     }(UILabel())
     
@@ -57,6 +58,7 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
             make.leading.equalTo(15)
             make.top.equalToSuperview().offset(15)
             make.right.equalTo(shareImageView.snp.left).offset(-15)
+            make.width.lessThanOrEqualTo(WZIMConfig.maxWidth-15-15-55-21)
         }
         timeLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(15)

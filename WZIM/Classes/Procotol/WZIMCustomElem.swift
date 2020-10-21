@@ -141,6 +141,8 @@ public class WZIMCustomElem: Decodable {
             msgElem = .dateServiceHnSetRecCon(try vals.decode(WZMessageServiceHnSetRecConElem.self, forKey: CodingKeys.msg))
         case .chatCard:
             msgElem = .card(try vals.decode(WZMessageCardElem.self, forKey: CodingKeys.msg))
+        case .share:
+            msgElem = .share(try vals.decode(WZIMShareCustomElem.self, forKey: CodingKeys.msg))
         default:
             msgElem = .unknown
         }

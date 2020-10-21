@@ -27,6 +27,8 @@ extension V2TIMElem {
             let decoder = CleanJSONDecoder()
             decoder.jsonStringDecodingStrategy = .all
             
+//            debugPrint("收到消息：\(String(describing: try? JSONSerialization.jsonObject(with: custom.data, options: .mutableContainers)))")
+            
             if let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data), model.type != .none {
                 return model.msgElem
             }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType != .none {
