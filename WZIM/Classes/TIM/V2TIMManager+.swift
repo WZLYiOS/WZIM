@@ -37,9 +37,9 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func revokeMessage(msg: WZMessageProtocol, sucess: SucessHandler, fail: FailHandler) {
-        revokeMessage((msg as! V2TIMMessage)) {
+        revokeMessage((msg as! V2TIMMessage), succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
@@ -48,61 +48,60 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func setReadMessage(receiverId: String, type: WZIMConversationType) {
         
         if type == .c2c {
-            markC2CMessage(asRead: receiverId.imPrefix) {
+            markC2CMessage(asRead: receiverId.imPrefix, succ: {
                 
-            } fail: { (code, msg) in
-                
+            }) { (code, msg) in
+            
             }
+    
             return
         }
-        markGroupMessage(asRead: receiverId.imPrefix) {
+        markGroupMessage(asRead: receiverId.imPrefix, succ: {
             
-        } fail: { (code, msg) in
-            
+        }) { (code, msg) in
         }
     }
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
-        let msg = (message as! V2TIMMessage)
-        return send(msg, receiver: receiverId.imPrefix, groupID: nil, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
+      
+        return send((message as! V2TIMMessage), receiver: receiverId, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
             progress?(CGFloat(progre))
-        } succ: {
+        }, succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
     
     public func sendGruopMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
-        let msg = (message as! V2TIMMessage)
-        return send(msg, receiver: nil, groupID: receiverId.imPrefix, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil) { (progre) in
+        return send((message as! V2TIMMessage), receiver: "", groupID: receiverId, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
             progress?(CGFloat(progre))
-        } succ: {
+        }, succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
     
     public func getC2CMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
         
-        getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
+        getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as! V2TIMMessage), succ: { (list) in
             let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
             sucess?(arr ?? [])
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
     
     public func getGroupMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
-        getGroupHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage)) { (list) in
+        getGroupHistoryMessageList(receiverId, count: Int32(cont), lastMsg: (last as? V2TIMMessage), succ: { (list) in
             let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
             sucess?(arr ?? [])
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
@@ -173,14 +172,14 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func wzGetConversationList(nextSeq: Int, count: Int, comple: ConversationListHandler, fail: FailHandler) {
-        getConversationList(UInt64(nextSeq), count: Int32(count)) { (lists, page, isFinish) in
         
+        getConversationList(UInt64(nextSeq), count: Int32(count), succ: { (lists, page, isFinish) in
             guard let list = lists else {
                 comple?([], nextSeq, isFinish)
                 return
             }
             comple?(self.sorted(list: list), nextSeq, isFinish)
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }
     }
@@ -191,41 +190,42 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
         
-        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: nil, timeout: Int32(timeOut)) {
+        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: nil, timeout: Int32(timeOut), succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
     
     public func inviteGroup(groupId: String, onlineUserOnly: Bool, userIds: [String], data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        return invite(inGroup: groupId.imPrefix, inviteeList: userIds, data: data, onlineUserOnly: onlineUserOnly, timeout: Int32(timeOut)) {
+        return invite(inGroup: groupId.imPrefix, inviteeList: userIds, data: data, onlineUserOnly: onlineUserOnly, timeout: Int32(timeOut), succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
     
     public func cancel(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        cancel(inviteId, data: data) {
+        cancel(inviteId, data: data, succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
     
     public func accept(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        accept(inviteId, data: data) {
+        
+        accept(inviteId, data: data, succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
     
     public func reject(inviteId: String, data: String, sucess: SucessHandler, fail: FailHandler) {
-        reject(inviteId, data: data) {
+        reject(inviteId, data: data, succ: {
             sucess?()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }

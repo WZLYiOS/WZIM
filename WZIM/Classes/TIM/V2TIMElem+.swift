@@ -80,10 +80,11 @@ extension V2TIMSoundElem: WZIMVoiceProtocol {
             sucess?(oPath)
             return
         }
-        
-        downloadSound(oPath, progress: nil) {
+        downloadSound(oPath, progress: { (messageId, msg) in
+            
+        }, succ: {
             sucess?(oPath)
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             fail?(NSError(domain: msg ?? "", code: Int(code), userInfo: nil))
             debugPrint("音频下载失败：\(String(describing: oPath))")
         }
