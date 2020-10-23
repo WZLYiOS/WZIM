@@ -232,12 +232,17 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     /// 置顶排序一下
     public func sorted(list: [V2TIMConversation]) -> [V2TIMConversation] {
-        var arr = list.sorted(by: { (obj0, obj1) -> Bool in
+        var arr = list.sorted { (obj0, obj1) -> Bool in
+            guard let obj0Time = obj0.lastMsg?.timeTamp, let obj1Time = obj1.lastMsg?.timeTamp else {
+                return false
+            }
+            return  obj0Time.compare(obj1Time) == .orderedAscending
+        }
+        arr.removeAll(where: {$0.receiverId == "admin"})
+        return arr.sorted(by: { (obj0, obj1) -> Bool in
             let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
             let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
             return top0 > top1
         })
-        arr.removeAll(where: {$0.receiverId == "admin"})
-        return arr
     }
 }

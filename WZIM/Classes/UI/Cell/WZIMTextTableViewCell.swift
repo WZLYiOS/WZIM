@@ -53,20 +53,29 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
      
-        if case let .text(elem) = model.currentElem {
-            let color = getTextColor()
-            let mPara = NSMutableParagraphStyle()
-            mPara.lineSpacing = 4
-            
-            label.attributedText = NSMutableAttributedString(string: elem.getText(),
-                                                             attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
-                                                                          NSAttributedString.Key.foregroundColor: UIColor.clear,
-                                                                          NSAttributedString.Key.paragraphStyle : mPara])
-            contentLabel.attributedText = NSMutableAttributedString(string: elem.getText(),
-                                                                               attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
-                                                                                            NSAttributedString.Key.foregroundColor: color,
-                                                                                            NSAttributedString.Key.paragraphStyle : mPara])
+        switch model.currentElem {
+        case let .text(elem):
+            setText(text: elem.getText())
+        case let .hibox(elem):
+            setText(text: elem.text)
+        default:
+            break
         }
+    }
+    
+    func setText(text: String)  {
+        let color = getTextColor()
+        let mPara = NSMutableParagraphStyle()
+        mPara.lineSpacing = 4
+        
+        label.attributedText = NSMutableAttributedString(string: text,
+                                                         attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
+                                                                      NSAttributedString.Key.foregroundColor: UIColor.clear,
+                                                                      NSAttributedString.Key.paragraphStyle : mPara])
+        contentLabel.attributedText = NSMutableAttributedString(string: text,
+                                                                           attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15),
+                                                                                        NSAttributedString.Key.foregroundColor: color,
+                                                                                        NSAttributedString.Key.paragraphStyle : mPara])
     }
 }
 

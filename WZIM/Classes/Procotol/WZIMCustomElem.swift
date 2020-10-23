@@ -419,7 +419,7 @@ public class WZIMRemindContentElem: Codable {
 }
 
 /// MARK - 打招呼类型
-public class WZIMHiboxElem: Codable {
+public class WZIMHiboxElem: Codable, WZIMTextProtocol {
     
     /// 打招呼内容
     public let text: String
@@ -430,6 +430,10 @@ public class WZIMHiboxElem: Codable {
     enum CodingKeys: String, CodingKey {
         case text = "Text"
         case hiboxType = "HiboxType"
+    }
+    
+    public func getText() -> String {
+        return text
     }
 }
 
