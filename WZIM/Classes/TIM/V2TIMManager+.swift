@@ -64,7 +64,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
       
-        return send((message as! V2TIMMessage), receiver: receiverId, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
+        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
             progress?(CGFloat(progre))
         }, succ: {
             sucess?()
