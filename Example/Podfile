@@ -9,7 +9,6 @@ target 'WZIM_Example' do
 
   pod 'WZNetwork', '3.0.0'
   pod 'DeviceKit', '~> 2.3.0' #设备型号组件
-  pod 'CleanJSON', '~> 1.0.0' #动态处理JSON问题
   pod 'RxCocoa', '~> 5.1.1' #RxCocoa
   pod 'WZEncryption', '~> 1.0.0' #加密组件
   pod 'DongtuStore', '~> 3.2.1' #表情MM

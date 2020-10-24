@@ -19,27 +19,27 @@ PODS:
   - "UITableView+FDTemplateLayoutCell (1.6)"
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (1.6.9):
-    - WZIM/EM (= 1.6.9)
-    - WZIM/Procotol (= 1.6.9)
-    - WZIM/TIM (= 1.6.9)
-    - WZIM/Tool (= 1.6.9)
-    - WZIM/ToolBbar (= 1.6.9)
-    - WZIM/UI (= 1.6.9)
-  - WZIM/EM (1.6.9):
-    - HyphenateLite (~> 3.7.0)
+  - WZIM (1.8.1):
+    - WZIM/EM (= 1.8.1)
+    - WZIM/Procotol (= 1.8.1)
+    - WZIM/TIM (= 1.8.1)
+    - WZIM/Tool (= 1.8.1)
+    - WZIM/ToolBbar (= 1.8.1)
+    - WZIM/UI (= 1.8.1)
+  - WZIM/EM (1.8.1):
+    - HyphenateLite (= 3.7.1)
     - WZIM/UI
-  - WZIM/Procotol (1.6.9):
-    - CleanJSON (~> 1.0.0)
-  - WZIM/TIM (1.6.9):
-    - TXIMSDK_iOS (~> 5.0.6)
+  - WZIM/Procotol (1.8.1):
+    - CleanJSON (~> 1.0.6)
+  - WZIM/TIM (1.8.1):
+    - TXIMSDK_iOS (= 5.0.10)
     - WZIM/UI
-  - WZIM/Tool (1.6.9)
-  - WZIM/ToolBbar (1.6.9):
+  - WZIM/Tool (1.8.1)
+  - WZIM/ToolBbar (1.8.1):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
     - WZLame (~> 4.0.0)
-  - WZIM/UI (1.6.9):
+  - WZIM/UI (1.8.1):
     - Kingfisher (~> 5.15.0)
     - WZIM/Procotol
     - WZIM/ToolBbar
@@ -66,7 +66,6 @@ PODS:
     - WZNamespaceWrappable (~> 1.0.0)
 
 DEPENDENCIES:
-  - CleanJSON (~> 1.0.0)
   - DeviceKit (~> 2.3.0)
   - DongtuStore (~> 3.2.1)
   - RxCocoa (~> 5.1.1)
@@ -125,7 +124,7 @@ SPEC CHECKSUMS:
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: 9e943e3e0d03423c1d06be2004cead40ef40c563
+  WZIM: b8bc4bf822577979c761169a7f407eb7b0e068ee
   WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4
@@ -134,6 +133,6 @@ SPEC CHECKSUMS:
   WZRoute: 9c96833ceabc0a5595d1a2df78fc6612481f06c5
   WZUIExtension: 181d99d7857dd95d32af766ed708391320ada9d0
 
-PODFILE CHECKSUM: b0d65658e5d1cc4288a5a372f10ab666a74a758d
+PODFILE CHECKSUM: 2c157bafc1420d4c1763eaf15e037d2e87b778db
 
 COCOAPODS: 1.9.3

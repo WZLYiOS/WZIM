@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '1.8.1'
+  s.version          = '1.8.2'
   s.summary          = 'IM组件框架。'
 
 
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   # 协议框架
   s.subspec "Procotol" do |ss|
     ss.source_files = "WZIM/Classes/Procotol/*"
-    ss.dependency 'CleanJSON', '~> 1.0.0'
+    ss.dependency 'CleanJSON', '~> 1.0.6'
   end
   
   # 工具

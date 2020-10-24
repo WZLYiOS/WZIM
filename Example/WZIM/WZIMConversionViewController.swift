@@ -100,9 +100,7 @@ public class WZIMConversionViewController: UIViewController {
     
     @objc private func pullToRefresh() {
         
-        UserSession.shared.imManager.getC2CMessages(receiverId: userId, cont: 10, last: messageForGet) { [weak self](list) in
-            guard let self = self else { return }
-            
+        UserSession.shared.imManager.getC2CMessages(receiverId: userId, cont: 10, last: messageForGet, sucess: { (list) in
             let tmpList = self.dataArray.insert(contentsOf: list, at: 0)
             self.tableView.wz_endRefreshing()
             self.tableView.reloadData()
@@ -114,7 +112,7 @@ public class WZIMConversionViewController: UIViewController {
             if list.count > 0 {
                 self.messageForGet = list.last
             }
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             self.tableView.wz_endRefreshing()
         }
     }
@@ -143,15 +141,15 @@ extension WZIMConversionViewController {
         }
         /// 添加消息
         let indexPaths = dataArray.append(message)
-        UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message) { (progress) in
+        UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message, progress: { (progress) in
             if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMPictureTableViewCell {
                 cell.upload(percent: progress)
             }
-        } sucess: {
+        }, sucess: {
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: indexPaths, with: .none)
             self.tableView.endUpdates()
-        } fail: { (code, msg) in
+        }) { (code, msg) in
             debugPrint("发送失败")
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: indexPaths, with: .none)
