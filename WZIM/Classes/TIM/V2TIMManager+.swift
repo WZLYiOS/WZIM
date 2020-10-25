@@ -236,7 +236,7 @@ extension V2TIMManager: WZIMManagerProcotol {
             guard let obj0Time = obj0.lastMsg?.timeTamp, let obj1Time = obj1.lastMsg?.timeTamp else {
                 return false
             }
-            return  obj0Time.compare(obj1Time) == .orderedAscending
+            return  obj0Time.compare(obj1Time) == .orderedDescending
         }
         arr.removeAll(where: {$0.receiverId == "admin"})
         return arr.sorted(by: { (obj0, obj1) -> Bool in
