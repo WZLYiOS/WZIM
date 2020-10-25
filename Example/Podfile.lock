@@ -19,27 +19,27 @@ PODS:
   - "UITableView+FDTemplateLayoutCell (1.6)"
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (1.8.3):
-    - WZIM/EM (= 1.8.3)
-    - WZIM/Procotol (= 1.8.3)
-    - WZIM/TIM (= 1.8.3)
-    - WZIM/Tool (= 1.8.3)
-    - WZIM/ToolBbar (= 1.8.3)
-    - WZIM/UI (= 1.8.3)
-  - WZIM/EM (1.8.3):
+  - WZIM (1.8.7):
+    - WZIM/EM (= 1.8.7)
+    - WZIM/Procotol (= 1.8.7)
+    - WZIM/TIM (= 1.8.7)
+    - WZIM/Tool (= 1.8.7)
+    - WZIM/ToolBbar (= 1.8.7)
+    - WZIM/UI (= 1.8.7)
+  - WZIM/EM (1.8.7):
     - HyphenateLite (= 3.7.1)
     - WZIM/UI
-  - WZIM/Procotol (1.8.3):
+  - WZIM/Procotol (1.8.7):
     - CleanJSON (~> 1.0.6)
-  - WZIM/TIM (1.8.3):
+  - WZIM/TIM (1.8.7):
     - TXIMSDK_iOS (= 5.0.10)
     - WZIM/UI
-  - WZIM/Tool (1.8.3)
-  - WZIM/ToolBbar (1.8.3):
+  - WZIM/Tool (1.8.7)
+  - WZIM/ToolBbar (1.8.7):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
     - WZLame (~> 4.0.0)
-  - WZIM/UI (1.8.3):
+  - WZIM/UI (1.8.7):
     - Kingfisher (~> 5.15.0)
     - WZIM/Procotol
     - WZIM/ToolBbar
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: a0db7ca14dad1a69b07f07b7f96e7ca130bfa9b7
+  WZIM: df5de04980ea6c36ebad4e4db5bd26819bd36445
   WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4

@@ -29,11 +29,12 @@ platform :ios do
     repo_source = "https://github.com/WZLYiOS/WZPodSpecs.git"
 
     # 验证 podspec
-    pod_lib_lint(
-      podspec: podspec_path,
-      allow_warnings: true,
-      skip_import_validation: true,
-      sources: [repo_source, "https://github.com/CocoaPods/Specs.git"])
+    pod_lib_lint(verbose: true,allow_warnings: true)
+    #pod_lib_lint(
+     # podspec: podspec_path,
+     # allow_warnings: true,
+     # skip_import_validation: true,
+     # sources: [repo_source, "https://github.com/CocoaPods/Specs.git"])
 
     # 设置 podspec 版本
     version_bump_podspec(

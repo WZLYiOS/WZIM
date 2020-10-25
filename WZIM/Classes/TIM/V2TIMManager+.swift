@@ -241,7 +241,7 @@ extension V2TIMManager: WZIMManagerProcotol {
         arr.removeAll(where: {$0.receiverId == "admin"})
         return arr.sorted(by: { (obj0, obj1) -> Bool in
             let top0 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
-            let top1 = self.getConversationTop(receiverId: obj0.receiverId) ? 1 : 0
+            let top1 = self.getConversationTop(receiverId: obj1.receiverId) ? 1 : 0
             return top0 > top1
         })
     }
