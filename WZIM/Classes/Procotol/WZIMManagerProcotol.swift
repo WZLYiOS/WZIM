@@ -195,5 +195,9 @@ public protocol WZIMManagerProcotol {
     
     /// 获取SDK 登录状态
     func loginStatus() -> WZIMLoginStatus
+    
+    /// 时间和置顶排序
+    @discardableResult
+    func sorted(list: [WZConversationProcotol]) -> [WZConversationProcotol]
 }
 

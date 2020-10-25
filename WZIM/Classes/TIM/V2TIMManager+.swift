@@ -231,7 +231,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     /// 置顶排序一下
-    public func sorted(list: [V2TIMConversation]) -> [V2TIMConversation] {
+    public func sorted(list: [WZConversationProcotol]) -> [WZConversationProcotol] {
         var arr = list.sorted { (obj0, obj1) -> Bool in
             guard let obj0Time = obj0.lastMsg?.timeTamp, let obj1Time = obj1.lastMsg?.timeTamp else {
                 return false
