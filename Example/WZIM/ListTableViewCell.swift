@@ -26,6 +26,11 @@ class ListTableViewCell: UITableViewCell {
         return $0
     }(UIImageView())
     
+    private lazy var timeLabel: UILabel = {
+        $0.font = UIFont.boldSystemFont(ofSize: 13)
+        return $0
+    }(UILabel())
+    
     private lazy var contentLabel: UILabel = {
         return $0
     }(UILabel())
@@ -44,6 +49,7 @@ class ListTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(avatarImageView)
         contentView.addSubview(contentLabel)
+        contentView.addSubview(timeLabel)
     }
     func configViewLocation() {
         avatarImageView.snp.makeConstraints { (make) in
@@ -62,11 +68,17 @@ class ListTableViewCell: UITableViewCell {
             make.left.equalTo(avatarImageView.snp.right).offset(15)
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
         }
+        
+        timeLabel.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(10)
+        }
     }
     
     func reload(model: WZConversationProcotol) {
         nameLabel.text = model.receiverId
 //        contentLabel.text = model.wzLastMessage()?.wzMessageId()
+        timeLabel.text = model.lastMsg?.timeTamp.wzImDate
     }
 }
 
