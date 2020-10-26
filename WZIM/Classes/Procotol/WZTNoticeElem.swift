@@ -252,7 +252,7 @@ public class WZTNoticeCheckedModel: Codable {
     public let stype: TeskType
     
     /// 扩展
-    public let ext: WZTNoticeCheckedModel
+    public let ext: WZMessageTaskExt
     
     enum CodingKeys: String, CodingKey {
         case userId = "userid"
