@@ -138,8 +138,12 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .redNum(try vals.decode(WZTNoticeRedNumModel.self, forKey: CodingKeys.elem))
         case .allTeskFinish:
             elem = .allTeskFinish(try vals.decode(WZTNoticeAllTeskFinishModel.self, forKey: CodingKeys.elem))
-        case .memberFlag, .star, .svip:
+        case .memberFlag:
             elem = .memberFlag(try vals.decode(WZTNoticeMemberFlagModel.self, forKey: CodingKeys.elem))
+        case .star:
+            elem = .star(try vals.decode(WZTNoticeMemberFlagModel.self, forKey: CodingKeys.elem))
+        case .svip:
+            elem = .svip(try vals.decode(WZTNoticeMemberFlagModel.self, forKey: CodingKeys.elem))
         case .forYouQhys:
             elem = .forYouQhys(try vals.decode(WZTNoticeForYouQhysModel.self, forKey: CodingKeys.elem))
         case .secretary:
