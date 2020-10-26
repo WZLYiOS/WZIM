@@ -432,6 +432,9 @@ public class WZMessageTaskExt: Codable {
 /// MARK - 约会提醒
 public class WZMessageNoticeDateRemindModel: Codable {
     
+    /// 是否有红点
+    public var status: Bool
+    
     /// 时间
     public var time: String
     
@@ -444,7 +447,8 @@ public class WZMessageNoticeDateRemindModel: Codable {
     enum CodingKeys: String, CodingKey {
         case time = "time"
         case content = "content"
-        case unreadNum = "unReadNum"
+        case unreadNum = "unreadNum"
+        case status = "status"
     }
 }
 
