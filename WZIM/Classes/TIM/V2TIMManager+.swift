@@ -64,7 +64,9 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
       
-        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
+        let pushInfo = V2TIMOfflinePushInfo()
+        pushInfo.desc = "您有一条新消息"
+        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: pushInfo, progress: { (progre) in
             progress?(CGFloat(progre))
         }, succ: {
             sucess?()
@@ -189,8 +191,9 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        
-        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: nil, timeout: Int32(timeOut), succ: {
+        let pushInfo = V2TIMOfflinePushInfo()
+        pushInfo.desc = "您收到一条视频邀请消息"
+        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: pushInfo, timeout: Int32(timeOut), succ: {
             sucess?()
         }) { (code, msg) in
             fail?(Int(code),msg ?? "")
