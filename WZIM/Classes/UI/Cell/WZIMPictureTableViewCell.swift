@@ -34,7 +34,6 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         $0.textAlignment = .center
         $0.textColor = UIColor.white
         $0.font = UIFont.systemFont(ofSize: 13)
-        $0.text = "0.1%"
         $0.isUserInteractionEnabled = true
         $0.isHidden = true
         return $0
@@ -113,7 +112,8 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
     
     /// 更新进度
     public func upload(percent: CGFloat) {
-        percentMaskLabel.text = String(format: "%.0f%%", percent)
+        let xx = Int(percent)
+        percentMaskLabel.text = "\(xx)%"
         percentMaskLabel.isHidden = percent >= 100 ? true : false
     }
     
