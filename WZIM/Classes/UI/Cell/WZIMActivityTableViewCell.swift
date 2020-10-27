@@ -58,7 +58,7 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
             make.leading.equalTo(15)
             make.top.equalToSuperview().offset(15)
             make.right.equalTo(shareImageView.snp.left).offset(-15)
-            make.width.lessThanOrEqualTo(WZIMConfig.maxWidth-15-15-55-21)
+            make.width.equalTo(WZIMConfig.maxWidth-15-15-55-21)
         }
         timeLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(15)
@@ -71,11 +71,9 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
         super.reload(model: model, cDelegate: cDelegate)
         delegate = cDelegate as? WZIMActivityTableViewCellDelegate
         if case let .share(elem) = model.currentElem {
-            
             if model.loaction == .right {
-                bubbleImageView.image = UIImage(named: "Cell.bundle/ic_talk_inputbox_style4")?.wzStretchableImage()
+                bubbleImageView.image = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
             }
-            
             dataModel = elem
             shareImageView.kf.setImage(with: URL(string: elem.content.img))
             timeLabel.text = elem.content.beginTime + "" + elem.content.city

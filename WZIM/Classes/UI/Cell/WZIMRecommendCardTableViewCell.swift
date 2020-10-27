@@ -104,7 +104,7 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
         super.reload(model: model, cDelegate: cDelegate)
         delegate = cDelegate as? WZIMRecommendCardTableViewCellDelegate
         if model.loaction == .right {
-            bubbleImageView.image = UIImage(named: "Cell.bundle/ic_talk_inputbox_style4")?.wzStretchableImage()
+            bubbleImageView.image = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
         }
         
         if case let .card(elem) = message.currentElem {

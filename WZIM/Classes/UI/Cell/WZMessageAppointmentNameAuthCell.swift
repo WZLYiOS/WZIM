@@ -96,10 +96,10 @@ public class WZMessageAppointmentNameAuthCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
-        bubbleImageView.image = nil
-        bubbleImageView.backgroundColor = UIColor.white
-        bubbleImageView.layer.cornerRadius = 5
-        bubbleImageView.layer.masksToBounds = true
+        
+        if model.loaction == .right {
+            bubbleImageView.image = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
+        }
         delegate = cDelegate as? WZMessageAppointmentNameAuthCellDelegate
         if case let .dateAuthInvite(elem) = message.currentElem {
             titleLabel.text = elem.text

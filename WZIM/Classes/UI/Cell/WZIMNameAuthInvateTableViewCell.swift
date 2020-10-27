@@ -62,6 +62,9 @@ public class WZIMNameAuthInvateTableViewCell: WZIMBaseTableViewCell {
     
     public override func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
         super.reload(model: model, cDelegate: cDelegate)
+        if model.loaction == .right {
+            bubbleImageView.image = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
+        }
         if case let .nameAuthInvite(elem) = model.currentElem {
             delegate = cDelegate as? WZIMNameAuthInvateTableViewCellDelegate
             dataMarkModel = elem

@@ -28,8 +28,8 @@ public class WZIMTimeTableViewCell: WZIMBaseTableViewCell {
         timeLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(0)
             make.right.equalToSuperview()
-            make.top.equalToSuperview().offset(5)
-            make.bottom.equalToSuperview().offset(-10)
+            make.top.equalToSuperview().offset(4)
+            make.bottom.equalToSuperview()
         }
     }
     

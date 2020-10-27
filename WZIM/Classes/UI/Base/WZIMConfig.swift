@@ -16,6 +16,9 @@ public struct WZIMConfig {
     /// 右侧侧会话框
     public static var rightBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowtwo")?.wzStretchableImage()
     
+    /// 右侧白底
+    public static var rightWhiteBubbleImage: UIImage? = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
+    
     /// 头像位置
     public static var avatarSize: CGSize = CGSize(width: 50, height: 50)
     
