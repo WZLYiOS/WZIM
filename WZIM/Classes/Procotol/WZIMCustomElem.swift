@@ -68,6 +68,8 @@ public enum WZMessageElem: Decodable {
             default:
                 return model.getText(isSelf: isSelf)
             }
+        case let .dateServiceHnSetRecCon(model):
+            return model.text
         default:
             return "未知消息"
         }
