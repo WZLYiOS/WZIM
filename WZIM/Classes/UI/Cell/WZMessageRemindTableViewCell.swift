@@ -47,7 +47,7 @@ public class WZMessageRemindTableViewCell: WZIMBaseTableViewCell {
         bubbleImageView.layer.cornerRadius = 5
         bubbleImageView.layer.masksToBounds = true
         bubbleImageView.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xCCCDCE")
-
+        delegate = cDelegate as? WZMessageRemindTableViewCellDelegate
         
         switch message.currentElem {
         case let .dateServiceHnSetRecCon(elem):
