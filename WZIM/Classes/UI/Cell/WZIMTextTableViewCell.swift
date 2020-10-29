@@ -16,8 +16,9 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.textContainer.lineFragmentPadding = 0
         $0.isEditable = false
-        $0.dataDetectorTypes = .all
+        $0.dataDetectorTypes = .link
         $0.backgroundColor = UIColor.clear
+        $0.delegate = self
         return $0
     }(UITextView())
     
@@ -25,13 +26,15 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
     private lazy var label: UILabel = {
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.numberOfLines = 0
+        $0.isUserInteractionEnabled = true
+        $0.isHidden = true
         return $0
     }(UILabel())
     
     public override func configView() {
         super.configView()
         bubbleImageView.addSubview(label)
-        label.addSubview(contentLabel)
+        bubbleImageView.addSubview(contentLabel)
     }
     
     public override func configViewLocation() {
@@ -46,7 +49,10 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
             make.width.lessThanOrEqualTo(maxWidth)
         }
         contentLabel.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.leading.equalTo(16)
+            make.right.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(15)
+            make.bottom.lessThanOrEqualTo(-15)
         }
     }
     
@@ -79,4 +85,11 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
     }
 }
 
-
+/// MARK - UITextViewDelegate
+extension WZIMTextTableViewCell: UITextViewDelegate {
+    
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL,
+                      in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+            return true
+        }
+}
