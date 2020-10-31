@@ -81,7 +81,7 @@ public class WZSignalingElem: Codable {
         case .timeOut:
             return "无应答"
         case .end:
-            return "已接听 结束通话，通话时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
+            return "结束通话，通话时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
         default:
             return "未知错误"
         }

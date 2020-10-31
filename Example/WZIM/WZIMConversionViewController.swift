@@ -110,7 +110,7 @@ public class WZIMConversionViewController: UIViewController {
                 self.tableView.scrollToRow(at: IndexPath(row: tmpList.count, section: 0), at: .top, animated: false)
             }
             if list.count > 0 {
-                self.messageForGet = list.last
+                self.messageForGet = list.first
             }
         }) { (code, msg) in
             self.tableView.wz_endRefreshing()

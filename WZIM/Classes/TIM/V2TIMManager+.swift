@@ -86,12 +86,15 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func getC2CMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
-        
         getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage), succ: { (list) in
+            
+            
+            
             let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
             }
             sucess?(arr ?? [])
+            
         }) { (code, msg) in
             fail?(Int(code), msg ?? "")
         }

@@ -33,10 +33,9 @@ extension V2TIMElem {
                 return model.msgElem
             }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType != .none {
                 
-                if model.data.callEnd > 0 {
+                if model.actionType == .invit && model.timeout == 0 {
                     model.actionType = .end
                 }
-                
                 return .signaling(model)
             }
             return .unknown
