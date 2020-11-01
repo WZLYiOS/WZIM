@@ -196,7 +196,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
         let pushInfo = V2TIMOfflinePushInfo()
         pushInfo.desc = "您收到一条视频邀请消息"
-        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: pushInfo, timeout: Int32(timeOut), succ: {
+        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: timeOut == 0 ? nil : pushInfo, timeout: Int32(timeOut), succ: {
             sucess?()
         }) { (code, msg) in
             fail?(Int(code),msg ?? "")
