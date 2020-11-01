@@ -19,6 +19,7 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
         $0.dataDetectorTypes = .link
         $0.backgroundColor = UIColor.clear
         $0.delegate = self
+        $0.isScrollEnabled = false
         return $0
     }(UITextView())
     
