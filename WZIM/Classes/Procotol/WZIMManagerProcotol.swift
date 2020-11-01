@@ -34,7 +34,7 @@ public protocol WZIMManagerProcotol {
     ///   - fail: 失败
     ///   - 返回msgId
     @discardableResult
-    func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String
+    func sendC2CMessage(receiverId: String, message: WZMessageProtocol, pushInfo: WZIMOfflinePushInfoProtocol?, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String
     
     /// 发送群聊消息
     /// - Parameters:
@@ -156,7 +156,7 @@ public protocol WZIMManagerProcotol {
     ///   - sucess: 成功
     ///   - fail: 失败
     @discardableResult
-    func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String
+    func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, pushInfo: WZIMOfflinePushInfoProtocol?, sucess: SucessHandler, fail: FailHandler) -> String
     
     /// 邀请群成员
     /// - Parameters:

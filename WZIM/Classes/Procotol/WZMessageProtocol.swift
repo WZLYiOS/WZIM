@@ -51,6 +51,10 @@ public protocol WZMessageReceiptProtocol {
     var time: Int { get }
 }
 
+/// MARK - 推送协议配置
+public protocol WZIMOfflinePushInfoProtocol {
+    
+}
 
 
 

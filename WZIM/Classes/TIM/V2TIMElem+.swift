@@ -130,6 +130,9 @@ extension V2TIMImageElem: WZIMImageElemProtocol {
     public var url: String {
         return imageList.first?.url ?? ""
     }
-    
+}
+
+/// 遵守协议
+extension V2TIMOfflinePushInfo: WZIMOfflinePushInfoProtocol {
     
 }

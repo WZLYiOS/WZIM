@@ -141,7 +141,7 @@ extension WZIMConversionViewController {
         }
         /// 添加消息
         let indexPaths = dataArray.append(message)
-        UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message, progress: { (progress) in
+        UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message, pushInfo: nil, progress: { (progress) in
             if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMPictureTableViewCell {
                 cell.upload(percent: progress)
             }

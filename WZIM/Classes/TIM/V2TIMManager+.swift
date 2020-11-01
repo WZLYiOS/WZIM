@@ -62,11 +62,9 @@ extension V2TIMManager: WZIMManagerProcotol {
         }
     }
     
-    public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
-      
-        let pushInfo = V2TIMOfflinePushInfo()
-        pushInfo.desc = "您有一条新消息"
-        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: pushInfo, progress: { (progre) in
+    public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, pushInfo: WZIMOfflinePushInfoProtocol?, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
+        let pInfo = (pushInfo as? V2TIMOfflinePushInfo) ?? nil
+        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: pInfo, progress: { (progre) in
             progress?(CGFloat(progre))
         }, succ: {
             sucess?()
@@ -87,8 +85,6 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func getC2CMessages(receiverId: String, cont: Int, last: WZMessageProtocol?, sucess: MessageListHandler, fail: FailHandler) {
         getC2CHistoryMessageList(receiverId.imPrefix, count: Int32(cont), lastMsg: (last as? V2TIMMessage), succ: { (list) in
-            
-            
             
             let arr = list?.sorted { (obj0, obj1) -> Bool in
                 return  obj0.timeTamp.compare(obj1.timeTamp) == .orderedAscending
@@ -193,10 +189,9 @@ extension V2TIMManager: WZIMManagerProcotol {
         deleteConversation(conversationId, succ: nil, fail: nil)
     }
     
-    public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, sucess: SucessHandler, fail: FailHandler) -> String {
-        let pushInfo = V2TIMOfflinePushInfo()
-        pushInfo.desc = "您收到一条视频邀请消息"
-        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: timeOut == 0 ? nil : pushInfo, timeout: Int32(timeOut), succ: {
+    public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, pushInfo: WZIMOfflinePushInfoProtocol?, sucess: SucessHandler, fail: FailHandler) -> String {
+        let pInfo = (pushInfo as? V2TIMOfflinePushInfo) ?? nil
+        return invite(userId.imPrefix, data: data, onlineUserOnly: onlineUserOnly, offlinePushInfo: timeOut == 0 ? nil : pInfo, timeout: Int32(timeOut), succ: {
             sucess?()
         }) { (code, msg) in
             fail?(Int(code),msg ?? "")
