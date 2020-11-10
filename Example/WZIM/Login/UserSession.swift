@@ -16,6 +16,10 @@ public class UserSession: NSObject {
     /// 登录token
     var tokenConfig: UserAppPlatformConfig?
     
+    private lazy var emManager: WZEMClientManager = {
+        return $0
+    }(WZEMClientManager(appkey: "", apnsCertName: "", delegate: self))
+    
     
     func logIn() {
         UserLoginApi.logIn(username: "18150960090", password: "123456")
@@ -39,4 +43,15 @@ public class UserSession: NSObject {
 
 extension UserSession {
     @objc static let ImLoginSucessNotification = Notification.Name(rawValue: "com.wzly.new.im.login.notification")
+}
+
+/// MARK - 代理
+extension UserSession: WZEMClientManagerDelegate {
+    public func eMClientManager(manager: WZEMClientManager, receive newMessage: [WZMessageProtocol]) {
+        
+    }
+    
+    public func eMClientManager(manager: WZEMClientManager, didRead: [WZMessageProtocol]) {
+        
+    }
 }

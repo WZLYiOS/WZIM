@@ -17,6 +17,7 @@ public enum WZIMLoginStatus: Int {
 
 // MARK - 消息状态
 public enum WZIMMessageStatus: Int {
+    case pending = 0  // 未开始发送
     case sending = 1  // 发送中
     case sucess = 2   // 成功
     case fail = 3     // 失败

@@ -448,8 +448,8 @@ public protocol WZIMImageElemProtocol {
     /// 图片 ID，内部标识，可用于外部缓存key
     var uuid: String {get}
     
-    /// 图片大小
-    var size: Int {get}
+//    /// 图片大小
+//    var size: Int {get}
     
     /// 图片宽度
     var width: Int {get}
