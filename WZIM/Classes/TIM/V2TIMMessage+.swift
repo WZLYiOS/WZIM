@@ -11,7 +11,7 @@ import Foundation
 // MARK - 消息
 extension V2TIMMessage: WZMessageProtocol {
     
-    public var messageId: String {
+    public var wzMessageId: String {
         return msgID ?? ""
     }
     

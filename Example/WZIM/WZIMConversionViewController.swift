@@ -167,7 +167,7 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
  
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = dataArray.array[indexPath.row]
-        return tableView.fd_heightForCell(withIdentifier: String(describing: model.getCellIdentifier()), cacheByKey: (model.messageId as NSString)) { (cell) in
+        return tableView.fd_heightForCell(withIdentifier: String(describing: model.getCellIdentifier()), cacheByKey: (model.wzMessageId as NSString)) { (cell) in
             let xCell = cell as! WZIMBaseTableViewCell
             xCell.fd_isTemplateLayoutCell = true
             xCell.pDelegate = self

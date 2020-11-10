@@ -10,6 +10,9 @@ import Foundation
 
 // MARK - 会话协议
 extension V2TIMConversation: WZConversationProcotol {
+    
+    
+    
     public var conversationType: WZIMConversationType {
         switch type {
         case .C2C:
@@ -18,7 +21,7 @@ extension V2TIMConversation: WZConversationProcotol {
             return .group
         }
     }
-    
+
     public var conversationId: String {
         return conversationID
     }

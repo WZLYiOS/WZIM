@@ -11,7 +11,7 @@ import Foundation
 public protocol WZMessageProtocol {
     
     /// 消息 ID（消息创建的时候为 nil，消息发送的时候会生成）
-    var messageId: String { get }
+    var wzMessageId: String { get }
     
     /// 消息时间
     var timeTamp: Date { get }

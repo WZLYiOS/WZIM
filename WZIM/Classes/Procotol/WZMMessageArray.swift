@@ -99,7 +99,7 @@ open class WZMMessageArray {
     /// 根据消息查找位置
     open func firstIndex(message: WZMessageProtocol) -> Int? {
     
-        guard let row = array.firstIndex(where: {$0.messageId == message.messageId}) else {
+        guard let row = array.firstIndex(where: {$0.wzMessageId == message.wzMessageId}) else {
             return nil
         }
         return row
@@ -109,7 +109,7 @@ open class WZMMessageArray {
     open func isContains(message: WZMessageProtocol) -> Bool {
         
         let isContains = array.contains(where: { (mess) -> Bool in
-            return mess.messageId == message.messageId
+            return mess.wzMessageId == message.wzMessageId
         })
         return isContains
     }

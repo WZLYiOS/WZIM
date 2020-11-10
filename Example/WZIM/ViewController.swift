@@ -83,7 +83,7 @@ extension ViewController: WZIMTableViewCellPublicDelegate {
 }
 
 extension ViewController: WZMessageProtocol {
-    var messageId: String {
+    var wzMessageId: String {
         return ""
     }
     

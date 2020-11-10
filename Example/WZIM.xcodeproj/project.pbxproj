@@ -27,6 +27,8 @@
 		D06D16A224FF456800445619 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A124FF456800445619 /* ListViewController.swift */; };
 		D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16A324FF45C100445619 /* ListTableViewCell.swift */; };
 		D06D16B024FF8E7E00445619 /* WZIMConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */; };
+		D0CB69AB25592B54009BBCBC /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CB69AA25592B54009BBCBC /* ServiceViewController.swift */; };
+		D0CB69AF25592B7C009BBCBC /* UserSession+EM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CB69AE25592B7C009BBCBC /* UserSession+EM.swift */; };
 		D0D342C425008571008AA19D /* WZIMMessageProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */; };
 		D0D4F99624EE159E00DD06A9 /* Pods_WZIM_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; };
 		D0D4F99724EE159E00DD06A9 /* Pods_WZIM_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -90,6 +92,8 @@
 		D06D16A324FF45C100445619 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		D06D16AB24FF8BF900445619 /* WZIM_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WZIM_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZIMConversionViewController.swift; sourceTree = "<group>"; };
+		D0CB69AA25592B54009BBCBC /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
+		D0CB69AE25592B7C009BBCBC /* UserSession+EM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSession+EM.swift"; sourceTree = "<group>"; };
 		D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WZIMMessageProtocol+.swift"; sourceTree = "<group>"; };
 		D0D4F99524EE159E00DD06A9 /* Pods_WZIM_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_WZIM_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */,
 				D03841832501C50E000A7D90 /* WZIMFaceTableViewCell.swift */,
+				D0CB69AA25592B54009BBCBC /* ServiceViewController.swift */,
 				D06D16A124FF456800445619 /* ListViewController.swift */,
 				D06D16A324FF45C100445619 /* ListTableViewCell.swift */,
 				D0D4F99924EE1E4F00DD06A9 /* TestTableViewCell.swift */,
@@ -216,6 +221,7 @@
 				D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */,
 				D06D169924FF3D7E00445619 /* UserSession.swift */,
 				D06D169F24FF43B000445619 /* UserSession+IM.swift */,
+				D0CB69AE25592B7C009BBCBC /* UserSession+EM.swift */,
 				D0D342C325008571008AA19D /* WZIMMessageProtocol+.swift */,
 			);
 			path = Login;
@@ -464,9 +470,11 @@
 				D0D342C425008571008AA19D /* WZIMMessageProtocol+.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				D06D169224FF3AB500445619 /* UserAppPlatformConfig.swift in Sources */,
+				D0CB69AB25592B54009BBCBC /* ServiceViewController.swift in Sources */,
 				D03841842501C50E000A7D90 /* WZIMFaceTableViewCell.swift in Sources */,
 				D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */,
 				D06D169E24FF40DE00445619 /* WZLYError.swift in Sources */,
+				D0CB69AF25592B7C009BBCBC /* UserSession+EM.swift in Sources */,
 				D06D169A24FF3D7E00445619 /* UserSession.swift in Sources */,
 				D0D4F99A24EE1E4F00DD06A9 /* TestTableViewCell.swift in Sources */,
 				D06D169724FF3C4C00445619 /* JSONParsing.swift in Sources */,
