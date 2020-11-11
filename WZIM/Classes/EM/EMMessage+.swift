@@ -16,7 +16,7 @@ extension EMMessage: WZMessageProtocol {
     }
     
     public var timeTamp: Date {
-        return Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return Date(timeIntervalSince1970: TimeInterval(timestamp/1000))
     }
     
     public var senderId: String {

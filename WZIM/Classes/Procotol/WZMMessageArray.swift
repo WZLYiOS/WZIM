@@ -132,7 +132,6 @@ public extension Array where Element == Int {
     func indexPaths(section: Int = 0) -> [IndexPath] {
         return self.map { IndexPath(row: $0, section: section) }
     }
-    
 }
 
 

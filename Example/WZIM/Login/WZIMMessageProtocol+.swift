@@ -42,3 +42,32 @@ extension WZMessageProtocol {
         }
     }
 }
+
+extension WZMessageData {
+    
+    var cellIdentifier: UITableViewCell.Type {
+        switch self {
+        case let .msg(elem):
+            return elem.getCellIdentifier()
+        case .time:
+            return WZIMTimeTableViewCell.self
+        default:
+            return WZIMUnknownTableViewCell.self
+        }
+    }
+    
+    var cellIdentifierId: String {
+        switch self {
+        case let .msg(elem):
+            if elem.wzMessageId.count == 0 {
+                debugPrint("xxxx")
+            }
+            return elem.wzMessageId
+        case .time:
+            return "im.cache.key.time"
+        default:
+            return ""
+        }
+    }
+    
+}

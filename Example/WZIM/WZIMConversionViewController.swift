@@ -24,9 +24,9 @@ public class WZIMConversionViewController: UIViewController {
     var userId: String = ""
     
     /// 数据源
-    private lazy var dataArray: WZMMessageArray = {
+    private lazy var dataArray: WZMessageArray = {
         return $0
-    }(WZMMessageArray(delegete: self))
+    }(WZMessageArray())
     
     private lazy var tableView: UITableView = {
         $0.separatorStyle = .none
@@ -101,7 +101,8 @@ public class WZIMConversionViewController: UIViewController {
     @objc private func pullToRefresh() {
         
         UserSession.shared.imManager.getC2CMessages(receiverId: userId, cont: 10, last: messageForGet, sucess: { (list) in
-            let tmpList = self.dataArray.insert(contentsOf: list, at: 0)
+            
+            let tmpList = self.dataArray.insert(contentsOf: list.map { WZMessageData.msg($0) }, at: 0)
             self.tableView.wz_endRefreshing()
             self.tableView.reloadData()
             if self.messageForGet == nil{
@@ -137,10 +138,11 @@ extension WZIMConversionViewController {
         tableView.beginUpdates()
         
         if isResend {
-            dataArray.remove(message: message)
+           let rows = dataArray.remove(message: .msg(message))
+            tableView.deleteRows(at: rows.map({IndexPath(row: $0, section: 0)}), with: .fade)
         }
         /// 添加消息
-        let indexPaths = dataArray.append(message)
+        let indexPaths = dataArray.append(.msg(message))
         UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message, pushInfo: nil, progress: { (progress) in
             if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMPictureTableViewCell {
                 cell.upload(percent: progress)
@@ -167,11 +169,11 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
  
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = dataArray.array[indexPath.row]
-        return tableView.fd_heightForCell(withIdentifier: String(describing: model.getCellIdentifier()), cacheByKey: (model.wzMessageId as NSString)) { (cell) in
+        return tableView.fd_heightForCell(withIdentifier: String(describing: model.cellIdentifier), cacheByKey: (model.cellIdentifierId as NSString)) { (cell) in
             let xCell = cell as! WZIMBaseTableViewCell
             xCell.fd_isTemplateLayoutCell = true
             xCell.pDelegate = self
-            xCell.reload(model: model, cDelegate: self)
+            xCell.upload(model: model, cDelegate: self)
         }
     }
     
@@ -180,10 +182,10 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataArray.array[indexPath.row]
-        let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.getCellIdentifier()) as! WZIMBaseTableViewCell
+        let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.cellIdentifier) as! WZIMBaseTableViewCell
         
         cell.pDelegate = self
-        cell.reload(model: model, cDelegate: self)
+        cell.upload(model: model, cDelegate: self)
         return cell
     }
     
