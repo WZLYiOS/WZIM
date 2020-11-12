@@ -33,7 +33,7 @@ public protocol WZConversationProcotol {
 public extension WZConversationProcotol {
     
     /// 会话id
-    var conversationId: String {
+    var wzConversationId: String {
         return receiverId
     }
 }
