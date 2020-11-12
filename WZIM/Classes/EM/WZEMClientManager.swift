@@ -22,7 +22,8 @@ public class WZEMClientManager: NSObject {
         super.init()
         self.delegate = delegate
         let options = EMOptions(appkey: appkey)
-        options!.apnsCertName = apnsCertName
+        options?.apnsCertName = apnsCertName
+        options?.isAutoLogin = false
         EMClient.shared()!.initializeSDK(with: options)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
