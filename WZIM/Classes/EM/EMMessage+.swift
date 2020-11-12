@@ -24,6 +24,9 @@ extension EMMessage: WZMessageProtocol {
     }
     
     public var receiverId: String {
+        if to == EMClient.shared()?.currentUsername {
+            return from
+        }
         return to
     }
     

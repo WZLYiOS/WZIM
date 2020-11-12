@@ -19,7 +19,7 @@ public protocol WZMessageProtocol {
     /// 消息发送者
     var senderId: String { get }
     
-    /// 会话类型为 C2C 单聊， 会话类型为群聊
+    /// 会话类型为 C2C 单聊， 会话类型为群聊 聊天对象
     var receiverId: String { get }
     
     /// 消息位置
