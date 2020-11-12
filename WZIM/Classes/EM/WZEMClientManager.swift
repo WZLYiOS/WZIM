@@ -21,7 +21,7 @@ public class WZEMClientManager: NSObject {
     public init(appkey: String, apnsCertName: String, delegate: WZEMClientManagerDelegate) {
         super.init()
         self.delegate = delegate
-        let options = HyphenateLite.EMOptions(appkey: appkey)
+        let options = EMOptions(appkey: appkey)
         options!.apnsCertName = apnsCertName
         EMClient.shared()!.initializeSDK(with: options)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -52,6 +52,9 @@ public class WZEMClientManager: NSObject {
             guard let self = self else { return }
             EMClient.shared()?.chatManager.add(self, delegateQueue: nil)
             EMClient.shared()?.registerPushKitToken(self.deviceToken, completion: nil)
+            if self.deviceToken != nil {
+                EMClient.shared()?.registerPushKitToken(self.deviceToken, completion: nil)
+            }
         })
     }
     
@@ -106,11 +109,18 @@ public class WZEMClientManager: NSObject {
 extension WZEMClientManager: EMChatManagerDelegate {
     
     public func messagesDidReceive(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, receive: aMessages as? [WZMessageProtocol] ?? [])
+        guard let arr = aMessages as? [EMMessage] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, receive: arr)
+        delegate?.eMClientManager(manager: self, conversations: arr.map({getConversation(receiveId: $0.receiverId)}))
     }
     
     public func messagesDidRead(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, didRead: aMessages as? [WZMessageProtocol] ?? [])
+        guard let arr = aMessages as? [EMMessage] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, didRead: arr)
     }
 }
 
@@ -122,6 +132,9 @@ public protocol WZEMClientManagerDelegate: class {
     
     /// 收到已读类型
     func eMClientManager(manager: WZEMClientManager, didRead: [WZMessageProtocol])
+    
+    /// 更新会话
+    func eMClientManager(manager: WZEMClientManager, conversations: [WZConversationProcotol])
 }
 
 /// MARK - 消息构建
