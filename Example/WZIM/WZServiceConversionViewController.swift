@@ -402,3 +402,18 @@ extension WZServiceConversionViewController: DongtuStoreDelegate {
     }
 }
 
+/// MARK - WZIMVoiceTableViewCellDelegate
+extension WZServiceConversionViewController: WZIMVoiceTableViewCellDelegate{
+    public func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool {
+        
+        if textTabbarView.audioPlayer.isSame(path: elem.wzPath()) {
+            return textTabbarView.audioPlayer.isPlaying()
+        }
+        return false
+    }
+    
+    public func startPlayerVoiceTableViewCell(cell: WZIMVoiceTableViewCell, path: String) {
+        textTabbarView.audioPlayer.play(aFilePath: path)
+        tableView.reloadData()
+    }
+}

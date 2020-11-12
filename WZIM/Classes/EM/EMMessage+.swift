@@ -76,7 +76,7 @@ extension EMMessageBody{
             return .text((self as! EMTextMessageBody))
         case EMMessageBodyTypeImage:
             return .img((self as! EMImageMessageBody))
-        case EMMessageBodyTypeVideo:
+        case EMMessageBodyTypeVoice:
             return .sound((self as! EMVoiceMessageBody))
         default:
             return .unknown

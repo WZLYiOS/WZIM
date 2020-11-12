@@ -30,7 +30,6 @@ public class WZIMTextInputView: UIView {
         return $0
     }(WZIMChatTextView())
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")

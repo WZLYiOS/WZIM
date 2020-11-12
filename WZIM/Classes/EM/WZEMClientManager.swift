@@ -159,6 +159,7 @@ extension WZEMClientManager {
     /// 语音消息
     public func createVoiceMessage(receiveId: String, localPath: String, duration: Int) -> EMMessage {
         let body = EMVoiceMessageBody(localPath: localPath, displayName: "audio")
+        body?.duration = Int32(duration)
         let message = EMMessage(conversationID: receiveId, from: currentUserId(), to: receiveId, body: body, ext: [:])
         message?.chatType = EMChatTypeChat
         return message!
@@ -167,7 +168,6 @@ extension WZEMClientManager {
     /// 图片消息
     public func createImageMessage(receiveId: String, image: UIImage) -> EMMessage {
         let data = image.jpegData(compressionQuality: 1)
-        let name = "image_\(NSDate().timeIntervalSince1970)"
         let body = EMImageMessageBody.init(data: data, thumbnailData: data)
         let message = EMMessage(conversationID: receiveId, from: currentUserId(), to: receiveId, body: body, ext: [:])
         message?.chatType = EMChatTypeChat
