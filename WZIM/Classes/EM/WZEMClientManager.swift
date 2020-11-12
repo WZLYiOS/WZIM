@@ -70,8 +70,8 @@ public class WZEMClientManager: NSObject {
     }
     
     /// 获取会话
-    public func getConversation(receiveId: String) -> EMConversation {
-        return EMClient.shared().chatManager.getConversation(receiveId, type: EMConversationTypeChat, createIfNotExist: true)
+    public func getConversation(receiveId: String, type: EMConversationType = EMConversationTypeChat) -> EMConversation {
+        return EMClient.shared().chatManager.getConversation(receiveId, type: type, createIfNotExist: true)
     }
     
     /// 设置已读
@@ -113,7 +113,14 @@ extension WZEMClientManager: EMChatManagerDelegate {
             return
         }
         delegate?.eMClientManager(manager: self, receive: arr)
-        delegate?.eMClientManager(manager: self, conversations: arr.map({getConversation(receiveId: $0.receiverId)}))
+    }
+    
+    public func conversationListDidUpdate(_ aConversationList: [Any]!) {
+        
+        guard let arr = aConversationList as? [EMConversation] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, conversations: arr)
     }
     
     public func messagesDidRead(_ aMessages: [Any]!) {
