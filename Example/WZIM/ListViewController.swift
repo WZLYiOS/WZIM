@@ -8,6 +8,7 @@
 
 import UIKit
 import WZIM
+import WZRoute
 
 class ListViewController: UIViewController {
 
@@ -21,7 +22,7 @@ class ListViewController: UIViewController {
         $0.tableFooterView = UIView()
         $0.tableHeaderView = UIView()
         $0.register(ListTableViewCell.self, forCellReuseIdentifier: "ListTableViewCell")
-        $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
+        $0.wz.pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         return $0
     }(UITableView())
     
@@ -56,7 +57,9 @@ class ListViewController: UIViewController {
     }
     
     @objc func rightBarButtonAction(){
-        self.navigationController?.pushViewController(ViewController(), animated: true)
+//        self.navigationController?.pushViewController(ViewController(), animated: true)
+        let vc = WZServiceConversionViewController()
+        WZRoute.push(vc)
     }
 }
 

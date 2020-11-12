@@ -39,7 +39,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()
-        $0.wz_pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
+        $0.wz.pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
         return $0
     }(UITableView())
@@ -67,7 +67,7 @@ public class WZIMConversionViewController: UIViewController {
         configView()
         configViewLocation()
         config()
-        tableView.wz_beginRefreshing()
+        tableView.wz.beginRefreshing()
         UserSession.shared.imManager.setReadMessage(receiverId: userId, type: .c2c)
     }
     
@@ -103,7 +103,7 @@ public class WZIMConversionViewController: UIViewController {
         UserSession.shared.imManager.getC2CMessages(receiverId: userId, cont: 10, last: messageForGet, sucess: { (list) in
             
             let tmpList = self.dataArray.insert(contentsOf: list.map { WZMessageData.msg($0) }, at: 0)
-            self.tableView.wz_endRefreshing()
+            self.tableView.wz.endRefreshing()
             self.tableView.reloadData()
             if self.messageForGet == nil{
                 self.scrollToBottom(animated: false)
@@ -114,7 +114,7 @@ public class WZIMConversionViewController: UIViewController {
                 self.messageForGet = list.first
             }
         }) { (code, msg) in
-            self.tableView.wz_endRefreshing()
+            self.tableView.wz.endRefreshing()
         }
     }
     
