@@ -13,9 +13,6 @@ public protocol WZConversationProcotol {
     /// 会话类型
     var conversationType: WZIMConversationType { get }
     
-    /// 会话唯一 ID，如果是 C2C 单聊，组成方式为 c2c_userID，如果是群聊，组成方式为 group_groupID
-    var conversationId: String { get}
-    
     /// 会话类型为 C2C 单聊， 会话类型为群聊
     var receiverId: String { get }
     
@@ -32,5 +29,12 @@ public protocol WZConversationProcotol {
     var draftTime: Date? { get }
 }
 
-
+/// 扩展
+public extension WZConversationProcotol {
+    
+    /// 会话id
+    var conversationId: String {
+        return receiverId
+    }
+}
 
