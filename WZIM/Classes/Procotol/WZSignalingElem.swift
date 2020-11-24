@@ -32,8 +32,8 @@ public class WZSignalingElem: Codable {
         case end = 102    // 通话结束（demo：由发起者再发一条有结束时间的邀请）
     }
     
-    /// 事件类型
-    public var actionType: ActionType
+    /// 事件类型 请用下面的方法
+    private var eventType: ActionType
         
     /// 自定义内容
     public var data: WZSignalingModel
@@ -51,7 +51,7 @@ public class WZSignalingElem: Codable {
     public var timeout: Int
     
     public init(actionType: ActionType, data: WZSignalingModel, inviteID: String, inviteeList: [String], inviter: String, timeout: Int) {
-        self.actionType = actionType
+        self.eventType = actionType
         self.data = data
         self.inviteID = inviteID
         self.inviter = inviter
@@ -60,7 +60,7 @@ public class WZSignalingElem: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case actionType = "actionType"
+        case eventType = "actionType"
         case data = "data"
         case inviteID = "inviteID"
         case inviteeList = "inviteeList"
@@ -69,23 +69,38 @@ public class WZSignalingElem: Codable {
     }
     
     public func getText(isSelf: Bool) -> String {
-        switch actionType {
+        switch eventType {
         case .accept:
-            return "已接听"
+            return "已接通"
         case .cancel:
-            return "取消通话"
+            return isSelf ? "取消通话" : "对方已取消"
         case .invit:
             return "发起通话"
         case .reject:
-            return "拒绝通话"
+            
+            if data.lineBusy != nil {
+                return "对方忙线"
+            }
+            
+            return isSelf ? "对方已拒绝" : "已拒绝"
         case .timeOut:
-            return "无应答"
+            return isSelf ? "对方无应答" : "对方已取消"
         case .end:
-            return "结束通话，通话时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
+            return "聊天时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
         default:
             return "未知错误"
         }
     }
+ 
+    /// 事件类型
+    public func actionType() -> ActionType {
+        
+        if eventType == .invit && timeout == 0 {
+            return .end
+        }
+        return eventType
+    }
+ 
     
     /// 时间转成时分秒
     public static func getFormatPlayTime(secounds:TimeInterval)->String{
@@ -119,11 +134,15 @@ public class WZSignalingModel: Codable {
     /// 通话时间
     public var callEnd: Int
     
-    public init(version: Int = 4, calltype: WZIMCallType = .video, roomId: Int, callEnd: Int = 0) {
+    /// 忙线
+    public var lineBusy: String?
+    
+    public init(version: Int = 4, calltype: WZIMCallType = .video, roomId: Int, callEnd: Int = 0, lineBusy: String? = nil) {
         self.version = version
         self.calltype = calltype
         self.roomId = roomId
         self.callEnd = callEnd
+        self.lineBusy = lineBusy
     }
     
     enum CodingKeys: String, CodingKey {
@@ -131,6 +150,7 @@ public class WZSignalingModel: Codable {
         case calltype = "call_type"
         case roomId = "room_id"
         case callEnd = "call_end"
+        case lineBusy = "line_busy"
     }
 }
 
