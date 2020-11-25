@@ -75,7 +75,7 @@ public class WZSignalingElem: Codable {
         case .cancel:
             return isSelf ? "取消通话" : "对方已取消"
         case .invit:
-            return "发起通话"
+            return  isSelf ? "发起通话" : "向您发起了视频申请"
         case .reject:
             
             if data.lineBusy != nil {

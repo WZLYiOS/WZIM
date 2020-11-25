@@ -141,7 +141,7 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
     
     public override func configViewLocation() {
         super.configViewLocation()
-        
+    
         topLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(16)
             make.right.equalToSuperview().offset(-16)
@@ -162,10 +162,13 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         topLabel.textColor = getTextColor()
         let text = NSMutableAttributedString(string: elem.getText(isSelf: message.loaction == .lelft ? false : true))
         text.wzSetLineSpacing(value: 3)
+        
         if model.loaction == .lelft {
-            text.insert(text.wzGetAttachment(image: UIImage(named: "ic_talk_dialog_video")), at: 0)
+            text.insert(NSAttributedString(string: " "), at: 0)
+            text.insert(text.wzGetAttachment(image: UIImage(named: "Cell.bundle/ic_talk_dialog_video"), y: -3), at: 0)
         }else{
-            text.append(text.wzGetAttachment(image: UIImage(named: "ic_talk_inputbox_voice02")))
+            text.append(NSAttributedString(string: " "))
+            text.append(text.wzGetAttachment(image: UIImage(named: "Cell.bundle/ic_talk_inputbox_voice02"), y: -2))
         }
         topLabel.attributedText = text
     }

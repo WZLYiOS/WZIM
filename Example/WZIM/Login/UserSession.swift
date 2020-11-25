@@ -22,7 +22,7 @@ public class UserSession: NSObject {
     
     
     func logIn() {
-        UserLoginApi.logIn(username: "18150960090", password: "123456")
+        UserLoginApi.logIn(username: "18888999944", password: "123456")
         .request()
         .mapModel(UserAppPlatformConfig.self, isDebug: true)
         .subscribe(onNext: { (result) in

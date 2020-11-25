@@ -30,10 +30,7 @@ extension WZMessageProtocol {
             return WZIMMakingCourseTableViewCell.self
         case .card:
             return WZIMRecommendCardTableViewCell.self
-        case let .signaling(elem):
-            if elem.actionType() == .invit && loaction == .lelft {
-                return WZIMVideoInviteTableViewCell.self
-            }
+        case .signaling:
             return WZIMVideoInviteSelfTableViewCell.self
         case .share:
             return WZIMActivityTableViewCell.self
