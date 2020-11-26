@@ -83,7 +83,7 @@ public class WZSignalingElem: Codable {
             if data.lineBusy != nil {
                 return "对方忙线"
             }
-            return isSelf ? "对方已拒绝" : "已拒绝"
+            return isSelf ? "已拒绝" : "对方已拒绝"
         case .timeOut:
             return isSelf ? "对方无应答" : "对方已取消"
         default:
