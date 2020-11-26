@@ -31,7 +31,7 @@ extension V2TIMElem {
             
             if let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data), model.type != .none {
                 return model.msgElem
-            }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType() != .none {
+            }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType != .none {
     
                 return .signaling(model)
             }

@@ -62,12 +62,7 @@ public enum WZMessageElem: Decodable {
         case .card:
             return isSelf ? "推荐了一名异性" : "向您推荐了一名异性"
         case let .signaling(model):
-            switch model.actionType() {
-            case .invit:
-                return isSelf ? "发起通话" : "向您发起了视频申请"
-            default:
-                return model.getText(isSelf: isSelf)
-            }
+            return model.getText(isSelf: isSelf)
         case let .dateServiceHnSetRecCon(model):
             return model.text
         default:

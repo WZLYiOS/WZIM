@@ -29,11 +29,10 @@ public class WZSignalingElem: Codable {
         case accept = 3   // 接受邀请
         case reject = 4   // 拒绝邀请
         case timeOut = 5  // 超时
-        case end = 102    // 通话结束（demo：由发起者再发一条有结束时间的邀请）
     }
     
     /// 事件类型 请用下面的方法
-    private var eventType: ActionType
+    public var actionType: ActionType
         
     /// 自定义内容
     public var data: WZSignalingModel
@@ -51,7 +50,7 @@ public class WZSignalingElem: Codable {
     public var timeout: Int
     
     public init(actionType: ActionType, data: WZSignalingModel, inviteID: String, inviteeList: [String], inviter: String, timeout: Int) {
-        self.eventType = actionType
+        self.actionType = actionType
         self.data = data
         self.inviteID = inviteID
         self.inviter = inviter
@@ -60,7 +59,7 @@ public class WZSignalingElem: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case eventType = "actionType"
+        case actionType = "actionType"
         case data = "data"
         case inviteID = "inviteID"
         case inviteeList = "inviteeList"
@@ -69,38 +68,28 @@ public class WZSignalingElem: Codable {
     }
     
     public func getText(isSelf: Bool) -> String {
-        switch eventType {
+        switch actionType {
         case .accept:
             return "已接通"
         case .cancel:
             return isSelf ? "取消通话" : "对方已取消"
         case .invit:
+            if timeout == 0 {
+                return "聊天时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
+            }
             return  isSelf ? "发起通话" : "向您发起了视频申请"
         case .reject:
             
             if data.lineBusy != nil {
                 return "对方忙线"
             }
-            
             return isSelf ? "对方已拒绝" : "已拒绝"
         case .timeOut:
             return isSelf ? "对方无应答" : "对方已取消"
-        case .end:
-            return "聊天时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
         default:
             return "未知错误"
         }
     }
- 
-    /// 事件类型
-    public func actionType() -> ActionType {
-        
-        if eventType == .invit && timeout == 0 {
-            return .end
-        }
-        return eventType
-    }
- 
     
     /// 时间转成时分秒
     public static func getFormatPlayTime(secounds:TimeInterval)->String{
