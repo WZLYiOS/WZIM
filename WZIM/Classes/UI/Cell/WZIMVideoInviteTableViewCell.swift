@@ -126,6 +126,10 @@ public protocol WZIMVideoInviteTableViewCellDeleagte: class {
 
 /// MARK - 自己发的视频邀请
 public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
+    
+    /// 代理
+    public weak var delegate: WZIMVideoInviteSelfTableViewCellDeleagte?
+    
     /// 顶部文案
     private lazy var topLabel: UILabel = {
         $0.textColor = WZIMConfig.rightTextColor
@@ -156,6 +160,11 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         guard case let .signaling(elem) = message.currentElem else {
             return
         }
+        self.delegate = cDelegate as? WZIMVideoInviteSelfTableViewCellDeleagte
+        
+        let namorImage = model.loaction == .lelft ? UIImage(named: "Cell.bundle/ic_talk_dialog_video") : UIImage(named: "Cell.bundle/ic_talk_inputbox_voice02")
+        
+        let image = delegate?.VideoInviteSelfCell(cell: self) ?? namorImage
         
         sendFailButton.isHidden = true
         readButton.isHidden = true
@@ -165,11 +174,18 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         
         if model.loaction == .lelft {
             text.insert(NSAttributedString(string: " "), at: 0)
-            text.insert(text.wzGetAttachment(image: UIImage(named: "Cell.bundle/ic_talk_dialog_video"), y: -3), at: 0)
+            text.insert(text.wzGetAttachment(image: image, y: -3), at: 0)
         }else{
             text.append(NSAttributedString(string: " "))
-            text.append(text.wzGetAttachment(image: UIImage(named: "Cell.bundle/ic_talk_inputbox_voice02"), y: -2))
+            text.append(text.wzGetAttachment(image: image, y: -2))
         }
         topLabel.attributedText = text
     }
+}
+
+/// MARK - WZIMVideoInviteSelfTableViewCellDeleagte
+public protocol WZIMVideoInviteSelfTableViewCellDeleagte: WZIMTableViewCellDelegate {
+    
+    /// 获取图片
+    func VideoInviteSelfCell(cell: WZIMVideoInviteSelfTableViewCell) -> UIImage?
 }
