@@ -85,7 +85,7 @@ public class WZSignalingElem: Codable {
             }
             return isSelf ? "已拒绝" : "对方已拒绝"
         case .timeOut:
-            return isSelf ? "对方无应答" : "对方已取消"
+            return "无应答"
         default:
             return "未知错误"
         }
