@@ -103,10 +103,10 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
             lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_certification")
             titleLbale.text = elem.title.count == 0 ? "我主良缘实名认证" : elem.title
             picImageView.kf.setImage(with: URL(string: elem.img), placeholder: UIImage(named: "Cell.bundle/chat_name_auth_pic"))
-        case .dateService:
-            topLabel.text =  "线上视频约会服务"
+        case let .dateService(elem):
+            topLabel.text =  elem.suitName
             lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_video")
-            titleLbale.text =  "我主良缘线上视频约会"
+            titleLbale.text =  "我主良缘线上视频约会服务"
             picImageView.image = UIImage(named: "Cell.bundle/chat_service_pic")
         default: break
         }

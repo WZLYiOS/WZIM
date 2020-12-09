@@ -24,7 +24,7 @@ public enum WZMessageElem: Decodable {
     case hibox(WZIMHiboxElem)           // 打招呼消息
     case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
-    case dateService         // 线上视频约会服务
+    case dateService(WZMessageDateServiceElem)         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
@@ -131,7 +131,7 @@ public class WZIMCustomElem: Decodable {
         case .dateAuthInvite:
             msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .dateService:
-            msgElem = .dateService
+            msgElem = .dateService(try vals.decode(WZMessageDateServiceElem.self, forKey: CodingKeys.msg))
         case .nameAuthPop:
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         case .dateServiceHnSetRecCon:
@@ -558,4 +558,18 @@ public class WZMessageServiceHnSetRecConElem: Codable {
     }
 }
 
+/// MARK - 红娘约会
+public class WZMessageDateServiceElem: Codable {
+    
+    /// 套餐id
+    public let id: String
+    
+    /// 套餐名
+    public let suitName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case suitName = "suitName"
+    }
+}
 
