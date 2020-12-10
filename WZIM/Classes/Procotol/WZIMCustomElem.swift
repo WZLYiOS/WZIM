@@ -562,14 +562,22 @@ public class WZMessageServiceHnSetRecConElem: Codable {
 public class WZMessageDateServiceElem: Codable {
     
     /// 套餐id
-    public let id: String
+    public let serviceId: Int
     
     /// 套餐名
-    public let suitName: String
+    public let title: String
+    
+    /// 图片
+    public let img: String
+    
+    /// 提示
+    public let text: String
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case suitName = "suitName"
+        case serviceId = "id"
+        case title = "title"
+        case img = "img"
+        case text = "text"
     }
 }
 
