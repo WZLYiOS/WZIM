@@ -456,10 +456,10 @@ public class WZMessageNoticeDateRemindModel: Codable {
 public class WZMessageNoticeHnServiceModel: Codable {
     
     /// 用户id
-    let userId: String
+    public let userId: String
     
     /// 服务id
-    let serviceId: Int
+    public let serviceId: Int
     
     enum CodingKeys: String, CodingKey {
         case userId = "userid"
