@@ -458,8 +458,12 @@ public class WZMessageNoticeHnServiceModel: Codable {
     /// 用户id
     let userId: String
     
+    /// 服务id
+    let serviceId: Int
+    
     enum CodingKeys: String, CodingKey {
         case userId = "userid"
+        case serviceId = "id"
     }
 }
 
