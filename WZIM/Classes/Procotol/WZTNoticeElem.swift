@@ -30,6 +30,7 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case task = 43 // B端每日任务
     case dateRemind = 44 // 约会提醒
     case hnService = 45 // 红娘服务
+    case uploadInfo = 46 // 用户资料更新
 }
 
 // MARK - 透传消息elem
@@ -53,6 +54,7 @@ public enum WZMessageNoticeElem: Decodable {
     case task(WZMessageTaskModel)
     case dateRemind(WZMessageNoticeDateRemindModel)
     case hnService(WZMessageNoticeHnServiceModel)
+    case uploadInfo(WZMessageNoticeUploadUserInfoModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -100,6 +102,8 @@ public enum WZMessageNoticeElem: Decodable {
         case let .dateRemind(model):
             return model
         case let .hnService(model):
+            return model
+        case let .uploadInfo(model):
             return model
         default:
             return nil
@@ -467,4 +471,13 @@ public class WZMessageNoticeHnServiceModel: Codable {
     }
 }
 
-
+/// MARK - 更新用户资料
+public class WZMessageNoticeUploadUserInfoModel: Codable {
+    
+    /// 用户id
+    public var userId: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "userid"
+    }
+}
