@@ -166,6 +166,8 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .dateRemind(try vals.decode(WZMessageNoticeDateRemindModel.self, forKey: CodingKeys.elem))
         case .hnService:
             elem = .hnService(try vals.decode(WZMessageNoticeHnServiceModel.self, forKey: CodingKeys.elem))
+        case .uploadInfo:
+            elem = .uploadInfo(try vals.decode(WZMessageNoticeUploadUserInfoModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
