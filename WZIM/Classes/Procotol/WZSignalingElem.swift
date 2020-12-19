@@ -29,10 +29,9 @@ public class WZSignalingElem: Codable {
         case accept = 3   // 接受邀请
         case reject = 4   // 拒绝邀请
         case timeOut = 5  // 超时
-        case end = 102    // 通话结束（demo：由发起者再发一条有结束时间的邀请）
     }
     
-    /// 事件类型
+    /// 事件类型 请用下面的方法
     public var actionType: ActionType
         
     /// 自定义内容
@@ -71,17 +70,22 @@ public class WZSignalingElem: Codable {
     public func getText(isSelf: Bool) -> String {
         switch actionType {
         case .accept:
-            return "已接听"
+            return "已接通"
         case .cancel:
-            return "取消通话"
+            return isSelf ? "取消通话" : "对方已取消"
         case .invit:
-            return "发起通话"
+            if timeout == 0 {
+                return "聊天时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
+            }
+            return  isSelf ? "发起通话" : "向您发起了视频申请"
         case .reject:
-            return "拒绝通话"
+            
+            if data.lineBusy != nil {
+                return isSelf ? "忙线未接听" : "对方忙线"
+            }
+            return isSelf ? "已拒绝" : "对方已拒绝"
         case .timeOut:
             return "无应答"
-        case .end:
-            return "结束通话，通话时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
         default:
             return "未知错误"
         }
@@ -119,11 +123,15 @@ public class WZSignalingModel: Codable {
     /// 通话时间
     public var callEnd: Int
     
-    public init(version: Int = 4, calltype: WZIMCallType = .video, roomId: Int, callEnd: Int = 0) {
+    /// 忙线
+    public var lineBusy: String?
+    
+    public init(version: Int = 4, calltype: WZIMCallType = .video, roomId: Int, callEnd: Int = 0, lineBusy: String? = nil) {
         self.version = version
         self.calltype = calltype
         self.roomId = roomId
         self.callEnd = callEnd
+        self.lineBusy = lineBusy
     }
     
     enum CodingKeys: String, CodingKey {
@@ -131,6 +139,7 @@ public class WZSignalingModel: Codable {
         case calltype = "call_type"
         case roomId = "room_id"
         case callEnd = "call_end"
+        case lineBusy = "line_busy"
     }
 }
 

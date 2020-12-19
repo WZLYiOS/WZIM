@@ -12,7 +12,7 @@ target 'WZIM_Example' do
   pod 'RxCocoa', '~> 5.1.1' #RxCocoa
   pod 'WZEncryption', '~> 1.0.0' #加密组件
   pod 'DongtuStore', '~> 3.2.1' #表情MM
-  pod 'WZRefresh', '~> 0.2.3' #WZRefresh组件
+  pod 'WZRefresh', '~> 1.0.2' #WZRefresh组件
   pod 'WZRoute', '~> 2.0.2' #路由组件
   pod 'TZImagePickerController',  '~> 3.2.7' #相册选择组件
   pod 'WZUIExtension',  '~> 0.1.5' #UI扩展

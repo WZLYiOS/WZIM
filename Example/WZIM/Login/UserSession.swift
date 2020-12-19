@@ -16,18 +16,19 @@ public class UserSession: NSObject {
     /// 登录token
     var tokenConfig: UserAppPlatformConfig?
     
-    private lazy var emManager: WZEMClientManager = {
+    public lazy var emManager: WZEMClientManager = {
         return $0
-    }(WZEMClientManager(appkey: "", apnsCertName: "", delegate: self))
+    }(WZEMClientManager(appkey: "7799520#wzly", apnsCertName: "APNS_Development", delegate: self))
     
     
     func logIn() {
-        UserLoginApi.logIn(username: "18150960090", password: "123456")
+        UserLoginApi.logIn(username: "18888999944", password: "123456")
         .request()
         .mapModel(UserAppPlatformConfig.self, isDebug: true)
         .subscribe(onNext: { (result) in
             self.tokenConfig = result
             
+            self.emManager.emLogin(userId: result.userId, password: "wzlycodebytangyouyou")
             self.logIn(identifier: "wzly_\(result.userId )", userSig: result.userSig, sucess: {
                 
             }) { (code, msg) in
@@ -47,6 +48,11 @@ extension UserSession {
 
 /// MARK - 代理
 extension UserSession: WZEMClientManagerDelegate {
+    
+    public func eMClientManager(manager: WZEMClientManager, conversations: [WZConversationProcotol]) {
+        
+    }
+    
     public func eMClientManager(manager: WZEMClientManager, receive newMessage: [WZMessageProtocol]) {
         
     }

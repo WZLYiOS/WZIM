@@ -40,4 +40,12 @@ public class WZIMTimeTableViewCell: WZIMBaseTableViewCell {
             timeLabel.text = Date.wzImDateText(elem.time)
         }
     }
+    
+    public override func upload(model: WZMessageData, cDelegate: WZIMTableViewCellDelegate) {
+        super.upload(model: model, cDelegate: cDelegate)
+        uploadConstraints(type: .center)
+        if case let .time(elem) = model {
+            timeLabel.text = Date.wzImDateText(elem.time)
+        }
+    }
 }

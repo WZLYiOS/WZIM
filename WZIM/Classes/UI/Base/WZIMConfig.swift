@@ -81,4 +81,13 @@ public extension NSMutableAttributedString {
     func wzSetAttribute(key: NSAttributedString.Key, value: Any, range: NSRange) {
         self.addAttribute(key, value: value, range: range)
     }
+    
+    /// 富文本图片
+    func wzGetAttachment(image: UIImage?, x: CGFloat = 0, y: CGFloat = 0) -> NSAttributedString {
+        let attch = NSTextAttachment()
+        attch.bounds = CGRect(x: x, y: y, width: image?.size.width ?? 0, height: image?.size.height ?? 0)
+        attch.image = image
+        let attachment = NSAttributedString(attachment: attch)
+        return attachment
+    }
 }

@@ -88,6 +88,18 @@ extension V2TIMMessage: WZMessageProtocol {
             return .unknown
         }
     }
+    
+    /// 消息打印
+    public func printMsg(){
+        
+        if let tex = textElem {
+            debugPrint("普通消息："+tex.text)
+        }
+        
+        if let elem = customElem {
+            debugPrint("自定义消息：\(String(describing: try? JSONSerialization.jsonObject(with: elem.data, options: .mutableContainers)))")
+        }
+    }
 }
 
 /// MARK - WZMessageReceiptProtocol
@@ -101,3 +113,5 @@ extension V2TIMMessageReceipt: WZMessageReceiptProtocol {
         return Int(timestamp)
     }
 }
+
+

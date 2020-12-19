@@ -21,8 +21,9 @@ public class WZEMClientManager: NSObject {
     public init(appkey: String, apnsCertName: String, delegate: WZEMClientManagerDelegate) {
         super.init()
         self.delegate = delegate
-        let options = HyphenateLite.EMOptions(appkey: appkey)
-        options!.apnsCertName = apnsCertName
+        let options = EMOptions(appkey: appkey)
+        options?.apnsCertName = apnsCertName
+        options?.isAutoLogin = false
         EMClient.shared()!.initializeSDK(with: options)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -52,6 +53,9 @@ public class WZEMClientManager: NSObject {
             guard let self = self else { return }
             EMClient.shared()?.chatManager.add(self, delegateQueue: nil)
             EMClient.shared()?.registerPushKitToken(self.deviceToken, completion: nil)
+            if self.deviceToken != nil {
+                EMClient.shared()?.registerPushKitToken(self.deviceToken, completion: nil)
+            }
         })
     }
     
@@ -67,8 +71,8 @@ public class WZEMClientManager: NSObject {
     }
     
     /// 获取会话
-    public func getConversation(receiveId: String) -> EMConversation {
-        return EMClient.shared().chatManager.getConversation(receiveId, type: EMConversationTypeChat, createIfNotExist: true)
+    public func getConversation(receiveId: String, type: EMConversationType = EMConversationTypeChat) -> EMConversation {
+        return EMClient.shared().chatManager.getConversation(receiveId, type: type, createIfNotExist: true)
     }
     
     /// 设置已读
@@ -106,11 +110,25 @@ public class WZEMClientManager: NSObject {
 extension WZEMClientManager: EMChatManagerDelegate {
     
     public func messagesDidReceive(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, receive: aMessages as? [WZMessageProtocol] ?? [])
+        guard let arr = aMessages as? [EMMessage] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, receive: arr)
+    }
+    
+    public func conversationListDidUpdate(_ aConversationList: [Any]!) {
+        
+        guard let arr = aConversationList as? [EMConversation] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, conversations: arr)
     }
     
     public func messagesDidRead(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, didRead: aMessages as? [WZMessageProtocol] ?? [])
+        guard let arr = aMessages as? [EMMessage] else {
+            return
+        }
+        delegate?.eMClientManager(manager: self, didRead: arr)
     }
 }
 
@@ -122,6 +140,9 @@ public protocol WZEMClientManagerDelegate: class {
     
     /// 收到已读类型
     func eMClientManager(manager: WZEMClientManager, didRead: [WZMessageProtocol])
+    
+    /// 更新会话
+    func eMClientManager(manager: WZEMClientManager, conversations: [WZConversationProcotol])
 }
 
 /// MARK - 消息构建
@@ -138,6 +159,7 @@ extension WZEMClientManager {
     /// 语音消息
     public func createVoiceMessage(receiveId: String, localPath: String, duration: Int) -> EMMessage {
         let body = EMVoiceMessageBody(localPath: localPath, displayName: "audio")
+        body?.duration = Int32(duration)
         let message = EMMessage(conversationID: receiveId, from: currentUserId(), to: receiveId, body: body, ext: [:])
         message?.chatType = EMChatTypeChat
         return message!
@@ -146,8 +168,7 @@ extension WZEMClientManager {
     /// 图片消息
     public func createImageMessage(receiveId: String, image: UIImage) -> EMMessage {
         let data = image.jpegData(compressionQuality: 1)
-        let name = "image_\(NSDate().timeIntervalSince1970)"
-        let body = EMImageMessageBody(data: data, displayName: name)
+        let body = EMImageMessageBody.init(data: data, thumbnailData: data)
         let message = EMMessage(conversationID: receiveId, from: currentUserId(), to: receiveId, body: body, ext: [:])
         message?.chatType = EMChatTypeChat
         return message!

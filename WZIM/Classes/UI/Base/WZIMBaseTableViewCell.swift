@@ -102,6 +102,13 @@ open class WZIMBaseTableViewCell: UITableViewCell {
         }
     }
     
+    /// 更新数据新方法
+    open func upload(model: WZMessageData, cDelegate: WZIMTableViewCellDelegate) {
+        if case let .msg(elem) = model {
+            reload(model: elem, cDelegate: cDelegate)
+        }
+    }
+    
     /// 更新数据
     open func reload(model: WZMessageProtocol, cDelegate: WZIMTableViewCellDelegate) {
 

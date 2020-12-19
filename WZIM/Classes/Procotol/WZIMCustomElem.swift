@@ -24,7 +24,7 @@ public enum WZMessageElem: Decodable {
     case hibox(WZIMHiboxElem)           // 打招呼消息
     case videoTalkInvite(WZVideoTalkInviteElem) // 视频谈单邀请
     case dateAuthInvite(WZMessageDateAuthInviteElem)   // 约会实名认证邀请
-    case dateService         // 线上视频约会服务
+    case dateService(WZMessageDateServiceElem)         // 线上视频约会服务
     case nameAuthPop(WZMessageNmeAuthPopElem) // 牵线首次登陆实名认证弹窗
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
@@ -62,12 +62,7 @@ public enum WZMessageElem: Decodable {
         case .card:
             return isSelf ? "推荐了一名异性" : "向您推荐了一名异性"
         case let .signaling(model):
-            switch model.actionType {
-            case .invit:
-                return isSelf ? "发起通话" : "向您发起了视频申请"
-            default:
-                return model.getText(isSelf: isSelf)
-            }
+            return model.getText(isSelf: isSelf)
         case let .dateServiceHnSetRecCon(model):
             return model.text
         default:
@@ -136,7 +131,7 @@ public class WZIMCustomElem: Decodable {
         case .dateAuthInvite:
             msgElem = .dateAuthInvite(try vals.decode(WZMessageDateAuthInviteElem.self, forKey: CodingKeys.msg))
         case .dateService:
-            msgElem = .dateService
+            msgElem = .dateService(try vals.decode(WZMessageDateServiceElem.self, forKey: CodingKeys.msg))
         case .nameAuthPop:
             msgElem = .nameAuthPop(try vals.decode(WZMessageNmeAuthPopElem.self, forKey: CodingKeys.msg))
         case .dateServiceHnSetRecCon:
@@ -563,4 +558,26 @@ public class WZMessageServiceHnSetRecConElem: Codable {
     }
 }
 
+/// MARK - 红娘约会
+public class WZMessageDateServiceElem: Codable {
+    
+    /// 套餐id
+    public let serviceId: Int
+    
+    /// 套餐名
+    public let title: String
+    
+    /// 图片
+    public let img: String
+    
+    /// 提示
+    public let text: String
+    
+    enum CodingKeys: String, CodingKey {
+        case serviceId = "id"
+        case title = "title"
+        case img = "img"
+        case text = "text"
+    }
+}
 

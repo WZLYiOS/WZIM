@@ -36,7 +36,7 @@ public class WZIMServiceCompactTableViewCell: WZIMBaseTableViewCell {
     
     /// 图片
     private lazy var lelftImageView: UIImageView = {
-        $0.image = UIImage(named: "Cell.ic_chat_contract")
+        $0.image = UIImage(named: "Cell.bundle/Cell.ic_chat_contract")
         return $0
     }(UIImageView())
     

@@ -16,7 +16,7 @@ extension EMMessage: WZMessageProtocol {
     }
     
     public var timeTamp: Date {
-        return Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return Date(timeIntervalSince1970: TimeInterval(timestamp/1000))
     }
     
     public var senderId: String {
@@ -24,6 +24,9 @@ extension EMMessage: WZMessageProtocol {
     }
     
     public var receiverId: String {
+        if to == EMClient.shared()?.currentUsername {
+            return from
+        }
         return to
     }
     
@@ -76,7 +79,7 @@ extension EMMessageBody{
             return .text((self as! EMTextMessageBody))
         case EMMessageBodyTypeImage:
             return .img((self as! EMImageMessageBody))
-        case EMMessageBodyTypeVideo:
+        case EMMessageBodyTypeVoice:
             return .sound((self as! EMVoiceMessageBody))
         default:
             return .unknown
