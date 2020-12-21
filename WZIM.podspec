@@ -15,7 +15,6 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
   我主IM依赖库
                        DESC
-
   s.homepage         = 'https://github.com/WZLYiOS/WZIM'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'qiuqixiang' => '739140860@qq.com' }
