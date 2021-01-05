@@ -76,8 +76,6 @@ public enum WZIMToolAppearance {
         return UIColor.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: CGFloat(alpha));
     }
     
-   
-    
     /// 安全区域底部
     public static var safeAreaInsetsBottom: Int {
         if #available(iOS 11.0, *) {
@@ -131,6 +129,46 @@ public enum WZIMToolAppearance {
         path.append(".mp3")
         return path
     }
+    
+    /// 获取document 下文件
+    public static func getDocumentCoordinate(url: URL, compleBlock: (_ fileSize: Int, _ fileName: String, _ filePath: String) -> Void) {
+        
+        _  = url.startAccessingSecurityScopedResource()
+        let coordinator = NSFileCoordinator()
+        let error: NSErrorPointer = nil
+
+        coordinator.coordinate(readingItemAt: url, options: NSFileCoordinator.ReadingOptions(rawValue: 0), error: error) { (newUrl) in
+            let fileData = try? Data(contentsOf: url)
+            let name = url.lastPathComponent
+            let path = getDBPath(name: name)
+            FileManager.default.createFile(atPath: path, contents: fileData, attributes: nil)
+            /// 数据存入沙盒
+            if FileManager.default.fileExists(atPath: path) {
+                let attributesOfItem = try? FileManager.default.attributesOfItem(atPath: path)
+                let size: Int = attributesOfItem?[FileAttributeKey.size] as? Int ?? 0
+                compleBlock(size, name, path)
+            }else{
+                compleBlock(0, "", "")
+            }
+        }
+        url.stopAccessingSecurityScopedResource()
+    }
+    
+    /// 大小转M
+    public static func getDataLeng(size: Int) -> String {
+        var len = Double(size)
+        let array = ["Bytes", "K", "M", "G", "T"]
+        var factor: Int = 0
+        while (len > 1024) {
+            len /= 1024
+            factor += 1
+            if(factor >= 4){
+                break;
+            }
+        }
+        return String(format: "%4.2f%@", len, array[factor])
+    }
 }
+
 
 

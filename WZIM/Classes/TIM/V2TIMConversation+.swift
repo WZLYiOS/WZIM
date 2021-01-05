@@ -20,7 +20,7 @@ extension V2TIMConversation: WZConversationProcotol {
         }
     }
 
-    public var conversationId: String {
+    public var wzConversationId: String {
         return conversationID
     }
     

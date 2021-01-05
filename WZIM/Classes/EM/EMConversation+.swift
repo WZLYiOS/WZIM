@@ -10,7 +10,11 @@ import HyphenateLite
 
 // MARK - 环信会话对象
 extension EMConversation: WZConversationProcotol {
-        
+    
+    public var wzConversationId: String {
+        return self.conversationId
+    }
+
     public var conversationType: WZIMConversationType {
         return .c2c
     }
