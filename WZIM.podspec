@@ -8,14 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '2.2.7'
+  s.version          = '2.2.8'
   s.summary          = 'IM组件框架。'
 
 
   s.description      = <<-DESC
   我主IM依赖库
                        DESC
-
   s.homepage         = 'https://github.com/WZLYiOS/WZIM'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'qiuqixiang' => '739140860@qq.com' }

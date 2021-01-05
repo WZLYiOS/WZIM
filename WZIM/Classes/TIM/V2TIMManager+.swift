@@ -186,7 +186,7 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func wzDeleteConversation(conversationId: String) {
-        deleteConversation(conversationId.imPrefix, succ: nil, fail: nil)
+        deleteConversation(conversationId, succ: nil, fail: nil)
     }
     
     public func inviteC2C(userId: String, onlineUserOnly: Bool, data: String, timeOut: Int, pushInfo: WZIMOfflinePushInfoProtocol?, sucess: SucessHandler, fail: FailHandler) -> String {

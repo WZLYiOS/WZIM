@@ -41,6 +41,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.wzIMRegisterCell()
         $0.wz.pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
+        $0.fd_debugLogEnabled = true
         return $0
     }(UITableView())
     
@@ -171,7 +172,7 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
         let model = dataArray.array[indexPath.row]
         return tableView.fd_heightForCell(withIdentifier: String(describing: model.cellIdentifier), cacheByKey: (model.cellIdentifierId as NSString)) { (cell) in
             let xCell = cell as! WZIMBaseTableViewCell
-            xCell.fd_isTemplateLayoutCell = true
+//            xCell.fd_isTemplateLayoutCell = true
             xCell.pDelegate = self
             xCell.upload(model: model, cDelegate: self)
         }
@@ -313,14 +314,18 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
             openAlbum()
         case "拍照":
             openCamera()
+        case "文件":
+            let vc = UIDocumentPickerViewController(documentTypes: [], in: .open)
+            vc.delegate = self
+            WZRoute.present(vc)
         default: break
         }
     }
     
     public func listMoreView(moreView: WZIMMoreView) -> [WZIMMoreItem] {
-        return [WZIMMoreItem(image: "im_ic_talk_photo", title: "0"),
-                WZIMMoreItem(image: "im_ic_talk_shot", title: "1"),
-                WZIMMoreItem(image: "im_ic_talk_shot", title: "2"),
+        return [WZIMMoreItem(image: "im_ic_talk_photo", title: "拍照"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "相册"),
+                WZIMMoreItem(image: "im_ic_talk_shot", title: "文件"),
                 WZIMMoreItem(image: "im_ic_talk_shot", title: "3"),
                 WZIMMoreItem(image: "im_ic_talk_shot", title: "4"),
                 WZIMMoreItem(image: "im_ic_talk_shot", title: "5"),
@@ -330,6 +335,22 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
                 WZIMMoreItem(image: "im_ic_talk_shot", title: "9")]
     }
 }
+
+///MARK - UIDocumentPickerDelegate
+extension WZIMConversionViewController: UIDocumentPickerDelegate {
+    
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+    
+        WZIMToolAppearance.getDocumentCoordinate(url: url) { (size, name, path) in
+            debugPrint("选的文件路径")
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
 
 // MARK - 开启相册选取
 extension WZIMConversionViewController: TZImagePickerControllerDelegate {
