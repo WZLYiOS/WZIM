@@ -110,11 +110,11 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
         return CGSize(width: maxWith, height: height/width*maxWith)
     }
     
-    /// 更新进度
-    public func upload(percent: CGFloat) {
-        let xx = Int(percent)
+    public override func upload(progress: Float) {
+        super.upload(progress: progress)
+        let xx = Int(progress)
         percentMaskLabel.text = "\(xx)%"
-        percentMaskLabel.isHidden = percent >= 100 ? true : false
+        percentMaskLabel.isHidden = progress >= 100 ? true : false
     }
     
     @objc private func photoImageViewTapAction(tap: UIControl) {

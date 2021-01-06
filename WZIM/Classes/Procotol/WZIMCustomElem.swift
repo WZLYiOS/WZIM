@@ -29,6 +29,7 @@ public enum WZMessageElem: Decodable {
     case dateServiceHnSetRecCon(WZMessageServiceHnSetRecConElem) // 红娘设置推荐条件)
     case card(WZMessageCardElem) // 卡片消息
     case signaling(WZSignalingElem) // 信令消息
+    case file(WZIMFileProtocol)     // 文件消息
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -65,6 +66,8 @@ public enum WZMessageElem: Decodable {
             return model.getText(isSelf: isSelf)
         case let .dateServiceHnSetRecCon(model):
             return model.text
+        case .file:
+            return "文件"
         default:
             return "未知消息"
         }
@@ -581,3 +584,36 @@ public class WZMessageDateServiceElem: Codable {
     }
 }
 
+/// MARK -
+public protocol WZIMFileProtocol {
+    
+    /// 文件路径（只有发送方才能获取到）
+    var wzPath: String {get}
+    
+    /// 文件 ID,内部标识，可用于外部缓存 key
+    var wzUuid: String {get}
+    
+    /// 文件显示名称
+    var wzFilename: String {get}
+    
+    /// 文件大小
+    var wzFileSize: Int {get}
+    
+    /// 是否下载中
+    var wzIsDownloadIng: Bool {set get}
+    
+    /// 是否下载完成
+    var wzIsDownloaded: Bool { get }
+    
+    /// 获取文件的 URL 下载地址
+    func wzGetUrl(urlBlock: ((_ url: String) -> Void)?)
+    
+    /**
+     *  下载文件
+     *
+     *  downloadFile 接口每次都会从服务端下载，如需缓存或者存储，开发者可根据 uuid 作为 key 进行外部存储，ImSDK 并不会存储资源文件。
+     *
+     *  @param path 文件保存路径，需要外部指定
+     */
+    func wzDownloadFile(progress: ((_ curSize: Int, _ totalSize: Int)-> Void)?, sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
+}

@@ -108,13 +108,13 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func setUserProfile(receiverId: String, data: Data) {
-        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId.imPrefix)
+        let aFilePath = WZIMToolAppearance.DBType.userinfo.getPath(userId: receiverId.imPrefix)
         try? data.write(to: URL(fileURLWithPath: aFilePath))
     }
     
     public func getUserProfile(receiverId: String) -> Data? {
         
-        let aFilePath = WZIMToolAppearance.getUserInfoPath(userId: receiverId.imPrefix)
+        let aFilePath = WZIMToolAppearance.DBType.userinfo.getPath(userId: receiverId.imPrefix)
         return FileManager.default.contents(atPath: aFilePath)
     }
     
@@ -160,6 +160,10 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func wzCreateImageMessage(path: String) -> WZMessageProtocol {
         return createImageMessage(path)
+    }
+    
+    public func wzCreateFileMessage(name: String, path: String) -> WZMessageProtocol {
+        return createFileMessage(path, fileName: name)
     }
     
     public func wzCreateTimeMessage(date: Date) -> WZMessageProtocol {

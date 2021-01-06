@@ -14,7 +14,6 @@ import TZImagePickerController
 import WZUIExtension
 import Kingfisher
 import ImSDK
-import UITableView_FDTemplateLayoutCell
 
 // MARK - 会话详情
 @objcMembers
@@ -35,13 +34,12 @@ public class WZIMConversionViewController: UIViewController {
         $0.tableFooterView = UIView()
         $0.dataSource = self
         $0.delegate = self
-        $0.fd_debugLogEnabled = true
+        $0.wz.debugLogEnabled(true)
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()
         $0.wz.pullToRefresh(target: self, refreshingAction: #selector(pullToRefresh))
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableViewTapAction)))
-        $0.fd_debugLogEnabled = true
         return $0
     }(UITableView())
     
@@ -145,8 +143,9 @@ extension WZIMConversionViewController {
         /// 添加消息
         let indexPaths = dataArray.append(.msg(message))
         UserSession.shared.imManager.sendC2CMessage(receiverId: userId, message: message, pushInfo: nil, progress: { (progress) in
-            if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMPictureTableViewCell {
-                cell.upload(percent: progress)
+                        
+            if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMBaseTableViewCell         {
+                cell.upload(progress: Float(progress))
             }
         }, sucess: {
             self.tableView.beginUpdates()
@@ -170,11 +169,9 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
  
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = dataArray.array[indexPath.row]
-        return tableView.fd_heightForCell(withIdentifier: String(describing: model.cellIdentifier), cacheByKey: (model.cellIdentifierId as NSString)) { (cell) in
-            let xCell = cell as! WZIMBaseTableViewCell
-//            xCell.fd_isTemplateLayoutCell = true
-            xCell.pDelegate = self
-            xCell.upload(model: model, cDelegate: self)
+        return tableView.wz.heightForIMCell(withClass: model.cellIdentifier, cacheByKey: model.cellIdentifierId) { (cell) in
+            cell.pDelegate = self
+            cell.upload(model: model, cDelegate: self)
         }
     }
     
@@ -183,8 +180,7 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataArray.array[indexPath.row]
-        let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.cellIdentifier) as! WZIMBaseTableViewCell
-        
+        let cell:WZIMBaseTableViewCell  = tableView.wz.dequeueReusableCell(withClass: model.cellIdentifier)
         cell.pDelegate = self
         cell.upload(model: model, cDelegate: self)
         return cell
@@ -310,13 +306,15 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
     
     public func moreView(moreView: WZIMMoreView, select item: WZIMMoreItem) {
         switch item.title {
-        case "0":
+        case "相册":
             openAlbum()
         case "拍照":
             openCamera()
         case "文件":
-            let vc = UIDocumentPickerViewController(documentTypes: [], in: .open)
-            vc.delegate = self
+            let vc = WZDocumentPickerViewController { [weak self](size, name, path) in
+                guard let self = self else { return }
+                self.sendMessage(message: UserSession.shared.imManager.wzCreateFileMessage(name: name, path: path))
+            }
             WZRoute.present(vc)
         default: break
         }
@@ -336,20 +334,20 @@ extension WZIMConversionViewController: WZIMMoreViewDelegate {
     }
 }
 
-///MARK - UIDocumentPickerDelegate
-extension WZIMConversionViewController: UIDocumentPickerDelegate {
-    
-    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-    
-        WZIMToolAppearance.getDocumentCoordinate(url: url) { (size, name, path) in
-            debugPrint("选的文件路径")
-        }
-        controller.dismiss(animated: true, completion: nil)
-    }
-}
+/////MARK - UIDocumentPickerDelegate
+//extension WZIMConversionViewController: UIDocumentPickerDelegate {
+//
+//    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+//        controller.dismiss(animated: true, completion: nil)
+//    }
+//    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+//
+//        WZIMToolAppearance.getDocumentCoordinate(url: url) { (size, name, path) in
+//            debugPrint("选的文件路径")
+//        }
+//        controller.dismiss(animated: true, completion: nil)
+//    }
+//}
 
 
 // MARK - 开启相册选取
@@ -423,5 +421,14 @@ extension WZIMConversionViewController: WZIMVoiceTableViewCellDelegate{
     public func startPlayerVoiceTableViewCell(cell: WZIMVoiceTableViewCell, path: String) {
         textTabbarView.audioPlayer.play(aFilePath: path)
         tableView.reloadData()
+    }
+}
+
+// MARK - WZIMConversionViewController
+extension WZIMConversionViewController: WZIMFileTableViewCellDelagte {
+    public func fileTableViewCell(diselect cell: WZIMFileTableViewCell, path: String) {
+        
+        let xx = WZDocumentInteractionController(path: path, controller: self)
+        xx.presentPreview(animated: true)
     }
 }

@@ -26,9 +26,6 @@ extension V2TIMElem {
             /// 将所有JSON 格式的字符串自动转成 Codable 对象或数组
             let decoder = CleanJSONDecoder()
             decoder.jsonStringDecodingStrategy = .all
-            
-//            debugPrint("收到消息：\(String(describing: try? JSONSerialization.jsonObject(with: custom.data, options: .mutableContainers)))")
-            
             if let model = try? decoder.decode(WZIMCustomElem.self, from: custom.data), model.type != .none {
                 return model.msgElem
             }else if let model = try? decoder.decode(WZSignalingElem.self, from: custom.data), model.actionType != .none {
@@ -42,6 +39,8 @@ extension V2TIMElem {
             return .face(model)
         case is V2TIMImageElem:
             return .img(self as! V2TIMImageElem)
+        case is V2TIMFileElem:
+            return .file(self as! V2TIMFileElem)
         default:
             return .unknown
         }
@@ -91,13 +90,13 @@ extension V2TIMSoundElem: WZIMVoiceProtocol {
         
         /// 自己上传
         if path.count > 0 {
-            let mPath = "\(WZIMToolAppearance.getDBPath(name: "voice"))\((path as NSString).lastPathComponent)"
+            let mPath = "\(WZIMToolAppearance.DBType.voice.getPath())\((path as NSString).lastPathComponent)"
             if FileManager.default.fileExists(atPath: mPath) {
                 return mPath
             }
         }
         /// 下载
-        let oPath = WZIMToolAppearance.getVoicePathMp3(userId: TIMManager.sharedInstance()!.getLoginUser(), uuid: uuid)
+        let oPath = WZIMToolAppearance.DBType.voice.getPath(userId: TIMManager.sharedInstance()!.getLoginUser(), uuid: uuid)
         return  oPath
     }
 }
@@ -132,4 +131,73 @@ extension V2TIMImageElem: WZIMImageElemProtocol {
 /// 遵守协议
 extension V2TIMOfflinePushInfo: WZIMOfflinePushInfoProtocol {
     
+}
+
+/// MARK - 文件消息
+extension V2TIMFileElem: WZIMFileProtocol {
+    
+    public var wzIsDownloadIng: Bool {
+        get {
+            return objc_getAssociatedObject(self, "com.wzly.im.file.download.state") as? Bool ?? false
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, "com.wzly.im.file.download.state", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    public var wzPath: String {
+        /// 自己上传
+        if path.count > 0 {
+            let mPath = "\(WZIMToolAppearance.DBType.file.getPath())\((path as NSString).lastPathComponent)"
+            if FileManager.default.fileExists(atPath: mPath) {
+                return mPath
+            }
+        }
+        /// 下载
+        let oPath = WZIMToolAppearance.DBType.file.getPath(userId: TIMManager.sharedInstance()!.getLoginUser(), uuid: uuid)
+        return  oPath
+    }
+    
+    public var wzUuid: String {
+        return uuid
+    }
+    
+    public var wzFilename: String {
+        return filename
+    }
+    
+    public var wzFileSize: Int {
+        return Int(fileSize)
+    }
+    
+    public var wzIsDownloaded: Bool {
+        if FileManager.default.fileExists(atPath: wzPath)  {
+            return true
+        }
+        return false
+    }
+    
+    public func wzGetUrl(urlBlock: ((String) -> Void)?) {
+        getUrl { (url) in
+            urlBlock?(url ?? "")
+        }
+    }
+    
+    
+    public func wzDownloadFile(progress: ((Int, Int) -> Void)?, sucess: ((String) -> Void)?, fail: ((Error) -> Void)?) {
+        
+        /// 判断本地有无
+        let path = wzPath
+        if FileManager.default.fileExists(atPath: path)  {
+            sucess?(path)
+            return
+        }
+        downloadFile(path) { (cur, total) in
+            progress?(cur, total)
+        } succ: {
+            sucess?(path)
+        } fail: { (code, msg) in
+            fail?(NSError(domain: msg ?? "", code: Int(code), userInfo: nil))
+        }
+    }
 }

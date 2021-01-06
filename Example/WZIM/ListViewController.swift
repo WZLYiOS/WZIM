@@ -27,7 +27,6 @@ class ListViewController: UIViewController {
     }(UITableView())
     
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,8 +57,11 @@ class ListViewController: UIViewController {
     
     @objc func rightBarButtonAction(){
 //        self.navigationController?.pushViewController(ViewController(), animated: true)
-        let vc = WZServiceConversionViewController()
-        WZRoute.push(vc)
+//        let vc = WZServiceConversionViewController()
+//        WZRoute.push(vc)
+        let vc = WZIMConversionViewController()
+        vc.userId = "658117"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

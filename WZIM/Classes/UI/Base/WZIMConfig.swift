@@ -91,3 +91,35 @@ public extension NSMutableAttributedString {
         return attachment
     }
 }
+
+/// MARK - cell
+public extension WZMessageProtocol {
+    /// cell 标识
+    func getNomarCellId() -> WZIMBaseTableViewCell.Type {
+        
+        switch currentElem {
+        case .img:
+            return WZIMPictureTableViewCell.self
+        case .text:
+            return WZIMTextTableViewCell.self
+        case .sound:
+            return WZIMVoiceTableViewCell.self
+        case .nameAuthInvite:
+            return WZIMNameAuthInvateTableViewCell.self
+        case .time:
+            return WZIMTimeTableViewCell.self
+        case .dateAuthInvite, .dateService:
+            return WZIMMakingCourseTableViewCell.self
+        case .card:
+            return WZIMRecommendCardTableViewCell.self
+        case .signaling:
+            return WZIMVideoInviteSelfTableViewCell.self
+        case .share:
+            return WZIMActivityTableViewCell.self
+        case .file:
+            return WZIMFileTableViewCell.self
+        default:
+            return WZIMUnknownTableViewCell.self
+        }
+    }
+}

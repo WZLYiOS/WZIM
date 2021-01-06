@@ -177,6 +177,11 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     open func reloadMessageState(){
         uploadConstraints(type: message.loaction)
     }
+    
+    /// 上传进度
+    open func upload(progress: Float) {
+        
+    }
 }
 
 ///   MARK - 扩展事件

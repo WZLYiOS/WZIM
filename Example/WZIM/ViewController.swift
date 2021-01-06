@@ -83,6 +83,15 @@ extension ViewController: WZIMTableViewCellPublicDelegate {
 }
 
 extension ViewController: WZMessageProtocol {
+    var sendProgressBlock: ((Float) -> Void)? {
+        get {
+            return objc_getAssociatedObject(self, "com.wzly.im.message.send.progress") as? (Float) -> Void
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, "com.wzly.im.message.send.progress", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
     var wzMessageId: String {
         return ""
     }

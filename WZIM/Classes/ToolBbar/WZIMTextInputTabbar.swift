@@ -346,7 +346,7 @@ extension WZIMTextInputTabbar {
         switch event {
         case .down:
             recordView.recordButtonTouchDown()
-            let path = WZIMToolAppearance.getVoicePathMp3(userId: delegate.userIdTextInputTabbar(tabbar: self))
+            let path = WZIMToolAppearance.DBType.voice.getPath(userId: delegate.userIdTextInputTabbar(tabbar: self))
             audioRecorder.starRecorder(aFilePath: path)
             delegate?.textInputTabbar(tabbar: self, canPop: false)
         case .upOutside:

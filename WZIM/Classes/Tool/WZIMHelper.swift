@@ -112,47 +112,43 @@ public enum WZIMToolAppearance {
         return path
     }
     
-    /// 获取用户id路径
-    public static func getUserInfoPath(userId: String) -> String {
-        var path = getDBPath(name: "userinfo")
-        path.append(userId)
-        return path
-    }
-    
-    
-    /// 获取音频路径
-    public static func getVoicePathMp3(userId: String, uuid: String = "") -> String {
-        var path = getDBPath(name: "voice")
-        path.append(userId)
-        let custom = uuid.count > 0 ? uuid : "\(Int(NSDate().timeIntervalSince1970))"
-        path.append("_\(custom)")
-        path.append(".mp3")
-        return path
-    }
-    
-    /// 获取document 下文件
-    public static func getDocumentCoordinate(url: URL, compleBlock: (_ fileSize: Int, _ fileName: String, _ filePath: String) -> Void) {
+    /// 路径名
+    public enum DBType: String {
+        case nomar = "nomar"
+        case voice = "voice"
+        case file = "file"
+        case userinfo = "userinfo"
         
-        _  = url.startAccessingSecurityScopedResource()
-        let coordinator = NSFileCoordinator()
-        let error: NSErrorPointer = nil
-
-        coordinator.coordinate(readingItemAt: url, options: NSFileCoordinator.ReadingOptions(rawValue: 0), error: error) { (newUrl) in
-            let fileData = try? Data(contentsOf: url)
-            let name = url.lastPathComponent
-            let path = getDBPath(name: name)
-            FileManager.default.createFile(atPath: path, contents: fileData, attributes: nil)
-            /// 数据存入沙盒
-            if FileManager.default.fileExists(atPath: path) {
-                let attributesOfItem = try? FileManager.default.attributesOfItem(atPath: path)
-                let size: Int = attributesOfItem?[FileAttributeKey.size] as? Int ?? 0
-                compleBlock(size, name, path)
-            }else{
-                compleBlock(0, "", "")
+        /// 获取文件路径
+        func getPath(userId: String = "", uuid: String = "") -> String {
+            
+            /// 文件路径
+            var path = NSHomeDirectory()
+            path.append("/Documents/com_wz_imsdk_\(self.rawValue)/")
+            if !FileManager.default.fileExists(atPath: path) {
+                do {
+                    try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    debugPrint("文件夹创建失败")
+                }
             }
+            if userId.count > 0 {
+                path.append(userId)
+            }
+            if uuid.count > 0 {
+                path.append(uuid)
+            }
+            switch self {
+            case .voice:
+                path.append(".mp3")
+            default: break
+            }
+            return path
         }
-        url.stopAccessingSecurityScopedResource()
     }
+    
+    
+    
     
     /// 大小转M
     public static func getDataLeng(size: Int) -> String {
@@ -166,7 +162,9 @@ public enum WZIMToolAppearance {
                 break;
             }
         }
-        return String(format: "%4.2f%@", len, array[factor])
+        let text: String = String(format: "%4.2f", len)
+        let num = NSNumber(value: Float(text) ?? 0.0)
+        return String(format: "%@%@", num, array[factor])
     }
 }
 

@@ -114,6 +114,13 @@ public protocol WZIMManagerProcotol {
     /// - Parameter date: 时间
     func wzCreateTimeMessage(date: Date) -> WZMessageProtocol
     
+    /// 创建文件消息
+    /// - Parameters:
+    ///   - size: 大小
+    ///   - name: 文件名
+    ///   - path: 路径
+    func wzCreateFileMessage(name: String, path: String) -> WZMessageProtocol
+    
     /// 设置用户资料
     /// - Parameters:
     ///   - receiverId: 被设置的用户

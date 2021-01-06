@@ -137,8 +137,8 @@ class WZServiceConversionViewController: UIViewController {
         let indexPaths = dataArray.append(.msg(message))
         
         UserSession.shared.emManager.sendMessage(message: message) { (progress) in
-            if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMPictureTableViewCell {
-                cell.upload(percent: CGFloat(progress))
+            if let cell = self.tableView.cellForRow(at: indexPaths.last!) as? WZIMBaseTableViewCell {
+                cell.upload(progress: Float(CGFloat(progress)))
             }
         } aCompletionBlock: { [weak self](result, error) in
             guard let self = self else { return }

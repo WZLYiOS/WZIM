@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '2.2.9'
+  s.version          = '2.3.0'
   s.summary          = 'IM组件框架。'
 
 
@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
   # 工具
   s.subspec "Tool" do |ss|
     ss.source_files = "WZIM/Classes/Tool/*"
+    ss.dependency 'WZNamespaceWrappable', '~> 1.0.0'
   end
   
   # 输入框
@@ -55,6 +56,7 @@ Pod::Spec.new do |s|
     ss.dependency 'WZIM/ToolBbar'
     ss.dependency 'Kingfisher', '~> 5.15.0'
     ss.resources = 'WZIM/**/Cell.bundle'
+    ss.dependency 'UITableView+FDTemplateLayoutCell',  '~> 1.6' #动态计算cell高度
   end
   
   # 腾讯SDk

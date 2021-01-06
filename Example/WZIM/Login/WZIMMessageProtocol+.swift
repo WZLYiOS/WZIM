@@ -11,38 +11,20 @@ import WZIM
 
 extension WZMessageProtocol {
     /// cell 标识
-    func getCellIdentifier() -> UITableViewCell.Type {
+    func getCellIdentifier() -> WZIMBaseTableViewCell.Type {
         
         switch currentElem {
-        case .img:
-            return WZIMPictureTableViewCell.self
-        case .text:
-            return WZIMTextTableViewCell.self
-        case .sound:
-            return WZIMVoiceTableViewCell.self
         case .face:
             return WZIMFaceTableViewCell.self
-        case .nameAuthInvite:
-            return WZIMNameAuthInvateTableViewCell.self
-        case .time:
-            return WZIMTimeTableViewCell.self
-        case .dateAuthInvite, .dateService:
-            return WZIMMakingCourseTableViewCell.self
-        case .card:
-            return WZIMRecommendCardTableViewCell.self
-        case .signaling:
-            return WZIMVideoInviteSelfTableViewCell.self
-        case .share:
-            return WZIMActivityTableViewCell.self
         default:
-            return WZIMUnknownTableViewCell.self
+            return getNomarCellId()
         }
     }
 }
 
 extension WZMessageData {
     
-    var cellIdentifier: UITableViewCell.Type {
+    var cellIdentifier: WZIMBaseTableViewCell.Type {
         switch self {
         case let .msg(elem):
             return elem.getCellIdentifier()
