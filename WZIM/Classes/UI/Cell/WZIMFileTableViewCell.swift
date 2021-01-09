@@ -115,6 +115,9 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             dataModel = elem
             nameLabel.text = elem.wzFilename
             uploadSize()
+            if message.loaction == .right {
+                progressView.isHidden = message.sendStatus == .sending ? false : true
+            }
         }
     }
     
@@ -173,7 +176,6 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     public override func upload(progress: Float) {
         super.upload(progress: progress)
         progressView.progress = Float(progress/100)
-        progressView.isHidden = progress >= 100 ? true : false
         dataModel.wzIsDownloadIng = progress >= 100 ? false : true
         uploadSize()
     }

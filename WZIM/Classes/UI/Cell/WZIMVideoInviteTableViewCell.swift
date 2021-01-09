@@ -127,6 +127,9 @@ public protocol WZIMVideoInviteTableViewCellDeleagte: class {
 /// MARK - 自己发的视频邀请
 public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
     
+    /// 信令消息
+    public var markModel: WZSignalingElem!
+    
     /// 代理
     public weak var delegate: WZIMVideoInviteSelfTableViewCellDeleagte?
     
@@ -160,6 +163,7 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         guard case let .signaling(elem) = message.currentElem else {
             return
         }
+        markModel = elem
         self.delegate = cDelegate as? WZIMVideoInviteSelfTableViewCellDeleagte
         
         let namorImage = model.loaction == .lelft ? UIImage(named: "Cell.bundle/ic_talk_dialog_video") : UIImage(named: "Cell.bundle/ic_talk_inputbox_voice02")
