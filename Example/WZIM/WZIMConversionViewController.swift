@@ -244,10 +244,9 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
         
     }
     
-    public func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool) {
+    public func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool, path: String) {
         
     }
-    
 }
 
 /// MARK - WZIMTableViewCellPublicDelegate

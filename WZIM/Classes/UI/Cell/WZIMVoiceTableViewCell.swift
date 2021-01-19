@@ -96,7 +96,7 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
                                                  UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step3")!]
                 
                 playImageView.snp.remakeConstraints { (make) in
-                    make.left.equalToSuperview().offset(-20)
+                    make.left.equalToSuperview().offset(20)
                     make.centerY.equalToSuperview()
                 }
                 playTimeLabel.snp.remakeConstraints { (make) in

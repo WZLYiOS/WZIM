@@ -140,7 +140,9 @@ public enum WZIMToolAppearance {
             }
             switch self {
             case .voice:
-                path.append(".mp3")
+                if !path.contains(".mp3") {
+                    path.append(".mp3")
+                }
             default: break
             }
             return path

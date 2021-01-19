@@ -361,8 +361,7 @@ extension WZServiceConversionViewController: WZIMTextInputTabbarDelegate {
         
     }
     
-    /// 音频播放成功
-    public func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool){
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool, path: String) {
         
     }
 }

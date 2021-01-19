@@ -424,7 +424,7 @@ public protocol WZIMTextInputTabbarDelegate: class {
     func textInputTabbar(tabbar: WZIMTextInputTabbar, audioPlayer error: Error)
     
     /// 音频播放成功
-    func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool)
+    func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool, path: String)
 }
 
 /// MARK - YYTextViewDelegate
@@ -465,9 +465,9 @@ extension WZIMTextInputTabbar: WZAudioRecorderDelegate {
 
 /// MARK - WZAVAudioPlayerDelegate
 extension WZIMTextInputTabbar: WZAVAudioPlayerDelegate {
-    
+  
     public func audioPlayerDidFinishPlaying(_ player: WZAVAudioPlayer, successfully flag: Bool) {
-        delegate.textInputTabbar(tabbar: self, player: flag)
+        delegate.textInputTabbar(tabbar: self, player: flag, path: player.wzPlayer?.url?.path ?? "")
     }
 
     public func audioPlayerDecodeErrorDidOccur(_ player: WZAVAudioPlayer, error: Error?) {
