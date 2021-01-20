@@ -147,6 +147,12 @@ public class WZIMTextInputTabbar: UIView {
         return $0
     }(UIView())
     
+    /// 分割线颜色
+    public lazy var lineView: UIView = {
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE8E8E8")
+        return $0
+    }(UIView())
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
@@ -170,6 +176,7 @@ public class WZIMTextInputTabbar: UIView {
         self.addSubview(vioceButton)
         self.addSubview(bottomStackView)
         self.addSubview(recordButton)
+        self.addSubview(lineView)
         recordView.show()
     }
     func configViewLocation() {
@@ -213,6 +220,13 @@ public class WZIMTextInputTabbar: UIView {
             make.left.equalTo(vioceButton.snp.right).offset(15)
             make.right.equalTo(emojButton.snp.left).offset(-15)
             make.height.equalTo(35)
+        }
+        
+        lineView.snp.makeConstraints { (make) in
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
+            make.height.equalTo(0.5)
+            make.top.equalTo(recordButton.snp.bottom).offset(10)
         }
     }
     
@@ -326,6 +340,11 @@ extension WZIMTextInputTabbar {
     }
     
     @objc private func recordButtonTouchDown(btn: UIButton) {
+        
+        let isCan = delegate.isCanAudioRecorderTextInputTabbar?(tabbar: self) ?? true
+        if !isCan {
+            return
+        }
         recordButton(event: .down)
     }
     @objc private func recordButtonTouchUpOutside(btn: UIButton) {
@@ -397,7 +416,7 @@ extension WZIMTextInputTabbar {
 }
 
 /// MARK - HBIMTextInputTabbarDelegate
-public protocol WZIMTextInputTabbarDelegate: class {
+@objc public protocol WZIMTextInputTabbarDelegate: class {
     
     /// 回车
     func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String)
@@ -425,6 +444,9 @@ public protocol WZIMTextInputTabbarDelegate: class {
     
     /// 音频播放成功
     func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool, path: String)
+    
+    /// 是否可以录音
+    @objc optional func isCanAudioRecorderTextInputTabbar(tabbar: WZIMTextInputTabbar) -> Bool
 }
 
 /// MARK - YYTextViewDelegate

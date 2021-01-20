@@ -56,8 +56,11 @@ public enum WZMessageElem: Decodable {
             return model.content.title
         case let .hibox(model):
             return model.text
-        case .videoTalkInvite:
-            return isSelf ? "发起通话" : "向您发起了视频申请"
+        case let .videoTalkInvite(elem):
+            if isSelf {
+                return "发起通话"
+            }
+            return elem.callType == .video ? "向您发起了视频申请" : "向您发起了语音申请"
         case .dateService:
             return isSelf ? "推荐了服务" : "向您推荐了服务"
         case .card:
@@ -165,7 +168,7 @@ public protocol  WZIMTextProtocol {
 }
 
 // MARK - 音频
-public protocol WZIMVoiceProtocol{
+@objc public protocol WZIMVoiceProtocol{
     
     /// 播放路径
     func wzPath() -> String
@@ -267,12 +270,16 @@ public class WZVideoTalkInviteElem: Codable {
     /// 我可以为你在线推荐对象吗
     public let text: String
     
+    /// 谈单类型
+    public let callType: WZIMCallType
+    
     enum CodingKeys: String, CodingKey {
         case userName = "username"
         case avatar = "avatar"
         case roomid = "roomid"
         case label = "label"
         case text = "text"
+        case callType = "type"
     }
 }
 

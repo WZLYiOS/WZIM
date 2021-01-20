@@ -77,7 +77,10 @@ public class WZSignalingElem: Codable {
             if timeout == 0 {
                 return "聊天时长：\(WZSignalingElem.getFormatPlayTime(secounds: TimeInterval(data.callEnd)))"
             }
-            return  isSelf ? "发起通话" : "向您发起了视频申请"
+            if isSelf {
+                return "发起通话"
+            }
+            return  data.calltype == .video ? "向您发起了视频申请" : "向您发起了语音申请"
         case .reject:
             
             if data.lineBusy != nil {

@@ -316,6 +316,10 @@ extension WZServiceConversionViewController: TZImagePickerControllerDelegate {
 
 /// MARK - HBIMTextInputTabbarDelegate
 extension WZServiceConversionViewController: WZIMTextInputTabbarDelegate {
+    func textInputTabbar(isCanAudioRecorder tabbar: WZIMTextInputTabbar) -> Bool {
+        return true
+    }
+    
     
     /// 回车
     public func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
@@ -364,6 +368,10 @@ extension WZServiceConversionViewController: WZIMTextInputTabbarDelegate {
     func textInputTabbar(tabbar: WZIMTextInputTabbar, player flag: Bool, path: String) {
         
     }
+    
+//    func isCanAudioRecorderTextInputTabbar(tabbar: WZIMTextInputTabbar) -> Bool {
+//        return false
+//    }
 }
 
 
@@ -403,6 +411,7 @@ extension WZServiceConversionViewController: DongtuStoreDelegate {
 
 /// MARK - WZIMVoiceTableViewCellDelegate
 extension WZServiceConversionViewController: WZIMVoiceTableViewCellDelegate{
+   
     public func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool {
         
         if textTabbarView.audioPlayer.isSame(path: elem.wzPath()) {

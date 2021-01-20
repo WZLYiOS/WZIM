@@ -199,6 +199,10 @@ extension WZIMConversionViewController: UITableViewDelegate, UITableViewDataSour
 
 /// MARK - HBIMTextInputTabbarDelegate
 extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
+    public func textInputTabbar(isCanAudioRecorder tabbar: WZIMTextInputTabbar) -> Bool {
+        return true
+    }
+    
     
     public func textInputTabbar(tabbar: WZIMTextInputTabbar, replacementText text: String) {
         if text.count == 0 { return }
@@ -409,6 +413,7 @@ extension WZIMConversionViewController: WZMMessageArrayDelegate{
 
 /// MARK - WZIMVoiceTableViewCellDelegate
 extension WZIMConversionViewController: WZIMVoiceTableViewCellDelegate{
+    
     public func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool {
         
         if textTabbarView.audioPlayer.isSame(path: elem.wzPath()) {

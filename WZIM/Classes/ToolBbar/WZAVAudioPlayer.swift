@@ -96,8 +96,8 @@ public protocol WZAVAudioPlayerDelegate: class {
 extension WZAVAudioPlayer: AVAudioPlayerDelegate {
     
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        delegate?.audioPlayerDidFinishPlaying(self, successfully: flag)
         stopCurrentPlaying()
+        delegate?.audioPlayerDidFinishPlaying(self, successfully: flag)
     }
     
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {

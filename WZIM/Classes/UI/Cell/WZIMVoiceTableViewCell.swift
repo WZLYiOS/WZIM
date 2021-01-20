@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 // MARK - 音频
-public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
+@objc public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
 
     private weak var delegate: WZIMVoiceTableViewCellDelegate?
     
@@ -72,13 +72,11 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
             playTimeLabel.textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
             playTimeLabel.text = "\(elem.wzSecond())\""
             
+            let animationImages = delegate?.voiceTableViewCell?(getImages: self) ?? []
+            playImageView.animationImages  = animationImages.count > 0 ? animationImages : getNomarAnimationImages(type: model.loaction)
             switch model.loaction {
             case .right:
                 unReadImageView.isHidden = message.customInt > 0 ? true : false
-                playImageView.animationImages = [UIImage(named: "Cell.bundle/ic_chat_speaker_six")!,
-                                                 UIImage(named: "Cell.bundle/ic_chat_speaker_four")!,
-                                                 UIImage(named: "Cell.bundle/ic_chat_speaker_five")!,
-                                                 UIImage(named: "Cell.bundle/ic_chat_speaker_six")!]
                 playImageView.snp.remakeConstraints { (make) in
                     make.right.equalToSuperview().offset(-20)
                     make.centerY.equalToSuperview()
@@ -90,10 +88,7 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
                 }
             case .lelft:
                 unReadImageView.isHidden = true
-                playImageView.animationImages = [UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step3")!,
-                                                 UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step1")!,
-                                                 UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step2")!,
-                                                 UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step3")!]
+                
                 
                 playImageView.snp.remakeConstraints { (make) in
                     make.left.equalToSuperview().offset(20)
@@ -120,6 +115,21 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
         }
     }
     
+    /// 获取默认
+    private func getNomarAnimationImages(type: WZMessageLocation) -> [UIImage] {
+        
+        if type == .right {
+            return [UIImage(named: "Cell.bundle/ic_chat_speaker_six")!,
+                    UIImage(named: "Cell.bundle/ic_chat_speaker_four")!,
+                    UIImage(named: "Cell.bundle/ic_chat_speaker_five")!,
+                    UIImage(named: "Cell.bundle/ic_chat_speaker_six")!]
+        }
+        return [UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step3")!,
+                UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step1")!,
+                UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step2")!,
+                UIImage(named: "Cell.bundle/ic_talk_inputbox_voice_style_step3")!]
+    }
+    
     /// 点击播放
     @objc private func tapAction(){
         
@@ -133,13 +143,16 @@ public class WZIMVoiceTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - WZIMVoiceTableViewCellDelegate
-public protocol WZIMVoiceTableViewCellDelegate: class {
+@objc public protocol WZIMVoiceTableViewCellDelegate: class {
     
     /// 获取播放状态
     func isPlayIngVoiceTableViewCell(cell: WZIMVoiceTableViewCell, elem: WZIMVoiceProtocol) -> Bool
     
     /// 开始播放
     func startPlayerVoiceTableViewCell(cell: WZIMVoiceTableViewCell, path: String)
+    
+    /// 获取播放文件
+    @objc optional func voiceTableViewCell(getImages cell: WZIMVoiceTableViewCell) -> [UIImage]
 }
 
 
