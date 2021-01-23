@@ -69,7 +69,12 @@ import SnapKit
             dataModel = elem
             delegate = cDelegate as? WZIMVoiceTableViewCellDelegate
             
-            playTimeLabel.textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
+            var textColor = model.loaction == .right ? UIColor.white : WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
+            if let color = delegate?.voiceTableViewCell?(textColor: self) {
+                textColor = color
+            }
+            
+            playTimeLabel.textColor = textColor
             playTimeLabel.text = "\(elem.wzSecond())\""
             
             let animationImages = delegate?.voiceTableViewCell?(getImages: self) ?? []
@@ -153,6 +158,9 @@ import SnapKit
     
     /// 获取播放文件
     @objc optional func voiceTableViewCell(getImages cell: WZIMVoiceTableViewCell) -> [UIImage]
+    
+    /// 获取字体颜色
+    @objc optional func voiceTableViewCell(textColor cell: WZIMVoiceTableViewCell) -> UIColor?
 }
 
 

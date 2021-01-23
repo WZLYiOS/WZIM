@@ -147,12 +147,7 @@ public class WZIMTextInputTabbar: UIView {
         return $0
     }(UIView())
     
-    /// 分割线颜色
-    public lazy var lineView: UIView = {
-        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE8E8E8")
-        return $0
-    }(UIView())
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
@@ -176,7 +171,6 @@ public class WZIMTextInputTabbar: UIView {
         self.addSubview(vioceButton)
         self.addSubview(bottomStackView)
         self.addSubview(recordButton)
-        self.addSubview(lineView)
         recordView.show()
     }
     func configViewLocation() {
@@ -220,13 +214,6 @@ public class WZIMTextInputTabbar: UIView {
             make.left.equalTo(vioceButton.snp.right).offset(15)
             make.right.equalTo(emojButton.snp.left).offset(-15)
             make.height.equalTo(35)
-        }
-        
-        lineView.snp.makeConstraints { (make) in
-            make.leading.equalTo(0)
-            make.right.equalToSuperview()
-            make.height.equalTo(0.5)
-            make.top.equalTo(recordButton.snp.bottom).offset(10)
         }
     }
     

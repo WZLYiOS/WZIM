@@ -51,6 +51,12 @@ public class WZIMMoreView: UIView {
         return $0
     }(UIPageControl())
     
+    /// 分割线颜色
+    public lazy var lineView: UIView = {
+        $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xE8E8E8")
+        return $0
+    }(UIView())
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         configView()
@@ -63,6 +69,7 @@ public class WZIMMoreView: UIView {
     func configView() {
         self.addSubview(collectionView)
         self.addSubview(pageControl)
+        self.addSubview(lineView)
     }
 
     public func reloadUI() {
@@ -98,6 +105,13 @@ public class WZIMMoreView: UIView {
             make.height.equalTo(7)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-13).priority(.low)
+        }
+        
+        lineView.snp.makeConstraints { (make) in
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
+            make.height.equalTo(0.5)
+            make.top.equalToSuperview()
         }
     }
 }
