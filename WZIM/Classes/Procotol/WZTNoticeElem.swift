@@ -31,6 +31,8 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case dateRemind = 44 // 约会提醒
     case hnService = 45 // 红娘服务
     case uploadInfo = 46 // 用户资料更新
+    case b_system = 47   // B端系统通知
+    case c_service = 48  // c端服务提醒
 }
 
 // MARK - 透传消息elem
@@ -55,6 +57,8 @@ public enum WZMessageNoticeElem: Decodable {
     case dateRemind(WZMessageNoticeDateRemindModel)
     case hnService(WZMessageNoticeHnServiceModel)
     case uploadInfo(WZMessageNoticeUploadUserInfoModel)
+    case b_system(WZMessageSystemNoticeModel)
+    case c_service(WZMessageSystemNoticeModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -104,6 +108,10 @@ public enum WZMessageNoticeElem: Decodable {
         case let .hnService(model):
             return model
         case let .uploadInfo(model):
+            return model
+        case let .b_system(model):
+            return model
+        case let .c_service(model):
             return model
         default:
             return nil
@@ -168,6 +176,10 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .hnService(try vals.decode(WZMessageNoticeHnServiceModel.self, forKey: CodingKeys.elem))
         case .uploadInfo:
             elem = .uploadInfo(try vals.decode(WZMessageNoticeUploadUserInfoModel.self, forKey: CodingKeys.elem))
+        case .b_system:
+            elem = .b_system(try vals.decode(WZMessageSystemNoticeModel.self, forKey: CodingKeys.elem))
+        case .c_service:
+            elem = .c_service(try vals.decode(WZMessageSystemNoticeModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
@@ -481,5 +493,24 @@ public class WZMessageNoticeUploadUserInfoModel: Codable {
     
     enum CodingKeys: String, CodingKey {
         case userId = "userid"
+    }
+}
+
+/// MARK - 系统通知
+public class WZMessageSystemNoticeModel: Codable {
+    
+    /// 未读数量
+    public var unreadNum: Int
+    
+    /// 内容
+    public var content: String
+    
+    /// 时间
+    public var timesTamp: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case unreadNum = "unread_num"
+        case content = "content"
+        case timesTamp = "timestamp"
     }
 }
