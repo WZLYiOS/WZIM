@@ -29,8 +29,8 @@ public extension Notification.Name {
             
             let name = "com.wzly.im.message.\(notif)."
             switch notif {
-            case let .notice(type):
-                return Notification.Name(rawValue: name+"\(type.rawValue)")
+            case .notice:
+                return Notification.Name(rawValue: name)
             case .revoked:
                 return Notification.Name(rawValue: name)
             case let .msg(userId), let .readReceipt(userId):
@@ -42,7 +42,7 @@ public extension Notification.Name {
 
 /// MARK - 通知
 public enum WZMessageNotification {
-    case notice(WZMessageNoticeType)  // 透传消息
+    case notice                       // 透传消息
     case msg(String)                  // 新消息
     case revoked                      // 撤回消息
     case readReceipt(String)          // 消息已读
@@ -54,8 +54,8 @@ public extension WZMessageProtocol {
     /// 订阅名称
     var postName: Notification.Name {
         switch currentElem {
-        case let .notice(elem):
-            return Notification.Name.wzIMTask.getMessage(notif: .notice(elem.type))
+        case .notice:
+            return Notification.Name.wzIMTask.getMessage(notif: .notice)
         default:
             return Notification.Name.wzIMTask.getMessage(notif: .msg(receiverId))
         }
@@ -65,7 +65,7 @@ public extension WZMessageProtocol {
     var postData: Any? {
         switch currentElem {
         case let .notice(elem):
-            return elem.elem.data
+            return elem
         default:
             return self
         }
