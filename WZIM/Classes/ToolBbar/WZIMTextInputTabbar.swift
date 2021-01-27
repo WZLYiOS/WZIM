@@ -99,7 +99,7 @@ public class WZIMTextInputTabbar: UIView {
     private lazy var keyboardView: WZIMKeyboardView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.tag = KeyboardViewTag.keyboard.rawValue
-        $0.backgroundColor = UIColor.white
+        $0.backgroundColor = UIColor.clear
         $0.isHidden = true
         return $0
     }(WZIMKeyboardView())
