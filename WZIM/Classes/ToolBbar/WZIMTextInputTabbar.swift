@@ -72,7 +72,7 @@ public class WZIMTextInputTabbar: UIView {
     }(UIButton())
     
     /// 音频录制按钮
-    private lazy var recordButton: UIButton = {
+    public lazy var recordButton: UIButton = {
         $0.contentHorizontalAlignment = .center
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         $0.isExclusiveTouch = true
@@ -142,7 +142,7 @@ public class WZIMTextInputTabbar: UIView {
     
     /// 底部间距颜色
     public lazy var bottomView: UIView = {
-        $0.backgroundColor = UIColor.white
+        $0.backgroundColor = UIColor.clear
         $0.heightAnchor.constraint(equalToConstant: CGFloat(WZIMToolAppearance.safeAreaInsetsBottom)).isActive = true
         return $0
     }(UIView())
@@ -150,7 +150,6 @@ public class WZIMTextInputTabbar: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.white
 
         configView()
         configViewLocation()
