@@ -150,7 +150,7 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         super.configViewLocation()
     
         topLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(16)
+            make.leading.equalTo(21)
             make.right.equalToSuperview().offset(-16)
             make.top.equalToSuperview().offset(15)
             make.bottom.lessThanOrEqualTo(-15)
@@ -166,6 +166,11 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         markModel = elem
         self.delegate = cDelegate as? WZIMVideoInviteSelfTableViewCellDeleagte
         
+        topLabel.snp.updateConstraints { (make) in
+            make.leading.equalTo(model.loaction == .lelft ? 21 : 16)
+            make.right.equalToSuperview().offset(model.loaction == .lelft ? -16 : -21)
+        }
+        
         let namorImage = model.loaction == .lelft ? UIImage(named: "Cell.bundle/ic_talk_dialog_video") : UIImage(named: "Cell.bundle/ic_talk_inputbox_voice02")
         
         let image = delegate?.VideoInviteSelfCell(cell: self) ?? namorImage
@@ -177,13 +182,14 @@ public class WZIMVideoInviteSelfTableViewCell: WZIMBaseTableViewCell {
         text.wzSetLineSpacing(value: 3)
         
         if model.loaction == .lelft {
-            text.insert(NSAttributedString(string: " "), at: 0)
+            text.insert(NSAttributedString(string: "  "), at: 0)
             text.insert(text.wzGetAttachment(image: image, y: -3), at: 0)
         }else{
-            text.append(NSAttributedString(string: " "))
+            text.append(NSAttributedString(string: "  "))
             text.append(text.wzGetAttachment(image: image, y: -2))
         }
         topLabel.attributedText = text
+        
     }
 }
 
