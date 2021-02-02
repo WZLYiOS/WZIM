@@ -135,7 +135,7 @@ extension V2TIMOfflinePushInfo: WZIMOfflinePushInfoProtocol {
 
 /// MARK - 文件消息
 extension V2TIMFileElem: WZIMFileProtocol {
-    
+   
     /// 缓存key
     struct FileCacheKey {
         static func getProgressKey(uuid: String) -> String {
@@ -154,16 +154,8 @@ extension V2TIMFileElem: WZIMFileProtocol {
     }
     
     public var wzPath: String {
-        /// 自己上传
-        if path.count > 0 {
-            let mPath = "\(WZIMToolAppearance.DBType.file.getPath())\((path as NSString).lastPathComponent)"
-            if FileManager.default.fileExists(atPath: mPath) {
-                return mPath
-            }
-        }
-        /// 下载
-        let oPath = WZIMToolAppearance.DBType.file.getPath(userId: TIMManager.sharedInstance()!.getLoginUser())
-        return  oPath
+        let mPath = "\(WZIMToolAppearance.DBType.file.getPath())\((path as NSString).lastPathComponent)"
+        return mPath
     }
     
     public var wzUuid: String {
@@ -177,9 +169,9 @@ extension V2TIMFileElem: WZIMFileProtocol {
     public var wzFileSize: Int {
         return Int(fileSize)
     }
-    
-    public var wzIsDownloaded: Bool {
-        if FileManager.default.fileExists(atPath: wzPath)  {
+
+    public func getWzIsDownloaded(path: String) -> Bool {
+        if FileManager.default.fileExists(atPath: path)  {
             return true
         }
         return false
@@ -191,11 +183,12 @@ extension V2TIMFileElem: WZIMFileProtocol {
         }
     }
     
+    public func getDownloadPath(messageId: String) -> String {
+        return WZIMToolAppearance.DBType.file.getPath(userId: TIMManager.sharedInstance()!.getLoginUser(),uuid: messageId)
+    }
     
-    public func wzDownloadFile(progress: ((Int, Int) -> Void)?, sucess: ((String) -> Void)?, fail: ((Error) -> Void)?) {
-        
+    public func wzDownloadFile(path: String, progress: ((Int, Int) -> Void)?, sucess: ((String) -> Void)?, fail: ((Error) -> Void)?) {
         /// 判断本地有无
-        let path = wzPath
         if FileManager.default.fileExists(atPath: path)  {
             sucess?(path)
             return

@@ -606,14 +606,17 @@ public protocol WZIMFileProtocol {
     /// 文件大小
     var wzFileSize: Int {get}
         
-    /// 是否下载完成
-    var wzIsDownloaded: Bool { get }
-    
     /// 上传/下载进度
     var wzProgress: Float {set get}
     
+    /// 获取是否下载完
+    func getWzIsDownloaded(path: String) -> Bool
+    
     /// 获取文件的 URL 下载地址
     func wzGetUrl(urlBlock: ((_ url: String) -> Void)?)
+    
+    /// 获取下载路径
+    func getDownloadPath(messageId: String) -> String
     
     /**
      *  下载文件
@@ -622,5 +625,5 @@ public protocol WZIMFileProtocol {
      *
      *  @param path 文件保存路径，需要外部指定
      */
-    func wzDownloadFile(progress: ((_ curSize: Int, _ totalSize: Int)-> Void)?, sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
+    func wzDownloadFile(path: String, progress: ((_ curSize: Int, _ totalSize: Int)-> Void)?, sucess: ((_ path: String) -> Void)?, fail: ((_ error: Error) -> Void)?)
 }

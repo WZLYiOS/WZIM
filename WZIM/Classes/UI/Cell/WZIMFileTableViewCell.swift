@@ -123,6 +123,9 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
                 progressView.isHidden = message.sendStatus == .sending ? false : true
             }else{
                 progressView.isHidden = (dataModel.wzProgress > 0 && dataModel.wzProgress < 1) ? false : true
+                if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
+                    progressView.isHidden = true
+                }
             }
             progressView.progress = elem.wzProgress
         }
@@ -131,7 +134,7 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     @objc func bubbleImageViewAction(tap: UITapGestureRecognizer){
         
         /// 已经下载
-        if dataModel.wzIsDownloaded {
+        if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
             self.delegate?.fileTableViewCell(diselect: self, path: dataModel.wzPath)
             return
         }
@@ -141,14 +144,11 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             return
         }
         isDownLoadIng = true
-        
-        dataModel.wzDownloadFile { [weak self](curSize, totalSize) in
+        dataModel.wzDownloadFile(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) { [weak self](curSize, totalSize) in
             guard let self = self else { return }
-            
             DispatchQueue.main.sync {
                 self.upload(progress: Float(curSize/totalSize))
             }
-            
         } sucess: { [weak self](path) in
             guard let self = self else { return }
             self.progressView.isHidden = true
@@ -164,7 +164,7 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     
     func getText() -> String {
         if message.loaction == .lelft {
-            if dataModel.wzIsDownloaded {
+            if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
                 return "已下载"
             }
             if dataModel.wzProgress > 0 && dataModel.wzProgress < 1 {
