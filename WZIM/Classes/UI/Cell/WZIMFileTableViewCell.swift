@@ -5,6 +5,13 @@
 //  Created by qiuqixiang on 2021/1/5.
 //
 
+//
+//  WZIMFileTableViewCell.swift
+//  WZIM
+//
+//  Created by qiuqixiang on 2021/1/5.
+//
+
 import UIKit
 
 // MARK - 文件管理cell
@@ -49,7 +56,6 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
         $0.progressTintColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4D38")
         $0.trackTintColor = WZIMToolAppearance.hexadecimal(rgb: "0xE6E6E6")
         $0.isHidden = true
-        $0.progress = 0.1
         return $0
     }(UIProgressView())
     
@@ -122,33 +128,37 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             if message.loaction == .right {
                 progressView.isHidden = message.sendStatus == .sending ? false : true
             }else{
-                progressView.isHidden = (dataModel.wzProgress > 0 && dataModel.wzProgress < 1) ? false : true
+                progressView.isHidden = isDownLoadIng ? false : true
                 if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
                     progressView.isHidden = true
                 }
             }
-            progressView.progress = elem.wzProgress
         }
     }
     
     @objc func bubbleImageViewAction(tap: UITapGestureRecognizer){
         
         /// 已经下载
-        if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
-            self.delegate?.fileTableViewCell(diselect: self, path: dataModel.wzPath)
+        let path = message.loaction == .lelft ? dataModel.getDownloadPath(messageId: message.wzMessageId) : dataModel.wzPath
+        if dataModel.getWzIsDownloaded(path: path) {
+            self.delegate?.fileTableViewCell(diselect: self, path: path)
             return
         }
         
-        /// 已经下载
+        /// 下载中
         if isDownLoadIng {
             return
         }
         isDownLoadIng = true
+        progressView.isHidden = false
+        progressView.progress = 0.01
         dataModel.wzDownloadFile(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) { [weak self](curSize, totalSize) in
             guard let self = self else { return }
+            debugPrint("下载进度：\(Float(Double(curSize)/Double(totalSize)))")
             DispatchQueue.main.sync {
-                self.upload(progress: Float(curSize/totalSize))
+                self.upload(progress: Float(Double(curSize)/Double(totalSize))*100)
             }
+            self.isDownLoadIng = true
         } sucess: { [weak self](path) in
             guard let self = self else { return }
             self.progressView.isHidden = true
@@ -167,10 +177,10 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             if dataModel.getWzIsDownloaded(path: dataModel.getDownloadPath(messageId: message.wzMessageId)) {
                 return "已下载"
             }
-            if dataModel.wzProgress > 0 && dataModel.wzProgress < 1 {
+            if isDownLoadIng {
                 return "下载中"
             }
-            return dataModel.wzProgress == 1 ? "已下载" : "未下载"
+            return "未下载"
         }
         
         switch message.sendStatus {
@@ -187,7 +197,6 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     
     public override func upload(progress: Float) {
         super.upload(progress: progress)
-        dataModel.wzProgress = Float(progress/100)
         progressView.progress = Float(progress/100)
         uploadSize()
     }

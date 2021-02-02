@@ -605,9 +605,6 @@ public protocol WZIMFileProtocol {
     
     /// 文件大小
     var wzFileSize: Int {get}
-        
-    /// 上传/下载进度
-    var wzProgress: Float {set get}
     
     /// 获取是否下载完
     func getWzIsDownloaded(path: String) -> Bool
