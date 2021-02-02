@@ -48,8 +48,8 @@ import SnapKit
     
     public override func configView() {
         super.configView()
-        bubbleImageView.addSubview(playImageView)
-        bubbleImageView.addSubview(playTimeLabel)
+        bubbleImageView.bubbleView.addSubview(playImageView)
+        bubbleImageView.bubbleView.addSubview(playTimeLabel)
         contentView.addSubview(unReadImageView)
         bubbleImageView.addSubview(controll)
         
@@ -83,26 +83,25 @@ import SnapKit
             case .right:
                 unReadImageView.isHidden = message.customInt > 0 ? true : false
                 playImageView.snp.remakeConstraints { (make) in
-                    make.right.equalToSuperview().offset(-20)
+                    make.right.equalToSuperview()
                     make.centerY.equalToSuperview()
                 }
                 playTimeLabel.snp.remakeConstraints { (make) in
                     make.right.equalTo(playImageView.snp.left)
                     make.centerY.equalToSuperview()
-                    make.left.equalToSuperview().offset(15)
+                    make.left.equalToSuperview()
                 }
             case .lelft:
                 unReadImageView.isHidden = true
                 
-                
                 playImageView.snp.remakeConstraints { (make) in
-                    make.left.equalToSuperview().offset(20)
+                    make.left.equalToSuperview()
                     make.centerY.equalToSuperview()
                 }
                 playTimeLabel.snp.remakeConstraints { (make) in
                     make.left.equalTo(playImageView.snp.right)
                     make.centerY.equalToSuperview()
-                    make.right.equalToSuperview().offset(-15)
+                    make.right.equalToSuperview()
                 }
             default: break
             }

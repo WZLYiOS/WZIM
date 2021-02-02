@@ -605,12 +605,12 @@ public protocol WZIMFileProtocol {
     
     /// 文件大小
     var wzFileSize: Int {get}
-    
-    /// 是否下载中
-    var wzIsDownloadIng: Bool {set get}
-    
+        
     /// 是否下载完成
     var wzIsDownloaded: Bool { get }
+    
+    /// 上传/下载进度
+    var wzProgress: Float {set get}
     
     /// 获取文件的 URL 下载地址
     func wzGetUrl(urlBlock: ((_ url: String) -> Void)?)

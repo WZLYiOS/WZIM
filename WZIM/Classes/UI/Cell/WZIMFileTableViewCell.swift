@@ -16,6 +16,9 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     /// 代理
     public weak var delegate: WZIMFileTableViewCellDelagte?
     
+    /// 是否下载中
+    private var isDownLoadIng: Bool = false
+    
     /// 文件名
     private lazy var nameLabel: UILabel = {
         $0.textColor = UIColor(red: 0.24, green: 0.24, blue: 0.24,alpha:1)
@@ -46,6 +49,7 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
         $0.progressTintColor = WZIMToolAppearance.hexadecimal(rgb: "0xFB4D38")
         $0.trackTintColor = WZIMToolAppearance.hexadecimal(rgb: "0xE6E6E6")
         $0.isHidden = true
+        $0.progress = 0.1
         return $0
     }(UIProgressView())
     
@@ -117,7 +121,10 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             uploadSize()
             if message.loaction == .right {
                 progressView.isHidden = message.sendStatus == .sending ? false : true
+            }else{
+                progressView.isHidden = (dataModel.wzProgress > 0 && dataModel.wzProgress < 1) ? false : true
             }
+            progressView.progress = elem.wzProgress
         }
     }
     
@@ -129,10 +136,11 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             return
         }
         
-        /// 下载中
-        if dataModel.wzIsDownloadIng {
+        /// 已经下载
+        if isDownLoadIng {
             return
         }
+        isDownLoadIng = true
         
         dataModel.wzDownloadFile { [weak self](curSize, totalSize) in
             guard let self = self else { return }
@@ -145,20 +153,24 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
             guard let self = self else { return }
             self.progressView.isHidden = true
             self.uploadSize()
-            
+            self.isDownLoadIng = false
         } fail: { [weak self](error) in
             guard let self = self else { return }
             self.progressView.isHidden = true
             self.uploadSize()
+            self.isDownLoadIng = false
         }
     }
     
     func getText() -> String {
         if message.loaction == .lelft {
-            if dataModel.wzIsDownloadIng {
+            if dataModel.wzIsDownloaded {
+                return "已下载"
+            }
+            if dataModel.wzProgress > 0 && dataModel.wzProgress < 1 {
                 return "下载中"
             }
-            return dataModel.wzIsDownloaded ? "已下载" : "未下载"
+            return dataModel.wzProgress == 1 ? "已下载" : "未下载"
         }
         
         switch message.sendStatus {
@@ -175,8 +187,8 @@ public class WZIMFileTableViewCell: WZIMBaseTableViewCell {
     
     public override func upload(progress: Float) {
         super.upload(progress: progress)
+        dataModel.wzProgress = Float(progress/100)
         progressView.progress = Float(progress/100)
-        dataModel.wzIsDownloadIng = progress >= 100 ? false : true
         uploadSize()
     }
 

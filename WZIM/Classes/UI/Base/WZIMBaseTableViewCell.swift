@@ -29,10 +29,10 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     }(UIImageView())
     
     /// 气泡
-    public lazy var bubbleImageView: UIImageView = {
+    public lazy var bubbleImageView: WZBubbleImageView = {
         $0.isUserInteractionEnabled = true
         return $0
-    }(UIImageView())
+    }(WZBubbleImageView())
     
     /// 底部内容视图，针对多个elem
     public lazy var bottomStackView: UIStackView = {
@@ -120,6 +120,7 @@ open class WZIMBaseTableViewCell: UITableViewCell {
     
     /// 更新位置
     open func uploadConstraints(type: WZMessageLocation) {
+        bubbleImageView.upload(type: type)
         switch type {
         case .lelft:
             avatarImageView.snp.remakeConstraints { (make) in
@@ -211,5 +212,61 @@ public extension UIImage {
         let lelft = Int(floor(self.size.width/2))
         let top = Int(floor(self.size.height/2+marn))
        return self.stretchableImage(withLeftCapWidth: lelft, topCapHeight: top)
+    }
+}
+
+/// MARK - 背景
+public class WZBubbleImageView: UIImageView {
+    
+    /// 聊天框
+    public lazy var bubbleView: UIView = {
+        $0.backgroundColor = UIColor.clear
+        return $0
+    }(UIView())
+    
+    public init() {
+        super.init(frame: CGRect.zero)
+        configView()
+        configViewLocation()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// 添加视图
+    func configView() {
+        self.addSubview(bubbleView)
+    }
+
+    /// 视图位置
+    func configViewLocation() {
+        self.addSubview(bubbleView)
+    }
+    
+    func upload(type: WZMessageLocation) {
+        switch type {
+        case .lelft:
+            bubbleView.snp.remakeConstraints { (make) in
+                make.leading.equalTo(21)
+                make.right.equalToSuperview().offset(-15)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        case .right:
+            bubbleView.snp.remakeConstraints { (make) in
+                make.leading.equalTo(15)
+                make.right.equalToSuperview().offset(-21)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        default:
+            bubbleView.snp.remakeConstraints { (make) in
+                make.leading.equalTo(0)
+                make.right.equalToSuperview().offset(0)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        }
     }
 }

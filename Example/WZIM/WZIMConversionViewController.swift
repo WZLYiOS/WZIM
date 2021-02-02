@@ -34,7 +34,7 @@ public class WZIMConversionViewController: UIViewController {
         $0.tableFooterView = UIView()
         $0.dataSource = self
         $0.delegate = self
-        $0.wz.debugLogEnabled(true)
+        $0.wz.debugLogEnabled(false)
         $0.backgroundColor = WZIMToolAppearance.hexadecimal(rgb: "0xF8F8F8")
         $0.wz.register(cellWithClass: WZIMFaceTableViewCell.self)
         $0.wzIMRegisterCell()

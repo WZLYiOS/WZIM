@@ -136,12 +136,20 @@ extension V2TIMOfflinePushInfo: WZIMOfflinePushInfoProtocol {
 /// MARK - 文件消息
 extension V2TIMFileElem: WZIMFileProtocol {
     
-    public var wzIsDownloadIng: Bool {
+    /// 缓存key
+    struct FileCacheKey {
+        static func getProgressKey(uuid: String) -> String {
+            return "com.wzly.Im.file.download.state.\(uuid)."+V2TIMManager.sharedInstance()!.getLoginUser()
+        }
+    }
+    
+    /// 下载/上传进度
+    public var wzProgress: Float {
         get {
-            return objc_getAssociatedObject(self, "com.wzly.im.file.download.state") as? Bool ?? false
+            return UserDefaults.standard.value(forKey: FileCacheKey.getProgressKey(uuid: wzUuid)) as? Float ?? 0
         }
         set(newValue) {
-            objc_setAssociatedObject(self, "com.wzly.im.file.download.state", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            UserDefaults.standard.setValue(newValue, forKey: FileCacheKey.getProgressKey(uuid: wzUuid))
         }
     }
     
@@ -154,7 +162,7 @@ extension V2TIMFileElem: WZIMFileProtocol {
             }
         }
         /// 下载
-        let oPath = WZIMToolAppearance.DBType.file.getPath(userId: TIMManager.sharedInstance()!.getLoginUser(), uuid: uuid)
+        let oPath = WZIMToolAppearance.DBType.file.getPath(userId: TIMManager.sharedInstance()!.getLoginUser())
         return  oPath
     }
     

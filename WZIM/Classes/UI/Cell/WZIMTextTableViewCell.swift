@@ -34,8 +34,8 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
     
     public override func configView() {
         super.configView()
-        bubbleImageView.addSubview(label)
-        bubbleImageView.addSubview(contentLabel)
+        bubbleImageView.bubbleView.addSubview(label)
+        bubbleImageView.bubbleView.addSubview(contentLabel)
     }
     
     public override func configViewLocation() {
@@ -43,15 +43,15 @@ public class WZIMTextTableViewCell: WZIMBaseTableViewCell {
         
         let maxWidth = WZIMConfig.maxWidth
         label.snp.makeConstraints { (make) in
-            make.leading.equalTo(16)
-            make.right.equalToSuperview().offset(-16)
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
             make.top.equalToSuperview().offset(15)
             make.bottom.lessThanOrEqualTo(-15)
             make.width.lessThanOrEqualTo(maxWidth)
         }
         contentLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(16)
-            make.right.equalToSuperview().offset(-16)
+            make.leading.equalTo(0)
+            make.right.equalToSuperview()
             make.top.equalToSuperview().offset(15)
             make.bottom.lessThanOrEqualTo(-15)
         }
