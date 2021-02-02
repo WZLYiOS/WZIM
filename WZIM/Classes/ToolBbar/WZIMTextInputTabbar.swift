@@ -82,7 +82,7 @@ public class WZIMTextInputTabbar: UIView {
         $0.setBackgroundImage(WZIMToolAppearance.image(color: WZIMToolAppearance.hexadecimal(rgb: "0xc6c7ca")), for: .highlighted)
         $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x1C1C1C"), for: .normal)
         $0.setTitleColor(WZIMToolAppearance.hexadecimal(rgb: "0x7C7C7C"), for: .normal)
-        $0.layer.cornerRadius = 18
+        $0.layer.cornerRadius = 6
         $0.layer.masksToBounds = true
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = WZIMToolAppearance.hexadecimal(rgb: "0xE6E6E6").cgColor
