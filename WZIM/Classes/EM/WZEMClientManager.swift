@@ -65,6 +65,11 @@ public class WZEMClientManager: NSObject {
         EMClient.shared()?.logout(true, completion: nil)
     }
     
+    /// 修改appkey
+    public func changeAppkey(key: String) {
+        EMClient.shared()?.changeAppkey(key)
+    }
+    
     /// 当前登录用户
     public func currentUserId() -> String {
         return EMClient.shared()?.currentUsername ?? ""

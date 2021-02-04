@@ -1,11 +1,11 @@
 PODS:
-  - CleanJSON (1.0.6)
+  - CleanJSON (1.0.8)
   - DeviceKit (2.3.0)
   - DongtuStore (3.2.8)
   - HyphenateLite (3.7.1)
-  - Kingfisher (5.15.6):
-    - Kingfisher/Core (= 5.15.6)
-  - Kingfisher/Core (5.15.6)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - MJRefresh (3.5.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -19,28 +19,28 @@ PODS:
   - "UITableView+FDTemplateLayoutCell (1.6)"
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (2.2.9):
-    - WZIM/EM (= 2.2.9)
-    - WZIM/Procotol (= 2.2.9)
-    - WZIM/TIM (= 2.2.9)
-    - WZIM/Tool (= 2.2.9)
-    - WZIM/ToolBbar (= 2.2.9)
-    - WZIM/UI (= 2.2.9)
-  - WZIM/EM (2.2.9):
+  - WZIM (2.4.4):
+    - WZIM/EM (= 2.4.4)
+    - WZIM/Procotol (= 2.4.4)
+    - WZIM/TIM (= 2.4.4)
+    - WZIM/Tool (= 2.4.4)
+    - WZIM/ToolBbar (= 2.4.4)
+    - WZIM/UI (= 2.4.4)
+  - WZIM/EM (2.4.4):
     - HyphenateLite (= 3.7.1)
     - WZIM/UI
-  - WZIM/Procotol (2.2.9):
+  - WZIM/Procotol (2.4.4):
     - CleanJSON (~> 1.0.6)
-  - WZIM/TIM (2.2.9):
+  - WZIM/TIM (2.4.4):
     - TXIMSDK_iOS (~> 5.0.12)
     - WZIM/UI
-  - WZIM/Tool (2.2.9):
+  - WZIM/Tool (2.4.4):
     - WZNamespaceWrappable (~> 1.0.0)
-  - WZIM/ToolBbar (2.2.9):
+  - WZIM/ToolBbar (2.4.4):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
     - WZLame (~> 4.0.0)
-  - WZIM/UI (2.2.9):
+  - WZIM/UI (2.4.4):
     - Kingfisher (~> 5.15.0)
     - "UITableView+FDTemplateLayoutCell (~> 1.6)"
     - WZIM/Procotol
@@ -62,9 +62,9 @@ PODS:
   - WZRefresh (1.0.2):
     - MJRefresh (~> 3.5.0)
     - WZNamespaceWrappable (~> 1.0.0)
-  - WZRoute (2.0.5):
-    - WZRoute/Source (= 2.0.5)
-  - WZRoute/Source (2.0.5)
+  - WZRoute (2.0.8):
+    - WZRoute/Source (= 2.0.8)
+  - WZRoute/Source (2.0.8)
   - WZUIExtension (0.1.6):
     - WZNamespaceWrappable (~> 1.0.0)
 
@@ -90,6 +90,7 @@ SPEC REPOS:
     - WZNamespaceWrappable
     - WZNetwork
     - WZRefresh
+    - WZRoute
     - WZUIExtension
   trunk:
     - CleanJSON
@@ -105,18 +106,17 @@ SPEC REPOS:
     - TXIMSDK_iOS
     - TZImagePickerController
     - "UITableView+FDTemplateLayoutCell"
-    - WZRoute
 
 EXTERNAL SOURCES:
   WZIM:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CleanJSON: fd25726a3f337077a93a006e55c85329662090e2
+  CleanJSON: 7cc2fbb8f3face17e80a25a2266199ad31002bfc
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
   DongtuStore: abfd21e213fd2b66034a99197e92fd9bab052671
   HyphenateLite: 5ae42198431f6c5e31247ba757797626a68799de
-  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -127,13 +127,13 @@ SPEC CHECKSUMS:
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: 13e71c7939fe1bcaef14540037c1ae0a909a8d42
+  WZIM: 8b3bd224a07763d34ebbc97783ab126b59f8461b
   WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4
   WZNetwork: 1967e3fd38976d5f24195824853f5da559182a05
   WZRefresh: 14a0e1cdb599311658d928e4ce6e03d6f2b342ef
-  WZRoute: 9c96833ceabc0a5595d1a2df78fc6612481f06c5
+  WZRoute: 591abd54a2e040b1512958146f4d02c56d1be6b8
   WZUIExtension: 181d99d7857dd95d32af766ed708391320ada9d0
 
 PODFILE CHECKSUM: 44370b83206e5b802132e15a87bac218a8f9be7d
