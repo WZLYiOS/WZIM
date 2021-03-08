@@ -2,7 +2,7 @@ PODS:
   - CleanJSON (1.0.8)
   - DeviceKit (2.3.0)
   - DongtuStore (3.2.8)
-  - HyphenateLite (3.7.1)
+  - HyphenateLite (3.7.4.1)
   - Kingfisher (6.1.1)
   - MJRefresh (3.5.0)
   - RxCocoa (5.1.1):
@@ -17,28 +17,28 @@ PODS:
   - "UITableView+FDTemplateLayoutCell (1.6)"
   - WZAlamofire (3.0.0)
   - WZEncryption (1.0.0)
-  - WZIM (2.5.1):
-    - WZIM/EM (= 2.5.1)
-    - WZIM/Procotol (= 2.5.1)
-    - WZIM/TIM (= 2.5.1)
-    - WZIM/Tool (= 2.5.1)
-    - WZIM/ToolBbar (= 2.5.1)
-    - WZIM/UI (= 2.5.1)
-  - WZIM/EM (2.5.1):
-    - HyphenateLite (= 3.7.1)
+  - WZIM (2.5.2):
+    - WZIM/EM (= 2.5.2)
+    - WZIM/Procotol (= 2.5.2)
+    - WZIM/TIM (= 2.5.2)
+    - WZIM/Tool (= 2.5.2)
+    - WZIM/ToolBbar (= 2.5.2)
+    - WZIM/UI (= 2.5.2)
+  - WZIM/EM (2.5.2):
+    - HyphenateLite (~> 3.7.4.1)
     - WZIM/UI
-  - WZIM/Procotol (2.5.1):
+  - WZIM/Procotol (2.5.2):
     - CleanJSON (~> 1.0.6)
-  - WZIM/TIM (2.5.1):
+  - WZIM/TIM (2.5.2):
     - TXIMSDK_iOS (~> 5.1.50)
     - WZIM/UI
-  - WZIM/Tool (2.5.1):
+  - WZIM/Tool (2.5.2):
     - WZNamespaceWrappable (~> 1.0.0)
-  - WZIM/ToolBbar (2.5.1):
+  - WZIM/ToolBbar (2.5.2):
     - SnapKit (~> 5.0.1)
     - WZIM/Tool
     - WZLame (~> 4.0.0)
-  - WZIM/UI (2.5.1):
+  - WZIM/UI (2.5.2):
     - "UITableView+FDTemplateLayoutCell (~> 1.6)"
     - WZIM/Procotol
     - WZIM/ToolBbar
@@ -112,7 +112,7 @@ SPEC CHECKSUMS:
   CleanJSON: 7cc2fbb8f3face17e80a25a2266199ad31002bfc
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
   DongtuStore: abfd21e213fd2b66034a99197e92fd9bab052671
-  HyphenateLite: 5ae42198431f6c5e31247ba757797626a68799de
+  HyphenateLite: 8cecc0bda99fe841c4ae05f5173182ac1c986ac8
   Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   WZAlamofire: 44b1194922ca7ec30e230b1ef467a538b17c1389
   WZEncryption: 260be3da074da0d5522adca48760bbe2b1655eec
-  WZIM: a54c8698f2f18e6f41609d76365d0ad3dc516c64
+  WZIM: 32760b94f281888325eb99ebea636b3b0f2efb36
   WZLame: 98dd0d0de7a5c37d3adda4516d7441f148a1089a
   WZMoya: eaf8c1f24ac05554d877a1a1bee68bc2ab4031d7
   WZNamespaceWrappable: 880bfa32c164bb80381ae65a49350c81521765d4
