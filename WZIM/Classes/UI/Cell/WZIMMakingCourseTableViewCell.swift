@@ -102,12 +102,12 @@ public class WZIMMakingCourseTableViewCell: WZIMBaseTableViewCell {
             topLabel.text = elem.text.count == 0 ? "开启约会实名认证邀请" : elem.text
             lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_certification")
             titleLbale.text = elem.title.count == 0 ? "我主良缘实名认证" : elem.title
-            picImageView.kf.setImage(with: URL(string: elem.img), placeholder: UIImage(named: "Cell.bundle/chat_name_auth_pic"))
+            pDelegate.baseTableViewCell(cell: self, imageView: picImageView, url: elem.img, placeholder: UIImage(named: "Cell.bundle/chat_name_auth_pic"))
         case let .dateService(elem):
             topLabel.text =  elem.text.count == 0 ? "线上视频约会服务" : elem.text
             lelftImageView.image = UIImage(named: "Cell.bundle/ic_chat_video")
             titleLbale.text = elem.title.count == 0 ? "我主良缘线上视频约会服务" : elem.title
-            picImageView.kf.setImage(with: URL(string: elem.img), placeholder: UIImage(named: "Cell.bundle/chat_service_pic"))
+            pDelegate.baseTableViewCell(cell: self, imageView: picImageView, url: elem.img, placeholder: UIImage(named: "Cell.bundle/chat_service_pic"))
         default: break
         }
     }

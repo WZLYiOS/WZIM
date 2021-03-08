@@ -118,6 +118,7 @@ public enum WZIMToolAppearance {
         case voice = "voice"
         case file = "file"
         case userinfo = "userinfo"
+        case image = "image"
         
         /// 获取文件路径
         func getPath(userId: String = "", uuid: String = "") -> String {

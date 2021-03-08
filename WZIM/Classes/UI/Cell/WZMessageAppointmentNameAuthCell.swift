@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 // MARK - 约会实名认证cell
 public class WZMessageAppointmentNameAuthCell: WZIMBaseTableViewCell {
@@ -104,7 +103,7 @@ public class WZMessageAppointmentNameAuthCell: WZIMBaseTableViewCell {
         if case let .dateAuthInvite(elem) = message.currentElem {
             titleLabel.text = elem.text
             bottomLabel.text = elem.title
-            centerImageView.kf.setImage(with: URL(string: elem.img))
+            pDelegate.baseTableViewCell(cell: self, imageView: centerImageView, url: elem.img, placeholder: nil)
         }
     }
 }

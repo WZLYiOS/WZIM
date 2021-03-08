@@ -12,7 +12,6 @@ import WZRoute
 import WZRefresh
 import TZImagePickerController
 import WZUIExtension
-import Kingfisher
 import ImSDK
 
 // MARK - 会话详情
@@ -255,6 +254,10 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
 
 /// MARK - WZIMTableViewCellPublicDelegate
 extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
+    public func baseTableViewCell(cell: WZIMBaseTableViewCell, imageView: UIImageView, url: String, placeholder: UIImage?) {
+        
+    }
+    
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }
@@ -392,10 +395,8 @@ extension WZIMConversionViewController: TZImagePickerControllerDelegate {
     /// 发送图片消息
     func sendImageMessage(image: UIImage) {
         
-        WZIMPictureTableViewCell.storeDisk(imageData: UIImageJPEGRepresentation(image, 1)!) { (path) in
-            let message = UserSession.shared.imManager.wzCreateImageMessage(path: path)
-            self.sendMessage(message: message)
-        }
+        let message = UserSession.shared.imManager.wzCreateImageMessage(image: image)
+        self.sendMessage(message: message)
     }
 }
 

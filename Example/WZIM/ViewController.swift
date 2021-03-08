@@ -65,6 +65,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: WZIMTableViewCellPublicDelegate {
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, imageView: UIImageView, url: String, placeholder: UIImage?) {
+        
+    }
+    
     func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {
         
     }

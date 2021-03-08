@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WZIM'
-  s.version          = '2.4.5'
+  s.version          = '2.5.0'
   s.summary          = 'IM组件框架。'
 
 
@@ -54,7 +54,6 @@ Pod::Spec.new do |s|
     ss.source_files = "WZIM/Classes/UI/**/*"
     ss.dependency 'WZIM/Procotol'
     ss.dependency 'WZIM/ToolBbar'
-    ss.dependency 'Kingfisher', '~> 5.15.0'
     ss.resources = 'WZIM/**/Cell.bundle'
     ss.dependency 'UITableView+FDTemplateLayoutCell',  '~> 1.6' #动态计算cell高度
   end
@@ -63,7 +62,7 @@ Pod::Spec.new do |s|
   s.subspec "TIM" do |ss|
     ss.source_files = "WZIM/Classes/TIM/*"
     ss.dependency 'WZIM/UI'
-    ss.dependency 'TXIMSDK_iOS', '~> 5.1.21'
+    ss.dependency 'TXIMSDK_iOS', '~> 5.1.50'
   end
   
   # 环信SDK

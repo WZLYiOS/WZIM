@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 // MARK - 图片
 public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
@@ -85,7 +84,7 @@ public class WZIMPictureTableViewCell: WZIMBaseTableViewCell {
             size = imageSize(image.size.width, image.size.height)
         }else{
             size = imageSize(CGFloat(elem.width), CGFloat(elem.height))
-            photoImageView.kf.setImage(with: URL(string: elem.url))
+            pDelegate.baseTableViewCell(cell: self, imageView: photoImageView, url: elem.url, placeholder: nil)
         }
 
         percentMaskLabel.isHidden = message.sendStatus == .sending ? false : true
@@ -135,25 +134,25 @@ public protocol WZIMPictureTableViewCellDelegate: WZIMTableViewCellDelegate {
 /// MARK - 扩展
 public extension WZIMPictureTableViewCell {
     
-    /// 把图片存入磁盘
-    /// - Parameters:
-    ///   - name: 文件名
-    ///   - image: 图片
-    /// - Returns: 路径
-    static func storeDisk(imageData: Data, compleHandler: ((_ path:  String) -> Void)?) {
-     
-        let name = "WZIM/image/\(Int(NSDate().timeIntervalSince1970))"
-        ImageCache.default.storeToDisk(imageData, forKey: name, processorIdentifier: "", expiration: nil, callbackQueue: .mainAsync) { (result) in
-            let filePath = ImageCache.default.cachePath(forKey: name)
-            compleHandler?(filePath)
-        }
-    }
-    
-    /// 从磁盘加载图片
-    func setImageView(filePath: String, imageView: UIImageView) {
-        ImageCache.default.retrieveImageInDiskCache(forKey: filePath, options: nil, callbackQueue: .mainAsync) { (result) in
-            let imx = try? result.get()
-            imageView.image = imx
-        }
-    }
+//    /// 把图片存入磁盘
+//    /// - Parameters:
+//    ///   - name: 文件名
+//    ///   - image: 图片
+//    /// - Returns: 路径
+//    static func storeDisk(imageData: Data, compleHandler: ((_ path:  String) -> Void)?) {
+//     
+//        let name = "WZIM/image/\(Int(NSDate().timeIntervalSince1970))"
+//        ImageCache.default.storeToDisk(imageData, forKey: name, processorIdentifier: "", expiration: nil, callbackQueue: .mainAsync) { (result) in
+//            let filePath = ImageCache.default.cachePath(forKey: name)
+//            compleHandler?(filePath)
+//        }
+//    }
+//    
+//    /// 从磁盘加载图片
+//    func setImageView(filePath: String, imageView: UIImageView) {
+//        ImageCache.default.retrieveImageInDiskCache(forKey: filePath, options: nil, callbackQueue: .mainAsync) { (result) in
+//            let imx = try? result.get()
+//            imageView.image = imx
+//        }
+//    }
 }

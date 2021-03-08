@@ -108,7 +108,7 @@ public protocol WZIMManagerProcotol {
     
     /// 图片消息
     /// - Parameter path: 路径
-    func wzCreateImageMessage(path: String) -> WZMessageProtocol
+    func wzCreateImageMessage(image: UIImage) -> WZMessageProtocol
     
     /// 时间消息
     /// - Parameter date: 时间

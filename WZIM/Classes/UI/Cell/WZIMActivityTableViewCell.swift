@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 // MARK - 分享活动
 public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
@@ -75,7 +74,7 @@ public class WZIMActivityTableViewCell: WZIMBaseTableViewCell {
                 bubbleImageView.image = UIImage(named: "Cell.bundle/ic_chat_windowtwowhite")?.wzStretchableImage()
             }
             dataModel = elem
-            shareImageView.kf.setImage(with: URL(string: elem.content.img))
+            pDelegate.baseTableViewCell(cell: self, imageView: shareImageView, url: elem.content.img, placeholder: nil)
             timeLabel.text = elem.content.beginTime + "" + elem.content.city
             
             let mPara = NSMutableParagraphStyle()

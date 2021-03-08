@@ -198,7 +198,7 @@ extension WZServiceConversionViewController: UITableViewDelegate, UITableViewDat
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataArray.array[indexPath.row]
         let cell = tableView.wz.dequeueReusableCell(withClass: model.cellIdentifier, for: indexPath)
-        updataCell(cell: cell as! WZIMBaseTableViewCell, model: model)
+        updataCell(cell: cell, model: model)
         return cell
     }
     
@@ -222,6 +222,10 @@ extension WZServiceConversionViewController: UITableViewDelegate, UITableViewDat
 
 /// MARK - WZIMTableViewCellPublicDelegate
 extension WZServiceConversionViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
+    
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, imageView: UIImageView, url: String, placeholder: UIImage?) {
+        
+    }
     
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView){
         if cell.message.loaction == .lelft {
@@ -304,11 +308,8 @@ extension WZServiceConversionViewController: TZImagePickerControllerDelegate {
     /// 发送图片消息
     func sendImageMessage(image: UIImage) {
         
-        WZIMPictureTableViewCell.storeDisk(imageData: UIImageJPEGRepresentation(image, 1)!) { [weak self](path) in
-            guard let self = self else { return }
-            let message = UserSession.shared.emManager.createImageMessage(receiveId: self.userId, image: image)
-            self.sendMessage(message: message)
-        }
+        let message = UserSession.shared.emManager.createImageMessage(receiveId: self.userId, image: image)
+        self.sendMessage(message: message)
     }
 }
 

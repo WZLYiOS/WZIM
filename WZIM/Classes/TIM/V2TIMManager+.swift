@@ -31,6 +31,13 @@ public extension String {
 
 // MARK - 管理器遵循协议
 extension V2TIMManager: WZIMManagerProcotol {
+    public func wzCreateImageMessage(image: UIImage) -> WZMessageProtocol {
+        
+        let path = WZIMToolAppearance.DBType.image.getPath(userId: V2TIMManager.sharedInstance()?.getLoginUser() ?? "", uuid: "\(NSDate().timeIntervalSince1970)")
+        FileManager.default.createFile(atPath: path, contents: image.jpegData(compressionQuality: 0.8), attributes: nil)
+        return createImageMessage(path)
+    }
+    
     
     public func loginStatus() -> WZIMLoginStatus {
         return WZIMLoginStatus.init(rawValue: getLoginStatus().rawValue) ?? .logOut
@@ -156,10 +163,6 @@ extension V2TIMManager: WZIMManagerProcotol {
     public func wzCreateCustom(type: WZMessageCustomType, data: Data) -> WZMessageProtocol {
     
         return createCustomMessage(WZIMCustomElem.getData(type: type, msgData: data))
-    }
-    
-    public func wzCreateImageMessage(path: String) -> WZMessageProtocol {
-        return createImageMessage(path)
     }
     
     public func wzCreateFileMessage(name: String, path: String) -> WZMessageProtocol {

@@ -38,4 +38,12 @@ public protocol WZIMTableViewCellPublicDelegate: class {
     ///   - cell: cell
     ///   - btn: 重发按钮
     func baseTableViewCell(cell: WZIMBaseTableViewCell, resend btn: UIButton)
+    
+    /// 加载图片
+    /// - Parameters:
+    ///   - cell: cell
+    ///   - imageView: imageView description
+    ///   - url: url description
+    ///   - placeholder: placeholder description
+    func baseTableViewCell(cell: WZIMBaseTableViewCell, imageView: UIImageView, url: String, placeholder: UIImage?)
 }

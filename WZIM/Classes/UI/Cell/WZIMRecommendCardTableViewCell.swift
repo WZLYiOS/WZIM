@@ -109,7 +109,7 @@ public class WZIMRecommendCardTableViewCell: WZIMBaseTableViewCell {
         
         if case let .card(elem) = message.currentElem {
             markModel = elem
-            lelftImageView.kf.setImage(with: URL(string: elem.avatar))
+            pDelegate.baseTableViewCell(cell: self, imageView: lelftImageView, url: elem.avatar, placeholder: nil)
             nameLabel.text = elem.userName
             
             if elem.area.count > 0 && elem.age > 0 {

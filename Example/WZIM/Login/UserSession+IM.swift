@@ -37,7 +37,6 @@ extension UserSession {
      public func logIn(identifier: String, userSig: String, sucess: (() -> Void)?, failBlock: ((_ code: Int, _ err: String) -> Void)?) {
         V2TIMManager.sharedInstance()?.login(identifier, userSig: userSig, succ: {
             sucess?()
-            V2TIMManager.sharedInstance()?.add(self)
             V2TIMManager.sharedInstance()?.setConversationListener(self)
             NotificationCenter.default.post(name: UserSession.ImLoginSucessNotification, object: nil)
         }, fail: { (code, msg) in
