@@ -92,7 +92,7 @@ public class WZEMClientManager: NSObject {
             if let xerr = error {
                 fail?(NSError.init(domain: xerr.errorDescription, code: Int(xerr.code.rawValue), userInfo: nil))
             }else{
-                sucess?(convers as? [WZMessageProtocol] ?? [])
+                sucess?(convers?.emArray() ?? [])
             }
         }
     }
@@ -115,25 +115,15 @@ public class WZEMClientManager: NSObject {
 extension WZEMClientManager: EMChatManagerDelegate {
     
     public func messagesDidReceive(_ aMessages: [Any]!) {
-        guard let arr = aMessages as? [EMMessage] else {
-            return
-        }
-        delegate?.eMClientManager(manager: self, receive: arr)
+        delegate?.eMClientManager(manager: self, receive: aMessages.emArray())
     }
     
     public func conversationListDidUpdate(_ aConversationList: [Any]!) {
-        
-        guard let arr = aConversationList as? [EMConversation] else {
-            return
-        }
-        delegate?.eMClientManager(manager: self, conversations: arr)
+        delegate?.eMClientManager(manager: self, conversations: aConversationList.emConv())
     }
     
     public func messagesDidRead(_ aMessages: [Any]!) {
-        guard let arr = aMessages as? [EMMessage] else {
-            return
-        }
-        delegate?.eMClientManager(manager: self, didRead: arr)
+        delegate?.eMClientManager(manager: self, didRead: aMessages.emArray())
     }
 }
 

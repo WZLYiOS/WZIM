@@ -139,3 +139,27 @@ extension EMVoiceMessageBody: WZIMVoiceProtocol {
         }
     }
 }
+
+/// MARK - 数组转换
+extension Array {
+    
+    func emArray() -> [WZMessageProtocol] {
+        var xxx: [WZMessageProtocol] = []
+        for item in self {
+            if let model: WZMessageProtocol = item as? EMMessage {
+                xxx.append(model)
+            }
+        }
+        return xxx
+    }
+    
+    func emConv() -> [WZConversationProcotol] {
+        var xxx: [WZConversationProcotol] = []
+        for item in self {
+            if let model: WZConversationProcotol = item as? EMConversation {
+                xxx.append(model)
+            }
+        }
+        return xxx
+    }
+}

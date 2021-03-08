@@ -13,6 +13,7 @@ import WZRefresh
 import TZImagePickerController
 import WZUIExtension
 import ImSDK
+import Kingfisher
 
 // MARK - 会话详情
 @objcMembers
@@ -255,7 +256,11 @@ extension WZIMConversionViewController: WZIMTextInputTabbarDelegate {
 /// MARK - WZIMTableViewCellPublicDelegate
 extension WZIMConversionViewController: WZIMTableViewCellDelegate, WZIMTableViewCellPublicDelegate {
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, imageView: UIImageView, url: String, placeholder: UIImage?) {
-        
+        guard let urls = URL(string: url) else {
+            return
+        }
+        let resource = ImageResource(downloadURL: urls)
+        imageView.kf.setImage(with: resource, placeholder: placeholder)
     }
     
     public func baseTableViewCell(cell: WZIMBaseTableViewCell, tap avatarImageView: UIImageView) {

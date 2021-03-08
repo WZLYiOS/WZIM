@@ -35,7 +35,8 @@ extension V2TIMManager: WZIMManagerProcotol {
         
         let path = WZIMToolAppearance.DBType.image.getPath(userId: V2TIMManager.sharedInstance()?.getLoginUser() ?? "", uuid: "\(NSDate().timeIntervalSince1970)")
         FileManager.default.createFile(atPath: path, contents: image.jpegData(compressionQuality: 0.8), attributes: nil)
-        return createImageMessage(path)
+        let message = createImageMessage(path)
+        return message!
     }
     
     

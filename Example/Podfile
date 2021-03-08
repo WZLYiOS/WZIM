@@ -16,7 +16,7 @@ target 'WZIM_Example' do
   pod 'WZRoute', '~> 2.0.2' #路由组件
   pod 'TZImagePickerController',  '~> 3.2.7' #相册选择组件
   pod 'WZUIExtension',  '~> 0.1.5' #UI扩展
-  pod 'UITableView+FDTemplateLayoutCell',  '~> 1.6'
+  pod 'Kingfisher'
   target 'WZIM_Tests' do
     inherit! :search_paths
 
