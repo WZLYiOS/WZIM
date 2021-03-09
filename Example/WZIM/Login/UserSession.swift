@@ -48,16 +48,15 @@ extension UserSession {
 
 /// MARK - 代理
 extension UserSession: WZEMClientManagerDelegate {
-    
-    public func eMClientManager(manager: WZEMClientManager, conversations: [WZConversationProcotol]) {
+    public func eMClientManager(manager: WZEMClientManager, receive newMessage: WZMessageProtocol) {
         
     }
     
-    public func eMClientManager(manager: WZEMClientManager, receive newMessage: [WZMessageProtocol]) {
+    public func eMClientManager(manager: WZEMClientManager, didRead: WZMessageProtocol) {
         
     }
     
-    public func eMClientManager(manager: WZEMClientManager, didRead: [WZMessageProtocol]) {
+    public func eMClientManager(manager: WZEMClientManager, conversations: WZConversationProcotol) {
         
     }
 }

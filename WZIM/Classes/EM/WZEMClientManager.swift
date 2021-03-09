@@ -115,15 +115,28 @@ public class WZEMClientManager: NSObject {
 extension WZEMClientManager: EMChatManagerDelegate {
     
     public func messagesDidReceive(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, receive: aMessages.emArray())
+        for item in aMessages {
+            if let model = item as? EMMessage {
+                delegate?.eMClientManager(manager: self, receive: model)
+            }
+        }
     }
     
     public func conversationListDidUpdate(_ aConversationList: [Any]!) {
-        delegate?.eMClientManager(manager: self, conversations: aConversationList.emConv())
+        for item in aConversationList {
+            if let model = item as? EMConversation {
+                delegate?.eMClientManager(manager: self, conversations: model)
+            }
+        }
     }
     
     public func messagesDidRead(_ aMessages: [Any]!) {
-        delegate?.eMClientManager(manager: self, didRead: aMessages.emArray())
+        
+        for item in aMessages {
+            if let model = item as? EMMessage {
+                delegate?.eMClientManager(manager: self, didRead: model)
+            }
+        }
     }
 }
 
@@ -131,13 +144,13 @@ extension WZEMClientManager: EMChatManagerDelegate {
 public protocol WZEMClientManagerDelegate: class {
     
     /// 收到新的消息
-    func eMClientManager(manager: WZEMClientManager, receive newMessage: [WZMessageProtocol])
+    func eMClientManager(manager: WZEMClientManager, receive newMessage: WZMessageProtocol)
     
     /// 收到已读类型
-    func eMClientManager(manager: WZEMClientManager, didRead: [WZMessageProtocol])
+    func eMClientManager(manager: WZEMClientManager, didRead: WZMessageProtocol)
     
     /// 更新会话
-    func eMClientManager(manager: WZEMClientManager, conversations: [WZConversationProcotol])
+    func eMClientManager(manager: WZEMClientManager, conversations: WZConversationProcotol)
 }
 
 /// MARK - 消息构建
