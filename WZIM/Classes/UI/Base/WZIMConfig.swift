@@ -36,6 +36,9 @@ public struct WZIMConfig {
     
     /// 右边颜色
     public static var rightTextColor: UIColor = UIColor.white
+    
+    /// 已读按钮是否显示
+    public static var readBtnIsHidden: Bool = false
 }
 
 // MARK - 富文本修改

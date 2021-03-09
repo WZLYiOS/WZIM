@@ -15,7 +15,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		D03841842501C50E000A7D90 /* WZIMFaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03841832501C50E000A7D90 /* WZIMFaceTableViewCell.swift */; };
-		D05F1498255D10F300F2DFB2 /* WZServiceConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F1497255D10F300F2DFB2 /* WZServiceConversionViewController.swift */; };
 		D06D169024FF38C700445619 /* UserLoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D168F24FF38C700445619 /* UserLoginApi.swift */; };
 		D06D169224FF3AB500445619 /* UserAppPlatformConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */; };
 		D06D169424FF3BFE00445619 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D169324FF3BFE00445619 /* NetworkConfig.swift */; };
@@ -80,7 +79,6 @@
 		8FFD3564E3B9A98C93B535D2 /* WZIM.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WZIM.podspec; path = ../WZIM.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CFA673DE44390B4B992D5AD0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D03841832501C50E000A7D90 /* WZIMFaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZIMFaceTableViewCell.swift; sourceTree = "<group>"; };
-		D05F1497255D10F300F2DFB2 /* WZServiceConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WZServiceConversionViewController.swift; sourceTree = "<group>"; };
 		D06D168F24FF38C700445619 /* UserLoginApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginApi.swift; sourceTree = "<group>"; };
 		D06D169124FF3AB500445619 /* UserAppPlatformConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAppPlatformConfig.swift; sourceTree = "<group>"; };
 		D06D169324FF3BFE00445619 /* NetworkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				D06D16AF24FF8E7E00445619 /* WZIMConversionViewController.swift */,
-				D05F1497255D10F300F2DFB2 /* WZServiceConversionViewController.swift */,
 				D03841832501C50E000A7D90 /* WZIMFaceTableViewCell.swift */,
 				D0CB69AA25592B54009BBCBC /* ServiceViewController.swift */,
 				D06D16A124FF456800445619 /* ListViewController.swift */,
@@ -472,7 +469,6 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				D06D169224FF3AB500445619 /* UserAppPlatformConfig.swift in Sources */,
 				D0CB69AB25592B54009BBCBC /* ServiceViewController.swift in Sources */,
-				D05F1498255D10F300F2DFB2 /* WZServiceConversionViewController.swift in Sources */,
 				D03841842501C50E000A7D90 /* WZIMFaceTableViewCell.swift in Sources */,
 				D06D16A424FF45C100445619 /* ListTableViewCell.swift in Sources */,
 				D06D169E24FF40DE00445619 /* WZLYError.swift in Sources */,

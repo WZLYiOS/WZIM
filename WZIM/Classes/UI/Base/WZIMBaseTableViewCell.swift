@@ -154,7 +154,11 @@ open class WZIMBaseTableViewCell: UITableViewCell {
            
             let state = message.sendStatus
             sendFailButton.isHidden = state == .fail ? false : true
-            readButton.isHidden = state == .sending ? true : !sendFailButton.isHidden
+            if WZIMConfig.readBtnIsHidden {
+                readButton.isHidden = true
+            }else{
+                readButton.isHidden = state == .sending ? true : !sendFailButton.isHidden
+            }
             readButton.isSelected = message.isReaded
             avatarImageView.isHidden = false
         case .center:
