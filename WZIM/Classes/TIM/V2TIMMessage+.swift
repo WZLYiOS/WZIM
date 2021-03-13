@@ -89,6 +89,15 @@ extension V2TIMMessage: WZMessageProtocol {
         }
     }
     
+    public var progress: Float {
+        get {
+            return (UserDefaults.standard.value(forKey: "com.wzly.im.upload.progress"+wzMessageId) as? Float) ?? 0
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "com.wzly.im.upload.progress"+wzMessageId)
+        }
+    }
+    
     /// 消息打印
     public func printMsg(){
         

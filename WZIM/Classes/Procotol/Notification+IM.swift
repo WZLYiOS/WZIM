@@ -33,7 +33,7 @@ public extension Notification.Name {
                 return Notification.Name(rawValue: name)
             case .revoked:
                 return Notification.Name(rawValue: name)
-            case let .msg(userId), let .readReceipt(userId):
+            case let .msg(userId), let .readReceipt(userId), let .uploadProgress(userId):
                 return Notification.Name(rawValue: name+userId)
             }
         }
@@ -46,6 +46,7 @@ public enum WZMessageNotification {
     case msg(String)                  // 新消息
     case revoked                      // 撤回消息
     case readReceipt(String)          // 消息已读
+    case uploadProgress(String)       // 上传进度
 }
 
 /// MARK - 通知

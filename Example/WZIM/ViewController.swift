@@ -56,7 +56,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TestTableViewCell", for: indexPath) as! WZMessageRemindTableViewCell
         cell.pDelegate = self
-        cell.reload(model: self, cDelegate: self)
+//        cell.reload(model: self, cDelegate: self)
         return cell
     }
     
@@ -86,64 +86,3 @@ extension ViewController: WZIMTableViewCellPublicDelegate {
     }
 }
 
-extension ViewController: WZMessageProtocol {
-    var sendProgressBlock: ((Float) -> Void)? {
-        get {
-            return objc_getAssociatedObject(self, "com.wzly.im.message.send.progress") as? (Float) -> Void
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, "com.wzly.im.message.send.progress", newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    var wzMessageId: String {
-        return ""
-    }
-    
-    var timeTamp: Date {
-        return Date()
-    }
-    
-    var senderId: String {
-        return ""
-    }
-    
-    var receiverId: String {
-        return ""
-    }
-    
-    var loaction: WZMessageLocation {
-        return .right
-    }
-    
-    var customInt: Int {
-        get {
-            return 0
-        }
-        set(newValue) {
-            
-        }
-    }
-    
-    var customData: Data? {
-        get {
-            return nil
-        }
-        set(newValue) {
-            
-        }
-    }
-    
-    var sendStatus: WZIMMessageStatus {
-        return .deleted
-    }
-    
-    var isReaded: Bool {
-        return false
-    }
-    
-    var currentElem: WZMessageElem {
-        return .unknown
-    }
-    
-}

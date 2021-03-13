@@ -21,7 +21,7 @@ public protocol WZIMManagerProcotol {
     
     /// 文件上传进度（当发送消息中包含图片、语音、视频、文件等富媒体消息时才有效）。
     typealias ProgressHandler = ((_ progress: CGFloat)-> Void)?
-    
+        
     /// 获取会话列表
     typealias ConversationListHandler = ((_ list: [WZConversationProcotol], _ nextPage: Int, _ isFinished: Bool)-> Void)?
     
@@ -203,10 +203,41 @@ public protocol WZIMManagerProcotol {
     /// 获取SDK 登录状态
     func loginStatus() -> WZIMLoginStatus
     
+    ///  向C2C消息列表中添加一条消息
+    ///  该接口主要用于满足向C2C聊天会话中插入一些提示性消息的需求，比如“您已成功发送消息”，这类消息有展示
+    ///  在聊天消息去的需求，但并没有发送给对方的必要。
+    ///  所以 insertC2CMessageToLocalStorage()相当于一个被禁用了网络发送能力的 sendMessage() 接口。
+    /// - Parameters:
+    ///   - message: 消息
+    ///   - to: 对象
+    ///   - sender: 发送方
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    @discardableResult func insertC2CMessageToLocalStorage(message: WZMessageProtocol, to: String, sender: String, sucess: SucessHandler, fail: FailHandler) -> String
+    
+    ///  向群消息列表中添加一条消息
+    ///  该接口主要用于满足向C2C聊天会话中插入一些提示性消息的需求，比如“您已成功发送消息”，这类消息有展示
+    ///  在聊天消息去的需求，但并没有发送给对方的必要。
+    ///  所以 insertC2CMessageToLocalStorage()相当于一个被禁用了网络发送能力的 sendMessage() 接口。
+    /// - Parameters:
+    ///   - message: 消息
+    ///   - to: 对象
+    ///   - sender: 发送方
+    ///   - sucess: 成功
+    ///   - fail: 失败
+    @discardableResult func insertGroupMessageToLocalStorage(message: WZMessageProtocol, groupID: String, sender: String, sucess: SucessHandler, fail: FailHandler) -> String
+    
     /// 时间和置顶排序
-    @discardableResult
-    func sorted(list: [WZConversationProcotol]) -> [WZConversationProcotol]
+    @discardableResult func sorted(list: [WZConversationProcotol]) -> [WZConversationProcotol]
 }
+
+// MARK - 上传进度
+public protocol WZIMUploadProgressListener: class {
+    
+    /// 上传进度
+    func WZIMManager(manger: WZIMManagerProcotol, uploadProgress message: WZMessageProtocol)
+}
+
 
 /// 扩展方法
 extension WZIMManagerProcotol {

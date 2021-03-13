@@ -39,6 +39,9 @@ public protocol WZMessageProtocol {
     
     /// 当前数据
     var currentElem: WZMessageElem { get }
+    
+    /// 上传进度
+    var progress: Float {set get}
 }
 
 // MARK - C2C 已读回执

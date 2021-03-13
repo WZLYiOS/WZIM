@@ -14,7 +14,7 @@ public class WZMessageRemindTableViewCell: WZIMBaseTableViewCell {
     weak var delegate: WZMessageRemindTableViewCellDelegate?
     
     /// 内容
-    private lazy var contentLabel: UILabel = {
+    public lazy var contentLabel: UILabel = {
         $0.backgroundColor = UIColor.clear
         $0.textColor = UIColor.white
         $0.font = UIFont.systemFont(ofSize: 13)
@@ -65,6 +65,7 @@ public class WZMessageRemindTableViewCell: WZIMBaseTableViewCell {
             contentLabel.attributedText = text
         default: break
         }
+        delegate?.remindTableViewCell?(custom: self)
     }
     
     /// 获取点击的label
@@ -79,11 +80,15 @@ public class WZMessageRemindTableViewCell: WZIMBaseTableViewCell {
 }
 
 // MARK - WZMessageRemindTableViewCellDelegate
-public protocol WZMessageRemindTableViewCellDelegate: class {
+@objc public protocol WZMessageRemindTableViewCellDelegate: class {
     
     /// 文字点击
     /// - Parameters:
     ///   - cell: cell
     ///   - label: 点击的内容
     func remindTableViewCell(cell: WZMessageRemindTableViewCell, diselect label: String)
+    
+    /// 自定义cell颜色等
+    /// - Parameter cell: cell
+    @objc optional func remindTableViewCell(custom cell: WZMessageRemindTableViewCell)
 }

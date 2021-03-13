@@ -31,6 +31,17 @@ public extension String {
 
 // MARK - 管理器遵循协议
 extension V2TIMManager: WZIMManagerProcotol {
+    
+    /// 上传回调代理方法
+    public weak var uploadDelegate: WZIMUploadProgressListener? {
+        get {
+            return objc_getAssociatedObject(self, "com.wzly.im.upload.progress.delegate") as? WZIMUploadProgressListener
+        }
+        set {
+            objc_setAssociatedObject(self, "com.wzly.im.upload.progress.delegate", newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        }
+    }
+   
     public func wzCreateImageMessage(image: UIImage) -> WZMessageProtocol {
         
         let path = WZIMToolAppearance.DBType.image.getPath(userId: V2TIMManager.sharedInstance()?.getLoginUser() ?? "", uuid: "\(NSDate().timeIntervalSince1970)")
@@ -72,8 +83,13 @@ extension V2TIMManager: WZIMManagerProcotol {
     
     public func sendC2CMessage(receiverId: String, message: WZMessageProtocol, pushInfo: WZIMOfflinePushInfoProtocol?, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
         let pInfo = (pushInfo as? V2TIMOfflinePushInfo) ?? nil
-        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: pInfo, progress: { (progre) in
+        return send((message as! V2TIMMessage), receiver: receiverId.imPrefix, groupID: "", priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: pInfo, progress: { [weak self](progre) in
+            guard let self = self else { return }
+            var msg = message
+            msg.progress = Float(progre)
+            self.uploadDelegate?.WZIMManager(manger: self, uploadProgress: msg)
             progress?(CGFloat(progre))
+            
         }, succ: {
             sucess?()
         }) { (code, msg) in
@@ -82,7 +98,11 @@ extension V2TIMManager: WZIMManagerProcotol {
     }
     
     public func sendGruopMessage(receiverId: String, message: WZMessageProtocol, progress: ProgressHandler, sucess: SucessHandler, fail: FailHandler) -> String {
-        return send((message as! V2TIMMessage), receiver: "", groupID: receiverId, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { (progre) in
+        return send((message as! V2TIMMessage), receiver: "", groupID: receiverId, priority: .PRIORITY_DEFAULT, onlineUserOnly: false, offlinePushInfo: nil, progress: { [weak self](progre) in
+            guard let self = self else { return }
+            var msg = message
+            msg.progress = Float(progre)
+            self.uploadDelegate?.WZIMManager(manger: self, uploadProgress: msg)
             progress?(CGFloat(progre))
         }, succ: {
             sucess?()
@@ -235,6 +255,22 @@ extension V2TIMManager: WZIMManagerProcotol {
         reject(inviteId, data: data, succ: {
             sucess?()
         }) { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func insertC2CMessageToLocalStorage(message: WZMessageProtocol, to: String, sender: String, sucess: SucessHandler, fail: FailHandler) -> String {
+        return insertC2CMessage(toLocalStorage: (message as! V2TIMMessage), to: to.imPrefix, sender: sender.imPrefix) {
+            sucess?()
+        } fail: { (code, msg) in
+            fail?(Int(code),msg ?? "")
+        }
+    }
+    
+    public func insertGroupMessageToLocalStorage(message: WZMessageProtocol, groupID: String, sender: String, sucess: SucessHandler, fail: FailHandler) -> String {
+        return insertGroupMessage(toLocalStorage: (message as! V2TIMMessage), to: groupID, sender: sender.imPrefix) {
+            sucess?()
+        } fail: { (code, msg) in
             fail?(Int(code),msg ?? "")
         }
     }
