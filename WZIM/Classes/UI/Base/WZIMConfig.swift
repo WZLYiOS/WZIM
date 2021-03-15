@@ -23,13 +23,13 @@ public struct WZIMConfig {
     public static var avatarSize: CGSize = CGSize(width: 50, height: 50)
     
     /// 头部位置
-    public static var avatarEdge: UIEdgeInsets = UIEdgeInsets(top: 17, left: 15, bottom: 0, right: 10)
+    public static var avatarEdge: UIEdgeInsets = UIEdgeInsets(top: 17, left: 15, bottom: 0, right: 15)
     
     /// 消息框边距
     public static var bubbleEdge: UIEdgeInsets = UIEdgeInsets(top: 21, left: 10, bottom: 3, right: 10)
     
     /// 最大宽度
-    public static var maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 80
+    public static var maxWidth = UIScreen.main.bounds.size.width - WZIMConfig.avatarEdge.left - WZIMConfig.avatarSize.width - WZIMConfig.bubbleEdge.left - 85
     
     /// 文字左边颜色
     public static var lelftTextColor: UIColor = WZIMToolAppearance.hexadecimal(rgb: "0x3C3C3C")
