@@ -33,6 +33,7 @@ public enum WZMessageNoticeType: Int, WZIMDefaultEnumCodable {
     case uploadInfo = 46 // 用户资料更新
     case b_system = 47   // B端系统通知
     case c_service = 48  // c端服务提醒
+    case topic = 49      // 话题提示
 }
 
 // MARK - 透传消息elem
@@ -59,6 +60,7 @@ public enum WZMessageNoticeElem: Decodable {
     case uploadInfo(WZMessageNoticeUploadUserInfoModel)
     case b_system(WZMessageSystemNoticeModel)
     case c_service(WZMessageSystemNoticeModel)
+    case topic(WZMessageNoticeTopicModel)
     
     public init(from decoder: Decoder) throws {
         throw CordinateError.missingValue
@@ -112,6 +114,8 @@ public enum WZMessageNoticeElem: Decodable {
         case let .b_system(model):
             return model
         case let .c_service(model):
+            return model
+        case let .topic(model):
             return model
         default:
             return nil
@@ -180,6 +184,8 @@ public class WZTNoticeElem: NSObject, Decodable {
             elem = .b_system(try vals.decode(WZMessageSystemNoticeModel.self, forKey: CodingKeys.elem))
         case .c_service:
             elem = .c_service(try vals.decode(WZMessageSystemNoticeModel.self, forKey: CodingKeys.elem))
+        case .topic:
+            elem = .topic(try vals.decode(WZMessageNoticeTopicModel.self, forKey: CodingKeys.elem))
         default:
             elem = .unknown
         }
@@ -512,5 +518,20 @@ public class WZMessageSystemNoticeModel: Codable {
         case unreadNum = "unread_num"
         case content = "content"
         case timesTamp = "timestamp"
+    }
+}
+
+/// MARK - 话题提示
+public class WZMessageNoticeTopicModel: Codable {
+    
+    /// 用户id
+    var userId: String
+    
+    /// 话题内容
+    var content: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "chat_user_id"
+        case content = "content"
     }
 }
